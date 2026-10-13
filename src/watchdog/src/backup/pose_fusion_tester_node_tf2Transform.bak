@@ -1,0 +1,400 @@
+#include "ros/ros.h"
+#include "ros/console.h"
+#include "geometry_msgs/PoseWithCovarianceStamped.h"
+#include "geometry_msgs/PoseArray.h"
+#include "geometry_msgs/Pose.h"
+#include "tf/tf.h"
+#include "std_msgs/Empty.h"
+
+#include <vector>
+#include <algorithm>
+#include <sensor_msgs/LaserScan.h>
+#include <std_msgs/Float32.h>
+#include <iostream>
+#include <set>
+#include <ostream>
+#include <sensor_msgs/Range.h>
+
+#include <nav_msgs/Path.h>
+#include <stdlib.h>
+#include <fstream>
+#include <stdio.h>
+#include <termio.h>
+#include <unistd.h>
+#include <time.h>
+#include <ctime>
+#include "tf/transform_broadcaster.h"
+#include "tf/transform_listener.h"
+#include <cmath>
+#include <math.h>
+#include "tf2_geometry_msgs/tf2_geometry_msgs.h"
+
+ros::Time cameraPoseStamp_;
+ros::Time cameraPoseTime_;
+
+ros::Time amclPoseStamp_;
+ros::Time amclPoseTime_;
+
+ros::Time odomPoseStamp_;
+ros::Time odomPoseTime_;
+
+geometry_msgs::PoseStamped cameraPose_;
+geometry_msgs::PoseWithCovarianceStamped amclPose_;
+geometry_msgs::PoseWithCovarianceStamped odomCombinedPose_;
+
+std::vector<geometry_msgs::PoseStamped> amclPosePathVector_;
+std::vector<geometry_msgs::PoseStamped> odomCombinedPosePathVector_;
+std::vector<geometry_msgs::PoseStamped> cameraPosePathVector_;
+
+std::string odomCombinedPathTopic_ = "/test/odom_combined_path";
+std::string amclPosePathTopic_ = "/test/amcl_pose_path";
+std::string cameraPosePathTopic_ = "/test/camera_pose_path";
+
+std::string odomCombinedFrameID_ = "odom_combined";
+std::string amclFrameID_ = "map";
+std::string cameraFrameID_ = "map";
+
+ros::Publisher pubOdomCombinedPosePath_;
+ros::Publisher pubAmclPosePath_;
+ros::Publisher pubCameraPosePath_;
+
+double pathPubRate_;
+
+ros::Timer pathTimer_;
+
+std::ofstream outputFileForCameraPose_;
+std::ofstream outputFileForAMCL_Pose_;
+std::ofstream outputFileForOdomCombinedPose_;
+
+tf::TransformListener* listenerPtr_;
+
+bool isGetTF_ = false;
+bool isCameraPoseSet_ = false;
+double positionX_ = 0.0;
+double positionY_ = 0.0;
+double yaw_ = 0.0;
+tf::StampedTransform transformOffset_;
+
+
+// Use a child class to get access to tf2::Buffer class inside of tf_
+struct TransformListenerWrapper : public tf::TransformListener
+{
+    inline tf2_ros::Buffer &getBuffer() {return tf2_buffer_;}
+};
+
+// struct EulerAngles 
+// {
+//     double pitch;
+//     double roll;
+//     double yaw;
+// };
+
+// struct Quaternion
+// {
+//     double x;
+//     double y;
+//     double z;
+//     double w;
+// };
+
+// Quaternion toQuaternion(double pitch, double roll, double yaw)
+// {
+//     // Abbreviations for the various angular functions
+//     double cy = cos( yaw*0.5 );
+//     double sy = sin( yaw*0.5 );
+//     double cp = cos( pitch*0.5 );
+//     double sp = sin( pitch*0.5 );
+//     double cr = cos( roll*0.5 );
+//     double sr = sin( roll*0.5 );
+
+//     Quaternion q;
+//     q.w = cr * cp * cy + sr * sp * sy;
+//     q.x = sr * cp * cy - cr * sp * sy;
+//     q.y = cr * sp * cy + sr * cp * sy;
+//     q.z = cr * cp * sy - sr * sp * cy;
+
+//     return q;    
+// }
+
+// EulerAngles toEulerAngle(Quaternion q)
+// {
+//     EulerAngles angles;
+
+//     // roll (x-axis rotation)
+//     double sinr_cosp = 2 * (q.w * q.x + q.y * q.z);
+//     double cosr_cosp = 1 - 2 * (q.x * q.x + q.y * q.y);
+//     angles.roll = std::atan2(sinr_cosp, cosr_cosp);
+
+//     // pitch (y-axis rotation)
+//     double sinp = 2 * (q.w * q.y - q.z * q.x);
+//     if (std::abs(sinp) >= 1)
+//         angles.pitch = std::copysign(M_PI / 2, sinp); // use 90 degrees if out of range
+//     else
+//         angles.pitch = std::asin(sinp);
+
+//     // yaw (z-axis rotation)
+//     double siny_cosp = 2 * (q.w * q.z + q.x * q.y);
+//     double cosy_cosp = 1 - 2 * (q.y * q.y + q.z * q.z);
+//     angles.yaw = std::atan2(siny_cosp, cosy_cosp);
+
+//     return angles;    
+// }
+
+double getYaw(tf::Pose& t)
+{
+  double yaw, pitch, roll;
+  t.getBasis().getEulerYPR(yaw,pitch,roll);
+
+  return yaw;
+}
+
+
+void logPath(std::ofstream &outputFile, const geometry_msgs::PoseStamped poseMsg)
+{
+    double xPose = poseMsg.pose.position.x;
+    double yPose = poseMsg.pose.position.y;
+
+    //outputFile << poseMsg.header.stamp << "," << xPose << "," << yPose << std::endl;
+}
+
+
+geometry_msgs::PoseStamped transform(const geometry_msgs::PoseWithCovarianceStamped message, std::string frameID)
+{
+    geometry_msgs::PoseStamped poseStamped;
+
+    poseStamped.header.stamp = message.header.stamp;
+    poseStamped.header.frame_id = frameID;
+    
+    poseStamped.pose.position.x = message.pose.pose.position.x;
+    poseStamped.pose.position.y = message.pose.pose.position.y;
+    poseStamped.pose.position.z = message.pose.pose.position.z;
+    poseStamped.pose.orientation.x = message.pose.pose.orientation.x;
+    poseStamped.pose.orientation.y = message.pose.pose.orientation.y;
+    poseStamped.pose.orientation.z = message.pose.pose.orientation.z;
+    poseStamped.pose.orientation.w = message.pose.pose.orientation.w;
+
+    return poseStamped;
+}
+
+
+void pubPosePath(geometry_msgs::PoseStamped poseStamped, std::vector<geometry_msgs::PoseStamped> &posePathVector, ros::Publisher &publisherPosePath)
+{
+    int pathSub = publisherPosePath.getNumSubscribers();
+
+    posePathVector.push_back(poseStamped);
+
+    if(pathSub > 0)
+    {
+        nav_msgs::PathPtr posePathPtr = boost::make_shared<nav_msgs::Path>();
+        
+        posePathPtr->header.stamp = posePathVector.back().header.stamp;
+        posePathPtr->header.frame_id = posePathVector.back().header.frame_id;
+        posePathPtr->poses = posePathVector;
+
+        publisherPosePath.publish(posePathPtr);
+    }
+}
+
+
+void cameraPoseCallback(const geometry_msgs::PoseStamped poseMsg)
+{
+    tf2::Quaternion quaternionRotation;
+    double rollForOffset, pitchForOffset;
+
+    if(!isCameraPoseSet_)
+    {
+        listenerPtr_->lookupTransform("map", "base_link", ros::Time(0), transformOffset_);
+
+        tf::Quaternion quaternionForOffset( transformOffset_.getRotation().x(), transformOffset_.getRotation().y(), transformOffset_.getRotation().z(), transformOffset_.getRotation().w() );
+        tf::Matrix3x3 matrixForOffset(quaternionForOffset);
+        matrixForOffset.getRPY(rollForOffset, pitchForOffset, yaw_);
+
+        quaternionRotation.setRPY(rollForOffset, pitchForOffset, yaw_);
+
+        positionX_ = transformOffset_.getOrigin().x();
+        positionY_ = transformOffset_.getOrigin().y();
+
+        isCameraPoseSet_ = true;
+    }
+
+    tf2::Quaternion quaternionNew, quaternionOriginal;
+    tf2::convert(poseMsg.pose.orientation, quaternionOriginal);
+    
+    quaternionNew = quaternionRotation * quaternionOriginal;
+
+
+    // tf::Quaternion quaternionForCamera(poseMsg.pose.orientation.x, poseMsg.pose.orientation.y, poseMsg.pose.orientation.z, poseMsg.pose.orientation.w);
+    // tf::Matrix3x3 matrixForCamera(quaternionForCamera);
+    
+    // double rollForCamera, pitchForCamera, yawForCamera;
+    // matrixForCamera(rollForCamera, pitchForCamera, yawForCamera);
+    
+    // yawForCamera += yaw_;
+
+    // tf2::Quaternion quaternionForCamera;
+    // quaternionForCamera.setRPY(rollForCamera, pitchForCamera, yawForCamera);
+
+    // quaternionForCamera = toQuaternion(anglesForCamera.pitch, anglesForCamera.roll, anglesForCamera.yaw);
+
+    geometry_msgs::PoseStamped poseStamped = poseMsg;
+
+    poseStamped.pose.position.x += positionX_;
+    poseStamped.pose.position.y += positionY_;
+
+    geometry_msgs::Quaternion q = tf2::toMsg(quaternionNew);
+    poseStamped.pose.orientation = q;
+
+    // poseStamped.pose.orientation.x += quaternionForCamera.x;
+    // poseStamped.pose.orientation.y += quaternionForCamera.y;
+    // poseStamped.pose.orientation.z += quaternionForCamera.z;
+    // poseStamped.pose.orientation.w += quaternionForCamera.w;
+
+    // poseStamped.pose.orientation.x += transformOffset_.getRotation().x();
+    // poseStamped.pose.orientation.y += transformOffset_.getRotation().y();
+    // poseStamped.pose.orientation.z += transformOffset_.getRotation().z();
+    // poseStamped.pose.orientation.w += transformOffset_.getRotation().w();
+
+    std::cout << "T pose : " <<  positionX_ << ", " << positionY_ << "," << q.x << ", " << q.y << ", " << q.z << ", " << q.w << std::endl;    
+
+    cameraPose_ = poseStamped;
+
+    logPath(outputFileForCameraPose_, cameraPose_);
+}
+
+
+void amclPoseCallback(const geometry_msgs::PoseWithCovarianceStamped poseMsg)
+{
+    if(!isGetTF_)
+    {
+        static tf::TransformBroadcaster broadcaster;
+
+        tf::Transform transformOffset;
+        transformOffset.setOrigin( tf::Vector3(poseMsg.pose.pose.position.x, poseMsg.pose.pose.position.y, poseMsg.pose.pose.position.z) );
+
+        tf::Quaternion quaternion;
+
+        quaternion.setX( poseMsg.pose.pose.orientation.x);
+        quaternion.setY( poseMsg.pose.pose.orientation.y);
+        quaternion.setZ( poseMsg.pose.pose.orientation.z);
+        quaternion.setW( poseMsg.pose.pose.orientation.w);
+
+        transformOffset.setRotation(quaternion);
+
+        broadcaster.sendTransform(tf::StampedTransform(transformOffset, ros::Time::now(), "map", "base_link"));
+
+        isGetTF_ = true;
+    }
+    
+
+    amclPose_ = poseMsg;
+    
+    logPath( outputFileForAMCL_Pose_, transform(poseMsg, amclFrameID_) );
+}
+
+
+void odomCombinedCallback(const geometry_msgs::PoseWithCovarianceStamped poseMsg)
+{
+    odomCombinedPose_ = poseMsg;
+
+    logPath( outputFileForOdomCombinedPose_, transform(poseMsg, odomCombinedFrameID_) );
+}
+
+
+void pubPathCallback(const ros::TimerEvent& e)
+{
+    pubPosePath( transform( odomCombinedPose_, "odom_combined" ), odomCombinedPosePathVector_, pubOdomCombinedPosePath_);
+    pubPosePath( transform( amclPose_, "map" ), amclPosePathVector_, pubAmclPosePath_);
+    pubPosePath( cameraPose_, cameraPosePathVector_, pubCameraPosePath_);
+}
+
+
+void initialPoseCallback(const geometry_msgs::PoseWithCovarianceStampedConstPtr& msg)
+{
+    tf::StampedTransform transformOffset;
+    
+    listenerPtr_->lookupTransform("map", "cameraPose", ros::Time(0), transformOffset);
+
+    tf::Pose pose_old, pose_new;
+    tf::poseMsgToTF(cameraPose_.pose, pose_old);
+    pose_new = pose_old * transformOffset;
+
+    double poseX = pose_new.getOrigin().x();
+    double poseY = pose_new.getOrigin().y();
+    double poseZ = pose_new.getOrigin().z();
+    double yaw = getYaw(pose_new);
+
+    geometry_msgs::PoseStamped poseStamped;   
+
+    tf::Quaternion quaternion = pose_new.getRotation();
+
+    poseStamped.pose.position.x = pose_new.getOrigin().x();
+    poseStamped.pose.position.y = pose_new.getOrigin().y();
+    poseStamped.pose.position.z = pose_new.getOrigin().z();
+
+    poseStamped.pose.orientation.x = quaternion.x();
+    poseStamped.pose.orientation.y = quaternion.y();
+    poseStamped.pose.orientation.z = quaternion.z();
+    poseStamped.pose.orientation.w = quaternion.w();
+
+    std::cout << "Setting pose : " << pose_new.getOrigin().x() << ", " << pose_new.getOrigin().y() << ", " << pose_new.getOrigin().z() << ", " << getYaw(pose_new)*57.2958 << std::endl;
+}
+
+
+int main(int argc, char **argv)
+{
+    ROS_INFO("pose_fusion_tester start\n");
+    ros::init(argc, argv, "pose_fusion_tester");
+
+    listenerPtr_ = new TransformListenerWrapper();
+
+    time_t t = time(0);   // get time now
+    struct tm* now = localtime(&t);
+    char buffer[100];
+    strftime(buffer, 100, "/home/nvidia/nvidiaLogger/Camera%Y%m%d_%H%M%S.csv",now);
+    outputFileForCameraPose_.open(buffer);
+    strftime(buffer, 100, "/home/nvidia/nvidiaLogger/AMCL%Y%m%d_%H%M%S.csv",now);
+    outputFileForAMCL_Pose_.open(buffer);
+    strftime(buffer, 100, "/home/nvidia/nvidiaLogger/OdomCombined%Y%m%d_%H%M%S.csv",now);
+    outputFileForOdomCombinedPose_.open(buffer);
+
+    if (outputFileForCameraPose_.is_open())
+    {
+        outputFileForCameraPose_ << "TimeStamp,Pose_X,Pose_Y" << std::endl;
+    }
+
+    if (outputFileForAMCL_Pose_.is_open())
+    {
+        outputFileForAMCL_Pose_ << "TimeStamp,Pose_X,Pose_Y" << std::endl;
+    }
+
+    if (outputFileForOdomCombinedPose_.is_open())
+    {
+        outputFileForOdomCombinedPose_ << "TimeStamp,Pose_X,Pose_Y" << std::endl;
+    }
+    
+    ros::NodeHandle nh;
+    ros::Rate r(10.0);
+    pathPubRate_ = 2.0;
+    
+    pubOdomCombinedPosePath_ = nh.advertise<nav_msgs::Path>(odomCombinedPathTopic_, 1);
+    std::cout << "Advertised on topic : " << pubOdomCombinedPosePath_.getTopic() << std::endl;
+    
+    pubAmclPosePath_ = nh.advertise<nav_msgs::Path>(amclPosePathTopic_, 1);
+    std::cout << "Advertised on topic : " << pubAmclPosePath_.getTopic() << std::endl;
+
+    pubCameraPosePath_ = nh.advertise<nav_msgs::Path>(cameraPosePathTopic_, 1);
+    std::cout << "Advertised on topic : " << pubCameraPosePath_.getTopic() << std::endl;
+    
+    pathTimer_ = nh.createTimer( ros::Duration(1.0/pathPubRate_), pubPathCallback );
+
+    ros::Subscriber cameraPoseSubscriber = nh.subscribe("/zed2/zed_node/pose", 10, cameraPoseCallback );
+    ros::Subscriber amclPoseSubscriber = nh.subscribe("/amcl_pose", 10, amclPoseCallback );
+    ros::Subscriber odomCombinedSubscriber = nh.subscribe("/robot_pose_ekf/odom_combined", 10, odomCombinedCallback);
+    ros::Subscriber initialPoseSubscriber = nh.subscribe("initialpose", 1, initialPoseCallback);
+
+    while (ros::ok())
+    {  
+        ros::spinOnce();
+        r.sleep(); 
+    }
+}

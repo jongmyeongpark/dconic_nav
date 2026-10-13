@@ -1,0 +1,161 @@
+#include "ros/ros.h"
+#include "wp_data_transfer/wpdata.h"
+#include "std_msgs/String.h"
+#include "nav_msgs/Path.h"
+#include "geometry_msgs/PoseStamped.h"
+#include <sstream>
+#include <string>
+#include <iostream>
+#include <fstream>
+
+bool is_wp_transfer = false;
+std::string file_name_str = "";
+int count = 0;
+
+void file_name_CallBack(const std_msgs::String::ConstPtr & _file_name)
+{
+	ROS_INFO("[wp_pub] file_name_CallBack message");
+	file_name_str = _file_name->data;
+	std::stringstream stof(file_name_str.substr(0,2));
+	stof >> count;
+	ROS_INFO("[wp_pub] count = %d", count);
+	file_name_str = file_name_str.substr(4);
+	ROS_INFO("[wp_pub] file_name = %s", file_name_str.c_str());
+	is_wp_transfer = true;
+}
+
+void pathFileNameFromMapInfoCallback(const std_msgs::String& msg){
+	ROS_INFO("[wp_pub] file_name_CallBack message");
+	file_name_str = msg.data;
+	//std::stringstream stof(file_name_str.substr(0,2));
+	//stof >> count;
+	//ROS_INFO("[wp_pub] count = %d", count);
+	//file_name_str = file_name_str.substr(4);
+	//ROS_INFO("[wp_pub] file_name = %s", file_name_str.c_str());
+	file_name_str = file_name_str + ".csv";
+	is_wp_transfer = true;
+}
+
+int main(int argc, char **argv)
+{
+	ros::init(argc, argv, "wp_msg_publisher");
+	ros::NodeHandle nh;
+
+	ros::Subscriber file_name_sub = nh.subscribe("path_run_request", 10, file_name_CallBack);
+    ros::Subscriber pathFileNameFromMapInfoSubscriber = nh.subscribe("/path_file_name_from_map_info", 10, pathFileNameFromMapInfoCallback);
+
+    ros::Publisher wp_data_pub = nh.advertise<wp_data_transfer::wpdata>("wp_msg_transfer", 1, true);
+	ros::Publisher wp_path_pub = nh.advertise<nav_msgs::Path>("wp_path", 10, true);
+
+	nav_msgs::Path wp_path;
+
+	ros::Rate loop_rate(0.5);
+	while (ros::ok())	
+	{
+		if (is_wp_transfer) {
+			// load .csv file
+			std::string file_name = "/home/nvidia/dconic_nav/src/follow_waypoints/saved_path/" + file_name_str;
+			std::ifstream fin;
+			fin.open(file_name.c_str());
+			std::string line = "";
+
+			if(!fin.is_open()){
+				ROS_INFO("In wp_msg_publishr File open fail\n");
+			}
+			else {
+				wp_path.poses.clear();
+				wp_path.header.frame_id="map";
+				wp_path.header.stamp = ros::Time::now();
+			}
+			
+
+			int str_len = 0;
+			wp_data_transfer::wpdata msg;
+		
+			char split = ',';
+			std::string pose_data = "";
+			float temp = 0.0;
+			int cnt = 0;
+			while(std::getline(fin, line)){
+				str_len = strlen(line.c_str());
+				if(str_len > 0){
+					geometry_msgs::PoseStamped pose;
+					pose.header.stamp = ros::Time::now();
+					pose.header.frame_id = "map";
+					std::istringstream ss2(line);
+					ROS_INFO("[wp_pub] %s", line.c_str());
+
+					std::getline(ss2, pose_data, split);
+					std::stringstream stof1(pose_data);
+					stof1 >> temp;
+					msg.x.push_back(temp);
+					pose.pose.position.x = temp;
+
+					std::getline(ss2, pose_data, split);
+					std::stringstream stof2(pose_data);
+					stof2 >> temp;
+					msg.y.push_back(temp);
+					pose.pose.position.y = temp;
+
+					std::getline(ss2, pose_data, split);
+					std::stringstream stof3(pose_data);
+					stof3 >> temp;
+					msg.z.push_back(temp);
+					pose.pose.position.z = temp;
+					
+					std::getline(ss2, pose_data, split);
+					std::stringstream stof4(pose_data);
+					stof4 >> temp;
+					msg.qx.push_back(temp);
+					pose.pose.orientation.x = temp;
+					
+					std::getline(ss2, pose_data, split);
+					std::stringstream stof5(pose_data);
+					stof5 >> temp;
+					msg.qy.push_back(temp);
+					pose.pose.orientation.y = temp;
+					
+					std::getline(ss2, pose_data, split);
+					std::stringstream stof6(pose_data);
+					stof6 >> temp;
+					msg.qz.push_back(temp);
+					pose.pose.orientation.z = temp;
+					
+					std::getline(ss2, pose_data, split);
+					std::stringstream stof7(pose_data);
+					stof7 >> temp;
+					msg.qw.push_back(temp);
+					pose.pose.orientation.w = temp;
+
+					wp_path.poses.push_back(pose);
+					
+					++cnt;
+				}
+			}
+			
+			msg.filename = file_name_str;
+			msg.wp_quan = count;
+			ROS_INFO("send msg.filename = %s", file_name_str.c_str());
+			// for(int j=0;j<cnt;j++){
+			// 	ROS_INFO("send msg.wp_quan = %d", msg.wp_quan);
+			// 	ROS_INFO("send msg.wpdata.x = %.2f", msg.x[j]);
+			// 	ROS_INFO("send msg.wpdata.y = %.2f", msg.y[j]);
+			// 	ROS_INFO("send msg.wpdata.z = %.2f", msg.z[j]);
+			// 	ROS_INFO("send msg.wpdata.qx = %.2f", msg.qx[j]);
+			// 	ROS_INFO("send msg.wpdata.qy = %.2f", msg.qy[j]);
+			// 	ROS_INFO("send msg.wpdata.qz = %.2f", msg.qz[j]);
+			// 	ROS_INFO("send msg.wpdata.qw = %.2f", msg.qw[j]);
+			// }
+			
+			wp_data_pub.publish(msg);
+			is_wp_transfer = false;
+			cnt = 0;
+			fin.close();
+		}
+		wp_path_pub.publish(wp_path);
+		loop_rate.sleep();
+		ros::spinOnce();
+	}
+
+	return 0;
+}

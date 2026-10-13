@@ -1,0 +1,71 @@
+<launch>
+
+    <!-- <node name="usb_cam1" pkg="usb_cam" type="usb_cam_node" output="screen" >
+        <param name="video_device" value="/dev/video0" />
+        <param name="image_width" value="640" />
+        <param name="image_height" value="480" />
+        <param name="pixel_format" value="yuyv" />
+        <param name="camera_frame_id" value="usb_cam" />
+        <param name="io_method" value="mmap"/>
+    </node> -->
+
+    <!-- <node name="usb_cam2" pkg="usb_cam" type="usb_cam_node" output="screen" >
+        <param name="video_device" value="/dev/video1" />
+        <param name="image_width" value="640" />
+        <param name="image_height" value="480" />
+        <param name="pixel_format" value="yuyv" />
+        <param name="camera_frame_id" value="usb_cam" />
+        <param name="io_method" value="mmap"/>
+    </node> -->
+
+    <!-- send_image -->
+    <node pkg="landmark" type="send_img.py" name="send_img" output="screen" respawn="false" />
+
+    <!-- sim_check -->
+    <node pkg="landmark" type="sim_check_location_orb.py" name="location_sim_checker" output="screen" respawn="false">
+        <param name="feature_num" value="100" />
+        <param name="th_sim" value="100" />
+        <param name="th_error" value="100" />
+        <param name="th_unjudge" value="500" />
+        <param name="th_unjudge_cnt" value="10" />
+
+        <param name="xmin" value="0" />
+        <param name="ymin" value="0" />
+        <param name="xmax" value="270" />
+        <param name="ymax" value="190" />
+        <param name="unit" value="10" />
+
+        <param name="path_embed" value="$(find landmark)/scripts/dataset_embed" />
+        <param name="path_map" value="$(find landmark)/scripts/dataset_map" />
+        <param name="path_info" value="$(find landmark)/scripts/db_info" />
+        <param name="path_result" value="$(find landmark)/scripts" />
+    </node>
+
+
+    <!-- DB_update -->
+    <node pkg="landmark" type="new_embed_orb.py" name="dataset_update" output="screen" respawn="false">
+        <param name="th_sim" value="100" />
+
+        <param name="xmin" value="0" />
+        <param name="ymin" value="0" />
+        <param name="xmax" value="270" />
+        <param name="ymax" value="190" />
+        <param name="unit" value="10" />
+        
+        <param name="path_embed" value="$(find landmark)/scripts/dataset_embed" />
+        <param name="path_map" value="$(find landmark)/scripts/dataset_map" />
+        <param name="path_temp" value="$(find landmark)/scripts/dataset_temp" />
+
+    </node>
+
+    <!-- Relocalization -->
+    <!-- <node pkg="landmark" type="relocal.py" name="relocal" output="screen" respawn="false"/> -->
+
+
+
+
+    <!-- <node pkg="landmark" type="predict.py" name="Predict_amcl" output="screen" respawn="false"/> -->
+
+
+
+</launch>

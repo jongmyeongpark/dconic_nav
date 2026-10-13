@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- 공통 파라미터 -->
+  <arg name="engine_path" default="/home/nvidia/Depth-Anythingv2-TensorRT-python/checkpoints/depth_anything_v2_metric_hypersim_vits_fp16.engine"/>
+  <arg name="fx"          default="600.0"/>
+  <arg name="fy"          default="600.0"/>
+  <arg name="cx"          default="320.0"/>
+  <arg name="cy"          default="240.0"/>
+
+  <!-- compressed → raw 변환 (네트워크 대역폭 절약) -->
+  <node name="republish_front" pkg="image_transport" type="republish"
+        args="compressed in:=/camera2/usb_cam2/image_raw raw out:=/camera2/usb_cam2/image_local_front"
+        respawn="false"/>
+  <node name="republish_rear" pkg="image_transport" type="republish"
+        args="compressed in:=/camera1/usb_cam1/image_raw raw out:=/camera1/usb_cam1/image_local_rear"
+        respawn="false"/>
+
+  <!-- 전방 카메라 (front_laser 위 105cm) — 물리적으로 usb_cam2 토픽 사용 -->
+  <node name="depth_anything_front" pkg="depth_anything_ros" type="depth_anything_node.py"
+        output="screen" respawn="false">
+    <remap from="/depth_anything/pointcloud_raw" to="/depth_anything/pointcloud_front"/>
+    <remap from="/depth_anything/depth_image"    to="/depth_anything/depth_image_front"/>
+    <remap from="/depth_anything/depth_raw"      to="/depth_anything/depth_raw_front"/>
+
+    <param name="engine_path"  value="$(arg engine_path)"/>
+    <param name="image_topic"  value="/camera2/usb_cam2/image_local_front"/>
+    <param name="frame_id"     value="usb_cam1"/>
+
+    <param name="fx" value="$(arg fx)"/>
+    <param name="fy" value="$(arg fy)"/>
+    <param name="cx" value="$(arg cx)"/>
+    <param name="cy" value="$(arg cy)"/>
+
+    <param name="depth_scale"   value="1.0"/>
+    <param name="min_depth"     value="0.3"/>
+    <param name="max_depth"     value="7.0"/>
+    <param name="camera_height"        value="1.177"/>
+    <param name="min_obstacle_height"  value="0.3"/>
+    <param name="max_obstacle_height"  value="1.8"/>
+    <param name="input_height"  value="518"/>
+    <param name="input_width"   value="518"/>
+    <param name="point_stride"  value="4"/>
+    <param name="cloud_pub_rate" value="1.5"/>
+    <param name="top_skip_frac"    value="0.05"/>
+    <param name="bottom_keep_frac" value="0.80"/>
+  </node>
+
+  <!-- 후방 카메라 (rear_laser 위 105cm) — 물리적으로 usb_cam1 토픽 사용 -->
+  <node name="depth_anything_rear" pkg="depth_anything_ros" type="depth_anything_node.py"
+        output="screen" respawn="false">
+    <remap from="/depth_anything/pointcloud_raw" to="/depth_anything/pointcloud_rear"/>
+    <remap from="/depth_anything/depth_image"    to="/depth_anything/depth_image_rear"/>
+    <remap from="/depth_anything/depth_raw"      to="/depth_anything/depth_raw_rear"/>
+
+    <param name="engine_path"  value="$(arg engine_path)"/>
+    <param name="image_topic"  value="/camera1/usb_cam1/image_local_rear"/>
+    <param name="frame_id"     value="usb_cam2"/>
+
+    <param name="fx" value="$(arg fx)"/>
+    <param name="fy" value="$(arg fy)"/>
+    <param name="cx" value="$(arg cx)"/>
+    <param name="cy" value="$(arg cy)"/>
+
+    <param name="depth_scale"   value="1.0"/>
+    <param name="min_depth"     value="0.3"/>
+    <param name="max_depth"     value="7.0"/>
+    <param name="camera_height"        value="1.177"/>
+    <param name="min_obstacle_height"  value="0.3"/>
+    <param name="max_obstacle_height"  value="1.8"/>
+    <param name="input_height"  value="518"/>
+    <param name="input_width"   value="518"/>
+    <param name="point_stride"  value="4"/>
+    <param name="cloud_pub_rate" value="1.5"/>
+    <param name="top_skip_frac"    value="0.05"/>
+    <param name="bottom_keep_frac" value="0.80"/>
+  </node>
+
+
+</launch>

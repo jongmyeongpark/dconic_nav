@@ -1,0 +1,6 @@
+Symlinking /home/nvidia/dconic_nav/devel/share/diagnostic_updater/cmake/diagnostic_updaterConfig-version.cmake
+Symlinking /home/nvidia/dconic_nav/devel/share/diagnostic_updater/cmake/diagnostic_updaterConfig.cmake
+Symlinking /home/nvidia/dconic_nav/devel/lib/libdiagnostic_updater.so
+Symlinking /home/nvidia/dconic_nav/devel/lib/pkgconfig/diagnostic_updater.pc
+Symlinking /home/nvidia/dconic_nav/devel/lib/diagnostic_updater/example
+Symlinking /home/nvidia/dconic_nav/devel/lib/python3/dist-packages/diagnostic_updater/__init__.py

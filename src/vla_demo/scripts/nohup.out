@@ -1,0 +1,1363 @@
+... logging to /home/nvidia/.ros/log/889af11e-2709-11f0-a2d1-48b02df74c0d/roslaunch-ubuntu-367278.log
+Checking log directory for disk usage. This may take a while.
+Press Ctrl-C to interrupt
+Done checking log file disk usage. Usage is <1GB.
+]2;/home/nvidia/dconic_nav/src/dconic_2dnav/move_base.launch
+[1mstarted roslaunch server http://192.168.10.15:39461/[0m
+
+SUMMARY
+========
+
+PARAMETERS
+ * /amcl/gui_publish_rate: 1.0
+ * /amcl/kld_err: 0.08
+ * /amcl/kld_z: 0.9
+ * /amcl/laser_lambda_short: 0.1
+ * /amcl/laser_likelihood_max_dist: 1.0
+ * /amcl/laser_max_beams: 100
+ * /amcl/laser_max_range: 24.0
+ * /amcl/laser_min_range: 0.1
+ * /amcl/laser_model_type: likelihood_field
+ * /amcl/laser_sigma_hit: 0.2
+ * /amcl/laser_z_hit: 0.85
+ * /amcl/laser_z_max: 0.03
+ * /amcl/laser_z_rand: 0.15
+ * /amcl/laser_z_short: 0.05
+ * /amcl/max_particles: 5000
+ * /amcl/min_particles: 500
+ * /amcl/odom_alpha1: 0.8
+ * /amcl/odom_alpha2: 0.4
+ * /amcl/odom_alpha3: 0.4
+ * /amcl/odom_alpha4: 0.8
+ * /amcl/odom_alpha5: 0.2
+ * /amcl/odom_frame_id: odom_combined
+ * /amcl/odom_model_type: diff
+ * /amcl/random_r: 0.5
+ * /amcl/random_x: 0.3
+ * /amcl/random_y: 0.3
+ * /amcl/recovery_alpha_fast: 0.1
+ * /amcl/recovery_alpha_slow: 0.001
+ * /amcl/resample_interval: 1
+ * /amcl/save_pose_rate: 2.0
+ * /amcl/selective_resampling: False
+ * /amcl/transform_tolerance: 0.5
+ * /amcl/update_min_a: 0.05
+ * /amcl/update_min_d: 0.1
+ * /amcl/w_fast: 9.5
+ * /amcl/w_slow: 10.0
+ * /map_server/frame_id: map
+ * /move_base/GlobalPlanner/allow_unknown: False
+ * /move_base/GlobalPlanner/orientation_mode: 1
+ * /move_base/TebLocalPlannerROS/acc_lim_theta: 0.1
+ * /move_base/TebLocalPlannerROS/acc_lim_x: 0.1
+ * /move_base/TebLocalPlannerROS/allow_init_with_backwards_motion: False
+ * /move_base/TebLocalPlannerROS/controller_frequency: 5.0
+ * /move_base/TebLocalPlannerROS/costmap_converter/CostmapToPolygonsDBSMCCH/cluster_max_distance: 0.3
+ * /move_base/TebLocalPlannerROS/costmap_converter/CostmapToPolygonsDBSMCCH/cluster_max_pts: 30
+ * /move_base/TebLocalPlannerROS/costmap_converter/CostmapToPolygonsDBSMCCH/cluster_min_pts: 2
+ * /move_base/TebLocalPlannerROS/costmap_converter/CostmapToPolygonsDBSMCCH/convex_hull_min_pt_separation: 0.1
+ * /move_base/TebLocalPlannerROS/costmap_converter_plugin: costmap_converter...
+ * /move_base/TebLocalPlannerROS/costmap_converter_rate: 5
+ * /move_base/TebLocalPlannerROS/costmap_converter_spin_thread: True
+ * /move_base/TebLocalPlannerROS/costmap_obstacles_behind_robot_dist: 1.0
+ * /move_base/TebLocalPlannerROS/dt_hysteresis: 0.1
+ * /move_base/TebLocalPlannerROS/dt_ref: 0.3
+ * /move_base/TebLocalPlannerROS/dynamic_obstacle_inflation_dist: 0.3
+ * /move_base/TebLocalPlannerROS/enable_homotopy_class_planning: False
+ * /move_base/TebLocalPlannerROS/enable_multithreading: True
+ * /move_base/TebLocalPlannerROS/feasibility_check_no_poses: 10
+ * /move_base/TebLocalPlannerROS/footprint_model/front_offset: 0.1
+ * /move_base/TebLocalPlannerROS/footprint_model/front_radius: 0.35
+ * /move_base/TebLocalPlannerROS/footprint_model/line_end: [0.26, 0.0]
+ * /move_base/TebLocalPlannerROS/footprint_model/line_start: [-0.26, 0.0]
+ * /move_base/TebLocalPlannerROS/footprint_model/radius: 0.33
+ * /move_base/TebLocalPlannerROS/footprint_model/rear_offset: 0.1
+ * /move_base/TebLocalPlannerROS/footprint_model/rear_radius: 0.35
+ * /move_base/TebLocalPlannerROS/footprint_model/type: circular
+ * /move_base/TebLocalPlannerROS/footprint_model/vertices: [[-0.27, -0.35], ...
+ * /move_base/TebLocalPlannerROS/free_goal_vel: False
+ * /move_base/TebLocalPlannerROS/global_plan_overwrite_orientation: True
+ * /move_base/TebLocalPlannerROS/h_signature_prescaler: 0.5
+ * /move_base/TebLocalPlannerROS/h_signature_threshold: 0.1
+ * /move_base/TebLocalPlannerROS/hysteresis_reduction: 0.1
+ * /move_base/TebLocalPlannerROS/hysteresis_threshold: 0.1
+ * /move_base/TebLocalPlannerROS/include_costmap_obstacles: True
+ * /move_base/TebLocalPlannerROS/include_dynamic_obstacles: True
+ * /move_base/TebLocalPlannerROS/inflation_dist: 0.3
+ * /move_base/TebLocalPlannerROS/is_footprint_dynamic: True
+ * /move_base/TebLocalPlannerROS/legacy_obstacle_association: False
+ * /move_base/TebLocalPlannerROS/max_global_plan_lookahead_dist: 3.0
+ * /move_base/TebLocalPlannerROS/max_number_classes: 3
+ * /move_base/TebLocalPlannerROS/max_vel_theta: 0.4
+ * /move_base/TebLocalPlannerROS/max_vel_x: 0.3
+ * /move_base/TebLocalPlannerROS/max_vel_x_backwards: 0.1
+ * /move_base/TebLocalPlannerROS/min_obstacle_dist: 0.3
+ * /move_base/TebLocalPlannerROS/min_turning_radius: 0.0
+ * /move_base/TebLocalPlannerROS/no_inner_iterations: 2
+ * /move_base/TebLocalPlannerROS/no_outer_iterations: 1
+ * /move_base/TebLocalPlannerROS/obstacle_heading_threshold: 0.45
+ * /move_base/TebLocalPlannerROS/obstacle_keypoint_offset: 0.1
+ * /move_base/TebLocalPlannerROS/obstacle_poses_affected: 5
+ * /move_base/TebLocalPlannerROS/obstacle_proximity_lower_bound: 0.4
+ * /move_base/TebLocalPlannerROS/obstacle_proximity_ratio_max_vel: 0.05
+ * /move_base/TebLocalPlannerROS/obstacle_proximity_upper_bound: 1.0
+ * /move_base/TebLocalPlannerROS/optimization_activate: True
+ * /move_base/TebLocalPlannerROS/optimization_verbose: False
+ * /move_base/TebLocalPlannerROS/penalty_epsilon: 0.02
+ * /move_base/TebLocalPlannerROS/roadmap_graph_area_width: 5
+ * /move_base/TebLocalPlannerROS/roadmap_graph_no_samples: 15
+ * /move_base/TebLocalPlannerROS/selection_alternative_time_cost: False
+ * /move_base/TebLocalPlannerROS/selection_cost_hysteresis: 1.0
+ * /move_base/TebLocalPlannerROS/selection_prefer_initial_plan: 0.9
+ * /move_base/TebLocalPlannerROS/simple_exploration: False
+ * /move_base/TebLocalPlannerROS/switching_blocking_period: 3.0
+ * /move_base/TebLocalPlannerROS/teb_autosize: True
+ * /move_base/TebLocalPlannerROS/use_teb: True
+ * /move_base/TebLocalPlannerROS/visualize_hc_graph: False
+ * /move_base/TebLocalPlannerROS/weight_adapt_factor: 1.5
+ * /move_base/TebLocalPlannerROS/weight_dynamic_obstacle: 5.0
+ * /move_base/TebLocalPlannerROS/weight_kinematics_forward_drive: 5
+ * /move_base/TebLocalPlannerROS/weight_kinematics_nh: 1000
+ * /move_base/TebLocalPlannerROS/weight_kinematics_turning_radius: 0.0
+ * /move_base/TebLocalPlannerROS/weight_obstacle: 5.0
+ * /move_base/TebLocalPlannerROS/weight_optimaltime: 1.0
+ * /move_base/TebLocalPlannerROS/weight_viapoint: 1.0
+ * /move_base/TebLocalPlannerROS/wheelbase: 0.0
+ * /move_base/TebLocalPlannerROS/xy_goal_tolerance: 0.3
+ * /move_base/TebLocalPlannerROS/yaw_goal_tolerance: 0.1
+ * /move_base/base_global_planner: global_planner/Gl...
+ * /move_base/base_local_planner: teb_local_planner...
+ * /move_base/global_costmap/always_send_full_costmap: True
+ * /move_base/global_costmap/footprint: [[-0.25, -0.35], ...
+ * /move_base/global_costmap/footprint_padding: 0.05
+ * /move_base/global_costmap/global_frame: map
+ * /move_base/global_costmap/height: 50.0
+ * /move_base/global_costmap/inflation_layer/cost_scaling_factor: 10.0
+ * /move_base/global_costmap/inflation_layer/inflation_radius: 0.4
+ * /move_base/global_costmap/obstacle_range: 5.0
+ * /move_base/global_costmap/plugins: [{'name': 'static...
+ * /move_base/global_costmap/publish_frequency: 1.0
+ * /move_base/global_costmap/raytrace_range: 10.0
+ * /move_base/global_costmap/resolution: 0.05
+ * /move_base/global_costmap/robot_base_frame: base_link
+ * /move_base/global_costmap/rolling_window: True
+ * /move_base/global_costmap/static_layer/map_topic: map
+ * /move_base/global_costmap/static_layer/subscribe_to_updates: True
+ * /move_base/global_costmap/static_layer/track_unknown_space: False
+ * /move_base/global_costmap/static_map: False
+ * /move_base/global_costmap/track_unknown_space: False
+ * /move_base/global_costmap/transform_tolerance: 3.0
+ * /move_base/global_costmap/update_frequency: 1.0
+ * /move_base/global_costmap/virtual_layer/enabled: True
+ * /move_base/global_costmap/virtual_layer/forms: [[0.4, 0.0], [[0....
+ * /move_base/global_costmap/virtual_layer/is_local: False
+ * /move_base/global_costmap/virtual_layer/obstacle_topics: ['/virtual_costma...
+ * /move_base/global_costmap/virtual_layer/one_zone: False
+ * /move_base/global_costmap/virtual_layer/zone_topics: ['/virtual_costma...
+ * /move_base/global_costmap/width: 50.0
+ * /move_base/local_costmap/always_send_full_costmap: True
+ * /move_base/local_costmap/footprint: [[-0.25, -0.35], ...
+ * /move_base/local_costmap/footprint_padding: 0.05
+ * /move_base/local_costmap/global_frame: odom_combined
+ * /move_base/local_costmap/height: 7.0
+ * /move_base/local_costmap/inflation_layer/cost_scaling_factor: 10.0
+ * /move_base/local_costmap/inflation_layer/inflation_radius: 0.4
+ * /move_base/local_costmap/obstacle_layer/laser/clearing: True
+ * /move_base/local_costmap/obstacle_layer/laser/data_type: LaserScan
+ * /move_base/local_costmap/obstacle_layer/laser/inf_is_valid: True
+ * /move_base/local_costmap/obstacle_layer/laser/marking: True
+ * /move_base/local_costmap/obstacle_layer/laser/topic: scan_multi
+ * /move_base/local_costmap/obstacle_layer/observation_sources: laser
+ * /move_base/local_costmap/obstacle_range: 5.0
+ * /move_base/local_costmap/plugins: [{'name': 'obstac...
+ * /move_base/local_costmap/publish_frequency: 5.0
+ * /move_base/local_costmap/raytrace_range: 10.0
+ * /move_base/local_costmap/resolution: 0.05
+ * /move_base/local_costmap/robot_base_frame: base_link
+ * /move_base/local_costmap/rolling_window: True
+ * /move_base/local_costmap/sonar/clear_on_max_reading: True
+ * /move_base/local_costmap/sonar/clear_threshold: 0.3
+ * /move_base/local_costmap/sonar/mark_threshold: 0.6
+ * /move_base/local_costmap/sonar/no_readings_timeout: 1.0
+ * /move_base/local_costmap/sonar/topics: ['/sonar1', '/son...
+ * /move_base/local_costmap/static_map: False
+ * /move_base/local_costmap/transform_tolerance: 3.0
+ * /move_base/local_costmap/update_frequency: 5.0
+ * /move_base/local_costmap/virtual_layer/enabled: True
+ * /move_base/local_costmap/virtual_layer/forms: [[0.4, 0.0], [[0....
+ * /move_base/local_costmap/virtual_layer/is_local: True
+ * /move_base/local_costmap/virtual_layer/obstacle_topics: ['/virtual_costma...
+ * /move_base/local_costmap/virtual_layer/one_zone: False
+ * /move_base/local_costmap/virtual_layer/zone_topics: ['/virtual_costma...
+ * /move_base/local_costmap/width: 7.0
+ * /rosdistro: noetic
+ * /rosversion: 1.17.0
+
+NODES
+  /
+    amcl (amcl/amcl)
+    map_server (map_server/map_server)
+    move_base (move_base/move_base)
+[0m[ INFO] [1746175792.673462413]: Requesting the map...[0m
+[0m[ INFO] [1746175792.697593983]: Received a 736 X 832 map @ 0.050 m/pix
+[0m
+[0m[ INFO] [1746175792.787478779]: Initializing likelihood field model; this can take some time on large maps...[0m
+[0m[ INFO] [1746175793.018331416]: Done initializing likelihood field model.[0m
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746175793.865568 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746175793.865568 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+[33m[ WARN] [1746175793.901239707]: global_costmap: Pre-Hydro parameter "static_map" unused since "plugins" is provided[0m
+[0m[ INFO] [1746175793.905478480]: global_costmap: Using plugin "static_layer"[0m
+[0m[ INFO] [1746175793.930875726]: Requesting the map...[0m
+[0m[ INFO] [1746175794.140124690]: Resizing static layer to 736 X 832 at 0.050000 m/pix[0m
+[0m[ INFO] [1746175794.238118155]: Received a 736 X 832 map at 0.050000 m/pix[0m
+[0m[ INFO] [1746175794.238217199]: Subscribing to updates[0m
+[0m[ INFO] [1746175794.259332182]: global_costmap: Using plugin "virtual_layer"[0m
+[0m[ INFO] [1746175794.301449760]: [VIRTUAL-LAYER] subscribed to topic /virtual_costmap_layer/zone[0m
+[0m[ INFO] [1746175794.315074720]: [VIRTUAL-LAYER] subscribed to topic /virtual_costmap_layer/obstacles[0m
+[0m[ INFO] [1746175794.328666654]: [VIRTUAL-LAYER] layer is initialized: [points: 2] [polygons: 2][0m
+[0m[ INFO] [1746175794.339228658]: global_costmap: Using plugin "inflation_layer"[0m
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746175794.784997 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+[33m[ WARN] [1746175794.594736530]: local_costmap: Pre-Hydro parameter "static_map" unused since "plugins" is provided[0m
+[0m[ INFO] [1746175794.596725304]: local_costmap: Using plugin "obstacle_layer"[0m
+[0m[ INFO] [1746175794.607770397]:     Subscribed to Topics: laser[0m
+[0m[ INFO] [1746175794.649494169]: local_costmap: Using plugin "virtual_layer"[0m
+[0m[ INFO] [1746175794.676221702]: [VIRTUAL-LAYER] subscribed to topic /virtual_costmap_layer/zone[0m
+[0m[ INFO] [1746175794.682081588]: [VIRTUAL-LAYER] subscribed to topic /virtual_costmap_layer/obstacles[0m
+[0m[ INFO] [1746175794.692661833]: [VIRTUAL-LAYER] layer is initialized: [points: 2] [polygons: 2][0m
+[0m[ INFO] [1746175794.693102840]: local_costmap: Using plugin "inflation_layer"[0m
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746175795.180081 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746175853.909250 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+[0m[ INFO] [1746175794.925169152]: Created local_planner teb_local_planner/TebLocalPlannerROS[0m
+[0m[ INFO] [1746175795.053754893]: Footprint model 'circular' (radius: 0.33m) loaded for trajectory optimization.[0m
+[0m[ INFO] [1746175795.054675918]: Parallel planning in distinctive topologies disabled.[0m
+[0m[ INFO] [1746175795.251125968]: Costmap conversion plugin costmap_converter::CostmapToPolygonsDBSMCCH loaded.[0m
+[0m[ INFO] [1746175795.509458003]: Footprint model 'circular' (radius: 0.33m) loaded for trajectory optimization.[0m
+[0m[ INFO] [1746175795.796301602]: Recovery behavior will clear layer 'obstacles'[0m
+[0m[ INFO] [1746175795.809054211]: Recovery behavior will clear layer 'obstacles'[0m
+[0m[ INFO] [1746175795.940220140]: odom received![0m
+[0m[ INFO] [1746175821.547089383]: GOAL Reached![0m
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746175853.909250 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746175854.831583 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746175855.223454 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746175913.938517 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746175913.938517 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746175914.859535 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746175915.252342 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746175973.969413 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746175973.969413 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746175974.889311 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746175975.283774 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176033.994625 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176033.994625 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176034.913761 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176035.307796 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176094.053818 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176094.053818 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176094.972828 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176095.368080 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176154.067189 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176154.067189 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176154.986359 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176155.380199 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176214.083107 according to authority unknown_publisherTF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176214.083107 according to authority unknown_publisher
+
+         at line          at line 280280 in  in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp/home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176215.001938 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176215.400131 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176274.132197 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176274.132197 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176275.051220 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176275.447320 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176334.193465 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176334.193465 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176335.054857 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176335.509091 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176394.209713 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176394.209713 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176395.063200 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176395.522861 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176454.223308 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176454.223308 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176455.076673 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176455.537411 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176514.282593 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176514.282593 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176515.137449 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176515.599262 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176574.325897 according to authority unknown_publisherTF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176574.325897 according to authority unknown_publisher
+
+         at line          at line 280280 in  in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp/home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176575.180484 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176575.643816 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176634.360965 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176634.360965 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176635.216236 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176635.676488 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176694.364245 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176694.364245 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176695.218719 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176695.678549 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176754.415289 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176754.415289 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+[0m[ INFO] [1746176754.568505654]: GOAL Reached![0m
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176755.270535 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176755.730070 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176814.423733 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176814.423733 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176815.278786 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176815.738037 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176874.481966 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176874.481966 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176875.335741 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176875.796015 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176934.523769 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176934.523769 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176935.377152 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176935.837200 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176994.533757 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176994.533757 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176995.388067 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746176995.847178 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177054.566365 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177054.566365 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177055.420010 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177055.879602 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177114.577680 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177114.577680 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177115.433002 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177115.891499 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177174.632737 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177174.632737 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177175.482847 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177175.942722 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177234.658382 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177234.658382 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177235.512491 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177235.971920 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177294.670408 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177294.670408 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177295.525157 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177295.986737 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+[33m[ WARN] [1746177347.640031280]: Map update loop missed its desired rate of 1.0000Hz... the loop actually took 1.2140 seconds[0m
+[33m[ WARN] [1746177348.618324948]: Map update loop missed its desired rate of 1.0000Hz... the loop actually took 1.2291 seconds[0m
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177354.716117 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177354.716117 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177355.579353 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177356.032267 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177414.730762 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+[0m[ INFO] [1746177400.240358850]: GOAL Reached![0m
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177414.730762 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177415.585603 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177416.050992 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177474.790910 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177474.790910 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177475.638518 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177476.093324 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177534.796693 according to authority unknown_publisherTF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177534.796693 according to authority unknown_publisher
+
+         at line          at line 280280 in  in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp/home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177535.649107 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177536.109480 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+[33m[ WARN] [1746177566.419348785]: Map update loop missed its desired rate of 1.0000Hz... the loop actually took 1.0302 seconds[0m
+[33m[ WARN] [1746177569.551593186]: Map update loop missed its desired rate of 1.0000Hz... the loop actually took 1.1624 seconds[0m
+[33m[ WARN] [1746177569.705390770]: Control loop missed its desired rate of 20.0000Hz... the loop actually took 0.0608 seconds[0m
+[33m[ WARN] [1746177569.705873215]: Map update loop missed its desired rate of 5.0000Hz... the loop actually took 0.7737 seconds[0m
+[0m[ INFO] [1746177583.044727425]: GOAL Reached![0m
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177594.858835 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177594.858835 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177595.713321 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177596.172357 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177654.896526 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177654.896526 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177655.747051 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177656.206017 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177714.913573 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177714.913573 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177715.766372 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177716.225955 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177774.947783 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177774.947783 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177775.800633 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177776.266391 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177834.987446 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177834.987446 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177835.842227 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177836.299883 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177895.045715 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177895.045715 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177895.899591 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177896.358283 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177955.056103 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177955.056103 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177955.910261 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746177956.373957 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178015.084480 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178015.084480 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178015.935338 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178016.394486 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178075.142223 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178075.142223 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178075.996104 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178076.456518 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178135.175239 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178135.175239 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178136.032432 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178136.488937 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178195.219259 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178195.219259 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178196.065342 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178196.524296 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178255.283031 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178255.283031 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178256.066855 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178256.527919 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178315.347981 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cppWarning: 
+TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178315.347981 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178316.068337 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178316.530728 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178375.400957 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178375.400957 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178376.121659 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178376.581498 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178435.466487 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178435.466487 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178436.123019 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178436.581848 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178495.485577 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178495.485577 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178496.141819 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178496.600834 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178555.538219 according to authority unknown_publisherWarning: 
+         at line TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178555.538219 according to authority unknown_publisher280
+ in          at line /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178556.194791 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178556.653995 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178615.599118 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178615.599118 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178616.256162 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178616.714614 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178675.643432 according to authority unknown_publisherTF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178675.643432 according to authority unknown_publisher
+
+         at line          at line 280280 in  in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp/home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178676.299450 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178676.758799 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178735.679639 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178735.679639 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178736.332947 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178736.792166 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178795.700397 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178795.700397 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178796.346522 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178796.806081 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178855.705343 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178855.705343 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178856.368130 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178856.820551 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178915.705553 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178915.705553 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178916.426332 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178916.821090 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178975.758331 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178975.758331 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178976.480335 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746178976.873768 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179035.768792 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179035.768792 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179036.490267 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179036.884534 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179095.775247 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179095.775247 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179096.504315 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179096.889691 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179155.808672 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179155.808672 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179156.529199 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179156.923420 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179215.812434 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179215.812434 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179216.533227 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179216.926255 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179275.865774 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179275.865774 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179276.588352 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179276.987419 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179335.921384 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179335.921384 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179336.642702 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179337.035650 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179395.944892 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179395.944892 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179396.666044 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179397.059304 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179456.003678 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179456.003678 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179456.725366 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179457.120528 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179516.035766 according to authority unknown_publisherTF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179516.035766 according to authority unknown_publisher
+
+         at line          at line 280280 in  in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp/home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179516.757237 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179517.151264 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179576.049412 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179576.049412 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179576.771610 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179577.165627 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179636.109394 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179636.109394 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179636.833810 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179637.225178 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179696.146966 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179696.146966 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179696.869505 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179697.262408 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179756.206876 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179756.206876 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179756.927450 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179757.320991 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179816.212484 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179816.212484 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179816.933785 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179817.326416 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179876.216279 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179876.216279 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179876.936066 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179877.329390 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179936.276085 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179936.276085 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179936.996531 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179937.389827 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179996.338719 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179996.338719 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179996.997706 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746179997.452867 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180056.403559 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180056.403559 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180057.058454 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180057.517449 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180116.424384 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180116.424384 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180117.079291 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180117.537964 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180176.427681 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180176.427681 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180177.082417 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180177.540826 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180236.458524 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180236.458524 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180237.112382 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180237.570352 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180296.469552 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180296.469552 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180297.125054 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180297.586018 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180356.484520 according to authority unknown_publisherTF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180356.484520 according to authority unknown_publisher
+
+         at line          at line 280280 in  in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp/home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180357.145685 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180357.598773 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180416.523252 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180416.523252 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180417.188745 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180417.640825 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180476.583658 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180476.583658 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180477.239035 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180477.697934 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180536.648646 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180536.648646 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180537.301693 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180537.760652 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180596.676782 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180596.676782 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180597.332681 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180597.791453 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180656.683647 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180656.683647 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180657.336838 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180657.795440 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180716.747696 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180716.747696 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180717.337578 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180717.796114 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180776.749018 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180776.749018 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180777.402214 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180777.861100 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180836.760412 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180836.760412 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180837.414574 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180837.872945 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180896.777174 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180896.777174 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180897.431370 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180897.889866 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180956.795128 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180956.795128 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180957.446644 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746180957.905382 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746181016.861835 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746181016.861835 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746181017.448577 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746181017.907621 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746181076.879208 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746181076.879208 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746181077.469302 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746181077.933976 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746181136.934940 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746181136.934940 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746181137.531582 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746181137.984309 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746181196.938399 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746181196.938399 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746181197.597523 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746181197.987093 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746181256.967265 according to authority unknown_publisherTF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746181256.967265 according to authority unknown_publisher
+
+         at line          at line 280280 in  in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp/home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746181257.622302 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746181258.015447 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746181317.005603 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746181317.005603 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746181317.662482 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746181318.057930 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746181377.053265 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746181377.053265 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746181377.707741 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746181378.100919 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746181437.088687 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746181437.088687 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746181437.744478 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746181438.139249 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746181497.137820 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746181497.137820 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746181497.793065 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746181498.186680 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+... logging to /home/nvidia/.ros/log/e405c638-2ad7-11f0-805d-48b02df74c0d/roslaunch-ubuntu-114848.log
+Checking log directory for disk usage. This may take a while.
+Press Ctrl-C to interrupt
+Done checking log file disk usage. Usage is <1GB.
+]2;/home/nvidia/dconic_nav/src/dconic_2dnav/move_base.launch
+[1mstarted roslaunch server http://192.168.10.15:36721/[0m
+
+SUMMARY
+========
+
+PARAMETERS
+ * /amcl/gui_publish_rate: 1.0
+ * /amcl/kld_err: 0.08
+ * /amcl/kld_z: 0.9
+ * /amcl/laser_lambda_short: 0.1
+ * /amcl/laser_likelihood_max_dist: 1.0
+ * /amcl/laser_max_beams: 100
+ * /amcl/laser_max_range: 24.0
+ * /amcl/laser_min_range: 0.1
+ * /amcl/laser_model_type: likelihood_field
+ * /amcl/laser_sigma_hit: 0.2
+ * /amcl/laser_z_hit: 0.85
+ * /amcl/laser_z_max: 0.03
+ * /amcl/laser_z_rand: 0.15
+ * /amcl/laser_z_short: 0.05
+ * /amcl/max_particles: 5000
+ * /amcl/min_particles: 500
+ * /amcl/odom_alpha1: 0.8
+ * /amcl/odom_alpha2: 0.4
+ * /amcl/odom_alpha3: 0.4
+ * /amcl/odom_alpha4: 0.8
+ * /amcl/odom_alpha5: 0.2
+ * /amcl/odom_frame_id: odom_combined
+ * /amcl/odom_model_type: diff
+ * /amcl/random_r: 0.5
+ * /amcl/random_x: 0.3
+ * /amcl/random_y: 0.3
+ * /amcl/recovery_alpha_fast: 0.1
+ * /amcl/recovery_alpha_slow: 0.001
+ * /amcl/resample_interval: 1
+ * /amcl/save_pose_rate: 2.0
+ * /amcl/selective_resampling: False
+ * /amcl/transform_tolerance: 0.5
+ * /amcl/update_min_a: 0.05
+ * /amcl/update_min_d: 0.1
+ * /amcl/w_fast: 9.5
+ * /amcl/w_slow: 10.0
+ * /map_server/frame_id: map
+ * /move_base/GlobalPlanner/allow_unknown: False
+ * /move_base/GlobalPlanner/orientation_mode: 1
+ * /move_base/TebLocalPlannerROS/acc_lim_theta: 0.1
+ * /move_base/TebLocalPlannerROS/acc_lim_x: 0.1
+ * /move_base/TebLocalPlannerROS/allow_init_with_backwards_motion: False
+ * /move_base/TebLocalPlannerROS/controller_frequency: 5.0
+ * /move_base/TebLocalPlannerROS/costmap_converter/CostmapToPolygonsDBSMCCH/cluster_max_distance: 0.3
+ * /move_base/TebLocalPlannerROS/costmap_converter/CostmapToPolygonsDBSMCCH/cluster_max_pts: 30
+ * /move_base/TebLocalPlannerROS/costmap_converter/CostmapToPolygonsDBSMCCH/cluster_min_pts: 2
+ * /move_base/TebLocalPlannerROS/costmap_converter/CostmapToPolygonsDBSMCCH/convex_hull_min_pt_separation: 0.1
+ * /move_base/TebLocalPlannerROS/costmap_converter_plugin: costmap_converter...
+ * /move_base/TebLocalPlannerROS/costmap_converter_rate: 5
+ * /move_base/TebLocalPlannerROS/costmap_converter_spin_thread: True
+ * /move_base/TebLocalPlannerROS/costmap_obstacles_behind_robot_dist: 1.0
+ * /move_base/TebLocalPlannerROS/dt_hysteresis: 0.1
+ * /move_base/TebLocalPlannerROS/dt_ref: 0.3
+ * /move_base/TebLocalPlannerROS/dynamic_obstacle_inflation_dist: 0.3
+ * /move_base/TebLocalPlannerROS/enable_homotopy_class_planning: False
+ * /move_base/TebLocalPlannerROS/enable_multithreading: True
+ * /move_base/TebLocalPlannerROS/feasibility_check_no_poses: 10
+ * /move_base/TebLocalPlannerROS/footprint_model/front_offset: 0.1
+ * /move_base/TebLocalPlannerROS/footprint_model/front_radius: 0.35
+ * /move_base/TebLocalPlannerROS/footprint_model/line_end: [0.26, 0.0]
+ * /move_base/TebLocalPlannerROS/footprint_model/line_start: [-0.26, 0.0]
+ * /move_base/TebLocalPlannerROS/footprint_model/radius: 0.33
+ * /move_base/TebLocalPlannerROS/footprint_model/rear_offset: 0.1
+ * /move_base/TebLocalPlannerROS/footprint_model/rear_radius: 0.35
+ * /move_base/TebLocalPlannerROS/footprint_model/type: circular
+ * /move_base/TebLocalPlannerROS/footprint_model/vertices: [[-0.27, -0.35], ...
+ * /move_base/TebLocalPlannerROS/free_goal_vel: False
+ * /move_base/TebLocalPlannerROS/global_plan_overwrite_orientation: True
+ * /move_base/TebLocalPlannerROS/h_signature_prescaler: 0.5
+ * /move_base/TebLocalPlannerROS/h_signature_threshold: 0.1
+ * /move_base/TebLocalPlannerROS/hysteresis_reduction: 0.1
+ * /move_base/TebLocalPlannerROS/hysteresis_threshold: 0.1
+ * /move_base/TebLocalPlannerROS/include_costmap_obstacles: True
+ * /move_base/TebLocalPlannerROS/include_dynamic_obstacles: True
+ * /move_base/TebLocalPlannerROS/inflation_dist: 0.3
+ * /move_base/TebLocalPlannerROS/is_footprint_dynamic: True
+ * /move_base/TebLocalPlannerROS/legacy_obstacle_association: False
+ * /move_base/TebLocalPlannerROS/max_global_plan_lookahead_dist: 3.0
+ * /move_base/TebLocalPlannerROS/max_number_classes: 3
+ * /move_base/TebLocalPlannerROS/max_vel_theta: 0.4
+ * /move_base/TebLocalPlannerROS/max_vel_x: 0.3
+ * /move_base/TebLocalPlannerROS/max_vel_x_backwards: 0.1
+ * /move_base/TebLocalPlannerROS/min_obstacle_dist: 0.3
+ * /move_base/TebLocalPlannerROS/min_turning_radius: 0.0
+ * /move_base/TebLocalPlannerROS/no_inner_iterations: 2
+ * /move_base/TebLocalPlannerROS/no_outer_iterations: 1
+ * /move_base/TebLocalPlannerROS/obstacle_heading_threshold: 0.45
+ * /move_base/TebLocalPlannerROS/obstacle_keypoint_offset: 0.1
+ * /move_base/TebLocalPlannerROS/obstacle_poses_affected: 5
+ * /move_base/TebLocalPlannerROS/obstacle_proximity_lower_bound: 0.4
+ * /move_base/TebLocalPlannerROS/obstacle_proximity_ratio_max_vel: 0.05
+ * /move_base/TebLocalPlannerROS/obstacle_proximity_upper_bound: 1.0
+ * /move_base/TebLocalPlannerROS/optimization_activate: True
+ * /move_base/TebLocalPlannerROS/optimization_verbose: False
+ * /move_base/TebLocalPlannerROS/penalty_epsilon: 0.02
+ * /move_base/TebLocalPlannerROS/roadmap_graph_area_width: 5
+ * /move_base/TebLocalPlannerROS/roadmap_graph_no_samples: 15
+ * /move_base/TebLocalPlannerROS/selection_alternative_time_cost: False
+ * /move_base/TebLocalPlannerROS/selection_cost_hysteresis: 1.0
+ * /move_base/TebLocalPlannerROS/selection_prefer_initial_plan: 0.9
+ * /move_base/TebLocalPlannerROS/simple_exploration: False
+ * /move_base/TebLocalPlannerROS/switching_blocking_period: 3.0
+ * /move_base/TebLocalPlannerROS/teb_autosize: True
+ * /move_base/TebLocalPlannerROS/use_teb: True
+ * /move_base/TebLocalPlannerROS/visualize_hc_graph: False
+ * /move_base/TebLocalPlannerROS/weight_adapt_factor: 1.5
+ * /move_base/TebLocalPlannerROS/weight_dynamic_obstacle: 5.0
+ * /move_base/TebLocalPlannerROS/weight_kinematics_forward_drive: 5
+ * /move_base/TebLocalPlannerROS/weight_kinematics_nh: 1000
+ * /move_base/TebLocalPlannerROS/weight_kinematics_turning_radius: 0.0
+ * /move_base/TebLocalPlannerROS/weight_obstacle: 5.0
+ * /move_base/TebLocalPlannerROS/weight_optimaltime: 1.0
+ * /move_base/TebLocalPlannerROS/weight_viapoint: 1.0
+ * /move_base/TebLocalPlannerROS/wheelbase: 0.0
+ * /move_base/TebLocalPlannerROS/xy_goal_tolerance: 0.3
+ * /move_base/TebLocalPlannerROS/yaw_goal_tolerance: 0.1
+ * /move_base/base_global_planner: global_planner/Gl...
+ * /move_base/base_local_planner: teb_local_planner...
+ * /move_base/global_costmap/always_send_full_costmap: True
+ * /move_base/global_costmap/footprint: [[-0.25, -0.35], ...
+ * /move_base/global_costmap/footprint_padding: 0.05
+ * /move_base/global_costmap/global_frame: map
+ * /move_base/global_costmap/height: 50.0
+ * /move_base/global_costmap/inflation_layer/cost_scaling_factor: 10.0
+ * /move_base/global_costmap/inflation_layer/inflation_radius: 0.4
+ * /move_base/global_costmap/obstacle_range: 5.0
+ * /move_base/global_costmap/plugins: [{'name': 'static...
+ * /move_base/global_costmap/publish_frequency: 1.0
+ * /move_base/global_costmap/raytrace_range: 10.0
+ * /move_base/global_costmap/resolution: 0.05
+ * /move_base/global_costmap/robot_base_frame: base_link
+ * /move_base/global_costmap/rolling_window: True
+ * /move_base/global_costmap/static_layer/map_topic: map
+ * /move_base/global_costmap/static_layer/subscribe_to_updates: True
+ * /move_base/global_costmap/static_layer/track_unknown_space: False
+ * /move_base/global_costmap/static_map: False
+ * /move_base/global_costmap/track_unknown_space: False
+ * /move_base/global_costmap/transform_tolerance: 3.0
+ * /move_base/global_costmap/update_frequency: 1.0
+ * /move_base/global_costmap/virtual_layer/enabled: True
+ * /move_base/global_costmap/virtual_layer/forms: [[0.4, 0.0], [[0....
+ * /move_base/global_costmap/virtual_layer/is_local: False
+ * /move_base/global_costmap/virtual_layer/obstacle_topics: ['/virtual_costma...
+ * /move_base/global_costmap/virtual_layer/one_zone: False
+ * /move_base/global_costmap/virtual_layer/zone_topics: ['/virtual_costma...
+ * /move_base/global_costmap/width: 50.0
+ * /move_base/local_costmap/always_send_full_costmap: True
+ * /move_base/local_costmap/footprint: [[-0.25, -0.35], ...
+ * /move_base/local_costmap/footprint_padding: 0.05
+ * /move_base/local_costmap/global_frame: odom_combined
+ * /move_base/local_costmap/height: 7.0
+ * /move_base/local_costmap/inflation_layer/cost_scaling_factor: 10.0
+ * /move_base/local_costmap/inflation_layer/inflation_radius: 0.4
+ * /move_base/local_costmap/obstacle_layer/laser/clearing: True
+ * /move_base/local_costmap/obstacle_layer/laser/data_type: LaserScan
+ * /move_base/local_costmap/obstacle_layer/laser/inf_is_valid: True
+ * /move_base/local_costmap/obstacle_layer/laser/marking: True
+ * /move_base/local_costmap/obstacle_layer/laser/topic: scan_multi
+ * /move_base/local_costmap/obstacle_layer/observation_sources: laser
+ * /move_base/local_costmap/obstacle_range: 5.0
+ * /move_base/local_costmap/plugins: [{'name': 'obstac...
+ * /move_base/local_costmap/publish_frequency: 5.0
+ * /move_base/local_costmap/raytrace_range: 10.0
+ * /move_base/local_costmap/resolution: 0.05
+ * /move_base/local_costmap/robot_base_frame: base_link
+ * /move_base/local_costmap/rolling_window: True
+ * /move_base/local_costmap/sonar/clear_on_max_reading: True
+ * /move_base/local_costmap/sonar/clear_threshold: 0.3
+ * /move_base/local_costmap/sonar/mark_threshold: 0.6
+ * /move_base/local_costmap/sonar/no_readings_timeout: 1.0
+ * /move_base/local_costmap/sonar/topics: ['/sonar1', '/son...
+ * /move_base/local_costmap/static_map: False
+ * /move_base/local_costmap/transform_tolerance: 3.0
+ * /move_base/local_costmap/update_frequency: 5.0
+ * /move_base/local_costmap/virtual_layer/enabled: True
+ * /move_base/local_costmap/virtual_layer/forms: [[0.4, 0.0], [[0....
+ * /move_base/local_costmap/virtual_layer/is_local: True
+ * /move_base/local_costmap/virtual_layer/obstacle_topics: ['/virtual_costma...
+ * /move_base/local_costmap/virtual_layer/one_zone: False
+ * /move_base/local_costmap/virtual_layer/zone_topics: ['/virtual_costma...
+ * /move_base/local_costmap/width: 7.0
+ * /rosdistro: noetic
+ * /rosversion: 1.17.0
+
+NODES
+  /
+    amcl (amcl/amcl)
+    map_server (map_server/map_server)
+    move_base (move_base/move_base)
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746582205.347122 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+[0m[ INFO] [1746582204.271677782]: Requesting the map...[0m
+[0m[ INFO] [1746582204.286931046]: Received a 736 X 832 map @ 0.050 m/pix
+[0m
+[0m[ INFO] [1746582204.319737467]: Initializing likelihood field model; this can take some time on large maps...[0m
+[0m[ INFO] [1746582204.580323999]: Done initializing likelihood field model.[0m
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746582205.347122 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+[33m[ WARN] [1746582205.410466392]: global_costmap: Pre-Hydro parameter "static_map" unused since "plugins" is provided[0m
+[0m[ INFO] [1746582205.562819891]: global_costmap: Using plugin "static_layer"[0m
+[0m[ INFO] [1746582205.652942688]: Requesting the map...[0m
+[0m[ INFO] [1746582205.862607476]: Resizing static layer to 736 X 832 at 0.050000 m/pix[0m
+[0m[ INFO] [1746582205.960737735]: Received a 736 X 832 map at 0.050000 m/pix[0m
+[0m[ INFO] [1746582205.960822635]: Subscribing to updates[0m
+[0m[ INFO] [1746582205.977975809]: global_costmap: Using plugin "virtual_layer"[0m
+[0m[ INFO] [1746582206.187647891]: [VIRTUAL-LAYER] subscribed to topic /virtual_costmap_layer/zone[0m
+[0m[ INFO] [1746582206.196035142]: [VIRTUAL-LAYER] subscribed to topic /virtual_costmap_layer/obstacles[0m
+[0m[ INFO] [1746582206.211051150]: [VIRTUAL-LAYER] layer is initialized: [points: 2] [polygons: 2][0m
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746582206.602212 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+[33m[ WARN] [1746582206.512344931]: local_costmap: Pre-Hydro parameter "static_map" unused since "plugins" is provided[0m
+[0m[ INFO] [1746582206.214025755]: global_costmap: Using plugin "inflation_layer"[0m
+[0m[ INFO] [1746582206.514042754]: local_costmap: Using plugin "obstacle_layer"[0m
+[0m[ INFO] [1746582206.523321814]:     Subscribed to Topics: laser[0m
+[0m[ INFO] [1746582206.565328988]: local_costmap: Using plugin "virtual_layer"[0m
+[0m[ INFO] [1746582206.605366106]: [VIRTUAL-LAYER] subscribed to topic /virtual_costmap_layer/zone[0m
+[0m[ INFO] [1746582206.615474894]: [VIRTUAL-LAYER] subscribed to topic /virtual_costmap_layer/obstacles[0m
+[0m[ INFO] [1746582206.626363453]: [VIRTUAL-LAYER] layer is initialized: [points: 2] [polygons: 2][0m
+[0m[ INFO] [1746582206.636755451]: local_costmap: Using plugin "inflation_layer"[0m
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746582207.063319 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+[33m[ WARN] [1746582222.431708079]: Map update loop missed its desired rate of 1.0000Hz... the loop actually took 1.1621 seconds[0m
+[0m[ INFO] [1746582207.048110969]: Created local_planner teb_local_planner/TebLocalPlannerROS[0m
+[0m[ INFO] [1746582207.206439404]: Footprint model 'circular' (radius: 0.33m) loaded for trajectory optimization.[0m
+[0m[ INFO] [1746582207.207365710]: Parallel planning in distinctive topologies disabled.[0m
+[0m[ INFO] [1746582207.666792813]: Costmap conversion plugin costmap_converter::CostmapToPolygonsDBSMCCH loaded.[0m
+[0m[ INFO] [1746582208.020663721]: Footprint model 'circular' (radius: 0.33m) loaded for trajectory optimization.[0m
+[0m[ INFO] [1746582208.468954955]: Recovery behavior will clear layer 'obstacles'[0m
+[0m[ INFO] [1746582208.481295472]: Recovery behavior will clear layer 'obstacles'[0m
+[0m[ INFO] [1746582208.647147926]: odom received![0m
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746582265.388572 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746582265.388572 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746582266.651432 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746582267.103602 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746582325.426638 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746582325.426638 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746582326.679013 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746582327.140753 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+[33m[ WARN] [1746582341.946122055]: TebLocalPlannerROS: trajectory is not feasible. Resetting planner...[0m
+[33m[ WARN] [1746582341.995227643]: TebLocalPlannerROS: trajectory is not feasible. Resetting planner...[0m
+[33m[ WARN] [1746582342.045421686]: TebLocalPlannerROS: trajectory is not feasible. Resetting planner...[0m
+[33m[ WARN] [1746582342.095219042]: TebLocalPlannerROS: trajectory is not feasible. Resetting planner...[0m
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746582385.442399 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+[0m[ INFO] [1746582368.090679916]: GOAL Reached![0m
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746582385.442399 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746582386.694206 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746582387.158189 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+[33m[ WARN] [1746582406.781751922]: TebLocalPlannerROS: possible oscillation (of the robot or its local plan) detected. Activating recovery strategy (prefer current turning direction during optimization).[0m
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746582445.475208 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+[0m[ INFO] [1746582417.390871919]: TebLocalPlannerROS: oscillation recovery disabled/expired.[0m
+[0m[ INFO] [1746582419.981897508]: GOAL Reached![0m
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746582445.475208 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746582446.725504 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746582447.187421 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746582505.496700 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746582505.496700 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746582506.751228 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746582507.214928 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746582565.553342 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746582565.553342 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746582566.805466 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746582567.267830 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746582625.611007 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746582625.611007 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746582626.863060 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746582627.324784 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746582685.652708 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746582685.652708 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746582686.910686 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746582687.369848 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746582745.669748 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746582745.669748 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746582746.923895 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746582747.386636 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+[33m[ WARN] [1746582799.928043737]: TebLocalPlannerROS: possible oscillation (of the robot or its local plan) detected. Activating recovery strategy (prefer current turning direction during optimization).[0m
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746582805.691798 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+[0m[ INFO] [1746582802.827602666]: GOAL Reached![0m
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746582805.691798 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746582806.944367 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+Warning: TF_REPEATED_DATA ignoring data with redundant timestamp for frame odom_combined at time 1746582807.409758 according to authority unknown_publisher
+         at line 280 in /home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2/src/buffer_core.cpp
+[33m[ WARN] [1746582853.214429678]: Shutdown request received.[0m
+[33m[ WARN] [1746582853.214709243]: Reason given for shutdown: [[/amcl] Reason: new node registered with same name][0m
+[33m[ WARN] [1746582853.226010418]: Shutdown request received.[0m
+[33m[ WARN] [1746582853.226700881]: Reason given for shutdown: [[/move_base] Reason: new node registered with same name][0m
+[33m[ WARN] [1746582853.242739131]: Shutdown request received.[0m
+[33m[ WARN] [1746582853.242919651]: Reason given for shutdown: [[/map_server] Reason: new node registered with same name][0m
+
+[1mROS_MASTER_URI=http://192.168.10.15:11311[0m
+]2;/home/nvidia/dconic_nav/src/dconic_2dnav/move_base.launch http://192.168.10.15:11311
+[1mprocess[map_server-1]: started with pid [115015][0m
+[1mprocess[amcl-2]: started with pid [115016][0m
+[1mprocess[move_base-3]: started with pid [115019][0m
+[1m[map_server-1] process has finished cleanly
+log file: /home/nvidia/.ros/log/e405c638-2ad7-11f0-805d-48b02df74c0d/map_server-1*.log[0m
+[1m[amcl-2] process has finished cleanly
+log file: /home/nvidia/.ros/log/e405c638-2ad7-11f0-805d-48b02df74c0d/amcl-2*.log[0m
+[1m[move_base-3] process has finished cleanly
+log file: /home/nvidia/.ros/log/e405c638-2ad7-11f0-805d-48b02df74c0d/move_base-3*.log[0m
+all processes on machine have died, roslaunch will exit
+shutting down processing monitor...
+... shutting down processing monitor complete
+[1mdone[0m

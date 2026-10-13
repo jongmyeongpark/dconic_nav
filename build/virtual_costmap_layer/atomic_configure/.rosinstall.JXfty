@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/nvidia/dconic_nav/devel/.private/virtual_costmap_layer/setup.sh

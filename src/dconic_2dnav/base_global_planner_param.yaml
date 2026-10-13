@@ -1,0 +1,4 @@
+# dhjeon 20.12.17 add-To prohibit track unknown space
+GlobalPlanner:
+  allow_unknown: false
+  orientation_mode: 1

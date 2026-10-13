@@ -1,0 +1,8 @@
+prefix=/home/nvidia/dconic_nav/devel/.private/closest_obs_from_robot
+
+Name: closest_obs_from_robot
+Description: Description of closest_obs_from_robot
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib -lclosest_obs_from_robot
+Requires: roscpp std_msgs geometry_msgs

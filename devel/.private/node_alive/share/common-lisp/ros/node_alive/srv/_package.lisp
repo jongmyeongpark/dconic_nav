@@ -1,0 +1,10 @@
+(cl:defpackage node_alive-srv
+  (:use )
+  (:export
+   "LISTNODESALIVE"
+   "<LISTNODESALIVE-REQUEST>"
+   "LISTNODESALIVE-REQUEST"
+   "<LISTNODESALIVE-RESPONSE>"
+   "LISTNODESALIVE-RESPONSE"
+  ))
+

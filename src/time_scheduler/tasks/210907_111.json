@@ -1,0 +1,22 @@
+{
+    "waypoint_name": "210907_111",
+    "length": 4,
+    "tasks": [
+        {
+            "task": "none",
+            "task_value": 0
+        },
+        {
+            "task": "speak",
+            "task_value": 2
+        },
+        {
+            "task": "media",
+            "task_value": 1
+        },
+        {
+            "task": "turn-right",
+            "task_value": 3
+        }
+    ]
+}

@@ -1,0 +1,1 @@
+/home/nvidia/dconic_nav/devel/.private/move_base_msgs/share/gennodejs/ros/move_base_msgs/msg/MoveBaseActionResult.js

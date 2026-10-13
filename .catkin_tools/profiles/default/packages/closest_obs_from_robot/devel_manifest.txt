@@ -1,0 +1,5 @@
+closest_obs_from_robot
+/home/nvidia/dconic_nav/devel/.private/closest_obs_from_robot/share/closest_obs_from_robot/cmake/closest_obs_from_robotConfig-version.cmake /home/nvidia/dconic_nav/devel/share/closest_obs_from_robot/cmake/closest_obs_from_robotConfig-version.cmake
+/home/nvidia/dconic_nav/devel/.private/closest_obs_from_robot/share/closest_obs_from_robot/cmake/closest_obs_from_robotConfig.cmake /home/nvidia/dconic_nav/devel/share/closest_obs_from_robot/cmake/closest_obs_from_robotConfig.cmake
+/home/nvidia/dconic_nav/devel/.private/closest_obs_from_robot/lib/pkgconfig/closest_obs_from_robot.pc /home/nvidia/dconic_nav/devel/lib/pkgconfig/closest_obs_from_robot.pc
+/home/nvidia/dconic_nav/devel/.private/closest_obs_from_robot/lib/closest_obs_from_robot/closest_obs_from_robot /home/nvidia/dconic_nav/devel/lib/closest_obs_from_robot/closest_obs_from_robot

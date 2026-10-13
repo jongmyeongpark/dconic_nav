@@ -1,0 +1,8 @@
+<launch>
+  <node pkg="shock_detector" type="shock_detector.py" name="shock_detector" output="screen">
+    <!-- 파라미터 -->
+    <param name="accel_threshold" value="5.0" />
+    <param name="stop_duration" value="10.0" />
+    <param name="cmd_rate" value="20" />
+  </node>
+</launch>

@@ -1,0 +1,4 @@
+<launch>
+  <node pkg="esp32" type="esp32_ir1.py" name="esp32" output="screen">
+  </node>
+</launch>

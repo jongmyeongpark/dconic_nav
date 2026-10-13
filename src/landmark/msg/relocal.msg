@@ -1,0 +1,14 @@
+int32 count
+time time_start
+time time_end
+bool odom_reset
+int8 visionPoseType
+int8 count_repeat
+float32[] amclPose
+float32[] initialPose
+float32 diff_xy
+float32 diff_rotate
+float32[] amclPose_relocal
+float32 diff_xy_relocal
+float32 diff_rotate_relocal
+bool relocal_result

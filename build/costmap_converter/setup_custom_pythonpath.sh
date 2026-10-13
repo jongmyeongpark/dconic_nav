@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+# generated from dynamic_reconfigure/cmake/setup_custom_pythonpath.sh.in
+
+PYTHONPATH=/home/nvidia/dconic_nav/devel/.private/costmap_converter/lib/python3/dist-packages:$PYTHONPATH
+exec /usr/bin/python3 "$@"

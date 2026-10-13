@@ -1,0 +1,8 @@
+prefix=/home/nvidia/dconic_nav/devel/.private/diagnostic_aggregator
+
+Name: diagnostic_aggregator
+Description: Description of diagnostic_aggregator
+Version: 1.9.7
+Cflags: -I/home/nvidia/dconic_nav/src/diagnostics/diagnostic_aggregator/include
+Libs: -L${prefix}/lib -ldiagnostic_aggregator
+Requires: diagnostic_msgs pluginlib roscpp rospy xmlrpcpp bondcpp

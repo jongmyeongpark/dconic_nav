@@ -1,0 +1,3 @@
+<launch>
+      <node pkg="hdmi_serial_switcher" type="hdmi_serial_switcher_node" name="hdmi_serial_switcher" output="screen"/>
+</launch>

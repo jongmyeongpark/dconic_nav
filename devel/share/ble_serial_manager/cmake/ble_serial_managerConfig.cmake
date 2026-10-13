@@ -1,0 +1,1 @@
+/home/nvidia/dconic_nav/devel/.private/ble_serial_manager/share/ble_serial_manager/cmake/ble_serial_managerConfig.cmake

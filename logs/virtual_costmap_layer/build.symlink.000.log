@@ -1,0 +1,11 @@
+Symlinking /home/nvidia/dconic_nav/devel/share/virtual_costmap_layer/docs/VirtualLayerConfig.wikidoc
+Symlinking /home/nvidia/dconic_nav/devel/share/virtual_costmap_layer/docs/VirtualLayerConfig.dox
+Symlinking /home/nvidia/dconic_nav/devel/share/virtual_costmap_layer/docs/VirtualLayerConfig-usage.dox
+Symlinking /home/nvidia/dconic_nav/devel/share/virtual_costmap_layer/cmake/virtual_costmap_layerConfig.cmake
+Symlinking /home/nvidia/dconic_nav/devel/share/virtual_costmap_layer/cmake/virtual_costmap_layerConfig-version.cmake
+Symlinking /home/nvidia/dconic_nav/devel/lib/libvirtual_layer.so
+Symlinking /home/nvidia/dconic_nav/devel/lib/pkgconfig/virtual_costmap_layer.pc
+Symlinking /home/nvidia/dconic_nav/devel/lib/python3/dist-packages/virtual_costmap_layer/__init__.py
+Symlinking /home/nvidia/dconic_nav/devel/lib/python3/dist-packages/virtual_costmap_layer/cfg/__init__.py
+Symlinking /home/nvidia/dconic_nav/devel/lib/python3/dist-packages/virtual_costmap_layer/cfg/VirtualLayerConfig.py
+Symlinking /home/nvidia/dconic_nav/devel/include/virtual_costmap_layer/VirtualLayerConfig.h

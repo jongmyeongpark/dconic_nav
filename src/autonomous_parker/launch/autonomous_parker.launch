@@ -1,0 +1,3 @@
+<launch>
+    <node pkg="autonomous_parker" type="autonomous_parker" name="autonomous_parker" output="screen"/>
+</launch>

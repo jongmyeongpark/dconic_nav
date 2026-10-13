@@ -1,0 +1,4 @@
+bool move_status
+int8 ReLocalType
+geometry_msgs/PoseWithCovarianceStamped vision_pose
+geometry_msgs/PoseWithCovarianceStamped amcl_pose

@@ -1,0 +1,8 @@
+prefix=/home/nvidia/dconic_nav/install
+
+Name: msg_converter
+Description: Description of msg_converter
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: std_msgs roscpp geometry_msgs sensor_msgs diagnostic_msgs

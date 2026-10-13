@@ -1,0 +1,4 @@
+Symlinking /home/nvidia/dconic_nav/devel/share/ezi_servo_controller/cmake/ezi_servo_controllerConfig-version.cmake
+Symlinking /home/nvidia/dconic_nav/devel/share/ezi_servo_controller/cmake/ezi_servo_controllerConfig.cmake
+Symlinking /home/nvidia/dconic_nav/devel/lib/pkgconfig/ezi_servo_controller.pc
+Symlinking /home/nvidia/dconic_nav/devel/lib/ezi_servo_controller/ezi_servo_controller

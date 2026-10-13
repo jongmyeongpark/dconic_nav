@@ -1,0 +1,1 @@
+/home/nvidia/dconic_nav/devel/.private/charge_manager/lib/pkgconfig/charge_manager.pc

@@ -1,0 +1,223 @@
+#include <ros/ros.h>
+#include <serial/serial.h>
+#include <std_msgs/String.h>
+#include <std_msgs/Char.h>
+#include <std_msgs/Empty.h>
+#include <std_msgs/Int32.h>
+#include <std_msgs/Float32.h>
+
+#include <cstdlib>
+#include <ctime>
+#include <boost/thread/thread.hpp>
+#include <vector>
+#include <iostream>
+
+/**
+ * Serial 
+ */
+serial::Serial bleSerial_;
+
+ros::Publisher bleStandByPublisher_;
+
+ros::Publisher stopParkingDockConnectedPublisher_;
+
+ros::Publisher exceptionalTerminationPublisher_;
+
+ros::Publisher isChargingFromBlePublisher_;
+
+void bleSerialInitialize()
+{
+    try
+    {
+        bleSerial_.setPort("/dev/ttyBle");
+        // bleSerial_.setPort("/dev/ttyMycomDebugger");
+        bleSerial_.setBaudrate(115200);
+        serial::Timeout to = serial::Timeout::simpleTimeout(1000);
+        bleSerial_.setTimeout(to);
+        bleSerial_.open();
+    }
+    catch (serial::IOException& e)
+    {
+        ROS_ERROR_STREAM("Unable to open ble serial port ");
+    }
+
+    if(bleSerial_.isOpen())
+    {
+        ROS_INFO_STREAM("BLE serial Port initialized");
+    }
+    else
+    {
+        //return -1;
+    }
+}
+
+void parkingStartCallback(const std_msgs::Int32 &msg)
+{
+    //ROS_INFO_STREAM("Recieved number from display request : " << msg->data);
+
+    int recievedNumber = msg.data;
+    
+    unsigned char* transmissionBuffer = new unsigned char[6];
+
+    transmissionBuffer[0] = 0xAF;
+    transmissionBuffer[1] = 0xFA;
+    transmissionBuffer[2] = 0x01;
+    transmissionBuffer[3] = 0x00;
+    transmissionBuffer[4] = 0xAF;
+    transmissionBuffer[5] = 0xB0;
+    
+    bleSerial_.write(transmissionBuffer, 6);
+
+    std::cout << "parking_start" << std::endl;
+}
+
+void journeyStartCallback(const std_msgs::Int32 &msg){
+    int recievedNumber = msg.data;
+    
+    unsigned char* transmissionBuffer = new unsigned char[6];
+
+    transmissionBuffer[0] = 0xAF;
+    transmissionBuffer[1] = 0xFA;
+    transmissionBuffer[2] = 0x04;
+    transmissionBuffer[3] = 0x00;
+    transmissionBuffer[4] = 0xAF;
+    transmissionBuffer[5] = 0xB0;
+    
+    bleSerial_.write(transmissionBuffer, 6);
+
+    std::cout << "journey_start_to_ble" << std::endl;
+}
+
+int bleMessageParser(char* buffer)
+{
+    if (buffer[0]==0xAF && buffer[1]==0xFA && buffer[2]==0x01 && buffer[3]==0x01 && buffer[4]==0xAF && buffer[5]==0xB0){
+        // start parking
+        ROS_INFO_STREAM("Start Parking.");
+        std_msgs::Int32 msg;
+        msg.data = 1;
+        bleStandByPublisher_.publish(msg);
+    }
+    else if (buffer[0]==0xAF && buffer[1]==0xFA && buffer[2]==0x02 && buffer[3]==0x03 && buffer[4]==0xAF && buffer[5]==0xB0){
+        // dock connected. stop forwarding
+        ROS_INFO_STREAM("Stop Parking. Dock Connected.");
+        std_msgs::Int32 msg;
+        msg.data = 1;
+        stopParkingDockConnectedPublisher_.publish(msg);
+    }
+    else if (buffer[0]==0xAF && buffer[1]==0xFA && buffer[2]==0x0C && buffer[3]==0x00 && buffer[4]==0xAF && buffer[5]==0xB0){
+        // Ready to get out docker
+        ROS_INFO_STREAM("Start Journey.");
+        std_msgs::Int32 isChargingMsg;
+        isChargingMsg.data = 0;
+        isChargingFromBlePublisher_.publish(isChargingMsg);
+    }
+    else if (buffer[0]==0xAF && buffer[1]==0xFA && buffer[2]==0x04 && buffer[3]==0x00 && buffer[4]==0xAF && buffer[5]==0xB0){
+        // Exceptional Termination
+        ROS_INFO_STREAM("Exceptional Termination.");
+        std_msgs::Int32 msg;
+        msg.data = 1;
+        exceptionalTerminationPublisher_.publish(msg);
+        std_msgs::Int32 isChargingMsg;
+        isChargingMsg.data = 0;
+        isChargingFromBlePublisher_.publish(isChargingMsg);
+    }
+    else if (buffer[0]==0xAF && buffer[1]==0xFA && buffer[2]==0x0E && buffer[3]==0x00 && buffer[4]==0xAF && buffer[5]==0xB0){
+        // BLE connect State
+        ROS_INFO_STREAM("BLE is Connected.");
+        std_msgs::Int32 msg;
+        msg.data = 1;
+        bleStandByPublisher_.publish(msg);
+    }
+    else if (buffer[0]==0xAF && buffer[1]==0xFA && buffer[2]==0x0E && buffer[3]==0x01 && buffer[4]==0xAF && buffer[5]==0xB0){
+        // BLE disconnect State
+        ROS_INFO_STREAM("BLE is Disconnected.");
+        std_msgs::Int32 isChargingMsg;
+        isChargingMsg.data = 0;
+        isChargingFromBlePublisher_.publish(isChargingMsg);
+    }
+    else if (buffer[0]==0xAF && buffer[1]==0xFA && buffer[2]==0x05 && buffer[3]==0x00 && buffer[4]==0xAF && buffer[5]==0xB0){
+        ROS_INFO_STREAM("Is Charging Now.");
+        std_msgs::Int32 msg;
+        msg.data = 1;
+        isChargingFromBlePublisher_.publish(msg);
+    }
+        else if (buffer[0]==0xAF && buffer[1]==0xFA && buffer[2]==0x03 && buffer[3]==0x00 && buffer[4]==0xAF && buffer[5]==0xB0){
+        std_msgs::Int32 msg;
+        msg.data = 0;
+        isChargingFromBlePublisher_.publish(msg);
+
+        std_msgs::Int32 tempMsg;
+        tempMsg.data = 1;
+        bleStandByPublisher_.publish(tempMsg);
+    }    
+    return 0;
+}
+
+void bledatareadCallback(const std_msgs::String::ConstPtr& msg)
+{
+    std::string buffer = msg->data;
+    // ROS_INFO("Received raw data: %s", data.c_str());
+    
+    bleMessageParser(&buffer[0]);
+}
+
+int main (int argc, char** argv)
+{
+    ros::init(argc, argv, "ble_serial_manager_node");
+    ros::NodeHandle nh;
+    ros::Rate loop_rate(10);
+    
+    ros::Subscriber parkingStartSubscriber = nh.subscribe("/parking_start", 10, parkingStartCallback);
+
+    ros::Subscriber journeyStartSubscriber = nh.subscribe("/journey_start_to_ble", 10, journeyStartCallback);
+       
+    ros::Subscriber bledatareadSubscriber = nh.subscribe("/bledata", 10,bledatareadCallback);
+
+    ros::Publisher parkingSequenceMsgPublisher = nh.advertise<std_msgs::Int32>("/parking_sequence", 1);
+
+    bleStandByPublisher_ = nh.advertise<std_msgs::Int32>("/parking_standby_ack", 1);
+
+    exceptionalTerminationPublisher_ = nh.advertise<std_msgs::Int32>("/exceptional_termination_ble", 1);
+
+    stopParkingDockConnectedPublisher_ = nh.advertise<std_msgs::Int32>("/stop_parking_dock_connected", 1);
+
+    isChargingFromBlePublisher_ = nh.advertise<std_msgs::Int32>("is_charging_from_ble", 1);
+
+
+    if (!bleSerial_.isOpen())
+    {
+        bleSerialInitialize();
+    }
+
+    
+    // ros::spin();
+    // return 0;
+
+    // bleSerialInitialize();
+    
+    while(ros::ok())
+    {
+        if (!bleSerial_.isOpen()){
+            bleSerialInitialize();
+        }
+        
+       // display 
+        if( bleSerial_.available() && bleSerial_.isOpen() )
+        {
+            ROS_INFO_STREAM("Recieving from ble serial port");
+            std_msgs::String recievedData;
+            recievedData.data = bleSerial_.read(bleSerial_.available());
+
+            std::vector<char> temp(recievedData.data.begin(), recievedData.data.end());
+            temp.push_back('\0');
+            char* buffer = &temp[0];
+            std::cout << std::hex << (int)buffer[0] << " " << (int)buffer[1] << " " << (int)buffer[2] << " " << (int)buffer[3] << " " << (int)buffer[4] << " " << (int)buffer[5] << std::endl;            
+            bleMessageParser(buffer);
+        }
+
+        //battery
+       
+        ros::spinOnce();
+        loop_rate.sleep();
+    }
+}

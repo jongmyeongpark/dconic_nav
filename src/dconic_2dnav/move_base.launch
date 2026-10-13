@@ -1,0 +1,51 @@
+<?xml version="1.0" ?>
+<launch>
+
+  <arg name="map_name"/>
+
+  <!-- Run the map server -->
+  <node name="map_server" pkg="map_server" type="map_server" args="/home/nvidia/dconic_nav/src/map/$(arg map_name).yaml">
+    <param name="frame_id" value="map" />
+  </node>
+
+  <!--<arg name="base_global_planner" default="navfn/NavfnROS"/>-->
+  <arg name="base_global_planner" default="global_planner/GlobalPlanner"/>
+  <!-- <arg name="base_local_planner" default="dwa_local_planner/DWAPlannerROS"/> -->
+  <arg name="base_local_planner" default="teb_local_planner/TebLocalPlannerROS"/>
+  <arg name="recovery_behavior_enabled" default="false"/>
+
+  <!-- Run AMCL -->
+  <include file="$(find amcl)/examples/amcl_diff.launch" />
+
+  <arg name="cmd_vel_topic" default="/cmd_vel"/>
+  <!-- change odom=>robot_pose_ekf/odom_combined -->
+  <arg name="odom_topic" default="odom"/>
+  <!--<arg name="odom_topic" default="robot_pose_ekf/odom_combined"/>-->
+  <arg name="scan_topic" default="scan_multi" />
+
+  <!-- Run move_base -->
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+    <param name="base_global_planner" value="$(arg base_global_planner)"/>
+    <param name="base_local_planner" value="$(arg base_local_planner)"/> 
+     <!--    <param name="recovery_behavior_enabled" value="$(recovery_behavior_enabled)"/> -->
+
+    <rosparam file="$(find dconic_2dnav)/costmap_common_params.yaml" command="load" ns="global_costmap"/>
+    <rosparam file="$(find dconic_2dnav)/costmap_common_params.yaml" command="load" ns="local_costmap"/>
+    <rosparam file="$(find dconic_2dnav)/local_costmap_params.yaml" command="load"/>
+    <!--dhjeon 20.12.17 add-To prohibit track unknown space-->
+    <rosparam file="$(find dconic_2dnav)/base_global_planner_param.yaml" command="load"/>
+    <rosparam file="$(find dconic_2dnav)/global_costmap_params.yaml" command="load"/> 
+    <rosparam file="$(find dconic_2dnav)/teb_local_planner.yaml" command="load"/>
+    <rosparam file="$(find dconic_2dnav)/costmap_converter_params.yaml" command="load" />
+    <!--<rosparam file="$(find dconic_2dnav)/dwa_local_planner.yaml" command="load"/>--> 
+
+    <remap from="cmd_vel" to="$(arg cmd_vel_topic)"/>
+    <remap from="odom" to="$(arg odom_topic)"/>
+    <remap from="scan" to="$(arg scan_topic)"/> 
+  </node>
+
+
+  <!-- rviz -->
+  <!-- <node pkg="rviz" type="rviz" name="rviz"/> -->
+
+</launch>

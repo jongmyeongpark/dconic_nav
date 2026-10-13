@@ -1,0 +1,8 @@
+prefix=/home/nvidia/dconic_nav/install
+
+Name: env_serials
+Description: Description of env_serials
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

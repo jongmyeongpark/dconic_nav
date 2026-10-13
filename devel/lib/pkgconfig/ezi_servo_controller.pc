@@ -1,0 +1,1 @@
+/home/nvidia/dconic_nav/devel/.private/ezi_servo_controller/lib/pkgconfig/ezi_servo_controller.pc

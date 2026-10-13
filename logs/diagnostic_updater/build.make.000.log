@@ -1,0 +1,8 @@
+[35m[1mScanning dependencies of target example[0m
+[ 25%] [32mBuilding CXX object CMakeFiles/example.dir/src/example.cpp.o[0m
+[35m[1mScanning dependencies of target diagnostic_updater[0m
+[ 50%] [32mBuilding CXX object CMakeFiles/diagnostic_updater.dir/src/timestamp_status.cpp.o[0m
+[ 75%] [32m[1mLinking CXX executable /home/nvidia/dconic_nav/devel/.private/diagnostic_updater/lib/diagnostic_updater/example[0m
+[ 75%] Built target example
+[100%] [32m[1mLinking CXX shared library /home/nvidia/dconic_nav/devel/.private/diagnostic_updater/lib/libdiagnostic_updater.so[0m
+[100%] Built target diagnostic_updater

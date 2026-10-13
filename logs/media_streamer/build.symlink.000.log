@@ -1,0 +1,4 @@
+Symlinking /home/nvidia/dconic_nav/devel/share/media_streamer/cmake/media_streamerConfig-version.cmake
+Symlinking /home/nvidia/dconic_nav/devel/share/media_streamer/cmake/media_streamerConfig.cmake
+Symlinking /home/nvidia/dconic_nav/devel/lib/pkgconfig/media_streamer.pc
+Symlinking /home/nvidia/dconic_nav/devel/lib/python3/dist-packages/media_streamer/__init__.py

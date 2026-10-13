@@ -1,0 +1,1 @@
+/home/nvidia/dconic_nav/devel/.private/diagnostic_common_diagnostics/lib/diagnostic_common_diagnostics/hd_monitor.py

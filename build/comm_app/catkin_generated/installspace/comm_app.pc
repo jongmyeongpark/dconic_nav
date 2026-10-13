@@ -1,0 +1,8 @@
+prefix=/home/nvidia/dconic_nav/install
+
+Name: comm_app
+Description: Description of comm_app
+Version: 0.0.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib -lstate_msg
+Requires: roscpp std_msgs geometry_msgs

@@ -1,0 +1,1 @@
+/home/nvidia/dconic_nav/devel/.private/position_evaluator/share/roseus/ros/position_evaluator/manifest.l

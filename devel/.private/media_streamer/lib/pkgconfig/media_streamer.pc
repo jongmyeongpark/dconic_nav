@@ -1,0 +1,8 @@
+prefix=/home/nvidia/dconic_nav/devel/.private/media_streamer
+
+Name: media_streamer
+Description: Description of media_streamer
+Version: 0.1.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

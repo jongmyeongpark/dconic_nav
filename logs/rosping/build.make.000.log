@@ -1,0 +1,5 @@
+[35m[1mScanning dependencies of target rosping[0m
+[ 66%] [32mBuilding CXX object CMakeFiles/rosping.dir/src/ping.cpp.o[0m
+[ 66%] [32mBuilding CXX object CMakeFiles/rosping.dir/src/rosping.cpp.o[0m
+[100%] [32m[1mLinking CXX executable /home/nvidia/dconic_nav/devel/.private/rosping/lib/rosping/rosping[0m
+[100%] Built target rosping

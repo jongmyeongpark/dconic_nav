@@ -1,0 +1,8 @@
+Symlinking /home/nvidia/dconic_nav/devel/share/roseus/ros/position_evaluator/manifest.l
+Symlinking /home/nvidia/dconic_nav/devel/share/position_evaluator/cmake/position_evaluatorConfig-version.cmake
+Symlinking /home/nvidia/dconic_nav/devel/share/position_evaluator/cmake/position_evaluator-msg-paths.cmake
+Symlinking /home/nvidia/dconic_nav/devel/share/position_evaluator/cmake/position_evaluator-msg-extras.cmake
+Symlinking /home/nvidia/dconic_nav/devel/share/position_evaluator/cmake/position_evaluatorConfig.cmake
+Symlinking /home/nvidia/dconic_nav/devel/lib/position_evaluator/position_evaluator
+Symlinking /home/nvidia/dconic_nav/devel/lib/pkgconfig/position_evaluator.pc
+Symlinking /home/nvidia/dconic_nav/devel/lib/python3/dist-packages/position_evaluator/__init__.py

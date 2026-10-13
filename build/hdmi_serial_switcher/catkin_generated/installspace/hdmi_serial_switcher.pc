@@ -1,0 +1,8 @@
+prefix=/home/nvidia/dconic_nav/install
+
+Name: hdmi_serial_switcher
+Description: Description of hdmi_serial_switcher
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: serial std_msgs

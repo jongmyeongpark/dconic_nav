@@ -1,0 +1,5 @@
+ezi_servo_controller
+/home/nvidia/dconic_nav/devel/.private/ezi_servo_controller/share/ezi_servo_controller/cmake/ezi_servo_controllerConfig-version.cmake /home/nvidia/dconic_nav/devel/share/ezi_servo_controller/cmake/ezi_servo_controllerConfig-version.cmake
+/home/nvidia/dconic_nav/devel/.private/ezi_servo_controller/share/ezi_servo_controller/cmake/ezi_servo_controllerConfig.cmake /home/nvidia/dconic_nav/devel/share/ezi_servo_controller/cmake/ezi_servo_controllerConfig.cmake
+/home/nvidia/dconic_nav/devel/.private/ezi_servo_controller/lib/pkgconfig/ezi_servo_controller.pc /home/nvidia/dconic_nav/devel/lib/pkgconfig/ezi_servo_controller.pc
+/home/nvidia/dconic_nav/devel/.private/ezi_servo_controller/lib/ezi_servo_controller/ezi_servo_controller /home/nvidia/dconic_nav/devel/lib/ezi_servo_controller/ezi_servo_controller

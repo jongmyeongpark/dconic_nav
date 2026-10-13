@@ -1,0 +1,8 @@
+prefix=/home/nvidia/dconic_nav/install
+
+Name: pointcloud_height_filter
+Description: Description of pointcloud_height_filter
+Version: 0.1.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib 
+Requires: roscpp sensor_msgs dynamic_reconfigure

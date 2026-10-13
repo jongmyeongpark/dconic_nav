@@ -1,0 +1,1943 @@
+#include "ros/ros.h"
+#include "ros/console.h"
+#include <iostream>
+#include <sensor_msgs/LaserScan.h>
+#include <sensor_msgs/Imu.h>
+#include <std_msgs/String.h>
+#include <std_msgs/Int32.h>
+#include <std_msgs/Float32.h>
+#include <std_msgs/Empty.h>
+#include <std_msgs/Bool.h>
+#include <string>
+#include <geometry_msgs/Twist.h>
+#include <geometry_msgs/PoseWithCovarianceStamped.h>
+#include <geometry_msgs/PoseStamped.h>
+#include <cv_bridge/cv_bridge.h>
+#include <opencv2/opencv.hpp>
+#include <opencv2/highgui/highgui.hpp>
+#include <cmath>
+#include <limits>
+#include <vector>
+#include <list>
+#include <tf2/LinearMath/Quaternion.h>
+#include <tf2_geometry_msgs/tf2_geometry_msgs.h>
+#include <move_base_msgs/MoveBaseActionGoal.h>
+#include <sensor_msgs/Range.h>
+#include <nav_msgs/Odometry.h>
+
+
+#define CENTER_COORDINATES 200
+
+#define INERTIAL_TOLERANCE 0.0
+#define INERTIAL_X_TOLERANCE 5
+
+enum PARKING_STATE{
+    INITIALIZING,
+    IDLE,
+    MOVING_TO_PARKING_POINT,
+	MOVING_TO_PARKING_POINT2,
+	MOVING_TO_PARKING_POINT3,
+	MOVING_TO_PARKING_POINT4,
+    MOVING_TO_EXIT_POINT1,
+    MOVING_TO_EXIT_POINT2,
+    INITIAL_MOVING_BACK,
+    ADJUSTING_YAW,
+    INITIAL_ADJUSTING_FOWARD,
+    COLLECTING_DATA,
+    ADJUSTING_YAW_TO_HORIZONTAL,
+    ADJUSTING_FORWARD_TO_HORIZONTAL,
+    ADJUSTING_YAW_AFTER_HORIZONTAL_FORWARD,
+    ADJUSTING_YAW_PRECISELY_AFTER_HORIZONTAL_FORWARD,
+    ADJUSTING_FORWARD,
+    MOVING_BACK,
+    FINISHED,
+    MOVING_BACK_TO_JOURNEY,
+    TURN_AFTER_MOVING_BACK_TO_JOURNEY
+};
+
+ros::Publisher cmdVelPub_;
+
+ros::Publisher driveCompletedPublisher_;
+
+ros::Publisher pathRunRequestPublisher_;
+
+ros::Publisher justStartedChargingPublisher_;
+
+ros::Publisher justTakenOutChargingPublisher_;
+
+cv::Mat imgLaser_;
+
+#define PI 3.141592
+#define DEG2RAD (PI / 180.0)
+#define RAD2DEG (180.0 / PI)
+
+double resultGradient_;
+
+int currentGradient_;
+
+int currentHorizontalPosition_; // left : -1 ,  right : 1
+
+PARKING_STATE parkingState_;
+std::string parkingStateString_;
+
+int centroidX_;
+int centroidY_;
+
+std::list<double> gradientList_;
+std::list<double> centroidXList_;
+std::list<double> centroidYList_;
+
+double forwardToGoToAdjustHorizon_;
+double homeCentroidXToMoveForward_;
+double homeCentroidYToMoveForward_;
+
+double targetGradient_;
+double currentDistanceToCharger_;
+
+double targetAngle_;
+
+geometry_msgs::PoseWithCovarianceStamped currentAmclPose_;
+geometry_msgs::PoseWithCovarianceStamped startingPose_;
+
+geometry_msgs::PoseStamped parkingPointPose_;
+geometry_msgs::PoseStamped parkingPoint2Pose_;
+geometry_msgs::PoseStamped parkingPoint3Pose_;
+geometry_msgs::PoseStamped parkingPoint4Pose_;
+geometry_msgs::PoseStamped exitPoint1Pose_;
+geometry_msgs::PoseStamped exitPoint2Pose_;
+
+bool isRequestedStartAutoParking_;
+
+bool isRequestedCancel_;
+
+PARKING_STATE previousParkingState_;
+
+bool isParkingStandby_;
+
+bool isDockConnected_;
+
+double sonarRange_;
+double sonarFlRange_;
+double sonarFrRange_;
+
+nav_msgs::Odometry startingOdom_;
+nav_msgs::Odometry currentOdom_;
+
+std::vector<double> centroidXVector_;
+std::vector<double> centroidYVector_;
+
+std::vector<double> resultGradientVector_;
+
+double targetBackMovingDistance_;
+
+bool isStartJourney_;
+
+bool isCharging_;
+
+bool isChargingOld_;
+
+bool isBleTerminatedExceptionally_;
+
+double centerLidarDistance_;
+
+double theta_;
+
+double distnaceRemainingToCenter_;
+
+int runStartCount_;
+
+void frontLaserCallback(const sensor_msgs::LaserScan& laserMsg){
+    
+    if (parkingState_ == INITIALIZING || parkingState_ == IDLE){
+        return;
+    }    
+
+    //centerLidarDistance_ = laserMsg.ranges[laserMsg.ranges.size()/2];
+    centerLidarDistance_ = 0.0;
+    for (int i = laserMsg.ranges.size()/2 -7 ; i < laserMsg.ranges.size()/2 +7 ;++i){
+        centerLidarDistance_ += laserMsg.ranges[i]; 
+    }
+    centerLidarDistance_ /= 14.0;
+
+    //std::cout << "center Lidar Distance : " << centerLidarDistance_ << std::endl;
+
+    //std::cout << "front laser Callback" << std::endl;
+    imgLaser_ = cv::Mat::zeros( 480, 640, CV_8UC3 ) ;
+
+    for(int i = laserMsg.ranges.size()*3/10 ; i < laserMsg.ranges.size()*7/10 ; ++i){
+        //laser_range_vector.push_back(msg.ranges[i]); 
+
+        if ( laserMsg.ranges[i] < 1.0 && laserMsg.ranges[i] >= 0.05 ){
+            
+            double r = laserMsg.ranges[i] * 200.0;
+            double theta = 180.0 / ((double)laserMsg.ranges.size()) * ((double)(laserMsg.ranges.size() - i));
+
+            double x = r * std::cos(DEG2RAD * theta) + CENTER_COORDINATES;
+            double y = r * std::sin(DEG2RAD * theta) + CENTER_COORDINATES;
+
+            cv::Vec3b & color = imgLaser_.at<cv::Vec3b>(y,x);
+
+            //... do something to the color ....
+            color[0] = 255;
+            color[1] = 255;
+            color[2] = 255;
+
+            //std::cout << "i : " << i << ", range : " << laserMsg.ranges[i] << ", x : " << x << ", y : " << y << std::endl;
+
+            // set pixel
+            imgLaser_.at<cv::Vec3b>(cv::Point(x,y)) = color;
+            imgLaser_.at<cv::Vec3b>(cv::Point(x+1,y)) = color;
+            imgLaser_.at<cv::Vec3b>(cv::Point(x,y+1)) = color;
+            imgLaser_.at<cv::Vec3b>(cv::Point(x+1,y+1)) = color;
+            
+            // imgLaser_.at<cv::Vec3b>(cv::Point(x+2,y)) = color;
+            // imgLaser_.at<cv::Vec3b>(cv::Point(x,y+2)) = color;
+            // imgLaser_.at<cv::Vec3b>(cv::Point(x+1,y+2)) = color;
+            // imgLaser_.at<cv::Vec3b>(cv::Point(x+2,y+1)) = color;
+            // imgLaser_.at<cv::Vec3b>(cv::Point(x+2,y+2)) = color;
+            //if you copy value            
+        }    
+    }    
+
+    cv::Mat result2, img_gray, img_threshold;
+    
+    cv::dilate(imgLaser_, result2, cv::Mat()); // 침식된 영상에 대한 팽창
+
+    cv::erode(result2, result2, cv::Mat()); // 원 영상을 침식
+
+    cv::dilate(result2, result2, cv::Mat()); // 침식된 영상에 대한 팽창
+    cv::dilate(result2, result2, cv::Mat()); // 침식된 영상에 대한 팽창
+    cv::dilate(result2, result2, cv::Mat()); // 침식된 영상에 대한 팽창
+
+    cv::cvtColor(result2, img_gray, cv::COLOR_BGR2GRAY);
+
+    cv::threshold(img_gray, img_threshold, 100, 255, cv::THRESH_BINARY);
+    //cv::imshow("Laser Image threshold", img_threshold);
+
+    cv::Mat img_labels, stats, centroids;
+    int numOfLables = cv::connectedComponentsWithStats(img_threshold, img_labels, stats, centroids, 8, CV_32S);
+
+    if (numOfLables < 2){
+        return;
+    }
+
+    //std::cout << "connectedComponent num : " << numOfLables << std::endl;
+    int bigClosestLabel = 0;
+
+    if (sonarRange_ > 0.30){
+        std::vector<int> bigComponentLables;        
+        for (int i = 1 ; i < numOfLables ; ++i){
+            int width = stats.at<int>(i, cv::CC_STAT_WIDTH);
+            int height = stats.at<int>(i, cv::CC_STAT_HEIGHT);
+
+            int area = width * height;
+            // std::cout << "area : " << area << std::endl;
+
+            if (area > 700){
+                bigComponentLables.push_back(i);
+            }
+        }    
+
+        if (bigComponentLables.size() > 0){
+            bigClosestLabel = bigComponentLables[0];
+            double bigClosestDistance = std::numeric_limits<double>::max();
+            for (int i = 0; i < bigComponentLables.size() ; ++i){
+                int label = bigComponentLables[i];
+                int centroidXTemp = centroids.at<double>(label, 0);
+                int centroidYTemp = centroids.at<double>(label, 1); 
+                double distance = std::sqrt( (( (double)centroidXTemp - (double)CENTER_COORDINATES ) * ( (double)centroidXTemp - (double)CENTER_COORDINATES )) + (( (double)centroidYTemp - (double)CENTER_COORDINATES ) * ( (double)centroidYTemp - (double)CENTER_COORDINATES )) );
+                if (distance < bigClosestDistance){
+                    bigClosestLabel = label;
+                    bigClosestDistance = distance;
+                }
+            }
+        }
+        else {
+            return;
+        }
+    }
+    else{
+        double biggestArea = std::numeric_limits<double>::min();
+        for (int i = 1 ; i < numOfLables ; ++i){
+            int width = stats.at<int>(i, cv::CC_STAT_WIDTH);
+            int height = stats.at<int>(i, cv::CC_STAT_HEIGHT);
+
+            int area = width * height;
+
+            if (area > biggestArea){
+                biggestArea = area;
+                bigClosestLabel = i;
+            }
+        }    
+    }
+    
+
+    // int biggestLabel = 1;
+    // double biggestArea = std::numeric_limits<double>::min();
+    
+    // for (int i = 1 ; i < numOfLables ; ++i){
+    //     int width = stats.at<int>(i, cv::CC_STAT_WIDTH);
+    //     int height = stats.at<int>(i, cv::CC_STAT_HEIGHT);
+
+    //     int area = width * height;
+
+    //     if (area > biggestArea){
+    //         biggestLabel = i;
+    //         biggestArea = area;
+    //     }
+        
+    // }
+
+    //int biggestWidth = stats.at<int>(biggestLabel, cv::CC_STAT_WIDTH);
+    //int biggestHeight = stats.at<int>(biggestLabel, cv::CC_STAT_HEIGHT);
+
+    //std::cout << "w : " << biggestWidth << "  , h : " << biggestHeight << "   *= " << biggestWidth*biggestHeight <<std::endl;
+
+    int centroidX = centroids.at<double>(bigClosestLabel, 0);
+    int centroidY = centroids.at<double>(bigClosestLabel, 1); 
+
+    if (centroidXList_.size() >= 5){
+        centroidXList_.pop_front();
+    }
+
+    if (centroidYList_.size() >= 5){
+        centroidYList_.pop_front();
+    }
+
+    centroidXList_.push_back(centroidX);
+    centroidYList_.push_back(centroidY);
+
+    std::list<double>::iterator iter;
+
+    double centroidXtemp = 0.0;    
+    iter = centroidXList_.begin();
+    while( iter != centroidXList_.end() ){
+        centroidXtemp += (*iter);       
+        ++iter;
+    }
+    centroidX_ = centroidXtemp / centroidXList_.size();    
+
+    double centroidYtemp = 0.0;
+    iter = centroidYList_.begin();
+    while( iter != centroidYList_.end() ){
+        centroidYtemp += (*iter);       
+        ++iter;
+    }
+    centroidY_ = centroidYtemp / centroidYList_.size();    
+
+    //centroidX_ = centroids.at<double>(bigClosestLabel, 0);
+    //centroidY_ = centroids.at<double>(bigClosestLabel, 1); 
+
+    cv::circle(result2, cv::Point(centroidX_, centroidY_), 5, cv::Scalar(0, 255, 0), 1);
+
+    int area = stats.at<int>(bigClosestLabel, cv::CC_STAT_AREA);
+    int left = stats.at<int>(bigClosestLabel, cv::CC_STAT_LEFT);
+    int top = stats.at<int>(bigClosestLabel, cv::CC_STAT_TOP);
+    int width = stats.at<int>(bigClosestLabel, cv::CC_STAT_WIDTH);
+    int height = stats.at<int>(bigClosestLabel, cv::CC_STAT_HEIGHT);
+
+    cv::rectangle(result2, cv::Point(left, top), cv::Point(left + width, top + height), cv::Scalar(0, 0, 255), 1);
+
+    std::vector<cv::Point> recognizedPoints;
+
+    for (int y = top ; y < top + height ; ++y){
+        for (int x = left; x < left + width ; ++x){
+            if (img_threshold.at<uchar>(y,x) > 0){
+                recognizedPoints.push_back(cv::Point(x,y));
+            }
+        }
+    }
+
+    //std::cout << "recog length : " << recognizedPoints.size() << std::endl;
+    //cv::Vec4f lines;
+    if (recognizedPoints.size() > 0 ){
+        std::vector<float> lines;
+        cv::fitLine(recognizedPoints,lines,2,1,0.01,0.01);
+
+        if (gradientList_.size() >=10){
+            gradientList_.pop_front();
+        }
+        gradientList_.push_back( (lines[1]/lines[0]) );
+        double resultGradientTemp = 0.0;
+        iter = gradientList_.begin();
+        while( iter != gradientList_.end() ){
+            resultGradientTemp += (*iter);       
+            ++iter;
+        }
+        resultGradient_ = resultGradientTemp / gradientList_.size();
+        //resultGradient_ = (double)lines[1] / (double)lines[0];
+        int lefty = (-lines[2]*resultGradient_)+lines[3];
+        int righty = ((result2.cols-lines[2])*resultGradient_)+lines[3];
+
+        cv::line(result2,cv::Point(result2.cols-1,righty),cv::Point(0,lefty),cv::Scalar(255,0,0),1);
+
+        //std::cout << "gradient_ : " << resultGradient_ << std::endl;
+        
+    }
+
+    cv::line(result2,cv::Point(CENTER_COORDINATES,CENTER_COORDINATES),cv::Point(centroidX_,centroidY_),cv::Scalar(0,0,255),1);
+
+
+    //resultGradient_ = (-1.0) / ((centroidY_ - CENTER_COORDINATES) / (centroidX_ - CENTER_COORDINATES));
+
+    cv::Vec3b & colorR = imgLaser_.at<cv::Vec3b>(CENTER_COORDINATES,CENTER_COORDINATES);;
+    //... do something to the color ....
+    colorR[0] = 0;
+    colorR[1] = 100;
+    colorR[2] = 255;
+
+    // set pixel
+    result2.at<cv::Vec3b>(cv::Point(CENTER_COORDINATES,CENTER_COORDINATES)) = colorR;
+
+
+    // cv::imshow("Laser Image", result2);
+
+
+    distnaceRemainingToCenter_ = std::sqrt( ((double)centroidX_ - (double)CENTER_COORDINATES) * ((double)centroidX_ - (double)CENTER_COORDINATES) + ((double)centroidY_ - (double)CENTER_COORDINATES) * ((double)centroidY_ - (double)CENTER_COORDINATES) ) * 0.005;
+    // std::cout << "distance to center : " << distanceRemaining << std::endl;
+}
+
+void amclPoseCallback(const geometry_msgs::PoseWithCovarianceStamped& msg){
+    currentAmclPose_ = msg;
+}
+
+void startAutoParkingCallback(const std_msgs::Empty& msg){
+    isRequestedStartAutoParking_ = true;
+}
+
+void cancelCallback(const std_msgs::Empty& msg){
+    isRequestedCancel_ = true;
+}
+
+void parkingStandbyAckCallback(const std_msgs::Int32& msg){
+    ROS_INFO("Parking Stand by...\n");
+    isParkingStandby_ = true;
+}
+
+void stopParkingDockConnectedCallback(const std_msgs::Int32& msg){
+    ROS_INFO("Stop Parking. Dock Connected.");
+    isDockConnected_ = true;
+}
+
+void sonar1Callback(const sensor_msgs::Range& msg){
+    //sonarRange_ = msg.range;
+    sonarFlRange_ = msg.range;
+}
+
+void sonarFrCallback(const sensor_msgs::Range& msg){
+    //sonarRange_ = msg.range;
+    sonarFrRange_ = msg.range;
+}
+
+void odomCallback(const nav_msgs::Odometry& msg){
+    currentOdom_ = msg;
+}
+
+void startJourneyCallback(const std_msgs::Empty& msg){
+    //isStartJourney_ = true;
+}
+
+void pathRunRequestCallback(const std_msgs::String& msg){
+    // if (parkingState_ == FINISHED){
+    //     isStartJourney_ = true; 
+    // }
+}
+
+void exceptionalTerminationCallback(const std_msgs::Int32& msg){
+    isBleTerminatedExceptionally_ = true;
+    //isCharging_ = false;
+}
+
+void isChargingFromBleCallback(const std_msgs::Int32& msg){
+    
+    if (msg.data == 0){
+        if (parkingState_ == FINISHED){
+            parkingState_ = INITIALIZING;            
+            parkingStateString_ = std::string("INITIALIZING");
+            std::cout << "State : Initializing..";
+                        
+        }
+        isDockConnected_ = false;
+        //isCharging_ = false;
+    }
+    else if (msg.data == 1 || msg.data == 2){
+        if (parkingState_ != MOVING_BACK_TO_JOURNEY && parkingState_ != FINISHED){
+            geometry_msgs::Twist movingTwistMsg;
+            movingTwistMsg.linear.x = 0.0; 
+            movingTwistMsg.angular.z = 0.0;
+            cmdVelPub_.publish(movingTwistMsg);
+            
+            isRequestedStartAutoParking_ = false;
+            parkingState_ = FINISHED;            
+            parkingStateString_ = std::string("FINISHED");
+            std::cout << "State : Finished";
+
+            std_msgs::String stringMsg;
+            stringMsg.data = "charging_point";
+            driveCompletedPublisher_.publish(stringMsg);
+
+        }
+        isDockConnected_ = true;
+        //isCharging_ = true;
+    }
+}
+
+void isChargingFromBatteryCallback(const std_msgs::Bool& msg){
+    isCharging_ = msg.data;
+    isDockConnected_ = msg.data;
+
+    if(parkingState_ != ADJUSTING_FORWARD || parkingState_ != FINISHED){
+        if (isCharging_){
+            parkingState_ = FINISHED;
+            parkingStateString_ = std::string("FINISHED");
+        }
+    }
+
+    if (isChargingOld_ != isCharging_){
+        if (isCharging_){
+            std_msgs::Empty emptyMsg;
+            justStartedChargingPublisher_.publish(emptyMsg);
+        }
+        else {
+            std_msgs::Empty emptyMsg;
+            justTakenOutChargingPublisher_.publish(emptyMsg);
+        }
+    }
+    
+    isChargingOld_ = isCharging_;
+
+
+}
+
+void initialDriveForTurnCallback(const std_msgs::Empty& msg){
+    parkingState_ = TURN_AFTER_MOVING_BACK_TO_JOURNEY;
+    parkingStateString_ = std::string("TURN_AFTER_MOVING_BACK_TO_JOURNEY");
+}
+
+void initialRunStartCallback(const std_msgs::Empty &msg){
+    // std_msgs::String pathMsg;
+    // pathMsg.data = "0400park_map_12_3_0517-2.csv";
+    // pathRunRequestPublisher_.publish(pathMsg);
+    runStartCount_ = 4;
+    if (parkingState_ == FINISHED){
+        isStartJourney_ = true;
+        //pathRunRequestMsg_ = msg;
+    }
+    else if (parkingState_ == IDLE){
+        targetBackMovingDistance_ = 0.8;
+        parkingState_= MOVING_BACK_TO_JOURNEY;
+        parkingStateString_ = std::string("MOVING_BACK_TO_JOURNEY"); 
+        isCharging_ = false;
+    }
+}
+
+void runStartCountCallback(const std_msgs::Int32 &msg){
+    runStartCount_ = msg.data;
+    if (parkingState_ == FINISHED){
+        isStartJourney_ = true;
+        //pathRunRequestMsg_ = msg;
+    }
+}
+
+void runStartTestCallback(const std_msgs::Int32 &msg){
+    runStartCount_ = msg.data;
+    parkingState_ = TURN_AFTER_MOVING_BACK_TO_JOURNEY;
+    parkingStateString_ = std::string("TURN_AFTER_MOVING_BACK_TO_JOURNEY");
+}
+
+void requestRunStartCallback(const std_msgs::Empty& msg){
+    if (parkingState_ == FINISHED){
+        isStartJourney_ = true; 
+    }
+}
+
+int main(int argc, char **argv)
+{
+    ROS_INFO("autonomous_parker start\n");
+    ros::init(argc, argv, "autonomous_parker");
+
+    ros::NodeHandle nh;
+    ros::Rate loop_rate(20);
+
+    imgLaser_ = cv::Mat::zeros( 480, 640, CV_8UC3 ) ;
+
+    ros::Subscriber frontLaserSubscriber = nh.subscribe("/scan_1", 1, frontLaserCallback);
+
+    ros::Subscriber amclPoseSubscriber = nh.subscribe("/amcl_pose", 10, amclPoseCallback);
+
+    ros::Subscriber startAutoParkingSubscriber = nh.subscribe("/start_auto_parking", 1, startAutoParkingCallback);
+
+    ros::Subscriber cancelSubscriber = nh.subscribe("/path_run_cancel_request", 1, cancelCallback);
+
+    ros::Subscriber bleStandBySubscriber = nh.subscribe("/parking_standby_ack", 10, parkingStandbyAckCallback);
+
+    ros::Subscriber stopParkingDockConnectedSubscriber = nh.subscribe("/stop_parking_dock_connected", 10, stopParkingDockConnectedCallback);
+
+    ros::Subscriber sonar1Subscriber = nh.subscribe("/sonar_bottom_fl", 10, sonar1Callback);
+    ros::Subscriber sonarFrSubscriber = nh.subscribe("/sonar_bottom_fr", 10, sonarFrCallback);
+
+    ros::Subscriber odomSubscriber = nh.subscribe("/odom", 10, odomCallback);
+
+    ros::Subscriber pathRunRequestSubscriber = nh.subscribe("/path_run_request", 1, pathRunRequestCallback);
+
+    ros::Subscriber exceptionalTermiationBleSubscriber = nh.subscribe("/exceptional_termination_ble", 1, exceptionalTerminationCallback);
+
+    ros::Subscriber isChargingFromBleSubscriber = nh.subscribe("/is_charging_from_ble", 1, isChargingFromBleCallback);    
+    ros::Subscriber isChargingFromBatterySubscriber = nh.subscribe("/is_charging_from_battery", 1, isChargingFromBatteryCallback);   
+
+    ros::Subscriber initialDriveForTurnSubscriber = nh.subscribe("/initial_drive_for_turn", 1, initialDriveForTurnCallback);
+
+    ros::Subscriber requestRunStartCountSubscriber = nh.subscribe("/request_run_start", 1, requestRunStartCallback); 
+
+    ros::Subscriber initial_run_start_sub = nh.subscribe("/initial_run_start", 10, initialRunStartCallback); 
+    ros::Subscriber run_start_count_sub = nh.subscribe("/run_start_count", 10, runStartCountCallback); 
+    ros::Subscriber start_test = nh.subscribe("/run_start_test", 10, runStartTestCallback); 
+
+    ros::Publisher pointMovingCancelPublisher = nh.advertise<actionlib_msgs::GoalID>("/move_base/cancel", 1);
+
+    ros::Publisher pathRunCancelRequestPublisher = nh.advertise<std_msgs::Empty>("/path_run_cancel_request", 1);
+
+    ros::Publisher moveGoalPublisher = nh.advertise<move_base_msgs::MoveBaseActionGoal>("/move_base/goal", 1);
+    //ros::Publisher moveGoalPublusher = nh.advertise<geometry_msgs::PoseStamped>("/move_base_simple/goal", 1);
+
+    ros::Publisher parkingStartPublisher = nh.advertise<std_msgs::Int32>("/parking_start", 1);
+
+    ros::Publisher journeyStartToBlePublisher = nh.advertise<std_msgs::Int32>("journey_start_to_ble", 1);
+
+    ros::Publisher moveRequestPublisher = nh.advertise<std_msgs::Int32>("/move_request", 1);
+
+    ros::Publisher isChargingPublisher = nh.advertise<std_msgs::Bool>("/is_charging", 1);
+
+    ros::Publisher variableSpeendOnOffRequestPublisher = nh.advertise<std_msgs::Int32>("/variable_speed_onoff_request" , 1);
+
+    cmdVelPub_ = nh.advertise<geometry_msgs::Twist>("cmd_vel", 1);
+
+    driveCompletedPublisher_ = nh.advertise<std_msgs::String>("/drive_completed", 10);
+
+    ros::Publisher clearFollowWaypointsPublisher = nh.advertise<std_msgs::Empty>("/clear_follow_waypoints", 1);
+
+    ros::Publisher requestShortestGuidePublisher = nh.advertise<std_msgs::Int32>("/request_shortest_guide", 1);
+
+    ros::Publisher requestDisplayPublisher = nh.advertise<std_msgs::Int32>("/request_display", 1);
+
+    ros::Publisher pathRunRequestPublisher = nh.advertise<std_msgs::String>("/path_run_request", 1);
+
+    ros::Publisher initialposeFlyingletPublisher = nh.advertise<std_msgs::Empty>("/initialpose_flyinglet", 1);
+
+    // parkingstate
+    ros::Publisher parkingStatePublisher = nh.advertise<std_msgs::String>("/parking_state", 10);
+    
+    justStartedChargingPublisher_ = nh.advertise<std_msgs::Empty>("/just_started_charging", 1);
+    justTakenOutChargingPublisher_ = nh.advertise<std_msgs::Empty>("/just_taken_out_charging", 1);
+
+    resultGradient_ = 0;
+
+    parkingState_ = PARKING_STATE::INITIALIZING;
+    
+    currentGradient_ = 0;
+
+    currentHorizontalPosition_ = 0;
+
+    forwardToGoToAdjustHorizon_ = 0.0;
+
+    targetGradient_ = 0.0;
+    currentDistanceToCharger_ = 0.0;
+    centerLidarDistance_ = 0.0;
+    targetAngle_ = 0.0;
+
+    homeCentroidXToMoveForward_ = 0.0;
+    homeCentroidYToMoveForward_ = 0.0;
+
+    isRequestedStartAutoParking_ = false;
+
+    isRequestedCancel_ = false;
+
+    previousParkingState_ = PARKING_STATE::FINISHED;
+
+    int count = 0 ;
+
+    isParkingStandby_ = false;
+
+    isDockConnected_ = false;
+
+    targetBackMovingDistance_ = 0.5;
+
+    isStartJourney_ = false;
+
+    isCharging_ = false;
+
+    isBleTerminatedExceptionally_ = false;
+    theta_ = 0.0;
+
+      
+    // hyundai trade 230504
+	// parkingPointPose_.header.frame_id = "map";
+    // parkingPointPose_.pose.position.x = 15.0254058945;
+    // parkingPointPose_.pose.position.y = 46.7729047303;
+    // parkingPointPose_.pose.position.z = 0.0;
+    // parkingPointPose_.pose.orientation.x = 0.0;
+    // parkingPointPose_.pose.orientation.y = 0.0;
+    // parkingPointPose_.pose.orientation.z = 0.930696673602;
+    // parkingPointPose_.pose.orientation.w = 0.365791883107;
+
+    // parkingPoint2Pose_.header.frame_id = "map";
+    // parkingPoint2Pose_.pose.position.x = 52.5494566161;
+    // parkingPoint2Pose_.pose.position.y = -14.7370018379;
+    // parkingPoint2Pose_.pose.position.z = 0.0;
+    // parkingPoint2Pose_.pose.orientation.x = 0.0;
+    // parkingPoint2Pose_.pose.orientation.y = 0.0;
+    // parkingPoint2Pose_.pose.orientation.z = -0.467479981121;
+    // parkingPoint2Pose_.pose.orientation.w = 0.88400365794;
+
+    //lotte folk 220728
+    // parkingPoint2Pose_.header.frame_id = "map";
+    // parkingPoint2Pose_.pose.position.x = 11.2417340204;
+    // parkingPoint2Pose_.pose.position.y = 47.1396603253;
+    // parkingPoint2Pose_.pose.position.z = 0.0;
+    // parkingPoint2Pose_.pose.orientation.x = 0.0;
+    // parkingPoint2Pose_.pose.orientation.y = 0.0;
+    // parkingPoint2Pose_.pose.orientation.z = -0.725473216295;
+    // parkingPoint2Pose_.pose.orientation.w = 0.688250399519;
+
+    //parc1 240325 parking point 1 
+    // parkingPointPose_.header.frame_id = "map";
+    // parkingPointPose_.pose.position.x = 8.05239980196;
+    // parkingPointPose_.pose.position.y = -10.4212427088;
+    // parkingPointPose_.pose.position.z = 0.0;
+    // parkingPointPose_.pose.orientation.x = 0.0;
+    // parkingPointPose_.pose.orientation.y = 0.0;
+    // parkingPointPose_.pose.orientation.z = 0.700352691411;
+    // parkingPointPose_.pose.orientation.w = 0.713796965274;
+
+    //parc1 240402 parking point 1 
+    // parkingPointPose_.header.frame_id = "map";
+    // parkingPointPose_.pose.position.x = 13.8929466705;
+    // parkingPointPose_.pose.position.y = -16.6394693018;
+    // parkingPointPose_.pose.position.z = 0.0;
+    // parkingPointPose_.pose.orientation.x = 0.0;
+    // parkingPointPose_.pose.orientation.y = 0.0;
+    // parkingPointPose_.pose.orientation.z = -0.295429712121;
+    // parkingPointPose_.pose.orientation.w = 0.955364477671;
+
+
+    // the parc1 240402 parking point 2 
+    // parkingPoint2Pose_.header.frame_id = "map";
+    // parkingPoint2Pose_.pose.position.x = 16.9455872704;
+    // parkingPoint2Pose_.pose.position.y = -19.542312916;
+    // parkingPoint2Pose_.pose.position.z = 0.0;
+    // parkingPoint2Pose_.pose.orientation.x = 0.0;
+    // parkingPoint2Pose_.pose.orientation.y = 0.0;
+    // parkingPoint2Pose_.pose.orientation.z = -0.34500584317;
+    // parkingPoint2Pose_.pose.orientation.w = 0.938600537065;
+
+    // the office 250212 parking point 2 
+    // parkingPoint2Pose_.header.frame_id = "map";
+    // parkingPoint2Pose_.pose.position.x =  0.04062275948966487;
+    // parkingPoint2Pose_.pose.position.y = 0.1635447593426158;
+    // parkingPoint2Pose_.pose.position.z = 0.0;
+    // parkingPoint2Pose_.pose.orientation.x = 0.0;
+    // parkingPoint2Pose_.pose.orientation.y = 0.0;
+    // parkingPoint2Pose_.pose.orientation.z = 0.2560775042762043;
+    // parkingPoint2Pose_.pose.orientation.w = 0.9666562531756936;
+
+    // office test 0325
+    parkingPointPose_.header.frame_id = "map";
+    parkingPointPose_.pose.position.x = 18.767;
+    parkingPointPose_.pose.position.y = 17.820;
+    parkingPointPose_.pose.position.z = 0.0;
+    parkingPointPose_.pose.orientation.x = 0.0;
+    parkingPointPose_.pose.orientation.y = 0.0;
+    parkingPointPose_.pose.orientation.z = -0.792;
+    parkingPointPose_.pose.orientation.w = 0.611;
+
+    parkingPoint2Pose_.header.frame_id = "map";
+    parkingPoint2Pose_.pose.position.x =  18.651;
+    parkingPoint2Pose_.pose.position.y = 16.445;
+    parkingPoint2Pose_.pose.position.z = 0.0;
+    parkingPoint2Pose_.pose.orientation.x = 0.0;
+    parkingPoint2Pose_.pose.orientation.y = 0.0;
+    parkingPoint2Pose_.pose.orientation.z = -0.776;
+    parkingPoint2Pose_.pose.orientation.w = 0.631;
+
+    parkingPoint3Pose_.header.frame_id = "map";
+    parkingPoint3Pose_.pose.position.x =  18.485;
+    parkingPoint3Pose_.pose.position.y = 15.684;
+    parkingPoint3Pose_.pose.position.z = 0.0;
+    parkingPoint3Pose_.pose.orientation.x = 0.0;
+    parkingPoint3Pose_.pose.orientation.y = 0.0;
+    parkingPoint3Pose_.pose.orientation.z = -0.823;
+    parkingPoint3Pose_.pose.orientation.w = 0.570;
+
+    parkingPoint4Pose_.header.frame_id = "map";
+    parkingPoint4Pose_.pose.position.x =  18.247;
+    parkingPoint4Pose_.pose.position.y = 15.091;
+    parkingPoint4Pose_.pose.position.z = 0.0;
+    parkingPoint4Pose_.pose.orientation.x = 0.0;
+    parkingPoint4Pose_.pose.orientation.y = 0.0;
+    parkingPoint4Pose_.pose.orientation.z = -0.753;
+    parkingPoint4Pose_.pose.orientation.w = 0.658;
+
+    exitPoint1Pose_.header.frame_id = "map";
+    exitPoint1Pose_.pose.position.x =  18.6860;
+    exitPoint1Pose_.pose.position.y = 16.5100;
+    exitPoint1Pose_.pose.position.z = 0.0;
+    exitPoint1Pose_.pose.orientation.x = 0.0;
+    exitPoint1Pose_.pose.orientation.y = 0.0;
+    exitPoint1Pose_.pose.orientation.z = 0.6240;
+    exitPoint1Pose_.pose.orientation.w = 0.7820;
+
+    exitPoint2Pose_.header.frame_id = "map";
+    exitPoint2Pose_.pose.position.x =  18.7632;
+    exitPoint2Pose_.pose.position.y = 17.9942;
+    exitPoint2Pose_.pose.position.z = 0.0;
+    exitPoint2Pose_.pose.orientation.x = 0.0;
+    exitPoint2Pose_.pose.orientation.y = 0.0;
+    exitPoint2Pose_.pose.orientation.z = 0.6305;
+    exitPoint2Pose_.pose.orientation.w = 0.7762;
+
+    
+    tf2::Quaternion parkingPointQuaternion(parkingPointPose_.pose.orientation.x, parkingPointPose_.pose.orientation.y, parkingPointPose_.pose.orientation.z, parkingPointPose_.pose.orientation.w);
+	tf2::Quaternion parkingPoint2Quaternion(parkingPoint2Pose_.pose.orientation.x, parkingPoint2Pose_.pose.orientation.y, parkingPoint2Pose_.pose.orientation.z, parkingPoint2Pose_.pose.orientation.w);
+	tf2::Quaternion parkingPoint3Quaternion(parkingPoint3Pose_.pose.orientation.x, parkingPoint3Pose_.pose.orientation.y, parkingPoint3Pose_.pose.orientation.z, parkingPoint3Pose_.pose.orientation.w);
+	tf2::Quaternion parkingPoint4Quaternion(parkingPoint4Pose_.pose.orientation.x, parkingPoint4Pose_.pose.orientation.y, parkingPoint4Pose_.pose.orientation.z, parkingPoint4Pose_.pose.orientation.w);
+	tf2::Quaternion exitPoint1Quaternion(exitPoint1Pose_.pose.orientation.x, exitPoint1Pose_.pose.orientation.y, exitPoint1Pose_.pose.orientation.z, exitPoint1Pose_.pose.orientation.w);
+	tf2::Quaternion exitPoint2Quaternion(exitPoint2Pose_.pose.orientation.x, exitPoint2Pose_.pose.orientation.y, exitPoint2Pose_.pose.orientation.z, exitPoint2Pose_.pose.orientation.w);
+
+    sonarRange_ = 0.7;
+    sonarFlRange_ = 0.7;
+    sonarFrRange_ = 0.7;
+
+    int countMoving1 = 0 ;
+    int countMoving2 = 0 ;
+    int countMoving3 = 0 ;
+    int countExitMoving1 = 0;
+    int countExitMoving2 = 0;
+
+    std::cout << "start" << std::endl;
+
+    distnaceRemainingToCenter_  = 0.0;
+
+    // cv::VideoCapture vc(1);
+    // if (!vc.isOpened()) {
+    //     return -1;
+    // }
+
+    // cv::namedWindow("Control", CV_WINDOW_AUTOSIZE); //create a window called "Control"
+
+    // int iLowH = 0;
+    // int iHighH = 179;
+
+    // int iLowS = 0; 
+    // int iHighS = 255;
+
+    // int iLowV = 0;
+    // int iHighV = 255;
+
+    // //Create trackbars in "Control" window
+    // cvCreateTrackbar("LowH", "Control", &iLowH, 179); //Hue (0 - 179)
+    // cvCreateTrackbar("HighH", "Control", &iHighH, 179);
+
+    // cvCreateTrackbar("LowS", "Control", &iLowS, 255); //Saturation (0 - 255)
+    // cvCreateTrackbar("HighS", "Control", &iHighS, 255);
+
+    // cvCreateTrackbar("LowV", "Control", &iLowV, 255); //Value (0 - 255)
+    // cvCreateTrackbar("HighV", "Control", &iHighV, 255);
+    
+    // vc.set(CV_CAP_PROP_FRAME_WIDTH, 640);
+    // vc.set(CV_CAP_PROP_FRAME_HEIGHT, 480);
+
+    // int iLastX = -1; 
+    // int iLastY = -1;
+    
+    // cv::Mat img;
+
+    // //Capture a temporary image from the camera
+    // cv::Mat imgTmp;
+    // vc.read(imgTmp); 
+
+    // //Create a black image with the size as the camera output
+    // cv::Mat imgLines = cv::Mat::zeros( imgTmp.size(), CV_8UC3 );;
+    
+    parkingStateString_ = std::string("INITIALIZING");
+    geometry_msgs::Twist movingTwistMsg;
+
+    int closeButNotConnectedCount_ = 0;
+
+    int countOfAttemptsToAdjustYaw = 0;
+
+    int officeDebuggingCount = 0;
+    bool startedAutoParking = false;
+
+    int finishCount =0;
+
+    while(ros::ok()){
+                
+        switch (parkingState_){
+            case INITIALIZING:
+            {                
+                isRequestedStartAutoParking_ = false;
+                isRequestedCancel_ = false;
+                if (count == 30){
+                    parkingState_ = IDLE;
+                    parkingStateString_ = std::string("IDLE"); 
+                    count = 0 ;
+                    isParkingStandby_ = false;
+                    isDockConnected_ = false;
+                    isStartJourney_ = false;
+                    isBleTerminatedExceptionally_ = false;
+                    targetBackMovingDistance_ = 0.5;
+
+                    //startingOdom_ = currentOdom_;
+                    startingOdom_.pose.pose.position.x = currentOdom_.pose.pose.position.x;
+                    startingOdom_.pose.pose.position.y = currentOdom_.pose.pose.position.y;
+                    startingOdom_.pose.pose.position.z = 0.0;
+                    
+                    break;
+                }
+                ++count;                
+                break;
+            }
+            case IDLE :
+            {                               
+                ///// for test
+                // double backMovingDistance = std::sqrt( (double)((centroidX_-CENTER_COORDINATES) * (centroidX_-CENTER_COORDINATES)) + (double)((centroidY_-CENTER_COORDINATES) * (centroidY_-CENTER_COORDINATES))) * 0.01;
+
+                // std::cout << "startX : " << startingOdom_.pose.pose.position.x << "  currentX : " << currentOdom_.pose.pose.position.x << "  backMovingDistance : " << backMovingDistance << std::endl;
+
+                if (isRequestedStartAutoParking_){
+                    
+                    // ///////////////////////////////////////////////////////////////////////////////////////////////////
+                    
+                    // parkingPoint2Pose_.header.stamp = ros::Time::now();
+                    // move_base_msgs::MoveBaseActionGoal goalMsg;
+                    // goalMsg.header.frame_id="map";
+                    // goalMsg.header.stamp = parkingPointPose_.header.stamp;
+                    // goalMsg.goal_id.stamp = parkingPointPose_.header.stamp ;
+                    // goalMsg.goal_id.id = std::string("autonomous_parker_") + std::to_string(goalMsg.header.stamp.toSec());
+                    // goalMsg.goal.target_pose = parkingPointPose_;
+                    //moveGoalPublisher.publish(goalMsg);
+
+                    //////////////////////////// 230419 Cubrick V testing 
+
+                    // parkingState_ = ADJUSTING_YAW;
+                    // parkingStateString_ = std::string("ADJUSTING_YAW");
+                    // std_msgs::Int32 parkingStartMsg;
+                    // parkingStartMsg.data = 1;
+                    // parkingStartPublisher.publish(parkingStartMsg);
+
+                    // parkingState_ = INITIAL_MOVING_BACK;
+                    // parkingStateString_ = std::string("INITIAL_MOVING_BACK");
+                    // std_msgs::Int32 parkingStartMsg;
+                    // parkingStartMsg.data = 1;
+                    // parkingStartPublisher.publish(parkingStartMsg);
+
+                    // parkingState_ = MOVING_TO_PARKING_POINT;
+                    // parkingStateString_ = std::string("MOVING_TO_PARKING_POINT");
+
+
+                    // <parc1 250224>
+                    //////////////////////////////////////////////////////////////// parc1 24037
+
+                    ///////////////////////////////////////////////////////////////////////////////////// </parc1 250224>
+
+                    // <office debugging 250224>
+                    if (officeDebuggingCount == 30){
+                        
+
+                        
+                        // parkingState_ = INITIAL_MOVING_BACK;
+                        // parkingStateString_ = std::string("INITIAL_MOVING_BACK");
+                        // std_msgs::Int32 parkingStartMsg;
+                        // parkingStartMsg.data = 1;
+                        // parkingStartPublisher.publish(parkingStartMsg);
+                        
+
+
+                        //////////////////////////////////////////////////////////////////////////////// 260224 original
+                        // std_msgs::Int32 requestShortestPathMsg; 
+                        // requestShortestPathMsg.data = 0;
+                        // requestShortestGuidePublisher.publish(requestShortestPathMsg);
+
+                        std_msgs::Int32 requestDisplayMsg;
+                        requestDisplayMsg.data = 4;
+                        requestDisplayPublisher.publish(requestDisplayMsg);
+
+                        parkingPointPose_.header.stamp = ros::Time::now();
+                        move_base_msgs::MoveBaseActionGoal goalMsg;
+                        goalMsg.header.frame_id = "map";
+                        goalMsg.header.stamp = parkingPointPose_.header.stamp;
+                        goalMsg.goal_id.stamp = parkingPointPose_.header.stamp;
+                        goalMsg.goal_id.id = std::string("autonomous_parker_") + std::to_string(goalMsg.header.stamp.toSec());
+                        goalMsg.goal.target_pose = parkingPointPose_;
+                        moveGoalPublisher.publish(goalMsg);
+
+
+                        parkingState_ = MOVING_TO_PARKING_POINT;
+                        parkingStateString_ = std::string("MOVING_TO_PARKING_POINT");
+
+                        ///////////////////////////////////////////////////////////////////////////////////////
+
+
+                        // parkingPoint2Pose_.header.stamp = ros::Time::now();
+                        // move_base_msgs::MoveBaseActionGoal goalMsg;
+                        // goalMsg.header.frame_id="map";
+                        // goalMsg.header.stamp = parkingPoint2Pose_.header.stamp;
+                        // goalMsg.goal_id.stamp = parkingPoint2Pose_.header.stamp ;
+                        // goalMsg.goal_id.id = std::string("autonomous_parker_") + std::to_string(goalMsg.header.stamp.toSec());
+                        // goalMsg.goal.target_pose = parkingPoint2Pose_;
+                        // moveGoalPublisher.publish(goalMsg);
+                        // parkingState_ = MOVING_TO_PARKING_POINT2;
+                        // parkingStateString_ = std::string("MOVING_TO_PARKING_POINT2");
+                        officeDebuggingCount =0 ;
+                        isRequestedStartAutoParking_ = false;
+                    }
+                    
+                    // </office debugging 250224>
+                    
+                    ++officeDebuggingCount;
+                    
+
+					////std_msgs::Int32 intMsg;
+					////intMsg.data = 0;
+
+					////variableSpeendOnOffRequestPublisher.publish(intMsg);
+
+                /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+                    // std_msgs::Int32 parkingStartMsg;
+                    // parkingStartMsg.data = 1;
+                    // parkingStartPublisher.publish(parkingStartMsg);
+                    // parkingState_ = ADJUSTING_FORWARD;
+                    // parkingStateString_ = std::string("ADJUSTING_FORWARD");
+
+                    
+
+
+                }
+                break;
+            }
+
+            case MOVING_TO_PARKING_POINT :
+            {                
+                tf2::Quaternion currentPoseQuaternion(currentAmclPose_.pose.pose.orientation.x, currentAmclPose_.pose.pose.orientation.y, currentAmclPose_.pose.pose.orientation.z ,currentAmclPose_.pose.pose.orientation.w);
+                tf2::Quaternion parkingPointQuaternionInverse = parkingPointQuaternion.inverse();
+                tf2::Quaternion relationQuaternion = currentPoseQuaternion * parkingPointQuaternionInverse;
+
+                geometry_msgs::Pose relationPose;
+
+                tf2::convert(relationQuaternion, relationPose.orientation);
+                
+                double siny_cosp = 2 * (relationPose.orientation.w * relationPose.orientation.z);
+                double cosy_cosp = 1 - 2 * (relationPose.orientation.z * relationPose.orientation.z);
+                double yaw = std::atan2(siny_cosp, cosy_cosp) * RAD2DEG;
+
+                double distance = std::sqrt( (currentAmclPose_.pose.pose.position.x - parkingPointPose_.pose.position.x) * (currentAmclPose_.pose.pose.position.x - parkingPointPose_.pose.position.x)
+                                     + (currentAmclPose_.pose.pose.position.y - parkingPointPose_.pose.position.y) * (currentAmclPose_.pose.pose.position.y - parkingPointPose_.pose.position.y) ) ;
+
+                std::cout << "distance : " << distance << "  ,  relativeYaw : " << yaw << std::endl;
+
+                if ( distance <= 2.0){
+                    // std_msgs::Empty emptyMsg;
+                    // actionlib_msgs::GoalID goalIdMsg;
+                    // pointMovingCancelPublisher.publish(goalIdMsg);
+                    // parkingState_ = ADJUSTING_YAW;
+                    // parkingStateString_ = std::string("ADJUSTING_YAW");
+                    // std_msgs::Int32 parkingStartMsg;
+                    // parkingStartMsg.data = 1;
+                    // parkingStartPublisher.publish(parkingStartMsg);
+                    ++countMoving1 ;
+                    if (countMoving1 >= 300){
+                        parkingPoint2Pose_.header.stamp = ros::Time::now();
+                        move_base_msgs::MoveBaseActionGoal goalMsg;
+                        goalMsg.header.frame_id="map";
+                        goalMsg.header.stamp = parkingPoint2Pose_.header.stamp;
+                        goalMsg.goal_id.stamp = parkingPoint2Pose_.header.stamp ;
+                        goalMsg.goal_id.id = std::string("autonomous_parker_") + std::to_string(goalMsg.header.stamp.toSec());
+                        goalMsg.goal.target_pose = parkingPoint2Pose_;
+                        
+                        ///////////////////////////////////////////////////////////////////////////////////////////////////
+                        moveGoalPublisher.publish(goalMsg);
+                        parkingState_ = MOVING_TO_PARKING_POINT2;
+                        parkingStateString_ = std::string("MOVING_TO_PARKING_POINT2");
+                        countMoving1 = 0;
+                    }
+					
+                }  
+
+                break;
+            }
+
+            case MOVING_TO_PARKING_POINT2 :
+            {   
+                tf2::Quaternion currentPoseQuaternion(currentAmclPose_.pose.pose.orientation.x, currentAmclPose_.pose.pose.orientation.y, currentAmclPose_.pose.pose.orientation.z ,currentAmclPose_.pose.pose.orientation.w);
+                tf2::Quaternion parkingPointQuaternionInverse = parkingPoint2Quaternion.inverse();
+                tf2::Quaternion relationQuaternion = currentPoseQuaternion * parkingPointQuaternionInverse;
+
+                geometry_msgs::Pose relationPose;
+                tf2::convert(relationQuaternion, relationPose.orientation);
+                
+                double siny_cosp = 2 * (relationPose.orientation.w * relationPose.orientation.z);
+                double cosy_cosp = 1 - 2 * (relationPose.orientation.z * relationPose.orientation.z);
+                double yaw = std::atan2(siny_cosp, cosy_cosp) * RAD2DEG;
+
+                double distance = std::sqrt( (currentAmclPose_.pose.pose.position.x - parkingPoint2Pose_.pose.position.x) * (currentAmclPose_.pose.pose.position.x - parkingPoint2Pose_.pose.position.x)
+                                    + (currentAmclPose_.pose.pose.position.y - parkingPoint2Pose_.pose.position.y) * (currentAmclPose_.pose.pose.position.y - parkingPoint2Pose_.pose.position.y) ) ;
+
+                std::cout << "distance : " << distance << "  ,  relativeYaw : " << yaw << std::endl;              
+
+                if ( distance <= 1.0 && std::abs(yaw) <= 20.0){
+                    ++countMoving2;
+                    if (countMoving2 >= 100){
+                        parkingPoint3Pose_.header.stamp = ros::Time::now();
+                        move_base_msgs::MoveBaseActionGoal goalMsg;
+                        goalMsg.header.frame_id = "map";
+                        goalMsg.header.stamp = parkingPoint3Pose_.header.stamp;
+                        goalMsg.goal_id.stamp = parkingPoint3Pose_.header.stamp;
+                        goalMsg.goal_id.id = std::string("autonomous_parker_") + std::to_string(goalMsg.header.stamp.toSec());
+                        goalMsg.goal.target_pose = parkingPoint3Pose_;
+
+                        moveGoalPublisher.publish(goalMsg);
+                        parkingState_ = MOVING_TO_PARKING_POINT3;
+                        parkingStateString_ = std::string("MOVING_TO_PARKING_POINT3");
+                        countMoving2 = 0;
+                    }
+                }  
+                break;
+            }
+
+            case MOVING_TO_PARKING_POINT3 :
+            {   
+                tf2::Quaternion currentPoseQuaternion(currentAmclPose_.pose.pose.orientation.x, currentAmclPose_.pose.pose.orientation.y, currentAmclPose_.pose.pose.orientation.z ,currentAmclPose_.pose.pose.orientation.w);
+                tf2::Quaternion parkingPointQuaternionInverse = parkingPoint3Quaternion.inverse();
+                tf2::Quaternion relationQuaternion = currentPoseQuaternion * parkingPointQuaternionInverse;
+
+                geometry_msgs::Pose relationPose;
+                tf2::convert(relationQuaternion, relationPose.orientation);
+                
+                double siny_cosp = 2 * (relationPose.orientation.w * relationPose.orientation.z);
+                double cosy_cosp = 1 - 2 * (relationPose.orientation.z * relationPose.orientation.z);
+                double yaw = std::atan2(siny_cosp, cosy_cosp) * RAD2DEG;
+
+                double distance = std::sqrt( (currentAmclPose_.pose.pose.position.x - parkingPoint3Pose_.pose.position.x) * (currentAmclPose_.pose.pose.position.x - parkingPoint3Pose_.pose.position.x)
+                                    + (currentAmclPose_.pose.pose.position.y - parkingPoint3Pose_.pose.position.y) * (currentAmclPose_.pose.pose.position.y - parkingPoint3Pose_.pose.position.y) ) ;
+
+                std::cout << "distance : " << distance << "  ,  relativeYaw : " << yaw << std::endl;              
+
+                if ( distance <= 0.7 && std::abs(yaw) <= 15.0){
+                    ++countMoving3;
+                    if (countMoving3 >= 100){
+                        parkingPoint4Pose_.header.stamp = ros::Time::now();
+                        move_base_msgs::MoveBaseActionGoal goalMsg;
+                        goalMsg.header.frame_id = "map";
+                        goalMsg.header.stamp = parkingPoint4Pose_.header.stamp;
+                        goalMsg.goal_id.stamp = parkingPoint4Pose_.header.stamp;
+                        goalMsg.goal_id.id = std::string("autonomous_parker_") + std::to_string(goalMsg.header.stamp.toSec());
+                        goalMsg.goal.target_pose = parkingPoint4Pose_;
+
+                        moveGoalPublisher.publish(goalMsg);
+                        parkingState_ = MOVING_TO_PARKING_POINT4;
+                        parkingStateString_ = std::string("MOVING_TO_PARKING_POINT4");
+                        countMoving3 = 0;
+                    }
+                }  
+                break;
+            }
+
+            case MOVING_TO_PARKING_POINT4 :
+            {   
+                tf2::Quaternion currentPoseQuaternion(currentAmclPose_.pose.pose.orientation.x, currentAmclPose_.pose.pose.orientation.y, currentAmclPose_.pose.pose.orientation.z ,currentAmclPose_.pose.pose.orientation.w);
+                tf2::Quaternion parkingPointQuaternionInverse = parkingPoint4Quaternion.inverse();
+                tf2::Quaternion relationQuaternion = currentPoseQuaternion * parkingPointQuaternionInverse;
+
+                geometry_msgs::Pose relationPose;
+                tf2::convert(relationQuaternion, relationPose.orientation);
+                
+                double siny_cosp = 2 * (relationPose.orientation.w * relationPose.orientation.z);
+                double cosy_cosp = 1 - 2 * (relationPose.orientation.z * relationPose.orientation.z);
+                double yaw = std::atan2(siny_cosp, cosy_cosp) * RAD2DEG;
+
+                double distance = std::sqrt( (currentAmclPose_.pose.pose.position.x - parkingPoint4Pose_.pose.position.x) * (currentAmclPose_.pose.pose.position.x - parkingPoint4Pose_.pose.position.x)
+                                    + (currentAmclPose_.pose.pose.position.y - parkingPoint4Pose_.pose.position.y) * (currentAmclPose_.pose.pose.position.y - parkingPoint4Pose_.pose.position.y) ) ;
+
+                std::cout << "distance : " << distance << "  ,  relativeYaw : " << yaw << std::endl;              
+
+                if ( distance <= 0.4 && std::abs(yaw) <= 10.0){
+                    parkingState_ = INITIAL_MOVING_BACK;
+                    parkingStateString_ = std::string("INITIAL_MOVING_BACK");
+                    std_msgs::Int32 parkingStartMsg;
+                    parkingStartMsg.data = 1;
+                    parkingStartPublisher.publish(parkingStartMsg);
+                }  
+                break;
+            }
+
+            case INITIAL_MOVING_BACK : 
+            {
+                double toStationDistance = std::sqrt( (double)((centroidY_-CENTER_COORDINATES) * (centroidY_-CENTER_COORDINATES))  + (double)((centroidX_-CENTER_COORDINATES) * (centroidX_-CENTER_COORDINATES))  ) * 0.005;
+                if (toStationDistance < 0.45){
+                    movingTwistMsg.linear.x = -0.05;
+                    movingTwistMsg.angular.z = 0.00;
+                    cmdVelPub_.publish(movingTwistMsg);
+                }
+                else {
+                    movingTwistMsg.linear.x = 0.00;
+                    movingTwistMsg.angular.z = 0.00;
+                    cmdVelPub_.publish(movingTwistMsg);
+                    parkingState_ = ADJUSTING_YAW;
+                    parkingStateString_ = std::string("ADJUSTING_YAW");
+                }
+
+                break;
+            }
+            
+            case ADJUSTING_YAW :
+            {                
+                if (isParkingStandby_){
+                    if (currentGradient_ == 0){
+                        if (resultGradient_ < 0){
+                            currentGradient_ = -1;
+                        }
+                        else {
+                            currentGradient_ = 1;
+                        }
+                    }
+
+                    if (centroidX_ > 203){
+                        movingTwistMsg.linear.x = 0.0;
+                        movingTwistMsg.angular.z = 0.06;
+                        cmdVelPub_.publish(movingTwistMsg);
+                    }
+                    else if (centroidX_ < 197){
+                        movingTwistMsg.linear.x = 0.0;
+                        movingTwistMsg.angular.z = -0.06;
+                        cmdVelPub_.publish(movingTwistMsg);
+                    }
+                    else {
+                        parkingState_ = INITIAL_ADJUSTING_FOWARD;
+                        parkingStateString_ = std::string("INITIAL_ADJUSTING_FOWARD");
+                        //velocity controls
+                        movingTwistMsg.linear.x = 0.0; 
+                        movingTwistMsg.angular.z = 0.0;
+                        cmdVelPub_.publish(movingTwistMsg);
+                    }                    
+                }
+                break;
+            }
+
+            case INITIAL_ADJUSTING_FOWARD:
+            {
+                double remainingDistance = std::sqrt( (double)((centroidY_-CENTER_COORDINATES) * (centroidY_-CENTER_COORDINATES))) * 0.005;
+                std::cout << "remaining Distance : " << remainingDistance << std::endl;
+
+                if ( remainingDistance <= 0.45){
+                    movingTwistMsg.linear.x = 0.0; 
+                    movingTwistMsg.angular.z = 0.0;
+                    cmdVelPub_.publish(movingTwistMsg);
+                    parkingState_ = COLLECTING_DATA;
+                    parkingStateString_ = std::string("COLLECTING_DATA");
+                    break;
+                }
+
+                movingTwistMsg.linear.x = 0.06; 
+                movingTwistMsg.angular.z = 0.0;
+                cmdVelPub_.publish(movingTwistMsg);
+
+                break;
+            }
+
+            case COLLECTING_DATA:
+            {
+                if (count == 50){   
+                    
+                    double sumCentroidX = 0.0;
+                    double sumCentroidY = 0.0;
+                    double sumResultGradient = 0.0;
+                    for (int i = 0; i < centroidXVector_.size(); ++i){
+                        sumCentroidX += centroidXVector_[i];
+                    }                   
+                    sumCentroidX /= (double)centroidXVector_.size();               
+
+                    for (int i = 0 ; i < centroidYVector_.size(); ++i){
+                        sumCentroidY += centroidYVector_[i];                        
+                    }
+                    sumCentroidY /= (double)centroidYVector_.size();
+
+                    for (int i = 0 ; i< resultGradientVector_.size() ; ++i){
+                        sumResultGradient += resultGradientVector_[i];
+                    }
+                    sumResultGradient /= (double)resultGradientVector_.size();
+
+                    // double backMovingDistance = std::sqrt( (double)((sumCentroidX-CENTER_COORDINATES) * (sumCentroidX-CENTER_COORDINATES)) + 
+                    //     (double)((sumCentroidY-CENTER_COORDINATES) * (sumCentroidY-CENTER_COORDINATES))) * 0.01;
+                    double toStationDistance = std::sqrt ( (double)( (sumCentroidY-CENTER_COORDINATES) * (sumCentroidY-CENTER_COORDINATES)) +  (double)((sumCentroidY-CENTER_COORDINATES) * (sumCentroidY-CENTER_COORDINATES)) ) * 0.005;
+
+                    std::cout << "to Station Distance : " << toStationDistance << std::endl;
+                    std::cout << "center Lidar Distance : " << centerLidarDistance_ << std::endl;
+                    
+                    if(toStationDistance >=0.5){
+                        // if ( std::abs(sumResultGradient) <= 0.025){
+                        //     parkingState_ = ADJUSTING_FORWARD;
+                        //     parkingStateString_ = std::string("ADJUSTING_FORWARD"); 
+                        // }
+                    
+                        targetGradient_ = sumResultGradient;
+                        targetAngle_ = 25.0-5.0;
+                        //targetAngle_ = std::abs(std::atan(targetGradient_)) * RAD2DEG;
+                        // if (targetGradient_ >= 0){
+                        //     targetAngle_ = 25.0;
+                        // }
+                        // else {
+                        //     targetAngle_ = -25.0;
+                        // }
+                        //startingPose_ = currentAmclPose_;
+                        startingOdom_ = currentOdom_;
+                        std::cout << "target gradient : " << targetGradient_ << std::endl;
+
+                        double b = std::abs(targetGradient_) * ( ( sumCentroidY - CENTER_COORDINATES) / 2.0) ;
+                        theta_ = std::atan( std::abs(targetGradient_) );
+                        //forwardToGoToAdjustHorizon_ = toStationDistance / ( 2 * std::cos( std::atan( std::abs(targetGradient_) ) ) ) * 1.3 / 3.0;
+                        forwardToGoToAdjustHorizon_ = ((toStationDistance * 2.2 / 4.0) * std::sin(theta_)) / std::cos( DEG2RAD*75.0 - theta_ ) ;
+
+                        std::cout << "forwardToGoToAdjustHorizon_ : " << forwardToGoToAdjustHorizon_ << std::endl;
+                        parkingState_ = ADJUSTING_YAW_TO_HORIZONTAL;
+                        parkingStateString_ = std::string("ADJUSTING_YAW_TO_HORIZONTAL"); 
+                    
+                    }
+
+                    else {
+                        targetBackMovingDistance_ = 0.5;
+                        parkingState_ = MOVING_BACK;
+                        parkingStateString_ = std::string("MOVING_BACK");                         
+                    }
+
+                    count = 0;
+                    centroidXVector_.clear();
+                    centroidYVector_.clear();
+                    resultGradientVector_.clear();
+                    break;
+                }
+                ++count;                
+                centroidXVector_.push_back(centroidX_);
+                centroidYVector_.push_back(centroidY_);
+                resultGradientVector_.push_back(resultGradient_);
+                
+                break;
+            }
+
+            case ADJUSTING_YAW_TO_HORIZONTAL :
+            {
+                tf2::Quaternion currentPoseQuaternion(currentOdom_.pose.pose.orientation.x, currentOdom_.pose.pose.orientation.y, currentOdom_.pose.pose.orientation.z ,currentOdom_.pose.pose.orientation.w);
+                tf2::Quaternion startingPoseQuaternion(startingOdom_.pose.pose.orientation.x, startingOdom_.pose.pose.orientation.y, startingOdom_.pose.pose.orientation.z, startingOdom_.pose.pose.orientation.w);
+                tf2::Quaternion startingPoseQuaternionInverse = startingPoseQuaternion.inverse();
+                tf2::Quaternion relationQuaternion = currentPoseQuaternion * startingPoseQuaternionInverse;
+
+                geometry_msgs::Pose relationPose;
+
+                tf2::convert(relationQuaternion, relationPose.orientation);
+                
+                double siny_cosp = 2 * (relationPose.orientation.w * relationPose.orientation.z);
+                double cosy_cosp = 1 - 2 * (relationPose.orientation.z * relationPose.orientation.z);
+                double yaw = std::abs(std::atan2(siny_cosp, cosy_cosp) * RAD2DEG);
+                double currentProcessingGradient = ( double(centroidY_ - CENTER_COORDINATES) / double(centroidX_ - CENTER_COORDINATES) );
+
+                std::cout << "currentProcessingGradient : " << currentProcessingGradient << "  , target : " << (-1.0 / targetGradient_) << std::endl;
+                std::cout << " relativeYaw : " << yaw << std::endl;             
+
+                if (targetGradient_ > 0.0){
+                    
+                    if ( yaw >= targetAngle_ ) {
+                        movingTwistMsg.linear.x = 0.0; 
+                        movingTwistMsg.angular.z = 0.0;
+                        cmdVelPub_.publish(movingTwistMsg);
+                        currentDistanceToCharger_ = std::sqrt((centroidX_ - CENTER_COORDINATES) * (centroidX_ - CENTER_COORDINATES) + (centroidY_ - CENTER_COORDINATES) * (centroidY_ - CENTER_COORDINATES)) * 0.005;
+                        startingOdom_ = currentOdom_;
+                        parkingState_ = ADJUSTING_FORWARD_TO_HORIZONTAL;
+                        parkingStateString_ = std::string("ADJUSTING_FORWARD_TO_HORIZONTAL");                
+                    }
+                    else {
+                        movingTwistMsg.linear.x = 0.0; 
+                        movingTwistMsg.angular.z = 0.06;
+                        cmdVelPub_.publish(movingTwistMsg);
+                    }
+                }
+                else {
+                    if ( yaw >= targetAngle_ ) {
+                        movingTwistMsg.linear.x = 0.0; 
+                        movingTwistMsg.angular.z = 0.0;
+                        cmdVelPub_.publish(movingTwistMsg);
+                        currentDistanceToCharger_ = std::sqrt((centroidX_ - CENTER_COORDINATES) * (centroidX_ - CENTER_COORDINATES) + (centroidY_ - CENTER_COORDINATES) * (centroidY_ - CENTER_COORDINATES)) * 0.005;
+                        startingOdom_ = currentOdom_;
+                        parkingState_ = ADJUSTING_FORWARD_TO_HORIZONTAL;
+                        parkingStateString_ = std::string("ADJUSTING_FORWARD_TO_HORIZONTAL");                
+                    }
+                    else {
+                        movingTwistMsg.linear.x = 0.0; 
+                        movingTwistMsg.angular.z = -0.06;
+                        cmdVelPub_.publish(movingTwistMsg);
+                    }
+                }
+
+                break;
+            }
+
+            case ADJUSTING_FORWARD_TO_HORIZONTAL:
+            {
+                double processGradient = ( double(centroidY_ - CENTER_COORDINATES) / double(centroidX_ - CENTER_COORDINATES) );
+                double odomXDiffer = currentOdom_.pose.pose.position.x - startingOdom_.pose.pose.position.x;
+                double odomYDiffer = currentOdom_.pose.pose.position.y - startingOdom_.pose.pose.position.y;
+                double distanceTraveled = std::sqrt(odomXDiffer * odomXDiffer + odomYDiffer * odomYDiffer);
+                
+                double distanceRemaining = std::sqrt((centroidX_ - CENTER_COORDINATES) * (centroidX_ - CENTER_COORDINATES) + (centroidY_ - CENTER_COORDINATES) * (centroidY_ - CENTER_COORDINATES)) * 0.005;
+                
+                std::cout << "distanceTraveled : " << distanceTraveled << "  , forwardToGo : " << forwardToGoToAdjustHorizon_ << std::endl;
+                if ( distanceTraveled >= forwardToGoToAdjustHorizon_){
+                    movingTwistMsg.linear.x = 0.0; 
+                    movingTwistMsg.angular.z = 0.0;
+                    cmdVelPub_.publish(movingTwistMsg);
+                    parkingState_ = ADJUSTING_YAW_AFTER_HORIZONTAL_FORWARD;
+                    parkingStateString_ = std::string("ADJUSTING_YAW_AFTER_HORIZONTAL_FORWARD");
+                    // targetAngle_ = -25.0;
+                    targetGradient_ = targetGradient_ * -1.0;
+                    targetAngle_ = targetAngle_ + RAD2DEG*theta_ -5.0;
+                    startingOdom_ = currentOdom_;
+                    break;
+                }
+
+                movingTwistMsg.linear.x = 0.05; 
+                movingTwistMsg.angular.z = 0.0;
+                cmdVelPub_.publish(movingTwistMsg);
+                
+                break;
+            }
+
+            case ADJUSTING_YAW_AFTER_HORIZONTAL_FORWARD:
+            {                
+                tf2::Quaternion currentPoseQuaternion(currentOdom_.pose.pose.orientation.x, currentOdom_.pose.pose.orientation.y, currentOdom_.pose.pose.orientation.z ,currentOdom_.pose.pose.orientation.w);
+                tf2::Quaternion startingPoseQuaternion(startingOdom_.pose.pose.orientation.x, startingOdom_.pose.pose.orientation.y, startingOdom_.pose.pose.orientation.z, startingOdom_.pose.pose.orientation.w);
+                tf2::Quaternion startingPoseQuaternionInverse = startingPoseQuaternion.inverse();
+                tf2::Quaternion relationQuaternion = currentPoseQuaternion * startingPoseQuaternionInverse;
+
+                geometry_msgs::Pose relationPose;
+
+                tf2::convert(relationQuaternion, relationPose.orientation);
+                
+                double siny_cosp = 2 * (relationPose.orientation.w * relationPose.orientation.z);
+                double cosy_cosp = 1 - 2 * (relationPose.orientation.z * relationPose.orientation.z);
+                double yaw = std::abs(std::atan2(siny_cosp, cosy_cosp) * RAD2DEG);
+                double currentProcessingGradient = ( double(centroidY_ - CENTER_COORDINATES) / double(centroidX_ - CENTER_COORDINATES) );
+
+                std::cout << "currentProcessingGradient : " << currentProcessingGradient << "  , target : " << (-1.0 / targetGradient_) << std::endl;
+                std::cout << " relativeYaw : " << yaw << std::endl;             
+
+                if (targetGradient_ > 0.0){
+                    
+                    if ( yaw >= targetAngle_ ) {
+                        movingTwistMsg.linear.x = 0.0; 
+                        movingTwistMsg.angular.z = 0.0;
+                        cmdVelPub_.publish(movingTwistMsg);
+                        currentDistanceToCharger_ = std::sqrt((centroidX_ - CENTER_COORDINATES) * (centroidX_ - CENTER_COORDINATES) + (centroidY_ - CENTER_COORDINATES) * (centroidY_ - CENTER_COORDINATES)) * 0.005;
+                        startingOdom_ = currentOdom_;
+                        parkingState_ = ADJUSTING_YAW_PRECISELY_AFTER_HORIZONTAL_FORWARD;
+                        parkingStateString_ = std::string("ADJUSTING_YAW_PRECISELY_AFTER_HORIZONTAL_FORWARD");                
+                    }
+                    else {
+                        movingTwistMsg.linear.x = 0.0; 
+                        movingTwistMsg.angular.z = 0.06;
+                        cmdVelPub_.publish(movingTwistMsg);
+                    }
+                }
+                else {
+                    if ( yaw >= targetAngle_ ) {
+                        movingTwistMsg.linear.x = 0.0; 
+                        movingTwistMsg.angular.z = 0.0;
+                        cmdVelPub_.publish(movingTwistMsg);
+                        currentDistanceToCharger_ = std::sqrt((centroidX_ - CENTER_COORDINATES) * (centroidX_ - CENTER_COORDINATES) + (centroidY_ - CENTER_COORDINATES) * (centroidY_ - CENTER_COORDINATES)) * 0.005;
+                        startingOdom_ = currentOdom_;
+                        parkingState_ = ADJUSTING_YAW_PRECISELY_AFTER_HORIZONTAL_FORWARD;
+                        parkingStateString_ = std::string("ADJUSTING_YAW_PRECISELY_AFTER_HORIZONTAL_FORWARD");                
+                    }
+                    else {
+                        movingTwistMsg.linear.x = 0.0; 
+                        movingTwistMsg.angular.z = -0.06;
+                        cmdVelPub_.publish(movingTwistMsg);
+                    }
+                }
+
+                break;
+            }
+
+            case ADJUSTING_YAW_PRECISELY_AFTER_HORIZONTAL_FORWARD :
+            {
+                if (centroidX_ > 205){
+                    movingTwistMsg.linear.x = 0.0;
+                    movingTwistMsg.angular.z = 0.06;
+                    cmdVelPub_.publish(movingTwistMsg);
+                }
+                else if (centroidX_ < 195){
+                    movingTwistMsg.linear.x = 0.0;
+                    movingTwistMsg.angular.z = -0.06;
+                    cmdVelPub_.publish(movingTwistMsg);
+                }
+                else {
+
+                    if (countOfAttemptsToAdjustYaw == 0){
+                        targetBackMovingDistance_ = 0.45;
+                        parkingState_ = MOVING_BACK;
+                        parkingStateString_ = std::string("MOVING_BACK");
+                        ++countOfAttemptsToAdjustYaw;
+                    }
+                    else if (countOfAttemptsToAdjustYaw == 1){
+                        parkingState_ = ADJUSTING_FORWARD;
+                        parkingStateString_ = std::string("ADJUSTING_FORWARD");
+                        countOfAttemptsToAdjustYaw = 0;
+                    }
+                    //parkingState_ = ADJUSTING_FORWARD;
+                    //parkingStateString_ = std::string("ADJUSTING_FORWARD");
+                    //velocity controls
+                    movingTwistMsg.linear.x = 0.0; 
+                    movingTwistMsg.angular.z = 0.0;
+                    cmdVelPub_.publish(movingTwistMsg);
+                }
+                break;
+            }
+
+            case ADJUSTING_FORWARD:
+            {
+                double distanceRemaining = std::sqrt( ((double)centroidX_ - (double)CENTER_COORDINATES) * ((double)centroidX_ - (double)CENTER_COORDINATES) + ((double)centroidY_ - (double)CENTER_COORDINATES) * ((double)centroidY_ - (double)CENTER_COORDINATES) ) * 0.005;
+                //double distanceRemaining = centerLidarDistance_;
+                //if (distanceRemaining <= 7.0 || isDockConnected_){
+                if (isDockConnected_){
+                    movingTwistMsg.linear.x = 0.0; 
+                    movingTwistMsg.angular.z = 0.0;
+                    cmdVelPub_.publish(movingTwistMsg);
+                    parkingState_ = FINISHED;
+                    parkingStateString_ = std::string("FINISHED");
+
+                    std_msgs::String stringMsg;
+                    stringMsg.data = "charging_point";
+                    driveCompletedPublisher_.publish(stringMsg);
+                    //isCharging_ = true;
+                    closeButNotConnectedCount_ = 0;
+
+                    break;
+                }
+
+                // if (centroidX_ < 193 || centroidX_ > 207){
+                //     movingTwistMsg.linear.x = 0.0; 
+                //     movingTwistMsg.angular.z = 0.0;
+                //     cmdVelPub_.publish(movingTwistMsg);
+                //     targetBackMovingDistance_ = 0.6;
+                //     // startingOdom_.pose.pose.position.x = currentOdom_.pose.pose.position.x;
+                //     // startingOdom_.pose.pose.position.y = currentOdom_.pose.pose.position.y;
+                //     // startingOdom_.pose.pose.position.z = 0.0;
+                //     parkingState_ = MOVING_BACK;
+                //     parkingStateString_ = std::string("MOVING_BACK");
+                //     break;
+                // }
+
+                //std::cout << "distanceRemaining : " << distanceRemaining << "   sonarFl : " << sonarFlRange_ << "   sonarFr : " << sonarFrRange_ << std::endl;
+
+                // if (distnaceRemainingToCenter_ <= 0.12){
+                //     ++closeButNotConnectedCount_;                    
+                // }
+
+                if (closeButNotConnectedCount_ == 1000)
+                {
+                    movingTwistMsg.linear.x = 0.0; 
+                    movingTwistMsg.angular.z = 0.0;
+                    cmdVelPub_.publish(movingTwistMsg);
+                    targetBackMovingDistance_ = 0.5;
+                    // startingOdom_.pose.pose.position.x = currentOdom_.pose.pose.position.x;
+                    // startingOdom_.pose.pose.position.y = currentOdom_.pose.pose.position.y;
+                    // startingOdom_.pose.pose.position.z = 0.0;
+                    parkingState_ = MOVING_BACK;
+                    parkingStateString_ = std::string("MOVING_BACK");
+                    closeButNotConnectedCount_ = 0;
+                }
+                
+                movingTwistMsg.linear.x = 0.03; 
+                if (distanceRemaining <=15.0){
+                    movingTwistMsg.linear.x = 0.024; 
+                    ++closeButNotConnectedCount_;
+                }
+                movingTwistMsg.angular.z = 0.0;
+                cmdVelPub_.publish(movingTwistMsg);
+                
+                break;
+            }            
+
+            case FINISHED :
+            {                
+
+                movingTwistMsg.linear.x = 0.0; 
+                movingTwistMsg.angular.z = 0.0;
+                cmdVelPub_.publish(movingTwistMsg);
+
+                if (finishCount == 100){
+                    nh.setParam("/vel_cmd_node/reset_odometry", 1 );
+
+                }
+                else if (finishCount == 200 ){
+                    std_msgs::Empty emptyMsg;
+                    initialposeFlyingletPublisher.publish(emptyMsg);
+                }
+                else if (finishCount == 300){
+                    nh.setParam("/vel_cmd_node/reset_odometry", 0);
+                }
+                else if (finishCount == 302){
+                    finishCount = 301;
+                }
+                ++finishCount;
+
+
+                closeButNotConnectedCount_ = 0;
+                if (isStartJourney_){
+                    //pause
+                    std_msgs::Int32 msg;
+                    msg.data = 1;
+                    moveRequestPublisher.publish(msg);
+                    targetBackMovingDistance_ = 0.8;
+                    startingOdom_.pose.pose.position.x = currentOdom_.pose.pose.position.x;
+                    startingOdom_.pose.pose.position.y = currentOdom_.pose.pose.position.y;
+                    startingOdom_.pose.pose.position.z = 0.0;
+                    parkingState_ = MOVING_BACK_TO_JOURNEY;
+                    parkingStateString_ = std::string("MOVING_BACK_TO_JOURNEY");
+                    count = 0;
+                    isCharging_ =false;
+                    finishCount = 0;
+                    break;
+                }
+
+
+                if (isDockConnected_){
+                    count = 0;
+                    //finishCount = 0;
+                    break;
+                }
+                
+                if (count == 200){
+                    if (!isDockConnected_){
+                        startingOdom_.pose.pose.position.x = currentOdom_.pose.pose.position.x;
+                        startingOdom_.pose.pose.position.y = currentOdom_.pose.pose.position.y;
+                        startingOdom_.pose.pose.position.z = 0.0;
+                        targetBackMovingDistance_ = 0.7;
+                        parkingState_ = MOVING_BACK;
+                        parkingStateString_ = std::string("MOVING_BACK");
+                        //isCharging_ =false;
+                        count = 0;
+                        finishCount =0 ;
+                    }
+                    break;
+                }
+
+                
+
+                ++count ;
+                break;
+            }
+
+            case MOVING_BACK :
+            {   
+                // double backMovingDistance = std::sqrt ( (startingOdom_.pose.pose.position.x - currentOdom_.pose.pose.position.x) * (startingOdom_.pose.pose.position.x - currentOdom_.pose.pose.position.x) + 
+                //     (startingOdom_.pose.pose.position.y - currentOdom_.pose.pose.position.y) * (startingOdom_.pose.pose.position.y - currentOdom_.pose.pose.position.y) );
+
+                // double backMovingDistance = std::sqrt( (double)( (centroidX_-CENTER_COORDINATES) * (centroidX_-CENTER_COORDINATES)) + (double)((centroidY_-CENTER_COORDINATES) * (centroidY_-CENTER_COORDINATES))) * 0.01;
+                double backMovingDistance = std::sqrt( (double)((centroidY_-CENTER_COORDINATES) * (centroidY_-CENTER_COORDINATES))  + (double)((centroidX_-CENTER_COORDINATES) * (centroidX_-CENTER_COORDINATES))  ) * 0.005;
+                //double backMovingDistance = centerLidarDistance_;
+                std::cout << "backMovingDistance : " << backMovingDistance << std::endl;
+
+                if ( backMovingDistance >= targetBackMovingDistance_){
+                    movingTwistMsg.linear.x = 0.0; 
+                    movingTwistMsg.angular.z = 0.0;
+                    cmdVelPub_.publish(movingTwistMsg);
+                    // parkingState_ = COLLECTING_DATA;
+                    // parkingStateString_ = std::string("COLLECTING_DATA");
+                    parkingState_ = INITIAL_MOVING_BACK;
+                    parkingStateString_ = std::string("INITIAL_MOVING_BACK");
+                    break;
+                }
+
+                movingTwistMsg.linear.x = -0.06;
+                movingTwistMsg.angular.z = 0.0;
+                cmdVelPub_.publish(movingTwistMsg);
+
+                break;
+            }
+
+            case MOVING_BACK_TO_JOURNEY:
+            {
+                // double backMovingDistance = std::sqrt ( (startingOdom_.pose.pose.position.x - currentOdom_.pose.pose.position.x) * (startingOdom_.pose.pose.position.x - currentOdom_.pose.pose.position.x) + 
+                //     (startingOdom_.pose.pose.position.y - currentOdom_.pose.pose.position.y) * (startingOdom_.pose.pose.position.y - currentOdom_.pose.pose.position.y) );
+                //double backMovingDistance = std::sqrt( (double)((centroidX_-CENTER_COORDINATES) * (centroidX_-CENTER_COORDINATES)) + (double)((centroidY_-CENTER_COORDINATES) * (centroidY_-CENTER_COORDINATES))) * 0.01;
+
+                double xDiff = currentOdom_.pose.pose.position.x - startingOdom_.pose.pose.position.x;
+                double yDiff = currentOdom_.pose.pose.position.y - startingOdom_.pose.pose.position.y;
+                double backMovingDistance = std::sqrt( xDiff*xDiff + yDiff*yDiff ) ;
+
+                std::cout << "backMovingDistance : " << backMovingDistance << std::endl;
+
+                if ( backMovingDistance >= targetBackMovingDistance_){
+                    movingTwistMsg.linear.x = 0.0;
+                    movingTwistMsg.angular.z = 0.0;
+                    cmdVelPub_.publish(movingTwistMsg);
+
+                    //resume
+                    // std_msgs::Int32 msg;
+                    // msg.data = 2;
+                    // moveRequestPublisher.publish(msg);
+
+					// msg.data = 1;
+                    // journeyStartToBlePublisher.publish(msg);
+                    // parkingState_ = INITIALIZING;
+                    // parkingStateString_ = std::string("INITIALIZING");
+					
+					// std_msgs::Int32 intMsg;
+					// intMsg.data = 1;
+					// variableSpeendOnOffRequestPublisher.publish(intMsg);
+                    parkingState_ = TURN_AFTER_MOVING_BACK_TO_JOURNEY;
+                    parkingStateString_ = std::string("TURN_AFTER_MOVING_BACK_TO_JOURNEY");
+
+                    break;
+                }
+
+                movingTwistMsg.linear.x = -0.06; 
+                movingTwistMsg.angular.z = 0.0;
+                cmdVelPub_.publish(movingTwistMsg);
+
+                break;
+            }
+
+            case TURN_AFTER_MOVING_BACK_TO_JOURNEY:
+            {
+                tf2::Quaternion currentPoseQuaternion(currentAmclPose_.pose.pose.orientation.x, currentAmclPose_.pose.pose.orientation.y, currentAmclPose_.pose.pose.orientation.z ,currentAmclPose_.pose.pose.orientation.w);
+                tf2::Quaternion backMovedPointQuaternionInverse = parkingPoint2Quaternion.inverse();
+                tf2::Quaternion relationQuaternion = currentPoseQuaternion * backMovedPointQuaternionInverse;
+
+                geometry_msgs::Pose relationPose;
+
+                tf2::convert(relationQuaternion, relationPose.orientation);
+                
+                double siny_cosp = 2 * (relationPose.orientation.w * relationPose.orientation.z);
+                double cosy_cosp = 1 - 2 * (relationPose.orientation.z * relationPose.orientation.z);
+                double yaw = std::atan2(siny_cosp, cosy_cosp) * RAD2DEG;
+
+                if ( std::abs(yaw) >= 120){
+                    // 기존의 INITIALIZING 전환 대신 EXIT_POINT1으로 전환
+                    exitPoint1Pose_.header.stamp = ros::Time::now();
+                    move_base_msgs::MoveBaseActionGoal goalMsg;
+                    goalMsg.header.frame_id = "map";
+                    goalMsg.header.stamp = exitPoint1Pose_.header.stamp;
+                    goalMsg.goal_id.stamp = exitPoint1Pose_.header.stamp;
+                    goalMsg.goal_id.id = std::string("autonomous_parker_") + std::to_string(goalMsg.header.stamp.toSec());
+                    goalMsg.goal.target_pose = exitPoint1Pose_;
+
+                    moveGoalPublisher.publish(goalMsg);
+                    parkingState_ = MOVING_TO_EXIT_POINT1;
+                    parkingStateString_ = std::string("MOVING_TO_EXIT_POINT1");
+                }
+
+                movingTwistMsg.linear.x = 0.0;
+                movingTwistMsg.angular.z = -0.1;
+                cmdVelPub_.publish(movingTwistMsg);
+                break;
+
+            }
+
+            case MOVING_TO_EXIT_POINT1:
+            {
+                tf2::Quaternion currentPoseQuaternion(
+                    currentAmclPose_.pose.pose.orientation.x,
+                    currentAmclPose_.pose.pose.orientation.y,
+                    currentAmclPose_.pose.pose.orientation.z,
+                    currentAmclPose_.pose.pose.orientation.w);
+                tf2::Quaternion exitPointQuaternionInverse = exitPoint1Quaternion.inverse();
+                tf2::Quaternion relationQuaternion = currentPoseQuaternion * exitPointQuaternionInverse;
+
+                geometry_msgs::Pose relationPose;
+                tf2::convert(relationQuaternion, relationPose.orientation);
+
+                double siny_cosp = 2 * (relationPose.orientation.w * relationPose.orientation.z);
+                double cosy_cosp = 1 - 2 * (relationPose.orientation.z * relationPose.orientation.z);
+                double yaw = std::atan2(siny_cosp, cosy_cosp) * RAD2DEG;
+
+                double distance = std::sqrt(
+                    (currentAmclPose_.pose.pose.position.x - exitPoint1Pose_.pose.position.x) *
+                    (currentAmclPose_.pose.pose.position.x - exitPoint1Pose_.pose.position.x) +
+                    (currentAmclPose_.pose.pose.position.y - exitPoint1Pose_.pose.position.y) *
+                    (currentAmclPose_.pose.pose.position.y - exitPoint1Pose_.pose.position.y));
+
+                std::cout << "EXIT1 distance : " << distance << "  ,  relativeYaw : " << yaw << std::endl;
+
+                // 중간 경유지이므로 조건 다소 느슨하게
+                if (distance <= 0.5 && std::abs(yaw) <= 20.0) {
+                    ++countExitMoving1;
+                    if (countExitMoving1 >= 100) {
+                        exitPoint2Pose_.header.stamp = ros::Time::now();
+                        move_base_msgs::MoveBaseActionGoal goalMsg;
+                        goalMsg.header.frame_id = "map";
+                        goalMsg.header.stamp = exitPoint2Pose_.header.stamp;
+                        goalMsg.goal_id.stamp = exitPoint2Pose_.header.stamp;
+                        goalMsg.goal_id.id = std::string("autonomous_parker_") + std::to_string(goalMsg.header.stamp.toSec());
+                        goalMsg.goal.target_pose = exitPoint2Pose_;
+
+                        moveGoalPublisher.publish(goalMsg);
+                        parkingState_ = MOVING_TO_EXIT_POINT2;
+                        parkingStateString_ = std::string("MOVING_TO_EXIT_POINT2");
+                        countExitMoving1 = 0;
+                    }
+                }
+                break;
+            }
+
+            case MOVING_TO_EXIT_POINT2:
+            {
+                tf2::Quaternion currentPoseQuaternion(
+                    currentAmclPose_.pose.pose.orientation.x,
+                    currentAmclPose_.pose.pose.orientation.y,
+                    currentAmclPose_.pose.pose.orientation.z,
+                    currentAmclPose_.pose.pose.orientation.w);
+                tf2::Quaternion exitPointQuaternionInverse = exitPoint2Quaternion.inverse();
+                tf2::Quaternion relationQuaternion = currentPoseQuaternion * exitPointQuaternionInverse;
+
+                geometry_msgs::Pose relationPose;
+                tf2::convert(relationQuaternion, relationPose.orientation);
+
+                double siny_cosp = 2 * (relationPose.orientation.w * relationPose.orientation.z);
+                double cosy_cosp = 1 - 2 * (relationPose.orientation.z * relationPose.orientation.z);
+                double yaw = std::atan2(siny_cosp, cosy_cosp) * RAD2DEG;
+
+                double distance = std::sqrt(
+                    (currentAmclPose_.pose.pose.position.x - exitPoint2Pose_.pose.position.x) *
+                    (currentAmclPose_.pose.pose.position.x - exitPoint2Pose_.pose.position.x) +
+                    (currentAmclPose_.pose.pose.position.y - exitPoint2Pose_.pose.position.y) *
+                    (currentAmclPose_.pose.pose.position.y - exitPoint2Pose_.pose.position.y));
+
+                std::cout << "EXIT2 distance : " << distance << "  ,  relativeYaw : " << yaw << std::endl;
+
+                // 마지막 포인트이므로 엄격하게
+                if (distance <= 0.3 && std::abs(yaw) <= 10.0) {
+                    ++countExitMoving2;
+                    if (countExitMoving2 >= 100) {
+                        // 경로 파일 로드 및 주행 복귀
+                        std_msgs::String pathMsg;
+                        pathMsg.data = "9900office_241210_v3_4.csv";
+                        pathRunRequestPublisher.publish(pathMsg);
+
+                        std_msgs::Int32 msg;
+                        msg.data = 1;
+                        journeyStartToBlePublisher.publish(msg);
+
+                        parkingState_ = INITIALIZING;
+                        parkingStateString_ = std::string("INITIALIZING");
+                        countExitMoving2 = 0;
+                    }
+                }
+                break;
+            }
+
+
+
+
+        }        
+
+        if (isRequestedCancel_){
+            count = 0;
+            parkingState_ = INITIALIZING;
+            parkingStateString_ = std::string("INITIALIZING");
+            movingTwistMsg.linear.x = 0.0; 
+            movingTwistMsg.angular.z = 0.0;
+            cmdVelPub_.publish(movingTwistMsg);
+
+            //isCharging_ = false;
+
+            std_msgs::Int32 msg;
+            msg.data = 1;
+            journeyStartToBlePublisher.publish(msg);
+        }
+
+        if (previousParkingState_ != parkingState_){
+            std::cout << "parkingState : " << parkingStateString_ << std::endl;
+
+            std_msgs::String stateMsg;
+            stateMsg.data = parkingStateString_;
+            parkingStatePublisher.publish(stateMsg);
+
+        }
+                 
+        previousParkingState_ = parkingState_;
+
+        std_msgs::Bool isChargingMsg;
+        isChargingMsg.data = isCharging_;
+        isChargingPublisher.publish(isChargingMsg);
+        
+
+        
+        // vc >> img;
+        // if(img.empty()) {
+        //     break;
+        // }
+
+        //cv::imshow("cam", img);
+        
+        // cv::Mat imgOriginal;
+        // bool bSuccess = vc.read(imgOriginal);
+
+        // if (!bSuccess){
+        //     std::cout << "Cannot read a frame from video stream" << std::endl;
+        //     break;
+        // }
+
+        // cv::Mat imgHSV;
+        // cv::cvtColor(imgOriginal, imgHSV, cv::COLOR_BGR2HSV); //Convert the captured frame from BGR to HSV
+        
+        // cv::Mat imgThresholded;
+
+        // cv::inRange(imgHSV, cv::Scalar(iLowH, iLowS, iLowV), cv::Scalar(iHighH, iHighS, iHighV), imgThresholded); //Threshold the image
+        // cv::erode(imgThresholded, imgThresholded, cv::getStructuringElement(cv::MORPH_ELLIPSE, cv::Size(5, 5)) );
+        // cv::dilate( imgThresholded, imgThresholded, cv::getStructuringElement(cv::MORPH_ELLIPSE, cv::Size(5, 5)) ); 
+
+        // //morphological closing (removes small holes from the foreground)
+        // cv::dilate( imgThresholded, imgThresholded, cv::getStructuringElement(cv::MORPH_ELLIPSE, cv::Size(5, 5)) ); 
+        // cv::erode(imgThresholded, imgThresholded, cv::getStructuringElement(cv::MORPH_ELLIPSE, cv::Size(5, 5)) );
+
+        // //Calculate the moments of the thresholded image
+        // cv::Moments oMoments = cv::moments(imgThresholded);
+
+        // double dM01 = oMoments.m01;
+        // double dM10 = oMoments.m10;
+        // double dArea = oMoments.m00;
+
+        // // if the area <= 10000, I consider that the there are no object in the image and it's because of the noise, the area is not zero 
+        // if (dArea > 10000)
+        // {
+        // //calculate the position of the ball
+        // int posX = dM10 / dArea;
+        // int posY = dM01 / dArea;        
+                
+        // if (iLastX >= 0 && iLastY >= 0 && posX >= 0 && posY >= 0)
+        // {
+        //     //Draw a red line from the previous point to the current point
+        //     cv::line(imgLines, cv::Point(posX, posY), cv::Point(iLastX, iLastY), cv::Scalar(0,0,255), 2);
+        // }
+
+        // iLastX = posX;
+        // iLastY = posY;
+        // }
+
+        // cv::imshow("Thresholded Image", imgThresholded); //show the thresholded image
+
+        // imgOriginal = imgOriginal + imgLines;
+        // cv::imshow("Original", imgOriginal); //show the original image
+
+        if (cv::waitKey(30) == 27){
+            break;
+        }
+
+        ros::spinOnce();
+        loop_rate.sleep();
+    }
+
+    cv::destroyAllWindows();
+
+    return 0;
+}

@@ -1,0 +1,1 @@
+/home/nvidia/dconic_nav/devel/.private/wp_data_transfer/share/common-lisp/ros/wp_data_transfer/msg/wp_data_transfer-msg.asd

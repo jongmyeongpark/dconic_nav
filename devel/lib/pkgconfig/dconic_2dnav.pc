@@ -1,0 +1,1 @@
+/home/nvidia/dconic_nav/devel/.private/dconic_2dnav/lib/pkgconfig/dconic_2dnav.pc

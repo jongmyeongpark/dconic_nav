@@ -1,0 +1,1 @@
+/home/nvidia/dconic_nav/devel/.private/move_base/lib/pkgconfig/move_base.pc

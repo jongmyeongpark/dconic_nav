@@ -1,0 +1,10 @@
+Symlinking /home/nvidia/dconic_nav/devel/share/rosbridge_agent/cmake/rosbridge_agentConfig-version.cmake
+Symlinking /home/nvidia/dconic_nav/devel/share/rosbridge_agent/cmake/rosbridge_agentConfig.cmake
+Symlinking /home/nvidia/dconic_nav/devel/lib/pkgconfig/rosbridge_agent.pc
+Symlinking /home/nvidia/dconic_nav/devel/lib/python3/dist-packages/rosbridge_agent/__init__.py
+Symlinking /home/nvidia/dconic_nav/devel/lib/rosbridge_agent/rosbridge_websocket.py
+Symlinking /home/nvidia/dconic_nav/devel/lib/rosbridge_agent/rosbridge_tcp
+Symlinking /home/nvidia/dconic_nav/devel/lib/rosbridge_agent/rosbridge_tcp.py
+Symlinking /home/nvidia/dconic_nav/devel/lib/rosbridge_agent/rosbridge_udp
+Symlinking /home/nvidia/dconic_nav/devel/lib/rosbridge_agent/rosbridge_udp.py
+Symlinking /home/nvidia/dconic_nav/devel/lib/rosbridge_agent/rosbridge_websocket

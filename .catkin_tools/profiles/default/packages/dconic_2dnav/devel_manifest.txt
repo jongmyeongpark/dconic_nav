@@ -1,0 +1,4 @@
+dconic_2dnav
+/home/nvidia/dconic_nav/devel/.private/dconic_2dnav/share/dconic_2dnav/cmake/dconic_2dnavConfig.cmake /home/nvidia/dconic_nav/devel/share/dconic_2dnav/cmake/dconic_2dnavConfig.cmake
+/home/nvidia/dconic_nav/devel/.private/dconic_2dnav/share/dconic_2dnav/cmake/dconic_2dnavConfig-version.cmake /home/nvidia/dconic_nav/devel/share/dconic_2dnav/cmake/dconic_2dnavConfig-version.cmake
+/home/nvidia/dconic_nav/devel/.private/dconic_2dnav/lib/pkgconfig/dconic_2dnav.pc /home/nvidia/dconic_nav/devel/lib/pkgconfig/dconic_2dnav.pc

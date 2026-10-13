@@ -1,0 +1,19 @@
+<launch>
+  <!-- <arg name="certfile" default=""/> -->
+
+  <arg name="ip" default="192.168.10.15" />
+  <arg name="usb_cam_front_port" default="3333" />
+  <arg name="usb_cam_back_port" default="3334" />
+
+
+  <arg name="ssrc" default="22222221" />
+  <arg name="payload_type" default="102" />
+  <arg name="signal_host" default="http://10.156.196.159:3000" />
+  <arg name="signal_verify_ssl" default="false" />
+
+  <node name="dynamic_streamer_front" pkg="media_streamer" type="launch_stream.py"  output="screen">
+    <rosparam command="load" file="$(find media_streamer)/config/test_stream.yaml" />
+    <param name="signal_host" value="$(arg signal_host)" />
+    <param name="signal_verify_ssl" value="$(arg signal_verify_ssl)" />
+  </node>
+</launch>

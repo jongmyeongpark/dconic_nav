@@ -1,0 +1,41 @@
+file(REMOVE_RECURSE
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/include/custom_msgs/AppCmd.h"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/include/custom_msgs/Battery.h"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/include/custom_msgs/BatteryState.h"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/include/custom_msgs/Bumper.h"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/include/custom_msgs/ChargingState.h"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/include/custom_msgs/ColorRGB.h"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/include/custom_msgs/DefineSong.h"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/include/custom_msgs/Dependency.h"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/include/custom_msgs/DetectedFaces.h"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/include/custom_msgs/FaceInfo.h"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/include/custom_msgs/Form.h"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/include/custom_msgs/HeadCmd.h"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/include/custom_msgs/HeadPose.h"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/include/custom_msgs/Heartbeat.h"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/include/custom_msgs/Image64.h"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/include/custom_msgs/Info.h"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/include/custom_msgs/LedRGBColors.h"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/include/custom_msgs/Leds.h"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/include/custom_msgs/Log.h"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/include/custom_msgs/MachineDescription.h"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/include/custom_msgs/Map64.h"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/include/custom_msgs/MessageRTC.h"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/include/custom_msgs/Mode.h"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/include/custom_msgs/NormalizedFaces.h"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/include/custom_msgs/Obstacles.h"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/include/custom_msgs/PhoneCmdVel.h"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/include/custom_msgs/PlaySong.h"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/include/custom_msgs/Process.h"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/include/custom_msgs/Service.h"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/include/custom_msgs/State.h"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/include/custom_msgs/TextCmd.h"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/include/custom_msgs/Transition.h"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/include/custom_msgs/Zone.h"
+  "CMakeFiles/custom_msgs_generate_messages_cpp"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang )
+  include(CMakeFiles/custom_msgs_generate_messages_cpp.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

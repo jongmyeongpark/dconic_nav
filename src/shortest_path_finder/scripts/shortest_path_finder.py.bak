@@ -1,0 +1,128 @@
+#!/usr/bin/env python3
+import rospy
+import heapq
+import sys
+import csv
+import math
+from geometry_msgs.msg import PoseWithCovarianceStamped
+from std_msgs.msg import Empty, String, Int32
+
+currentPose_ = (0.0, 0.0)
+waypoints = {}
+calculatedGraph = {}
+isWaypointFinished_ = False
+isStartAutoParking_ = False
+
+pathRunRequestPub = rospy.Publisher('/path_run_request', String, queue_size=1)
+requestConversationPub = rospy.Publisher('/request_conversation', Empty, queue_size=1)
+requestLoadRestrictedAreaPub = rospy.Publisher('/request_load_restricted_area', Empty, queue_size=1)
+
+def getDistance(x1, y1, x2, y2):
+    return math.sqrt((x2 - x1)**2 + (y2 - y1)**2)
+
+def dist(P, A, B):
+    A = A[:]
+    B = B[:]
+    for _ in range(100):
+        if (P[0] - A[0])**2 + (P[1] - A[1])**2 > (P[0] - B[0])**2 + (P[1] - B[1])**2:
+            A[0] = (A[0] + B[0]) / 2.0
+            A[1] = (A[1] + B[1]) / 2.0
+        else:
+            B[0] = (A[0] + B[0]) / 2.0
+            B[1] = (A[1] + B[1]) / 2.0
+    return math.sqrt((P[0] - A[0])**2 + (P[1] - A[1])**2)
+
+def connectTwoPoints(index1, index2):
+    if index1 in waypoints and index2 in waypoints:
+        value1 = waypoints[index1]
+        value2 = waypoints[index2]
+        distance = getDistance(value1[0], value1[1], value2[0], value2[1])
+        graphValue = calculatedGraph.get(index1, {})
+        graphValue.update({index2: distance})
+        calculatedGraph[index1] = graphValue
+        graphValue = calculatedGraph.get(index2, {})
+        graphValue.update({index1: distance})
+        calculatedGraph[index2] = graphValue
+
+def dijkstra(start):
+    distances = {node: sys.maxsize for node in calculatedGraph}
+    paths = {node: [start] for node in calculatedGraph}
+    distances[start] = getDistance(waypoints[start][0], waypoints[start][1], currentPose_[0], currentPose_[1])
+    queue = []
+    heapq.heappush(queue, (distances[start], start))
+
+    while queue:
+        current_distance, node = heapq.heappop(queue)
+        if distances[node] < current_distance:
+            continue
+        for adjacency_node, distance in calculatedGraph[node].items():
+            weighted_distance = current_distance + distance
+            if weighted_distance < distances[adjacency_node]:
+                distances[adjacency_node] = weighted_distance
+                paths[adjacency_node] = paths[node] + [adjacency_node]
+                heapq.heappush(queue, (weighted_distance, adjacency_node))
+            else:
+                if paths[adjacency_node][-1] != adjacency_node:
+                    paths[adjacency_node].append(adjacency_node)
+    return distances, paths
+
+def amclPoseCallback(data):
+    global currentPose_
+    currentPose_ = [data.pose.pose.position.x, data.pose.pose.position.y]
+
+def requestShortestGuideCallback(data):
+    global currentPose_
+
+    nearestDistance = sys.maxsize
+    nearestIndex1 = 0
+    nearestIndex2 = 0
+
+    for key in calculatedGraph:
+        for key2 in calculatedGraph[key]:
+            point1 = [waypoints[key][0], waypoints[key][1]]
+            point2 = [waypoints[key2][0], waypoints[key2][1]]
+            distance = dist(currentPose_, point1, point2)
+            if distance < nearestDistance:
+                nearestDistance = distance
+                nearestIndex1 = key
+                nearestIndex2 = key2
+
+    result1 = dijkstra(nearestIndex1)
+    result2 = dijkstra(nearestIndex2)
+
+    goalIndex = data.data
+
+    if goalIndex > -1:
+        result = result1[1][goalIndex] if result1[0][goalIndex] < result2[0][goalIndex] else result2[1][goalIndex]
+
+        f = open('/home/nvidia/dconic_nav/src/follow_waypoints/saved_path/to_demoroom_guide_point.csv', 'w', newline='')
+        wr = csv.writer(f)
+        for index in result:
+            wr.writerow(waypoints[index])
+        f.close()
+
+        stringMsg = String('0100to_demoroom_guide_point.csv')
+        pathRunRequestPub.publish(stringMsg)
+
+def main():
+    rospy.init_node('shortest_path_finder')
+
+    rospy.Subscriber('/amcl_pose', PoseWithCovarianceStamped, amclPoseCallback)
+    rospy.Subscriber('/request_shortest_guide', Int32, requestShortestGuideCallback)
+
+    # CSV 경로 설정
+    csv_path = '/home/nvidia/dconic_nav/src/follow_waypoints/saved_path/office_250623_01.csv'
+    with open(csv_path, 'r') as f:
+        rdr = csv.reader(f)
+        for idx, line in enumerate(rdr):
+            waypoints[idx] = tuple(float(v) for v in line)
+
+    # 자동으로 연결
+    num_waypoints = len(waypoints)
+    for i in range(num_waypoints - 1):
+        connectTwoPoints(i, i + 1)
+
+    rospy.spin()
+
+if __name__ == '__main__':
+    main()

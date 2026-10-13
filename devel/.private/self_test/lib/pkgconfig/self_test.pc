@@ -1,0 +1,8 @@
+prefix=/home/nvidia/dconic_nav/devel/.private/self_test
+
+Name: self_test
+Description: Description of self_test
+Version: 1.9.7
+Cflags: -I/home/nvidia/dconic_nav/src/diagnostics/self_test/include
+Libs: -L${prefix}/lib 
+Requires: diagnostic_msgs diagnostic_updater roscpp

@@ -1,0 +1,3 @@
+<launch>
+    <node pkg="time_scheduler" type="time_scheduler" name="time_scheduler" output="screen"/>
+</launch>

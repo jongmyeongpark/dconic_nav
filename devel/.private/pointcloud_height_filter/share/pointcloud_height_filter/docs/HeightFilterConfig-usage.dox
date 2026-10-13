@@ -1,0 +1,11 @@
+\subsubsection usage Usage
+\verbatim
+<node name="pointcloud_height_filter" pkg="pointcloud_height_filter" type="pointcloud_height_filter">
+  <param name="enabled" type="bool" value="True" />
+  <param name="camera_height" type="double" value="1.177" />
+  <param name="camera_pitch" type="double" value="0.0" />
+  <param name="min_obstacle_height" type="double" value="0.1" />
+  <param name="max_obstacle_height" type="double" value="1.8" />
+</node>
+\endverbatim
+

@@ -1,0 +1,7 @@
+slam_gmapping/gmapping
+/home/nvidia/dconic_nav/devel/.private/gmapping/share/gmapping/cmake/gmappingConfig-version.cmake /home/nvidia/dconic_nav/devel/share/gmapping/cmake/gmappingConfig-version.cmake
+/home/nvidia/dconic_nav/devel/.private/gmapping/share/gmapping/cmake/gmappingConfig.cmake /home/nvidia/dconic_nav/devel/share/gmapping/cmake/gmappingConfig.cmake
+/home/nvidia/dconic_nav/devel/.private/gmapping/lib/libslam_gmapping_nodelet.so /home/nvidia/dconic_nav/devel/lib/libslam_gmapping_nodelet.so
+/home/nvidia/dconic_nav/devel/.private/gmapping/lib/pkgconfig/gmapping.pc /home/nvidia/dconic_nav/devel/lib/pkgconfig/gmapping.pc
+/home/nvidia/dconic_nav/devel/.private/gmapping/lib/gmapping/slam_gmapping /home/nvidia/dconic_nav/devel/lib/gmapping/slam_gmapping
+/home/nvidia/dconic_nav/devel/.private/gmapping/lib/gmapping/slam_gmapping_replay /home/nvidia/dconic_nav/devel/lib/gmapping/slam_gmapping_replay

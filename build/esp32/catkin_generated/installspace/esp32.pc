@@ -1,0 +1,8 @@
+prefix=/home/nvidia/dconic_nav/install
+
+Name: esp32
+Description: Description of esp32
+Version: 3.0.0
+Cflags: 
+Libs: -L${prefix}/lib -lesp32
+Requires: rospy std_msgs

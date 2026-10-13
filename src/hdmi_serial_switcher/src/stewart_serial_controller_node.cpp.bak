@@ -1,0 +1,119 @@
+/***
+ * This example expects the serial port has a loopback on it.
+ *
+ * Alternatively, you could use an Arduino:
+ *
+ * <pre>
+ *  void setup() {
+ *    Serial.begin(<insert your baudrate here>);
+ *  }
+ *
+ *  void loop() {
+ *    if (Serial.available()) {
+ *      Serial.write(Serial.read());
+ *    }
+ *  }
+ * </pre>
+ */
+
+#include <ros/ros.h>
+#include <serial/serial.h>
+#include <std_msgs/String.h>
+#include <std_msgs/Empty.h>
+
+serial::Serial ser;
+
+bool isStewartShortYaw_;
+bool isStewartShortPitch_;
+bool isStewartOpen_;
+bool isStewartClose_;
+
+void write_callback(const std_msgs::String::ConstPtr& msg){
+    ROS_INFO_STREAM("Writing to serial port" << msg->data);
+    ser.write(msg->data);
+}
+
+void stewartShortYawCallback(const std_msgs::Empty & msg ){
+    isStewartShortYaw_ = true;
+}
+
+void stewartShortPitchCallback(const std_msgs::Empty & msg){
+    isStewartShortPitch_ = true;
+}
+
+void stewartOpenCallback(const std_msgs::Empty & msg){
+    isStewartOpen_ = true;
+}
+
+void stewartCloseCallback(const std_msgs::Empty & msg){
+    isStewartClose_= true;
+}
+
+int main (int argc, char** argv){
+    ros::init(argc, argv, "stewart_serial_controller_node");
+    ros::NodeHandle nh;
+
+    ros::Subscriber write_sub = nh.subscribe("write", 10, write_callback);
+    ros::Subscriber stewart_short_yaw_sub = nh.subscribe("stewart_short_yaw", 10, stewartShortYawCallback);
+    ros::Subscriber stewart_short_pitch_sub = nh.subscribe("stewart_short_pitch", 10, stewartShortPitchCallback);
+    ros::Subscriber stewart_open_sub = nh.subscribe("stewart_open", 10, stewartOpenCallback);
+    ros::Subscriber stewart_close_sub = nh.subscribe("stewart_close", 10, stewartCloseCallback);
+   
+    isStewartShortYaw_ = false;
+    isStewartShortPitch_ = false;
+    isStewartOpen_ = false;
+    isStewartClose_ = false;
+    try
+    {
+        ser.setPort("/dev/ttyStewart");
+        ser.setBaudrate(115200);
+        serial::Timeout to = serial::Timeout::simpleTimeout(1000);
+        ser.setTimeout(to);
+        ser.open();
+    }
+    catch (serial::IOException& e)
+    {
+        ROS_ERROR_STREAM("Unable to open port ");
+        return -1;
+    }
+
+    if(ser.isOpen()){
+        ROS_INFO_STREAM("Serial Port initialized");
+        ser.write(std::string("$run*"));
+
+    }else{
+        return -1;
+    }
+
+    ros::Rate loop_rate(10);
+    while(ros::ok()){
+
+        ros::spinOnce();
+
+        if(ser.available()){
+            // ROS_INFO_STREAM("Reading from serial port");
+            // std_msgs::String result;
+            // result.data = ser.read(ser.available());
+            //ROS_INFO_STREAM("Read: " << result.data);
+            //read_pub.publish(result);
+        }
+
+        if (isStewartShortYaw_){
+            
+        }
+        else if(isStewartShortPitch_){
+
+        }
+        else if(isStewartOpen_){
+
+        }
+        else if(isStewartClose_){
+
+        }
+
+        
+        loop_rate.sleep();
+
+    }
+}
+

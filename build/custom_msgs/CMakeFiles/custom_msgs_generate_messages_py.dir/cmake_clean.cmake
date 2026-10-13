@@ -1,0 +1,42 @@
+file(REMOVE_RECURSE
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/lib/python3/dist-packages/custom_msgs/msg/_AppCmd.py"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/lib/python3/dist-packages/custom_msgs/msg/_Battery.py"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/lib/python3/dist-packages/custom_msgs/msg/_BatteryState.py"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/lib/python3/dist-packages/custom_msgs/msg/_Bumper.py"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/lib/python3/dist-packages/custom_msgs/msg/_ChargingState.py"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/lib/python3/dist-packages/custom_msgs/msg/_ColorRGB.py"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/lib/python3/dist-packages/custom_msgs/msg/_DefineSong.py"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/lib/python3/dist-packages/custom_msgs/msg/_Dependency.py"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/lib/python3/dist-packages/custom_msgs/msg/_DetectedFaces.py"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/lib/python3/dist-packages/custom_msgs/msg/_FaceInfo.py"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/lib/python3/dist-packages/custom_msgs/msg/_Form.py"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/lib/python3/dist-packages/custom_msgs/msg/_HeadCmd.py"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/lib/python3/dist-packages/custom_msgs/msg/_HeadPose.py"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/lib/python3/dist-packages/custom_msgs/msg/_Heartbeat.py"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/lib/python3/dist-packages/custom_msgs/msg/_Image64.py"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/lib/python3/dist-packages/custom_msgs/msg/_Info.py"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/lib/python3/dist-packages/custom_msgs/msg/_LedRGBColors.py"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/lib/python3/dist-packages/custom_msgs/msg/_Leds.py"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/lib/python3/dist-packages/custom_msgs/msg/_Log.py"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/lib/python3/dist-packages/custom_msgs/msg/_MachineDescription.py"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/lib/python3/dist-packages/custom_msgs/msg/_Map64.py"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/lib/python3/dist-packages/custom_msgs/msg/_MessageRTC.py"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/lib/python3/dist-packages/custom_msgs/msg/_Mode.py"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/lib/python3/dist-packages/custom_msgs/msg/_NormalizedFaces.py"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/lib/python3/dist-packages/custom_msgs/msg/_Obstacles.py"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/lib/python3/dist-packages/custom_msgs/msg/_PhoneCmdVel.py"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/lib/python3/dist-packages/custom_msgs/msg/_PlaySong.py"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/lib/python3/dist-packages/custom_msgs/msg/_Process.py"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/lib/python3/dist-packages/custom_msgs/msg/_Service.py"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/lib/python3/dist-packages/custom_msgs/msg/_State.py"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/lib/python3/dist-packages/custom_msgs/msg/_TextCmd.py"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/lib/python3/dist-packages/custom_msgs/msg/_Transition.py"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/lib/python3/dist-packages/custom_msgs/msg/_Zone.py"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/lib/python3/dist-packages/custom_msgs/msg/__init__.py"
+  "CMakeFiles/custom_msgs_generate_messages_py"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang )
+  include(CMakeFiles/custom_msgs_generate_messages_py.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

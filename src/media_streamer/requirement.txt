@@ -1,0 +1,6 @@
+rospkg
+inject
+websocket-client
+python-socketio[client]
+rel
+dataclasses

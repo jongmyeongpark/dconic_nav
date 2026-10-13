@@ -1,0 +1,4 @@
+Symlinking /home/nvidia/dconic_nav/devel/share/time_scheduler/cmake/time_schedulerConfig-version.cmake
+Symlinking /home/nvidia/dconic_nav/devel/share/time_scheduler/cmake/time_schedulerConfig.cmake
+Symlinking /home/nvidia/dconic_nav/devel/lib/time_scheduler/time_scheduler
+Symlinking /home/nvidia/dconic_nav/devel/lib/pkgconfig/time_scheduler.pc

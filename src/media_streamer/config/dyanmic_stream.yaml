@@ -1,0 +1,31 @@
+remote:
+  ip: 192.168.10.15
+
+streamer:
+  front:
+    type: ROS
+    topic: /usb_cam1/image_raw/compressed
+    msg_type: sensor_msgs/CompressedImage
+    security: false
+    port : 3000
+    ssrc: 22222221
+    payload_type: 100
+
+  back:
+    type: ROS
+    topic: /usb_cam2/image_raw/compressed
+    msg_type: sensor_msgs/CompressedImage
+    security: false
+    port : 3001
+    ssrc: 22222221
+    payload_type: 100
+
+
+  # front-thermal:
+  #   type: RTSP
+  #   url : rtsp://admin:admin@192.168.10.14:554/snl/live/2/1
+  #   security: false
+  # front-tbt:
+  #   type: RTSP
+  #   url : rtsp://admin:admin@192.168.10.14:554/snl/live/1/1
+  #   security: false

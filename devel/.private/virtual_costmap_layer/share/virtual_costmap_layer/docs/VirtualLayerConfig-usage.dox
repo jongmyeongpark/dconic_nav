@@ -1,0 +1,11 @@
+\subsubsection usage Usage
+\verbatim
+<node name="virtual_costmap_layer" pkg="virtual_costmap_layer" type="virtual_costmap_layer">
+  <param name="enabled" type="bool" value="True" />
+  <param name="one_zone" type="bool" value="True" />
+  <param name="clear_obstacles" type="bool" value="True" />
+  <param name="map_frame" type="str" value="odom_combined" />
+  <param name="base_frame" type="str" value="base_link" />
+</node>
+\endverbatim
+

@@ -1,0 +1,5 @@
+Symlinking /home/nvidia/dconic_nav/devel/share/image_geometry/cmake/image_geometryConfig-version.cmake
+Symlinking /home/nvidia/dconic_nav/devel/share/image_geometry/cmake/image_geometryConfig.cmake
+Symlinking /home/nvidia/dconic_nav/devel/lib/libimage_geometry.so
+Symlinking /home/nvidia/dconic_nav/devel/lib/pkgconfig/image_geometry.pc
+Symlinking /home/nvidia/dconic_nav/devel/lib/python3/dist-packages/image_geometry/__init__.py

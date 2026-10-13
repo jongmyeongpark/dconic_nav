@@ -1,0 +1,4 @@
+Symlinking /home/nvidia/dconic_nav/devel/share/device_info/cmake/device_infoConfig-version.cmake
+Symlinking /home/nvidia/dconic_nav/devel/share/device_info/cmake/device_infoConfig.cmake
+Symlinking /home/nvidia/dconic_nav/devel/lib/pkgconfig/device_info.pc
+Symlinking /home/nvidia/dconic_nav/devel/lib/device_info/device_info

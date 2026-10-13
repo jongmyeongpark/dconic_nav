@@ -1,0 +1,4 @@
+Symlinking /home/nvidia/dconic_nav/devel/share/closest_obs_from_robot/cmake/closest_obs_from_robotConfig-version.cmake
+Symlinking /home/nvidia/dconic_nav/devel/share/closest_obs_from_robot/cmake/closest_obs_from_robotConfig.cmake
+Symlinking /home/nvidia/dconic_nav/devel/lib/pkgconfig/closest_obs_from_robot.pc
+Symlinking /home/nvidia/dconic_nav/devel/lib/closest_obs_from_robot/closest_obs_from_robot

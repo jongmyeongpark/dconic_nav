@@ -1,0 +1,7 @@
+[ 20%] Built target selftest_rostest
+[ 33%] Built target run_selftest
+[ 46%] Built target selftest_example
+[ 60%] Built target no_id_selftest
+[ 73%] Built target exception_selftest
+[ 86%] Built target error_selftest
+[100%] Built target nominal_selftest

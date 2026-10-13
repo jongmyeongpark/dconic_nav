@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>depth_anything_ros</name>
+  <version>0.0.1</version>
+  <description>Depth Anything V2 TensorRT inference node publishing PointCloud2</description>
+  <maintainer email="88tkeks@gmail.com">nvidia</maintainer>
+  <license>MIT</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>rospy</depend>
+  <depend>sensor_msgs</depend>
+  <depend>std_msgs</depend>
+  <depend>cv_bridge</depend>
+  <depend>image_transport</depend>
+
+  <export></export>
+</package>

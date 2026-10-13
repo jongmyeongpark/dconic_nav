@@ -1,0 +1,8 @@
+prefix=/home/nvidia/dconic_nav/devel/.private/media_controller
+
+Name: media_controller
+Description: Description of media_controller
+Version: 0.0.0
+Cflags: -I/home/nvidia/dconic_nav/devel/.private/media_controller/include -I/home/nvidia/dconic_nav/src/media_controller/include
+Libs: -L${prefix}/lib -lmedia_controller
+Requires: roscpp std_msgs message_runtime serial

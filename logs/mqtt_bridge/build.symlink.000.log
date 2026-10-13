@@ -1,0 +1,4 @@
+Symlinking /home/nvidia/dconic_nav/devel/share/mqtt_bridge/cmake/mqtt_bridgeConfig.cmake
+Symlinking /home/nvidia/dconic_nav/devel/share/mqtt_bridge/cmake/mqtt_bridgeConfig-version.cmake
+Symlinking /home/nvidia/dconic_nav/devel/lib/pkgconfig/mqtt_bridge.pc
+Symlinking /home/nvidia/dconic_nav/devel/lib/python3/dist-packages/mqtt_bridge/__init__.py

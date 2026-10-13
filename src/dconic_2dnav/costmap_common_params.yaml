@@ -1,0 +1,18 @@
+#footprint + footprint_padding = robot size (meter) ####mskim 
+#footprint: [[-0.18, -0.26], [-0.26, -0.18], [-0.26, 0.18], [-0.18, 0.26], [0.18, 0.26], [0.26, 0.18], [0.26, -0.18], [0.18, -0.26]]
+footprint: [[-0.25, -0.35], [-0.35, -0.25], [-0.35, 0.25], [-0.25, 0.35], [0.25, 0.35], [0.35, 0.25], [0.35, -0.25], [0.25, -0.35]]
+#robot_radius: 0.35
+footprint_padding: 0.05 #0.08 #0.09 #20.12.29 sykim increase robot size
+
+robot_base_frame: base_link
+# 20.11.30 sykim change-map clear test
+update_frequency: 5.0 #1.0 #dhjeon 20.12.17 change-(befor value:5.0) our system cannot be update to 5Hz. need to optimize to speed up the program
+publish_frequency: 5.0
+transform_tolerance: 3.0 #0.3 #21.02.19 dhjeon before 3.0 our system is slow. need to optimize to speed up
+
+resolution: 0.05
+
+obstacle_range: 5.0
+raytrace_range: 10.0
+
+

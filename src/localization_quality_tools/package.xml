@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>localization_quality_tools</name>
+  <version>0.0.1</version>
+  <description>Tools for evaluating localization quality in ROS</description>
+
+  <maintainer email="you@example.com">Your Name</maintainer>
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>rospy</depend>
+  <depend>std_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>nav_msgs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>tf</depend>
+</package>

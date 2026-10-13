@@ -1,0 +1,2 @@
+float32 score
+geometry_msgs/PoseWithCovarianceStamped vision_pose

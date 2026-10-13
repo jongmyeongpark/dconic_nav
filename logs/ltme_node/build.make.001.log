@@ -1,0 +1,17 @@
+[  0%] Built target std_msgs_generate_messages_nodejs
+[  0%] Built target _ltme_node_generate_messages_check_deps_QueryHardwareVersion
+[  0%] Built target std_msgs_generate_messages_py
+[  0%] Built target _ltme_node_generate_messages_check_deps_QueryFirmwareVersion
+[  0%] Built target std_msgs_generate_messages_eus
+[  0%] Built target _ltme_node_generate_messages_check_deps_QuerySerial
+[  0%] Built target std_msgs_generate_messages_cpp
+[  0%] Built target std_msgs_generate_messages_lisp
+[ 27%] Built target ldcp_sdk
+[ 41%] Built target ltme_node_generate_messages_py
+[ 51%] Built target ltme_node_generate_messages_nodejs
+[ 65%] Built target ltme_node_generate_messages_eus
+[ 75%] Built target ltme_node_generate_messages_cpp
+[ 86%] Built target ltme_node_generate_messages_lisp
+[ 93%] Built target update_firmware
+[100%] Built target ltme_node
+[100%] Built target ltme_node_generate_messages

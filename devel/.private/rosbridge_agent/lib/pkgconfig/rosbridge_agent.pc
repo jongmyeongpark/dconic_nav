@@ -1,0 +1,8 @@
+prefix=/home/nvidia/dconic_nav/devel/.private/rosbridge_agent
+
+Name: rosbridge_agent
+Description: Description of rosbridge_agent
+Version: 0.11.13
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

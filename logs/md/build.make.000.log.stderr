@@ -1,0 +1,8 @@
+[01m[K/home/nvidia/dconic_nav/src/md/src/com.cpp:[m[K In function ‘[01m[Kint InitSerial()[m[K’:
+[01m[K/home/nvidia/dconic_nav/src/md/src/com.cpp:51:1:[m[K [01;35m[Kwarning: [m[Kcontrol reaches end of non-void function [[01;35m[K-Wreturn-type[m[K]
+   51 | [01;35m[K}[m[K
+      | [01;35m[K^[m[K
+[01m[K/home/nvidia/dconic_nav/src/md/src/com.cpp:[m[K In function ‘[01m[Kint InitSerial()[m[K’:
+[01m[K/home/nvidia/dconic_nav/src/md/src/com.cpp:51:1:[m[K [01;35m[Kwarning: [m[Kcontrol reaches end of non-void function [[01;35m[K-Wreturn-type[m[K]
+   51 | [01;35m[K}[m[K
+      | [01;35m[K^[m[K

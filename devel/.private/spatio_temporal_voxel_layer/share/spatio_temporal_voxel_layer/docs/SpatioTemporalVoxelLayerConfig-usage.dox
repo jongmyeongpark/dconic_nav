@@ -1,0 +1,17 @@
+\subsubsection usage Usage
+\verbatim
+<node name="spatio_temporal_voxel_layer" pkg="spatio_temporal_voxel_layer" type="spatio_temporal_voxel_layer">
+  <param name="enabled" type="bool" value="True" />
+  <param name="publish_voxel_map" type="bool" value="False" />
+  <param name="voxel_size" type="double" value="0.05" />
+  <param name="combination_method" type="int" value="1" />
+  <param name="mark_threshold" type="double" value="0.0" />
+  <param name="update_footprint_enabled" type="bool" value="True" />
+  <param name="track_unknown_space" type="bool" value="True" />
+  <param name="decay_model" type="int" value="0" />
+  <param name="voxel_decay" type="double" value="10.0" />
+  <param name="mapping_mode" type="bool" value="False" />
+  <param name="map_save_duration" type="double" value="60.0" />
+</node>
+\endverbatim
+

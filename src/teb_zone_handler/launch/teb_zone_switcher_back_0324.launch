@@ -1,0 +1,9 @@
+<launch>
+  <node pkg="teb_zone_handler" type="teb_zone_switcher.py"
+        name="teb_zone_switcher" output="screen">
+    <rosparam param="charger_waypoint_ranges">
+      - {start: 0,  end: 5}   # 충전기 출발 구간
+      - {start: 10, end: 15}  # 충전기 귀환 구간
+    </rosparam>
+  </node>
+</launch>

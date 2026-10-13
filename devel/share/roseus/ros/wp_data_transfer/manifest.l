@@ -1,0 +1,1 @@
+/home/nvidia/dconic_nav/devel/.private/wp_data_transfer/share/roseus/ros/wp_data_transfer/manifest.l

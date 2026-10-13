@@ -1,0 +1,4 @@
+Symlinking /home/nvidia/dconic_nav/devel/share/charge_manager/cmake/charge_managerConfig.cmake
+Symlinking /home/nvidia/dconic_nav/devel/share/charge_manager/cmake/charge_managerConfig-version.cmake
+Symlinking /home/nvidia/dconic_nav/devel/lib/pkgconfig/charge_manager.pc
+Symlinking /home/nvidia/dconic_nav/devel/lib/charge_manager/charge_manager_node

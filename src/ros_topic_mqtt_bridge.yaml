@@ -1,0 +1,63 @@
+# ROS 토픽 ↔ MQTT 브리지 데모 (MO2 / Platy)
+# Flyinglet Backend MQTT 규격:
+#   Backend → Agent: flyinglet/{f_cd}/robot/command
+#   Agent → Backend: flyinglet/{f_cd}/robot/command/response
+
+# 규격서의 f_cd (로봇/시설 코드). 기존 Agent 호환 토픽의 robot_id 자리에도 동일 값 사용.
+f_cd: "ITGT_PLAT_100000_2604_0039_ee0f"
+
+# MQTT 페이로드의 robot_id 등 (미설정 시 f_cd와 동일)
+robot_id: null
+
+# 백엔드: mo2 | platy
+backend: "platy"
+
+# 독립 실행형 MQTT 설정. 기존 Agent 설정 파일을 읽지 않습니다.
+mqtt:
+  # L1_interface/config.yaml 의 mqtt.broker 와 같은 구조
+  broker:
+    url: "mqtt://10.156.196.155:1883"
+    client_id_prefix: "demo_agent"
+    username: null
+    password: null
+    keepalive: 60
+    use_tls: false
+  default_qos: 1
+  # 이 시간 안에 브로커 연결 완료 콜백이 없으면 주기적으로 경고 로그를 남김
+  connect_warn_after_sec: 10
+  # MQTT 연결 전 host:port TCP 접속 가능 여부를 검사하는 timeout
+  tcp_probe_timeout_sec: 3
+
+
+# Backend MQTT 명령 채널. command/mission은 현재 백엔드에서 사용하지 않음.
+asyncapi:
+  subscribe_command_mission: true
+  publish_command_mission_ack: true
+  # robot/command/response·mission_status·robot_event 등 백엔드 호환 출력
+  emit_backend_topics: true
+
+ros:
+  dry_run: false
+  # ROS 마스터 (로봇에서 실행 시 보통 localhost)
+  ros_master_uri: null
+
+  mo2:
+    mission_command_topic: "/mission_command"
+    mission_status_topic: "/mission_status"
+    position_topic: "/robot_position_json"
+    state_topic: "/robot_state_json"
+    # std_msgs/Int32: 2 START/RESUME, 1 PAUSE, 0 CANCEL
+    value_start: 2
+    value_pause: 1
+    value_cancel: 0
+
+  platy:
+    path_run_request_topic: "/path_run_request"
+    path_run_cancel_topic: "/path_run_cancel_request"
+    move_request_topic: "/move_request"
+    default_path_csv: "0100m16_4floor_v2_1.csv"
+    # MO2와 동일하게 String "COMPLETED" 를 쓰면 MQTT 완료 동기화 (없으면 null)
+    mission_status_topic: "/mission_status"    
+    position_topic: "/robot_position_json"
+    state_topic: "/robot_state_json"
+

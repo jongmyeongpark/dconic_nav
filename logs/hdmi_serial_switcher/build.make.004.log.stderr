@@ -1,0 +1,7 @@
+[01m[K/home/nvidia/dconic_nav/src/hdmi_serial_switcher/src/hdmi_serial_switcher_node.cpp:115:10:[m[K [01;31m[Kfatal error: [m[Kistringstream: No such file or directory
+  115 | #include [01;31m[K<istringstream>[m[K
+      |          [01;31m[K^~~~~~~~~~~~~~~[m[K
+compilation terminated.
+make[2]: *** [CMakeFiles/hdmi_serial_switcher_node.dir/build.make:63: CMakeFiles/hdmi_serial_switcher_node.dir/src/hdmi_serial_switcher_node.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:265: CMakeFiles/hdmi_serial_switcher_node.dir/all] Error 2
+make: *** [Makefile:141: all] Error 2

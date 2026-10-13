@@ -1,0 +1,5 @@
+restricted_area_maker
+/home/nvidia/dconic_nav/devel/.private/restricted_area_maker/share/restricted_area_maker/cmake/restricted_area_makerConfig.cmake /home/nvidia/dconic_nav/devel/share/restricted_area_maker/cmake/restricted_area_makerConfig.cmake
+/home/nvidia/dconic_nav/devel/.private/restricted_area_maker/share/restricted_area_maker/cmake/restricted_area_makerConfig-version.cmake /home/nvidia/dconic_nav/devel/share/restricted_area_maker/cmake/restricted_area_makerConfig-version.cmake
+/home/nvidia/dconic_nav/devel/.private/restricted_area_maker/lib/pkgconfig/restricted_area_maker.pc /home/nvidia/dconic_nav/devel/lib/pkgconfig/restricted_area_maker.pc
+/home/nvidia/dconic_nav/devel/.private/restricted_area_maker/lib/restricted_area_maker/restricted_area_maker_node /home/nvidia/dconic_nav/devel/lib/restricted_area_maker/restricted_area_maker_node

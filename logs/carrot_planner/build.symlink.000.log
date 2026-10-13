@@ -1,0 +1,4 @@
+Symlinking /home/nvidia/dconic_nav/devel/share/carrot_planner/cmake/carrot_plannerConfig-version.cmake
+Symlinking /home/nvidia/dconic_nav/devel/share/carrot_planner/cmake/carrot_plannerConfig.cmake
+Symlinking /home/nvidia/dconic_nav/devel/lib/libcarrot_planner.so
+Symlinking /home/nvidia/dconic_nav/devel/lib/pkgconfig/carrot_planner.pc

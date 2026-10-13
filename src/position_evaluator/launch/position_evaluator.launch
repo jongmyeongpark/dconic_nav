@@ -1,0 +1,3 @@
+<launch>
+    <node pkg="position_evaluator" type="position_evaluator" name="position_evaluator" output="screen"/>
+</launch>

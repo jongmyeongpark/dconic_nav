@@ -1,0 +1,11 @@
+# generated from genmsg/cmake/pkg-genmsg.context.in
+
+messages_str = "/home/nvidia/dconic_nav/src/robot_bridge/rosapi/msg/TypeDef.msg"
+services_str = "/home/nvidia/dconic_nav/src/robot_bridge/rosapi/srv/DeleteParam.srv;/home/nvidia/dconic_nav/src/robot_bridge/rosapi/srv/GetActionServers.srv;/home/nvidia/dconic_nav/src/robot_bridge/rosapi/srv/GetParam.srv;/home/nvidia/dconic_nav/src/robot_bridge/rosapi/srv/GetParamNames.srv;/home/nvidia/dconic_nav/src/robot_bridge/rosapi/srv/GetTime.srv;/home/nvidia/dconic_nav/src/robot_bridge/rosapi/srv/HasParam.srv;/home/nvidia/dconic_nav/src/robot_bridge/rosapi/srv/MessageDetails.srv;/home/nvidia/dconic_nav/src/robot_bridge/rosapi/srv/Nodes.srv;/home/nvidia/dconic_nav/src/robot_bridge/rosapi/srv/NodeDetails.srv;/home/nvidia/dconic_nav/src/robot_bridge/rosapi/srv/Publishers.srv;/home/nvidia/dconic_nav/src/robot_bridge/rosapi/srv/SearchParam.srv;/home/nvidia/dconic_nav/src/robot_bridge/rosapi/srv/ServiceHost.srv;/home/nvidia/dconic_nav/src/robot_bridge/rosapi/srv/ServiceNode.srv;/home/nvidia/dconic_nav/src/robot_bridge/rosapi/srv/ServiceProviders.srv;/home/nvidia/dconic_nav/src/robot_bridge/rosapi/srv/ServiceRequestDetails.srv;/home/nvidia/dconic_nav/src/robot_bridge/rosapi/srv/ServiceResponseDetails.srv;/home/nvidia/dconic_nav/src/robot_bridge/rosapi/srv/Services.srv;/home/nvidia/dconic_nav/src/robot_bridge/rosapi/srv/ServicesForType.srv;/home/nvidia/dconic_nav/src/robot_bridge/rosapi/srv/ServiceType.srv;/home/nvidia/dconic_nav/src/robot_bridge/rosapi/srv/SetParam.srv;/home/nvidia/dconic_nav/src/robot_bridge/rosapi/srv/Subscribers.srv;/home/nvidia/dconic_nav/src/robot_bridge/rosapi/srv/Topics.srv;/home/nvidia/dconic_nav/src/robot_bridge/rosapi/srv/TopicsAndRawTypes.srv;/home/nvidia/dconic_nav/src/robot_bridge/rosapi/srv/TopicsForType.srv;/home/nvidia/dconic_nav/src/robot_bridge/rosapi/srv/TopicType.srv"
+pkg_name = "rosapi"
+dependencies_str = ""
+langs = "gencpp;geneus;genlisp;gennodejs;genpy"
+dep_include_paths_str = "rosapi;/home/nvidia/dconic_nav/src/robot_bridge/rosapi/msg"
+PYTHON_EXECUTABLE = "/usr/bin/python3"
+package_has_static_sources = 'TRUE' == 'TRUE'
+genmsg_check_deps_script = "/opt/ros/noetic/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py"

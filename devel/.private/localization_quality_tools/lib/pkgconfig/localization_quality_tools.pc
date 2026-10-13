@@ -1,0 +1,8 @@
+prefix=/home/nvidia/dconic_nav/devel/.private/localization_quality_tools
+
+Name: localization_quality_tools
+Description: Description of localization_quality_tools
+Version: 0.0.1
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

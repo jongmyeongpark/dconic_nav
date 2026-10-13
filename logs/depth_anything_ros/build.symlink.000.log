@@ -1,0 +1,4 @@
+Symlinking /home/nvidia/dconic_nav/devel/share/depth_anything_ros/cmake/depth_anything_rosConfig.cmake
+Symlinking /home/nvidia/dconic_nav/devel/share/depth_anything_ros/cmake/depth_anything_rosConfig-version.cmake
+Symlinking /home/nvidia/dconic_nav/devel/lib/depth_anything_ros/depth_anything_node.py
+Symlinking /home/nvidia/dconic_nav/devel/lib/pkgconfig/depth_anything_ros.pc

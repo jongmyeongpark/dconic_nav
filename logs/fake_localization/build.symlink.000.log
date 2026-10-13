@@ -1,0 +1,4 @@
+Symlinking /home/nvidia/dconic_nav/devel/share/fake_localization/cmake/fake_localizationConfig-version.cmake
+Symlinking /home/nvidia/dconic_nav/devel/share/fake_localization/cmake/fake_localizationConfig.cmake
+Symlinking /home/nvidia/dconic_nav/devel/lib/pkgconfig/fake_localization.pc
+Symlinking /home/nvidia/dconic_nav/devel/lib/fake_localization/fake_localization

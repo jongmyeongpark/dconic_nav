@@ -1,0 +1,10 @@
+<!-- move_base don't run, costmap stop -->
+shutdown_costmaps: false
+<!-- velocity frequency -->
+controller_frequency: 10.0 #3.0
+controller_patience: 1.0
+planner_frequency: 10.0 #1.0 #2.0
+planner_patience: 1.0
+oscillation_timeout: 5.0
+oscillation_distance: 0.3 #0.2
+conservative_reset_dist: 2.0 #0.5 #20.12.29 sykim clear distance 0.5->2.0

@@ -1,0 +1,8 @@
+prefix=/home/nvidia/dconic_nav/devel/.private/env_serials
+
+Name: env_serials
+Description: Description of env_serials
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

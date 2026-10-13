@@ -1,0 +1,8 @@
+prefix=/home/nvidia/dconic_nav/install
+
+Name: teb_zone_handler
+Description: Description of teb_zone_handler
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

@@ -1,0 +1,41 @@
+file(REMOVE_RECURSE
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/common-lisp/ros/custom_msgs/msg/AppCmd.lisp"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/common-lisp/ros/custom_msgs/msg/Battery.lisp"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/common-lisp/ros/custom_msgs/msg/BatteryState.lisp"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/common-lisp/ros/custom_msgs/msg/Bumper.lisp"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/common-lisp/ros/custom_msgs/msg/ChargingState.lisp"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/common-lisp/ros/custom_msgs/msg/ColorRGB.lisp"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/common-lisp/ros/custom_msgs/msg/DefineSong.lisp"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/common-lisp/ros/custom_msgs/msg/Dependency.lisp"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/common-lisp/ros/custom_msgs/msg/DetectedFaces.lisp"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/common-lisp/ros/custom_msgs/msg/FaceInfo.lisp"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/common-lisp/ros/custom_msgs/msg/Form.lisp"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/common-lisp/ros/custom_msgs/msg/HeadCmd.lisp"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/common-lisp/ros/custom_msgs/msg/HeadPose.lisp"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/common-lisp/ros/custom_msgs/msg/Heartbeat.lisp"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/common-lisp/ros/custom_msgs/msg/Image64.lisp"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/common-lisp/ros/custom_msgs/msg/Info.lisp"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/common-lisp/ros/custom_msgs/msg/LedRGBColors.lisp"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/common-lisp/ros/custom_msgs/msg/Leds.lisp"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/common-lisp/ros/custom_msgs/msg/Log.lisp"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/common-lisp/ros/custom_msgs/msg/MachineDescription.lisp"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/common-lisp/ros/custom_msgs/msg/Map64.lisp"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/common-lisp/ros/custom_msgs/msg/MessageRTC.lisp"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/common-lisp/ros/custom_msgs/msg/Mode.lisp"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/common-lisp/ros/custom_msgs/msg/NormalizedFaces.lisp"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/common-lisp/ros/custom_msgs/msg/Obstacles.lisp"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/common-lisp/ros/custom_msgs/msg/PhoneCmdVel.lisp"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/common-lisp/ros/custom_msgs/msg/PlaySong.lisp"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/common-lisp/ros/custom_msgs/msg/Process.lisp"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/common-lisp/ros/custom_msgs/msg/Service.lisp"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/common-lisp/ros/custom_msgs/msg/State.lisp"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/common-lisp/ros/custom_msgs/msg/TextCmd.lisp"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/common-lisp/ros/custom_msgs/msg/Transition.lisp"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/common-lisp/ros/custom_msgs/msg/Zone.lisp"
+  "CMakeFiles/custom_msgs_generate_messages_lisp"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang )
+  include(CMakeFiles/custom_msgs_generate_messages_lisp.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

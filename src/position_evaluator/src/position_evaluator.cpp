@@ -1,0 +1,319 @@
+#include "ros/ros.h"
+#include "ros/console.h"
+#include "geometry_msgs/PoseWithCovarianceStamped.h"
+#include "geometry_msgs/PoseArray.h"
+#include "geometry_msgs/Pose.h"
+#include "tf/tf.h"
+#include "std_msgs/Empty.h"
+#include <algorithm>
+#include <std_msgs/Float32.h>
+#include <std_msgs/Int32.h>
+#include <std_msgs/String.h>
+#include <iostream>
+#include <stdlib.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <list>
+#include <math.h>
+#include <message_filters/subscriber.h>
+#include <message_filters/time_synchronizer.h>
+#include <message_filters/sync_policies/approximate_time.h>
+
+
+// Subscribe container
+
+geometry_msgs::PoseWithCovarianceStamped amclPose_;
+geometry_msgs::PoseWithCovarianceStamped previousAmclPose_;
+geometry_msgs::PoseWithCovarianceStamped odomCombinedPose_;
+
+std::list<geometry_msgs::PoseWithCovarianceStamped> odomCombinedPoseList_;
+std::list<geometry_msgs::PoseWithCovarianceStamped> amclPoseList_;
+
+double sumOfAmcl_;
+double sumOfAmclDeltaTime_;
+double meanOfAmclVelocity_;
+double sumOfOdomCombined_;
+double sumOfOdomCombinedDeltaTime_;
+double meanOfOdomCombinedVelocity_;
+
+ros::Publisher pubAbnormalPoseAlarm_;
+bool isPublishAbnormalPoseAlarm_ ;
+
+// 0 : normal
+// 1 : abnormal
+int abnormalPositionState_;
+int count_;
+
+
+bool isDriveStarted_;
+
+
+// void amclPoseCallback(const geometry_msgs::PoseWithCovarianceStamped poseMsg)
+// {
+//     amclPose_ = poseMsg;
+//     double differenceX = amclPose_.pose.pose.position.x - previousAmclPose_.pose.pose.position.x ;
+//     double differenceY = amclPose_.pose.pose.position.y - previousAmclPose_.pose.pose.position.y ;
+//     double distance = sqrt(differenceX * differenceX + differenceY * differenceY);
+//     if ( distance > 0.3 ) {
+//         count_ = 0;
+//         isPublishAbnormalPoseAlarm_ = true;
+//     }
+
+//     if (amclPoseList_.size() >= 10){
+//         amclPoseList_.pop_front();
+//     }
+
+//     std::cout << "amcl distance : " << distance << std::endl; 
+
+//     amclPoseList_.push_back(poseMsg);
+
+//     std::list<geometry_msgs::PoseWithCovarianceStamped>::iterator iter;
+
+//     double temp = 0.0;
+//     iter = amclPoseList_.begin();
+//     while( true ){
+//         double xTemp = (*iter).pose.pose.position.x;
+//         double yTemp = (*iter).pose.pose.position.y;
+//         ++iter;
+
+//         if (iter == amclPoseList_.end()){
+//             break;
+//         }
+//         else{
+//             double nextXTemp = (*iter).pose.pose.position.x;
+//             double nextYTemp = (*iter).pose.pose.position.y;
+
+//             double differenceXtemp = nextXTemp - xTemp;
+//             double differenceYtemp = nextYTemp - yTemp;
+            
+//             temp += sqrt(differenceXtemp*differenceXtemp + differenceYtemp*differenceYtemp);
+//         }
+//     }
+//     sumOfAmcl_ = temp;
+
+//     previousAmclPose_ = amclPose_;
+// }
+
+
+// void odomCombinedCallback(const geometry_msgs::PoseWithCovarianceStamped poseMsg)
+// {
+//     odomCombinedPose_ = poseMsg;
+//     if ( odomCombinedPoseList_.size() >=10 ){
+//         odomCombinedPoseList_.pop_front();        
+//     }
+//     odomCombinedPoseList_.push_back(poseMsg);
+
+//     std::list<geometry_msgs::PoseWithCovarianceStamped>::iterator iter;
+//     double temp = 0.0;
+//     iter = odomCombinedPoseList_.begin();
+//     while( true ){
+//         double xTemp = (*iter).pose.pose.position.x;
+//         double yTemp = (*iter).pose.pose.position.y;
+//         ++iter;
+
+//         if (iter == odomCombinedPoseList_.end()){
+//             break;
+//         }
+//         else{
+//             double nextXTemp = (*iter).pose.pose.position.x;
+//             double nextYTemp = (*iter).pose.pose.position.y;
+
+//             double differenceXtemp = nextXTemp - xTemp;
+//             double differenceYtemp = nextYTemp - yTemp;
+            
+//             temp += sqrt(differenceXtemp*differenceXtemp + differenceYtemp*differenceYtemp);
+//         }
+//     }
+    
+//     sumOfodomCombined_ = temp;
+// }
+
+void callback(const geometry_msgs::PoseWithCovarianceStampedConstPtr& amcl_pose_msg, const geometry_msgs::PoseWithCovarianceStampedConstPtr& odom_combined_msg)
+{
+    // Solve all of perception here...
+    amclPose_ = *amcl_pose_msg;
+    double differenceX = amclPose_.pose.pose.position.x - previousAmclPose_.pose.pose.position.x ;
+    double differenceY = amclPose_.pose.pose.position.y - previousAmclPose_.pose.pose.position.y ;
+    double distance = sqrt(differenceX * differenceX + differenceY * differenceY);
+    if ( distance > 0.6 ) {
+        count_ = 0;
+        isPublishAbnormalPoseAlarm_ = true;
+        ROS_WARN("Amcl distance is too big => amcl distance : %f" , distance );
+    }
+
+    if (amclPoseList_.size() >= 10){
+        amclPoseList_.pop_front();
+    }
+
+    //std::cout << "amcl distance : " << distance << std::endl; 
+
+    amclPoseList_.push_back(amclPose_);
+
+    std::list<geometry_msgs::PoseWithCovarianceStamped>::iterator iter;
+
+    double temp = 0.0;
+    double deltaTimeTemp = 0.0;
+    iter = amclPoseList_.begin();
+    while( true ){
+        double xTemp = (*iter).pose.pose.position.x;
+        double yTemp = (*iter).pose.pose.position.y;
+        double timeTemp = (*iter).header.stamp.toSec();
+
+        ++iter;
+
+        if (iter == amclPoseList_.end()){
+            break;
+        }
+        else{
+            double nextXTemp = (*iter).pose.pose.position.x;
+            double nextYTemp = (*iter).pose.pose.position.y;
+            double nextTimeTemp = (*iter).header.stamp.toSec();
+
+            double differenceXtemp = nextXTemp - xTemp;
+            double differenceYtemp = nextYTemp - yTemp;
+            double deltaTime = nextTimeTemp - timeTemp ;
+            
+            temp += sqrt(differenceXtemp*differenceXtemp + differenceYtemp*differenceYtemp);
+            deltaTimeTemp += deltaTime;
+        }
+    }
+    sumOfAmcl_ = temp;
+    meanOfAmclVelocity_ = sumOfAmcl_ / deltaTimeTemp;
+    previousAmclPose_ = amclPose_;
+
+
+    odomCombinedPose_ = *odom_combined_msg;
+    if ( odomCombinedPoseList_.size() >=10 ){
+        odomCombinedPoseList_.pop_front();        
+    }
+    odomCombinedPoseList_.push_back(odomCombinedPose_);
+    temp = 0.0;
+    deltaTimeTemp = 0.0;
+    iter = odomCombinedPoseList_.begin();
+    while( true ){
+        double xTemp = (*iter).pose.pose.position.x;
+        double yTemp = (*iter).pose.pose.position.y;
+        double timeTemp = (*iter).header.stamp.toSec();
+        ++iter;
+
+        if (iter == odomCombinedPoseList_.end()){
+            break;
+        }
+        else{
+            double nextXTemp = (*iter).pose.pose.position.x;
+            double nextYTemp = (*iter).pose.pose.position.y;
+            double nextTimeTemp = (*iter).header.stamp.toSec();
+
+
+            double differenceXtemp = nextXTemp - xTemp;
+            double differenceYtemp = nextYTemp - yTemp;
+            double deltaTime = nextTimeTemp - timeTemp ;
+            
+            temp += sqrt(differenceXtemp*differenceXtemp + differenceYtemp*differenceYtemp);
+            deltaTimeTemp += deltaTime;
+        }
+    }
+    
+    sumOfOdomCombined_ = temp;
+    meanOfOdomCombinedVelocity_ = sumOfOdomCombined_ / deltaTimeTemp;
+
+}
+
+void startJourneyCallback(const std_msgs::Empty& msg){
+    //isDriveStarted_ = true;    
+}
+
+void pathRunRequestCallback(const std_msgs::String& msg){
+    isDriveStarted_ = true;	
+}
+
+void pathRunCancelRequestCallback(const std_msgs::Empty& msg){
+    isDriveStarted_ = false;
+}
+
+void driveFinishNotiCallback(const std_msgs::Empty& msg){
+    isDriveStarted_ = false;
+}
+
+
+int main(int argc, char **argv)
+{
+    ROS_INFO("position_evaluator start\n");
+    ros::init(argc, argv, "position_evaluator");
+
+    ros::NodeHandle nh;
+    ros::Rate r(2.0);
+
+    //ros::Subscriber amclPoseSubscriber = nh.subscribe("/amcl_pose", 10, amclPoseCallback );
+    //ros::Subscriber odomCombinedSubscriber = nh.subscribe("/robot_pose_ekf/odom_combined", 10, odomCombinedCallback);
+    //ros::Subscriber wheelOdomPoseSubscriber = nh.subscribe("/odom", 10, wheelOdomPoseCallback);
+
+    message_filters::Subscriber<geometry_msgs::PoseWithCovarianceStamped> amcl_pose_sub(nh, "/amcl_pose", 1);
+    message_filters::Subscriber<geometry_msgs::PoseWithCovarianceStamped> odom_cmbn_sub(nh, "/robot_pose_ekf/odom_combined", 1);
+
+    typedef message_filters::sync_policies::ApproximateTime<geometry_msgs::PoseWithCovarianceStamped, geometry_msgs::PoseWithCovarianceStamped> MySyncPolicy;
+    //message_filters::TimeSynchronizer<geometry_msgs::PoseWithCovarianceStamped, geometry_msgs::PoseWithCovarianceStamped> sync(amcl_pose_sub, odom_cmbn_sub, 10);
+    message_filters::Synchronizer<MySyncPolicy> sync(MySyncPolicy(10), amcl_pose_sub, odom_cmbn_sub);
+    sync.registerCallback(boost::bind(&callback, _1, _2));
+    
+    ros::Subscriber start_journey_sub = nh.subscribe("/start_journey", 1, startJourneyCallback);
+
+    ros::Subscriber path_run_cancel_request_sub = nh.subscribe("/path_run_cancel_request", 1, pathRunCancelRequestCallback);
+    ros::Subscriber path_run_request_sub = nh.subscribe("/path_run_request", 1, pathRunRequestCallback);
+    ros::Subscriber drive_finish_noti_sub = nh.subscribe("/drive_finish_noti", 1, driveFinishNotiCallback);
+
+    sumOfAmcl_ = 0.0;
+    sumOfAmclDeltaTime_ = 0.0;
+    meanOfAmclVelocity_ = 0.0;
+    sumOfOdomCombined_ = 0.0;
+    sumOfOdomCombinedDeltaTime_ = 0.0;
+    meanOfOdomCombinedVelocity_ = 0.0;
+
+    abnormalPositionState_ = 0;
+    
+    pubAbnormalPoseAlarm_ = nh.advertise<std_msgs::Int32>("/abnormal_pose_alarm", 1);
+
+    count_ = 0 ;
+    isPublishAbnormalPoseAlarm_ = false;
+    isDriveStarted_ = false;
+
+    ros::Publisher pauseRequstPublisher = nh.advertise<std_msgs::Int32>("/move_request", 1);
+
+    while (ros::ok())
+    {  
+        //std::cout << "sumOfodomCombined : " << sumOfodomCombined_ << "  sumOfAmcl : " << sumOfAmcl_ << std::endl;
+
+        // �ѹ� Alert ��� 1�е����� �Ƚ�Բ�
+
+        if ( meanOfAmclVelocity_ - meanOfOdomCombinedVelocity_ > 0.5 && meanOfAmclVelocity_ > (meanOfOdomCombinedVelocity_ * 1.5) ){
+            ROS_WARN( "10MeanOfAmclVelocity is too big =>   meanOfAmclVelocity : %f  ,  meanOfOdomCombinedVelocity : %f" , meanOfAmclVelocity_ ,  meanOfOdomCombinedVelocity_ );
+            //std::cout << "sumOfodomCombined : " << sumOfodomCombined_ << "  sumOfAmcl : " << sumOfAmcl_ << std::endl;
+            //count_ = 0;
+            isPublishAbnormalPoseAlarm_ = true;
+        }
+        
+
+        if (isPublishAbnormalPoseAlarm_){            
+            if (count_ == 0){
+                if (isDriveStarted_) {
+                    std_msgs::Int32 msgPauseInt;
+                    msgPauseInt.data = 1;       
+                    pauseRequstPublisher.publish(msgPauseInt);
+                }
+                std_msgs::Int32 msgInt;
+                msgInt.data = 1;       
+                pubAbnormalPoseAlarm_.publish(msgInt);
+            }
+
+            ++count_;
+
+            if (count_ == 120){
+                count_ = 0;
+                isPublishAbnormalPoseAlarm_ = false;
+            }            
+        }        
+        
+        ros::spinOnce();
+        r.sleep(); 
+    }
+}

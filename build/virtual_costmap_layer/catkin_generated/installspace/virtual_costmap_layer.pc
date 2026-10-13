@@ -1,0 +1,8 @@
+prefix=/home/nvidia/dconic_nav/install
+
+Name: virtual_costmap_layer
+Description: Description of virtual_costmap_layer
+Version: 0.2.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib -lvirtual_layer
+Requires: costmap_2d dynamic_reconfigure custom_msgs tf

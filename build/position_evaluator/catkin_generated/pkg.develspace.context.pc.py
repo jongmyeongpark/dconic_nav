@@ -1,0 +1,8 @@
+# generated from catkin/cmake/template/pkg.context.pc.in
+CATKIN_PACKAGE_PREFIX = ""
+PROJECT_PKG_CONFIG_INCLUDE_DIRS = "".split(';') if "" != "" else []
+PROJECT_CATKIN_DEPENDS = "std_msgs;roscpp;geometry_msgs;tf;message_filters".replace(';', ' ')
+PKG_CONFIG_LIBRARIES_WITH_PREFIX = "".split(';') if "" != "" else []
+PROJECT_NAME = "position_evaluator"
+PROJECT_SPACE_DIR = "/home/nvidia/dconic_nav/devel/.private/position_evaluator"
+PROJECT_VERSION = "0.0.0"

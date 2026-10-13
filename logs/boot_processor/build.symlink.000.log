@@ -1,0 +1,8 @@
+Symlinking /home/nvidia/dconic_nav/devel/share/boot_processor/cmake/boot_processorConfig-version.cmake
+Symlinking /home/nvidia/dconic_nav/devel/share/boot_processor/cmake/boot_processor-msg-extras.cmake
+Symlinking /home/nvidia/dconic_nav/devel/share/boot_processor/cmake/boot_processorConfig.cmake
+Symlinking /home/nvidia/dconic_nav/devel/share/boot_processor/cmake/boot_processor-msg-paths.cmake
+Symlinking /home/nvidia/dconic_nav/devel/share/roseus/ros/boot_processor/manifest.l
+Symlinking /home/nvidia/dconic_nav/devel/lib/boot_processor/boot_processor
+Symlinking /home/nvidia/dconic_nav/devel/lib/pkgconfig/boot_processor.pc
+Symlinking /home/nvidia/dconic_nav/devel/lib/python3/dist-packages/boot_processor/__init__.py

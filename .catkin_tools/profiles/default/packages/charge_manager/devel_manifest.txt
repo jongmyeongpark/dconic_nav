@@ -1,0 +1,5 @@
+charge_manager
+/home/nvidia/dconic_nav/devel/.private/charge_manager/share/charge_manager/cmake/charge_managerConfig.cmake /home/nvidia/dconic_nav/devel/share/charge_manager/cmake/charge_managerConfig.cmake
+/home/nvidia/dconic_nav/devel/.private/charge_manager/share/charge_manager/cmake/charge_managerConfig-version.cmake /home/nvidia/dconic_nav/devel/share/charge_manager/cmake/charge_managerConfig-version.cmake
+/home/nvidia/dconic_nav/devel/.private/charge_manager/lib/pkgconfig/charge_manager.pc /home/nvidia/dconic_nav/devel/lib/pkgconfig/charge_manager.pc
+/home/nvidia/dconic_nav/devel/.private/charge_manager/lib/charge_manager/charge_manager_node /home/nvidia/dconic_nav/devel/lib/charge_manager/charge_manager_node

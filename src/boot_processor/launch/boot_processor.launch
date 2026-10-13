@@ -1,0 +1,3 @@
+<launch>
+    <node pkg="boot_processor" type="boot_processor" name="boot_processor" output="screen"/>
+</launch>

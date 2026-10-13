@@ -1,0 +1,4 @@
+<launch>
+    <node pkg="battery_checker" type="battery_checker_node" name="battery_checker" output="screen"/>
+    <!-- <node pkg="battery_checker" type="battery_checker_node" name="battery_checker" output="screen" launch-prefix="bash -c 'sleep 60; $0 $@' " /> -->
+</launch>

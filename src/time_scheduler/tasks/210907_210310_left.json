@@ -1,0 +1,22 @@
+{
+    "waypoint_name": "210907_111",
+    "length": 4,
+    "tasks": [
+        {
+            "task": "turn-left",
+            "times": 2
+        },
+        {
+            "task": "none",
+            "times": 0
+        },
+        {
+            "task": "pause",
+            "times": 10
+        },
+        {
+            "task": "turn-right",
+            "times": 1
+        }
+    ]
+}

@@ -1,0 +1,112 @@
+[  0%] Built target tf2_msgs_generate_messages_cpp
+[  0%] Built target std_msgs_generate_messages_py
+[  0%] Built target rosgraph_msgs_generate_messages_nodejs
+[  0%] Built target std_msgs_generate_messages_nodejs
+[  0%] Built target std_msgs_generate_messages_cpp
+[  0%] Built target actionlib_msgs_generate_messages_py
+[  0%] Built target tf2_msgs_generate_messages_eus
+[  0%] Built target tf2_msgs_generate_messages_nodejs
+[  0%] Built target roscpp_generate_messages_lisp
+[  0%] Built target roscpp_generate_messages_eus
+[  0%] Built target actionlib_generate_messages_lisp
+[  0%] Built target actionlib_generate_messages_cpp
+[  0%] Built target rosgraph_msgs_generate_messages_py
+[  0%] Built target geometry_msgs_generate_messages_py
+[  0%] Built target rosgraph_msgs_generate_messages_lisp
+[  0%] Built target actionlib_msgs_generate_messages_eus
+[  0%] Built target roscpp_generate_messages_cpp
+[  0%] Built target tf2_msgs_generate_messages_lisp
+[  0%] Built target roscpp_generate_messages_py
+[  0%] Built target geometry_msgs_generate_messages_nodejs
+[  0%] Built target _comm_app_generate_messages_check_deps_start_drive
+[  0%] Built target geometry_msgs_generate_messages_cpp
+[  0%] Built target tf2_msgs_generate_messages_py
+[  0%] Built target _comm_app_generate_messages_check_deps_state_msg
+[  0%] Built target geometry_msgs_generate_messages_lisp
+[  0%] Built target rosgraph_msgs_generate_messages_eus
+[  0%] Built target roscpp_generate_messages_nodejs
+[  0%] Built target rosgraph_msgs_generate_messages_cpp
+[  0%] Built target actionlib_msgs_generate_messages_cpp
+[  0%] Built target actionlib_generate_messages_eus
+[  0%] Built target actionlib_msgs_generate_messages_lisp
+[  0%] Built target std_msgs_generate_messages_lisp
+[  0%] Built target std_msgs_generate_messages_eus
+[  0%] Built target actionlib_generate_messages_py
+[  0%] Built target actionlib_msgs_generate_messages_nodejs
+[ 13%] Built target comm_app_generate_messages_nodejs
+[ 20%] Built target actionlib_generate_messages_nodejs
+[ 40%] Built target comm_app_generate_messages_py
+[ 53%] Built target comm_app_generate_messages_cpp
+[ 53%] Built target geometry_msgs_generate_messages_eus
+[ 66%] Built target comm_app_generate_messages_lisp
+[ 86%] Built target comm_app_generate_messages_eus
+[35m[1mScanning dependencies of target comm_app[0m
+[ 86%] Built target comm_app_generate_messages
+[ 93%] [32mBuilding CXX object CMakeFiles/comm_app.dir/src/map_info.cpp.o[0m
+[01m[K/home/nvidia/dconic_nav/src/comm_app/src/map_info.cpp:[m[K In function ‘[01m[Kbool gotoChargeCallback(std_srvs::Empty::Request&, std_srvs::Empty::Response&)[m[K’:
+[01m[K/home/nvidia/dconic_nav/src/comm_app/src/map_info.cpp:580:1:[m[K [01;35m[Kwarning: [m[Kno return statement in function returning non-void [[01;35m[K-Wreturn-type[m[K]
+  580 | [01;35m[K}[m[K
+      | [01;35m[K^[m[K
+In file included from [01m[K/opt/ros/noetic/include/ros/ros.h:40[m[K,
+                 from [01m[K/home/nvidia/dconic_nav/src/comm_app/src/map_info.cpp:2[m[K:
+[01m[K/home/nvidia/dconic_nav/src/comm_app/src/map_info.cpp:[m[K In function ‘[01m[Kvoid charge_setting_callback(const String&)[m[K’:
+[01m[K/home/nvidia/dconic_nav/src/comm_app/src/map_info.cpp:671:51:[m[K [01;31m[Kerror: [m[Kbase operand of ‘[01m[K->[m[K’ has non-pointer type ‘[01m[Kconst String[m[K’ {aka ‘[01m[Kconst std_msgs::String_<std::allocator<void> >[m[K’}
+  671 |   ROS_INFO("Received Charge Setting Data: %s", msg[01;31m[K->[m[Kdata.c_str());
+      |                                                   [01;31m[K^~[m[K
+[01m[K/opt/ros/noetic/include/ros/console.h:351:165:[m[K [01;36m[Knote: [m[Kin definition of macro ‘[01m[KROSCONSOLE_PRINT_AT_LOCATION_WITH_FILTER[m[K’
+  351 |     ::ros::console::print(filter, __rosconsole_define_location__loc.logger_, __rosconsole_define_location__loc.level_, __FILE__, __LINE__, __ROSCONSOLE_FUNCTION__, [01;36m[K__VA_ARGS__[m[K)
+      |                                                                                                                                                                     [01;36m[K^~~~~~~~~~~[m[K
+[01m[K/opt/ros/noetic/include/ros/console.h:390:7:[m[K [01;36m[Knote: [m[Kin expansion of macro ‘[01m[KROSCONSOLE_PRINT_AT_LOCATION[m[K’
+  390 |       [01;36m[KROSCONSOLE_PRINT_AT_LOCATION[m[K(__VA_ARGS__); \
+      |       [01;36m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/opt/ros/noetic/include/ros/console.h:575:35:[m[K [01;36m[Knote: [m[Kin expansion of macro ‘[01m[KROS_LOG_COND[m[K’
+  575 | #define ROS_LOG(level, name, ...) [01;36m[KROS_LOG_COND[m[K(true, level, name, __VA_ARGS__)
+      |                                   [01;36m[K^~~~~~~~~~~~[m[K
+[01m[K/opt/ros/noetic/include/rosconsole/macros_generated.h:110:23:[m[K [01;36m[Knote: [m[Kin expansion of macro ‘[01m[KROS_LOG[m[K’
+  110 | #define ROS_INFO(...) [01;36m[KROS_LOG[m[K(::ros::console::levels::Info, ROSCONSOLE_DEFAULT_NAME, __VA_ARGS__)
+      |                       [01;36m[K^~~~~~~[m[K
+[01m[K/home/nvidia/dconic_nav/src/comm_app/src/map_info.cpp:671:3:[m[K [01;36m[Knote: [m[Kin expansion of macro ‘[01m[KROS_INFO[m[K’
+  671 |   [01;36m[KROS_INFO[m[K("Received Charge Setting Data: %s", msg->data.c_str());
+      |   [01;36m[K^~~~~~~~[m[K
+[01m[K/home/nvidia/dconic_nav/src/comm_app/src/map_info.cpp:675:9:[m[K [01;31m[Kerror: [m[K‘[01m[Kjson[m[K’ was not declared in this scope
+  675 |         [01;31m[Kjson[m[K j = json::parse(msg->data);
+      |         [01;31m[K^~~~[m[K
+[01m[K/home/nvidia/dconic_nav/src/comm_app/src/map_info.cpp:675:9:[m[K [01;36m[Knote: [m[Ksuggested alternatives:
+In file included from [01m[K/usr/include/nlohmann/detail/meta/type_traits.hpp:12[m[K,
+                 from [01m[K/usr/include/nlohmann/detail/conversions/from_json.hpp:19[m[K,
+                 from [01m[K/usr/include/nlohmann/adl_serializer.hpp:5[m[K,
+                 from [01m[K/usr/include/nlohmann/json.hpp:51[m[K,
+                 from [01m[K/home/nvidia/dconic_nav/src/comm_app/src/map_info.cpp:27[m[K:
+[01m[K/usr/include/nlohmann/json_fwd.hpp:61:7:[m[K [01;36m[Knote: [m[K  ‘[01m[Knlohmann::json[m[K’
+   61 | using [01;36m[Kjson[m[K = basic_json<>;
+      |       [01;36m[K^~~~[m[K
+In file included from [01m[K/usr/include/nlohmann/detail/input/binary_reader.hpp:17[m[K,
+                 from [01m[K/usr/include/nlohmann/json.hpp:55[m[K,
+                 from [01m[K/home/nvidia/dconic_nav/src/comm_app/src/map_info.cpp:27[m[K:
+[01m[K/usr/include/nlohmann/detail/input/input_adapters.hpp:24:29:[m[K [01;36m[Knote: [m[K  ‘[01m[Knlohmann::detail::input_format_t::json[m[K’
+   24 | enum class input_format_t { [01;36m[Kjson[m[K, cbor, msgpack, ubjson, bson };
+      |                             [01;36m[K^~~~[m[K
+[01m[K/home/nvidia/dconic_nav/src/comm_app/src/map_info.cpp:678:42:[m[K [01;31m[Kerror: [m[K‘[01m[Kj[m[K’ was not declared in this scope; did you mean ‘[01m[Kjn[m[K’?
+  678 |         std::vector<std::string> times = [01;31m[Kj[m[K["times"];
+      |                                          [01;31m[K^[m[K
+      |                                          [32m[Kjn[m[K
+[01m[K/home/nvidia/dconic_nav/src/comm_app/src/map_info.cpp:698:14:[m[K [01;31m[Kerror: [m[K‘[01m[Kjson[m[K’ does not name a type
+  698 |     } catch ([01;31m[Kjson[m[K::parse_error& e) {
+      |              [01;31m[K^~~~[m[K
+[01m[K/home/nvidia/dconic_nav/src/comm_app/src/map_info.cpp:698:31:[m[K [01;31m[Kerror: [m[Kexpected unqualified-id before ‘[01m[K&[m[K’ token
+  698 |     } catch (json::parse_error[01;31m[K&[m[K e) {
+      |                               [01;31m[K^[m[K
+[01m[K/home/nvidia/dconic_nav/src/comm_app/src/map_info.cpp:698:31:[m[K [01;31m[Kerror: [m[Kexpected ‘[01m[K)[m[K’ before ‘[01m[K&[m[K’ token
+  698 |     } catch [34m[K([m[Kjson::parse_error[01;31m[K&[m[K e) {
+      |             [34m[K~[m[K                 [01;31m[K^[m[K
+      |                               [32m[K)[m[K
+[01m[K/home/nvidia/dconic_nav/src/comm_app/src/map_info.cpp:698:31:[m[K [01;31m[Kerror: [m[Kexpected ‘[01m[K{[m[K’ before ‘[01m[K&[m[K’ token
+[01m[K/home/nvidia/dconic_nav/src/comm_app/src/map_info.cpp:698:33:[m[K [01;31m[Kerror: [m[K‘[01m[Ke[m[K’ was not declared in this scope
+  698 |     } catch (json::parse_error& [01;31m[Ke[m[K) {
+      |                                 [01;31m[K^[m[K
+[01m[K/home/nvidia/dconic_nav/src/comm_app/src/map_info.cpp:700:7:[m[K [01;31m[Kerror: [m[Kexpected primary-expression before ‘[01m[Kcatch[m[K’
+  700 |     } [01;31m[Kcatch[m[K (std::exception& e) {
+      |       [01;31m[K^~~~~[m[K
+make[2]: *** [CMakeFiles/comm_app.dir/build.make:63: CMakeFiles/comm_app.dir/src/map_info.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:690: CMakeFiles/comm_app.dir/all] Error 2
+make: *** [Makefile:141: all] Error 2

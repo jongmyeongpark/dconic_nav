@@ -1,0 +1,36 @@
+{
+    "waypoint_name": "office_250623_0122",
+    "length": 6,
+    "tasks": [
+        {
+            "task": "none",
+            "task_value": 0,
+            "task_num": 0
+        },
+        {
+            "task": "speak",
+            "task_value": 15,
+            "task_num": 1
+        },
+        {
+            "task": "speak",
+            "task_value": 20,
+            "task_num": 0
+        },
+        {
+            "task": "speak",
+            "task_value": 20,
+            "task_num": 2
+        },
+        {
+            "task": "none",
+            "task_value": 0,
+            "task_num": 0
+        },
+        {
+            "task": "none",
+            "task_value": 0,
+            "task_num": 0
+        }
+    ]
+}

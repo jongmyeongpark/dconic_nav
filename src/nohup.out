@@ -1,0 +1,1200 @@
+ros_topic_mqtt_bridge.py:203: DeprecationWarning: Callback API version 1 is deprecated, update to latest version
+  self.client = mqtt.Client(client_id=client_id, clean_session=True, protocol=mqtt.MQTTv311)
+1970-01-01 14:40:37,559 INFO ros_topic_mqtt_bridge - [STEP:START] 브리지 시작 준비 f_cd=INTE-PLA-0002B-012509-00000 robot_id=INTE-PLA-0002B-012509-00000 backend=platy dry_run=False
+1970-01-01 14:40:37,559 INFO ros_topic_mqtt_bridge - [STEP:START] 1/3 MQTT 연결 단계 진입
+1970-01-01 14:40:37,559 INFO ros_topic_mqtt_bridge - [STEP:MQTT_CONNECT] 비동기 연결 시작 host=10.156.196.155 port=1883 keepalive=60 client_id=demo_agent_ros_bridge_351527_20437
+1970-01-01 14:40:37,562 INFO ros_topic_mqtt_bridge - [STEP:MQTT_CONNECT] TCP probe 성공 host=10.156.196.155 port=1883
+1970-01-01 14:40:37,570 INFO ros_topic_mqtt_bridge - [STEP:MQTT_CONNECT] 브로커 연결 완료, 등록 구독 수=0
+1970-01-01 14:40:37,571 INFO ros_topic_mqtt_bridge - [STEP:MQTT_CONNECT] 네트워크 루프 시작 완료, 연결 실패 시 백그라운드 재시도
+1970-01-01 14:40:37,571 INFO ros_topic_mqtt_bridge - [STEP:START] 2/3 ROS 초기화 단계 진입
+1970-01-01 14:40:37,571 INFO ros_topic_mqtt_bridge - [STEP:ROS_INIT] ROS 초기화 시도 backend=platy
+1970-01-01 14:40:37,571 INFO ros_topic_mqtt_bridge - [STEP:ROS_INIT] ROS_MASTER_URI 기존 환경값 사용: http://192.168.10.15:11311
+1970-01-01 14:40:37,571 INFO ros_topic_mqtt_bridge - [STEP:ROS_INIT] rospy 노드 초기화 시작
+ros_topic_mqtt_bridge.py:203: DeprecationWarning: Callback API version 1 is deprecated, update to latest version
+  self.client = mqtt.Client(client_id=client_id, clean_session=True, protocol=mqtt.MQTTv311)
+1970-01-01 14:47:41,055 INFO ros_topic_mqtt_bridge - [STEP:START] 브리지 시작 준비 f_cd=ITGT_PLAT_100000_2604_0039_ee0f robot_id=ITGT_PLAT_100000_2604_0039_ee0f backend=platy dry_run=False
+1970-01-01 14:47:41,057 INFO ros_topic_mqtt_bridge - [STEP:START] 1/3 MQTT 연결 단계 진입
+1970-01-01 14:47:41,057 INFO ros_topic_mqtt_bridge - [STEP:MQTT_CONNECT] 비동기 연결 시작 host=10.156.196.155 port=1883 keepalive=60 client_id=demo_agent_ros_bridge_359410_20861
+1970-01-01 14:47:41,061 INFO ros_topic_mqtt_bridge - [STEP:MQTT_CONNECT] TCP probe 성공 host=10.156.196.155 port=1883
+1970-01-01 14:47:41,071 INFO ros_topic_mqtt_bridge - [STEP:MQTT_CONNECT] 네트워크 루프 시작 완료, 연결 실패 시 백그라운드 재시도
+1970-01-01 14:47:41,071 INFO ros_topic_mqtt_bridge - [STEP:START] 2/3 ROS 초기화 단계 진입
+1970-01-01 14:47:41,071 INFO ros_topic_mqtt_bridge - [STEP:ROS_INIT] ROS 초기화 시도 backend=platy
+1970-01-01 14:47:41,071 INFO ros_topic_mqtt_bridge - [STEP:ROS_INIT] ROS_MASTER_URI 기존 환경값 사용: http://192.168.10.15:11311
+1970-01-01 14:47:41,071 INFO ros_topic_mqtt_bridge - [STEP:ROS_INIT] rospy 노드 초기화 시작
+1970-01-01 14:47:41,088 INFO ros_topic_mqtt_bridge - [STEP:MQTT_CONNECT] 브로커 연결 완료, 등록 구독 수=0
+ros_topic_mqtt_bridge.py:409: DeprecationWarning: Callback API version 1 is deprecated, update to latest version
+  self.client = mqtt.Client(client_id=client_id, clean_session=True, protocol=mqtt.MQTTv311)
+2026-04-29 21:34:07,932 INFO ros_topic_mqtt_bridge - [STEP:START] 브리지 시작 준비 f_cd=ITGT_PLAT_100000_2604_0039_ee0f robot_id=ITGT_PLAT_100000_2604_0039_ee0f backend=platy dry_run=False
+2026-04-29 21:34:07,940 INFO ros_topic_mqtt_bridge - [STEP:START] 1/3 MQTT 연결 단계 진입
+2026-04-29 21:34:07,941 INFO ros_topic_mqtt_bridge - [STEP:MQTT_CONNECT] 비동기 연결 시작 host=10.156.196.155 port=1883 keepalive=60 client_id=demo_agent_ros_bridge_669554_1777466047
+2026-04-29 21:34:07,948 INFO ros_topic_mqtt_bridge - [STEP:MQTT_CONNECT] TCP probe 성공 host=10.156.196.155 port=1883
+2026-04-29 21:34:07,958 INFO ros_topic_mqtt_bridge - [STEP:MQTT_CONNECT] 브로커 연결 완료, 등록 구독 수=0
+2026-04-29 21:34:07,964 INFO ros_topic_mqtt_bridge - [STEP:MQTT_CONNECT] 네트워크 루프 시작 완료, 연결 실패 시 백그라운드 재시도
+2026-04-29 21:34:07,965 INFO ros_topic_mqtt_bridge - [STEP:START] 2/3 ROS 초기화 단계 진입
+2026-04-29 21:34:07,965 INFO ros_topic_mqtt_bridge - [STEP:ROS_INIT] ROS 초기화 시도 backend=platy
+2026-04-29 21:34:07,965 INFO ros_topic_mqtt_bridge - [STEP:ROS_INIT] ROS_MASTER_URI 기존 환경값 사용: http://192.168.10.15:11311
+2026-04-29 21:34:07,965 INFO ros_topic_mqtt_bridge - [STEP:ROS_INIT] rospy 노드 초기화 시작
+ros_topic_mqtt_bridge.py:442: DeprecationWarning: Callback API version 1 is deprecated, update to latest version
+  self.client = mqtt.Client(client_id=client_id, clean_session=True, protocol=mqtt.MQTTv311)
+2026-04-30 13:59:16,558 INFO ros_topic_mqtt_bridge - [STEP:START] 브리지 시작 준비 f_cd=ITGT_PLAT_100000_2604_0039_ee0f robot_id=ITGT_PLAT_100000_2604_0039_ee0f backend=platy dry_run=False
+2026-04-30 13:59:16,559 INFO ros_topic_mqtt_bridge - [STEP:START] 1/3 MQTT 연결 단계 진입
+2026-04-30 13:59:16,559 INFO ros_topic_mqtt_bridge - [STEP:MQTT_CONNECT] 비동기 연결 시작 host=10.156.196.155 port=1883 keepalive=60 client_id=demo_agent_ros_bridge_1714856_1777525156
+2026-04-30 13:59:16,566 INFO ros_topic_mqtt_bridge - [STEP:MQTT_CONNECT] TCP probe 성공 host=10.156.196.155 port=1883
+2026-04-30 13:59:16,581 INFO ros_topic_mqtt_bridge - [STEP:MQTT_CONNECT] 네트워크 루프 시작 완료, 연결 실패 시 백그라운드 재시도
+2026-04-30 13:59:16,581 INFO ros_topic_mqtt_bridge - [STEP:START] 2/3 ROS 초기화 단계 진입
+2026-04-30 13:59:16,581 INFO ros_topic_mqtt_bridge - [STEP:ROS_INIT] ROS 초기화 시도 backend=platy
+2026-04-30 13:59:16,581 INFO ros_topic_mqtt_bridge - [STEP:ROS_INIT] ROS_MASTER_URI 기존 환경값 사용: http://192.168.10.15:11311
+2026-04-30 13:59:16,581 INFO ros_topic_mqtt_bridge - [STEP:ROS_INIT] rospy 노드 초기화 시작
+2026-04-30 13:59:16,597 INFO ros_topic_mqtt_bridge - [STEP:MQTT_CONNECT] 브로커 연결 완료, 등록 구독 수=0
+ros_topic_mqtt_bridge.py:442: DeprecationWarning: Callback API version 1 is deprecated, update to latest version
+  self.client = mqtt.Client(client_id=client_id, clean_session=True, protocol=mqtt.MQTTv311)
+2026-04-30 14:15:07,552 INFO ros_topic_mqtt_bridge - [STEP:START] 브리지 시작 준비 f_cd=ITGT_PLAT_100000_2604_0039_ee0f robot_id=ITGT_PLAT_100000_2604_0039_ee0f backend=platy dry_run=False
+2026-04-30 14:15:07,552 INFO ros_topic_mqtt_bridge - [STEP:START] 1/3 MQTT 연결 단계 진입
+2026-04-30 14:15:07,552 INFO ros_topic_mqtt_bridge - [STEP:MQTT_CONNECT] 비동기 연결 시작 host=10.156.196.155 port=1883 keepalive=60 client_id=demo_agent_ros_bridge_1726896_1777526107
+2026-04-30 14:15:07,559 INFO ros_topic_mqtt_bridge - [STEP:MQTT_CONNECT] TCP probe 성공 host=10.156.196.155 port=1883
+2026-04-30 14:15:07,568 INFO ros_topic_mqtt_bridge - [STEP:MQTT_CONNECT] 네트워크 루프 시작 완료, 연결 실패 시 백그라운드 재시도
+2026-04-30 14:15:07,569 INFO ros_topic_mqtt_bridge - [STEP:START] 2/3 ROS 초기화 단계 진입
+2026-04-30 14:15:07,569 INFO ros_topic_mqtt_bridge - [STEP:ROS_INIT] ROS 초기화 시도 backend=platy
+2026-04-30 14:15:07,569 INFO ros_topic_mqtt_bridge - [STEP:ROS_INIT] ROS_MASTER_URI 기존 환경값 사용: http://192.168.10.15:11311
+2026-04-30 14:15:07,569 INFO ros_topic_mqtt_bridge - [STEP:ROS_INIT] rospy 노드 초기화 시작
+2026-04-30 14:15:07,596 INFO ros_topic_mqtt_bridge - [STEP:MQTT_CONNECT] 브로커 연결 완료, 등록 구독 수=0
+[INFO] [1777525200.035758]: [MQTT_COMMAND_RECEIVE] topic=flyinglet/ITGT_PLAT_100000_2604_0039_ee0f/robot/command command_id=af4b4f1c-f137-4688-9b48-85e71187a503 normalized_type=mission_result_acquire_and_upload raw_type=mission_result_acquire_and_upload param_keys=-
+[INFO] [1777525200.039265]: [CMD→ROS] step=route command_id=af4b4f1c-f137-4688-9b48-85e71187a503 mqtt_topic=flyinglet/ITGT_PLAT_100000_2604_0039_ee0f/robot/command backend=platy normalized_cmd=mission_result_acquire_and_upload
+[INFO] [1777525200.041981]: [CMD→ROS] step=handler command_id=af4b4f1c-f137-4688-9b48-85e71187a503 handler=mission_upload (ROS 미사용, HTTP 업로드)
+[INFO] [1777525200.045257]: [MQTT_COMMAND_RESPONSE] topic=flyinglet/ITGT_PLAT_100000_2604_0039_ee0f/robot/command/response command_id=af4b4f1c-f137-4688-9b48-85e71187a503 type=mission_result_acquire_and_upload success=False error=image_not_found:/home/nvidia/images emit=True
+[INFO] [1777525800.003935]: [MQTT_COMMAND_RECEIVE] topic=flyinglet/ITGT_PLAT_100000_2604_0039_ee0f/robot/command command_id=b78494c5-691c-497d-baa2-c3df29d0793e normalized_type=mission_result_acquire_and_upload raw_type=mission_result_acquire_and_upload param_keys=-
+[INFO] [1777525800.007576]: [CMD→ROS] step=route command_id=b78494c5-691c-497d-baa2-c3df29d0793e mqtt_topic=flyinglet/ITGT_PLAT_100000_2604_0039_ee0f/robot/command backend=platy normalized_cmd=mission_result_acquire_and_upload
+[INFO] [1777525800.009894]: [CMD→ROS] step=handler command_id=b78494c5-691c-497d-baa2-c3df29d0793e handler=mission_upload (ROS 미사용, HTTP 업로드)
+[INFO] [1777525800.012777]: [MQTT_COMMAND_RESPONSE] topic=flyinglet/ITGT_PLAT_100000_2604_0039_ee0f/robot/command/response command_id=b78494c5-691c-497d-baa2-c3df29d0793e type=mission_result_acquire_and_upload success=False error=image_not_found:/home/nvidia/images emit=True
+ros_topic_mqtt_bridge.py:442: DeprecationWarning: Callback API version 1 is deprecated, update to latest version
+  self.client = mqtt.Client(client_id=client_id, clean_session=True, protocol=mqtt.MQTTv311)
+2026-04-30 14:16:50,355 INFO ros_topic_mqtt_bridge - [STEP:START] 브리지 시작 준비 f_cd=ITGT_PLAT_100000_2604_0039_ee0f robot_id=ITGT_PLAT_100000_2604_0039_ee0f backend=platy dry_run=False
+2026-04-30 14:16:50,356 INFO ros_topic_mqtt_bridge - [STEP:START] 1/3 MQTT 연결 단계 진입
+2026-04-30 14:16:50,356 INFO ros_topic_mqtt_bridge - [STEP:MQTT_CONNECT] 비동기 연결 시작 host=10.156.196.155 port=1883 keepalive=60 client_id=demo_agent_ros_bridge_1728344_1777526210
+2026-04-30 14:16:50,360 INFO ros_topic_mqtt_bridge - [STEP:MQTT_CONNECT] TCP probe 성공 host=10.156.196.155 port=1883
+2026-04-30 14:16:50,363 INFO ros_topic_mqtt_bridge - [STEP:MQTT_CONNECT] 네트워크 루프 시작 완료, 연결 실패 시 백그라운드 재시도
+2026-04-30 14:16:50,363 INFO ros_topic_mqtt_bridge - [STEP:START] 2/3 ROS 초기화 단계 진입
+2026-04-30 14:16:50,363 INFO ros_topic_mqtt_bridge - [STEP:ROS_INIT] ROS 초기화 시도 backend=platy
+2026-04-30 14:16:50,363 INFO ros_topic_mqtt_bridge - [STEP:ROS_INIT] ROS_MASTER_URI 기존 환경값 사용: http://192.168.10.15:11311
+2026-04-30 14:16:50,363 INFO ros_topic_mqtt_bridge - [STEP:ROS_INIT] rospy 노드 초기화 시작
+2026-04-30 14:16:50,389 INFO ros_topic_mqtt_bridge - [STEP:MQTT_CONNECT] 브로커 연결 완료, 등록 구독 수=0
+ros_topic_mqtt_bridge.py:501: DeprecationWarning: Callback API version 1 is deprecated, update to latest version
+  self.client = mqtt.Client(client_id=client_id, clean_session=True, protocol=mqtt.MQTTv311)
+2026-05-04 16:01:46,246 INFO ros_topic_mqtt_bridge - [STEP:START] 브리지 시작 준비 f_cd=ITGT_PLAT_100000_2604_0039_ee0f robot_id=ITGT_PLAT_100000_2604_0039_ee0f backend=platy dry_run=False
+2026-05-04 16:01:46,247 INFO ros_topic_mqtt_bridge - [STEP:START] 1/3 MQTT 연결 단계 진입
+2026-05-04 16:01:46,248 INFO ros_topic_mqtt_bridge - [STEP:MQTT_CONNECT] 비동기 연결 시작 host=10.156.196.155 port=1883 keepalive=60 client_id=demo_agent_ros_bridge_1642689_1777878106
+2026-05-04 16:01:46,278 INFO ros_topic_mqtt_bridge - [STEP:MQTT_CONNECT] TCP probe 성공 host=10.156.196.155 port=1883
+2026-05-04 16:01:46,290 INFO ros_topic_mqtt_bridge - [STEP:MQTT_CONNECT] 브로커 연결 완료, 등록 구독 수=0
+2026-05-04 16:01:46,298 INFO ros_topic_mqtt_bridge - [STEP:MQTT_CONNECT] 네트워크 루프 시작 완료, 연결 실패 시 백그라운드 재시도
+2026-05-04 16:01:46,298 INFO ros_topic_mqtt_bridge - [STEP:START] 2/3 ROS 초기화 단계 진입
+2026-05-04 16:01:46,298 INFO ros_topic_mqtt_bridge - [STEP:ROS_INIT] ROS 초기화 시도 backend=platy
+2026-05-04 16:01:46,298 INFO ros_topic_mqtt_bridge - [STEP:ROS_INIT] ROS_MASTER_URI 기존 환경값 사용: http://192.168.10.15:11311
+2026-05-04 16:01:46,299 INFO ros_topic_mqtt_bridge - [STEP:ROS_INIT] rospy 노드 초기화 시작
+INFO:__main__:/.env 파일 있음...
+INFO:__main__:--check 실행...
+INFO:__main__:네트워크 상태 점검
+INFO:__main__:네트워크 접속시도...
+INFO:__main__:네트워크 접속 재시도...1
+INFO:__main__:네트워크 접속시도...
+INFO:__main__:네트워크 접속 재시도...2
+INFO:__main__:네트워크 접속시도...
+INFO:__main__:네트워크 접속 재시도...3
+INFO:__main__:네트워크 접속시도...
+INFO:__main__:네트워크 접속 재시도...4
+INFO:__main__:네트워크 접속시도...
+INFO:__main__:네트워크 접속 재시도...5
+INFO:__main__:네트워크 접속시도...
+INFO:__main__:네트워크 접속 재시도...6
+INFO:__main__:네트워크 접속시도...
+INFO:__main__:네트워크 접속 재시도...7
+INFO:__main__:네트워크 접속시도...
+INFO:__main__:네트워크 접속 재시도...8
+INFO:__main__:네트워크 접속시도...
+INFO:__main__:네트워크 접속 재시도...9
+INFO:__main__:네트워크 접속시도...
+INFO:__main__:네트워크 접속 재시도...10
+INFO:__main__:네트워크 접속 실패
+Traceback (most recent call last):
+  File "flyinglet-device-authentication-v1.3.2_cloud.py", line 354, in <module>
+  File "flyinglet-device-authentication-v1.3.2_cloud.py", line 116, in argpaser
+NameError: name 'exit' is not defined
+[1703083] Failed to execute script 'flyinglet-device-authentication-v1.3.2_cloud' due to unhandled exception!
+Network connection is not available.
+/home/nvidia/dconic_nav/src/media_streamer/src/media_streamer/streamer.py:3: PyGIWarning: Gst was imported without specifying a version first. Use gi.require_version('Gst', '1.0') before import to ensure that the right version gets loaded.
+  from gi.repository import Gst, GObject
+/usr/lib/python3/dist-packages/gi/__init__.py
+[SINGLETON] Creating new instance
+[INFO] [1777886369.801816]: [SINGLETON] Creating new WSClient instance - Socket.IO http://10.156.196.159:3000
+[INFO] [1777886369.820758]: [SINGLETON] Starting Socket.IO connection...
+[INFO] [1777886369.843635]: Socket.IO connected
+on_connected
+[INFO] [1777886370.103247]: Mediasoup channel ready: ITGT_PLAT_100000_2604_0039_ee0f, response={'channelId': '59df1a9b-eaca-4206-bba8-95bb2d560e27', 'fcd': 'ITGT_PLAT_100000_2604_0039_ee0f', 'rtpCapabilities': {'codecs': [{'kind': 'video', 'mimeType': 'video/VP8', 'clockRate': 90000, 'rtcpFeedback': [{'type': 'nack', 'parameter': ''}, {'type': 'nack', 'parameter': 'pli'}, {'type': 'ccm', 'parameter': 'fir'}, {'type': 'goog-remb', 'parameter': ''}, {'type': 'transport-cc', 'parameter': ''}], 'parameters': {}, 'preferredPayloadType': 100}, {'kind': 'video', 'mimeType': 'video/rtx', 'preferredPayloadType': 101, 'clockRate': 90000, 'parameters': {'apt': 100}, 'rtcpFeedback': []}, {'kind': 'video', 'mimeType': 'video/H264', 'clockRate': 90000, 'parameters': {'level-asymmetry-allowed': 1, 'packetization-mode': 1, 'profile-level-id': '42e01f'}, 'rtcpFeedback': [{'type': 'nack', 'parameter': ''}, {'type': 'nack', 'parameter': 'pli'}, {'type': 'ccm', 'parameter': 'fir'}, {'type': 'goog-remb', 'parameter': ''}, {'type': 'transport-cc', 'parameter': ''}], 'preferredPayloadType': 102}, {'kind': 'video', 'mimeType': 'video/rtx', 'preferredPayloadType': 103, 'clockRate': 90000, 'parameters': {'apt': 102}, 'rtcpFeedback': []}, {'kind': 'audio', 'mimeType': 'audio/opus', 'clockRate': 48000, 'channels': 2, 'rtcpFeedback': [{'type': 'nack', 'parameter': ''}, {'type': 'transport-cc', 'parameter': ''}], 'parameters': {}, 'preferredPayloadType': 111}], 'headerExtensions': [{'kind': 'audio', 'uri': 'urn:ietf:params:rtp-hdrext:sdes:mid', 'preferredId': 1, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'urn:ietf:params:rtp-hdrext:sdes:mid', 'preferredId': 1, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'urn:ietf:params:rtp-hdrext:sdes:rtp-stream-id', 'preferredId': 2, 'preferredEncrypt': False, 'direction': 'recvonly'}, {'kind': 'video', 'uri': 'urn:ietf:params:rtp-hdrext:sdes:repaired-rtp-stream-id', 'preferredId': 3, 'preferredEncrypt': False, 'direction': 'recvonly'}, {'kind': 'audio', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time', 'preferredId': 4, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time', 'preferredId': 4, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'http://www.ietf.org/id/draft-holmer-rmcat-transport-wide-cc-extensions-01', 'preferredId': 5, 'preferredEncrypt': False, 'direction': 'recvonly'}, {'kind': 'video', 'uri': 'http://www.ietf.org/id/draft-holmer-rmcat-transport-wide-cc-extensions-01', 'preferredId': 5, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'urn:ietf:params:rtp-hdrext:ssrc-audio-level', 'preferredId': 6, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'https://aomediacodec.github.io/av1-rtp-spec/#dependency-descriptor-rtp-header-extension', 'preferredId': 7, 'preferredEncrypt': False, 'direction': 'recvonly'}, {'kind': 'video', 'uri': 'urn:3gpp:video-orientation', 'preferredId': 8, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'urn:ietf:params:rtp-hdrext:toffset', 'preferredId': 9, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/abs-capture-time', 'preferredId': 10, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/abs-capture-time', 'preferredId': 10, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/playout-delay', 'preferredId': 11, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/playout-delay', 'preferredId': 11, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'urn:mediasoup:params:rtp-hdrext:packet-id', 'preferredId': 12, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'urn:mediasoup:params:rtp-hdrext:packet-id', 'preferredId': 12, 'preferredEncrypt': False, 'direction': 'sendrecv'}]}}
+WARNING: omxh264enc not available, trying nvh264enc for FRONT-CAM
+WARNING: nvh264enc not available, trying x264enc for FRONT-CAM
+DEBUG: x264enc (software) created successfully for FRONT-CAM
+Successfully created pipeline for FRONT-CAM using x264enc
+[INFO] [1777886370.147028]: Socket.IO event ignored: consumer-removed {'camName': 'FRONT-CAM', 'count': 0}
+[INFO] [1777886370.150100]: Plain RTP producer ready: stream=FRONT-CAM cam=FRONT-CAM rtp=10.156.196.159:37745 pt=102 ssrc=1022957017
+set connection info (FRONT-CAM)  = RtpConnectionInfo(host='10.156.196.159', port=37745, rtcp_port=34508, payload_type=102, ssrc=1022957017, srtp_key=None, srtp_salt=None)
+start pipeline
+
+Starting pipeline for FRONT-CAM
+Pipeline structure:
+Element: x264enc (x264enc)
+Element: queue (queue)
+Element: videoconvert (videoconvert)
+Element: jpegdec (jpegdec)
+Element: appsrc (appsrc)
+Element: udpsink (udpsink)
+Element: rtph264pay (rtph264pay)
+WARNING: omxh264enc not available, trying nvh264enc for REAR-CAM
+WARNING: nvh264enc not available, trying x264enc for REAR-CAM
+DEBUG: x264enc (software) created successfully for REAR-CAM
+state changed (FRONT-CAM) = StreamState.STARTED
+Pipeline state: <enum GST_STATE_PLAYING of type Gst.State>, pending: <enum GST_STATE_VOID_PENDING of type Gst.State>, return: <enum GST_STATE_CHANGE_SUCCESS of type Gst.StateChangeReturn>
+Successfully created pipeline for REAR-CAM using x264enc
+[INFO] [1777886370.165979]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 0}
+[INFO] [1777886370.170093]: Plain RTP producer ready: stream=REAR-CAM cam=REAR-CAM rtp=10.156.196.159:39114 pt=102 ssrc=3286018697
+set connection info (REAR-CAM)  = RtpConnectionInfo(host='10.156.196.159', port=39114, rtcp_port=33280, payload_type=102, ssrc=3286018697, srtp_key=None, srtp_salt=None)
+start pipeline
+
+Starting pipeline for REAR-CAM
+Pipeline structure:
+Element: x264enc (x264enc)
+Element: queue (queue)
+Element: videoconvert (videoconvert)
+Element: jpegdec (jpegdec)
+Element: appsrc (appsrc)
+Element: udpsink (udpsink)
+Element: rtph264pay (rtph264pay)
+state changed (REAR-CAM) = StreamState.STARTED
+Pipeline state: <enum GST_STATE_PLAYING of type Gst.State>, pending: <enum GST_STATE_VOID_PENDING of type Gst.State>, return: <enum GST_STATE_CHANGE_SUCCESS of type Gst.StateChangeReturn>
+<module 'sensor_msgs.msg' from '/opt/ros/noetic/lib/python3/dist-packages/sensor_msgs/msg/__init__.py'>
+<class 'sensor_msgs.msg._CompressedImage.CompressedImage'>
+<module 'sensor_msgs.msg' from '/opt/ros/noetic/lib/python3/dist-packages/sensor_msgs/msg/__init__.py'>
+<class 'sensor_msgs.msg._CompressedImage.CompressedImage'>
+[INFO] [1777886370.256625]: Socket.IO event ignored: consumer-added {'camName': 'FRONT-CAM', 'count': 1}
+[INFO] [1777886370.280719]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 1}
+[INFO] [1777886391.849378]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 2}
+[INFO] [1777886391.953189]: Socket.IO event ignored: consumer-added {'camName': 'FRONT-CAM', 'count': 2}
+[INFO] [1777886391.986309]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 3}
+[INFO] [1777886527.143605]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 2}
+[INFO] [1777886527.148561]: Socket.IO event ignored: consumer-removed {'camName': 'FRONT-CAM', 'count': 1}
+[INFO] [1777886527.149788]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 1}
+[INFO] [1777886726.448096]: Socket.IO event ignored: consumer-added {'camName': 'FRONT-CAM', 'count': 2}
+packet queue is empty, aborting
+[INFO] [1777886726.498923]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 2}
+[INFO] [1777886726.550894]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 3}
+[INFO] [1777886739.259406]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 2}
+[INFO] [1777886739.263913]: Socket.IO event ignored: consumer-removed {'camName': 'FRONT-CAM', 'count': 1}
+[INFO] [1777886739.274431]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 1}
+[INFO] [1777886795.979820]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 2}
+[INFO] [1777886795.991714]: Socket.IO event ignored: consumer-added {'camName': 'FRONT-CAM', 'count': 2}
+[INFO] [1777886796.027708]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 3}
+[INFO] [1777886804.914023]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 4}
+[INFO] [1777886804.982849]: Socket.IO event ignored: consumer-added {'camName': 'FRONT-CAM', 'count': 3}
+[INFO] [1777886805.041821]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 5}
+[INFO] [1777886805.508815]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 4}
+[INFO] [1777886805.512943]: Socket.IO event ignored: consumer-removed {'camName': 'FRONT-CAM', 'count': 2}
+[INFO] [1777886805.514868]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 3}
+[INFO] [1777886807.548679]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 4}
+[INFO] [1777886807.619701]: Socket.IO event ignored: consumer-added {'camName': 'FRONT-CAM', 'count': 3}
+[INFO] [1777886807.677161]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 5}
+[INFO] [1777886820.406770]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 4}
+[INFO] [1777886820.409132]: Socket.IO event ignored: consumer-removed {'camName': 'FRONT-CAM', 'count': 2}
+[INFO] [1777886820.412024]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 3}
+[INFO] [1777886821.210974]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 4}
+[INFO] [1777886821.246655]: Socket.IO event ignored: consumer-added {'camName': 'FRONT-CAM', 'count': 3}
+[INFO] [1777886821.258891]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 5}
+[INFO] [1777886827.561435]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 4}
+[INFO] [1777886827.567739]: Socket.IO event ignored: consumer-removed {'camName': 'FRONT-CAM', 'count': 2}
+[INFO] [1777886827.582702]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 3}
+[INFO] [1777886835.937745]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 4}
+[INFO] [1777886835.941960]: Socket.IO event ignored: consumer-added {'camName': 'FRONT-CAM', 'count': 3}
+[INFO] [1777886835.949032]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 5}
+[INFO] [1777886865.549560]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 4}
+[INFO] [1777886865.559668]: Socket.IO event ignored: consumer-removed {'camName': 'FRONT-CAM', 'count': 2}
+[INFO] [1777886866.250060]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 5}
+[INFO] [1777886866.275842]: Socket.IO event ignored: consumer-added {'camName': 'FRONT-CAM', 'count': 3}
+[INFO] [1777886875.592294]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 6}
+[INFO] [1777886875.639129]: Socket.IO event ignored: consumer-added {'camName': 'FRONT-CAM', 'count': 4}
+[INFO] [1777886875.693731]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 7}
+[INFO] [1777887099.637440]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 6}
+[INFO] [1777887099.644148]: Socket.IO event ignored: consumer-removed {'camName': 'FRONT-CAM', 'count': 3}
+[INFO] [1777887099.645704]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 5}
+[INFO] [1777887103.311589]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 6}
+[INFO] [1777887103.389444]: Socket.IO event ignored: consumer-added {'camName': 'FRONT-CAM', 'count': 4}
+[INFO] [1777887103.422682]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 7}
+[INFO] [1777887133.686328]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 6}
+[INFO] [1777887133.688243]: Socket.IO event ignored: consumer-removed {'camName': 'FRONT-CAM', 'count': 3}
+[INFO] [1777887133.689150]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 5}
+[INFO] [1777887143.788062]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 6}
+[INFO] [1777887143.790124]: Socket.IO event ignored: consumer-added {'camName': 'FRONT-CAM', 'count': 4}
+[INFO] [1777887143.791768]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 7}
+[INFO] [1777887467.507202]: Socket.IO disconnected
+on_disconnected
+close stream(FRONT-CAM)
+state changed (FRONT-CAM) = StreamState.STOPPED
+[INFO] [1777887467.547668]: Socket.IO not connected yet. Queueing action=producer/stop
+close stream(REAR-CAM)
+state changed (REAR-CAM) = StreamState.STOPPED
+[INFO] [1777887467.583695]: Socket.IO not connected yet. Queueing action=producer/stop
+[INFO] [1777887468.515020]: Reconnecting to Socket.IO...
+[INFO] [1777887471.531744]: [SINGLETON] Starting Socket.IO connection...
+[INFO] [1777887471.544794]: Socket.IO connected
+on_connected
+[INFO] [1777887471.804495]: Mediasoup channel ready: ITGT_PLAT_100000_2604_0039_ee0f, response={'channelId': '59df1a9b-eaca-4206-bba8-95bb2d560e27', 'fcd': 'ITGT_PLAT_100000_2604_0039_ee0f', 'rtpCapabilities': {'codecs': [{'kind': 'video', 'mimeType': 'video/VP8', 'clockRate': 90000, 'rtcpFeedback': [{'type': 'nack', 'parameter': ''}, {'type': 'nack', 'parameter': 'pli'}, {'type': 'ccm', 'parameter': 'fir'}, {'type': 'goog-remb', 'parameter': ''}, {'type': 'transport-cc', 'parameter': ''}], 'parameters': {}, 'preferredPayloadType': 100}, {'kind': 'video', 'mimeType': 'video/rtx', 'preferredPayloadType': 101, 'clockRate': 90000, 'parameters': {'apt': 100}, 'rtcpFeedback': []}, {'kind': 'video', 'mimeType': 'video/H264', 'clockRate': 90000, 'parameters': {'level-asymmetry-allowed': 1, 'packetization-mode': 1, 'profile-level-id': '42e01f'}, 'rtcpFeedback': [{'type': 'nack', 'parameter': ''}, {'type': 'nack', 'parameter': 'pli'}, {'type': 'ccm', 'parameter': 'fir'}, {'type': 'goog-remb', 'parameter': ''}, {'type': 'transport-cc', 'parameter': ''}], 'preferredPayloadType': 102}, {'kind': 'video', 'mimeType': 'video/rtx', 'preferredPayloadType': 103, 'clockRate': 90000, 'parameters': {'apt': 102}, 'rtcpFeedback': []}, {'kind': 'audio', 'mimeType': 'audio/opus', 'clockRate': 48000, 'channels': 2, 'rtcpFeedback': [{'type': 'nack', 'parameter': ''}, {'type': 'transport-cc', 'parameter': ''}], 'parameters': {}, 'preferredPayloadType': 111}], 'headerExtensions': [{'kind': 'audio', 'uri': 'urn:ietf:params:rtp-hdrext:sdes:mid', 'preferredId': 1, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'urn:ietf:params:rtp-hdrext:sdes:mid', 'preferredId': 1, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'urn:ietf:params:rtp-hdrext:sdes:rtp-stream-id', 'preferredId': 2, 'preferredEncrypt': False, 'direction': 'recvonly'}, {'kind': 'video', 'uri': 'urn:ietf:params:rtp-hdrext:sdes:repaired-rtp-stream-id', 'preferredId': 3, 'preferredEncrypt': False, 'direction': 'recvonly'}, {'kind': 'audio', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time', 'preferredId': 4, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time', 'preferredId': 4, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'http://www.ietf.org/id/draft-holmer-rmcat-transport-wide-cc-extensions-01', 'preferredId': 5, 'preferredEncrypt': False, 'direction': 'recvonly'}, {'kind': 'video', 'uri': 'http://www.ietf.org/id/draft-holmer-rmcat-transport-wide-cc-extensions-01', 'preferredId': 5, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'urn:ietf:params:rtp-hdrext:ssrc-audio-level', 'preferredId': 6, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'https://aomediacodec.github.io/av1-rtp-spec/#dependency-descriptor-rtp-header-extension', 'preferredId': 7, 'preferredEncrypt': False, 'direction': 'recvonly'}, {'kind': 'video', 'uri': 'urn:3gpp:video-orientation', 'preferredId': 8, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'urn:ietf:params:rtp-hdrext:toffset', 'preferredId': 9, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/abs-capture-time', 'preferredId': 10, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/abs-capture-time', 'preferredId': 10, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/playout-delay', 'preferredId': 11, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/playout-delay', 'preferredId': 11, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'urn:mediasoup:params:rtp-hdrext:packet-id', 'preferredId': 12, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'urn:mediasoup:params:rtp-hdrext:packet-id', 'preferredId': 12, 'preferredEncrypt': False, 'direction': 'sendrecv'}]}}
+WARNING: omxh264enc not available, trying nvh264enc for FRONT-CAM
+WARNING: nvh264enc not available, trying x264enc for FRONT-CAM
+DEBUG: x264enc (software) created successfully for FRONT-CAM
+Successfully created pipeline for FRONT-CAM using x264enc
+[INFO] [1777887471.816839]: Socket.IO event ignored: consumer-removed {'camName': 'FRONT-CAM', 'count': 0}
+[INFO] [1777887471.818688]: Plain RTP producer ready: stream=FRONT-CAM cam=FRONT-CAM rtp=10.156.196.159:36362 pt=102 ssrc=1609108289
+set connection info (FRONT-CAM)  = RtpConnectionInfo(host='10.156.196.159', port=36362, rtcp_port=39026, payload_type=102, ssrc=1609108289, srtp_key=None, srtp_salt=None)
+start pipeline
+
+Starting pipeline for FRONT-CAM
+Pipeline structure:
+Element: x264enc (x264enc)
+Element: queue (queue)
+Element: videoconvert (videoconvert)
+Element: jpegdec (jpegdec)
+Element: appsrc (appsrc)
+Element: udpsink (udpsink)
+Element: rtph264pay (rtph264pay)
+WARNING: omxh264enc not available, trying nvh264enc for REAR-CAM
+WARNING: nvh264enc not available, trying x264enc for REAR-CAM
+DEBUG: x264enc (software) created successfully for REAR-CAM
+state changed (FRONT-CAM) = StreamState.STARTED
+Pipeline state: <enum GST_STATE_PLAYING of type Gst.State>, pending: <enum GST_STATE_VOID_PENDING of type Gst.State>, return: <enum GST_STATE_CHANGE_SUCCESS of type Gst.StateChangeReturn>
+<module 'sensor_msgs.msg' from '/opt/ros/noetic/lib/python3/dist-packages/sensor_msgs/msg/__init__.py'>
+<class 'sensor_msgs.msg._CompressedImage.CompressedImage'>
+Successfully created pipeline for REAR-CAM using x264enc
+[INFO] [1777887471.834301]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 0}
+[INFO] [1777887471.835997]: Plain RTP producer ready: stream=REAR-CAM cam=REAR-CAM rtp=10.156.196.159:35010 pt=102 ssrc=2404195878
+set connection info (REAR-CAM)  = RtpConnectionInfo(host='10.156.196.159', port=35010, rtcp_port=34251, payload_type=102, ssrc=2404195878, srtp_key=None, srtp_salt=None)
+start pipeline
+
+Starting pipeline for REAR-CAM
+Pipeline structure:
+Element: x264enc (x264enc)
+Element: queue (queue)
+Element: videoconvert (videoconvert)
+Element: jpegdec (jpegdec)
+Element: appsrc (appsrc)
+Element: udpsink (udpsink)
+Element: rtph264pay (rtph264pay)
+state changed (REAR-CAM) = StreamState.STARTED
+Pipeline state: <enum GST_STATE_PLAYING of type Gst.State>, pending: <enum GST_STATE_VOID_PENDING of type Gst.State>, return: <enum GST_STATE_CHANGE_SUCCESS of type Gst.StateChangeReturn>
+<module 'sensor_msgs.msg' from '/opt/ros/noetic/lib/python3/dist-packages/sensor_msgs/msg/__init__.py'>
+<class 'sensor_msgs.msg._CompressedImage.CompressedImage'>
+[INFO] [1777887471.930613]: Socket.IO event ignored: consumer-added {'camName': 'FRONT-CAM', 'count': 1}
+[INFO] [1777887471.956472]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 1}
+[INFO] [1777887471.966667]: Socket.IO event ignored: consumer-added {'camName': 'FRONT-CAM', 'count': 2}
+[INFO] [1777887471.971653]: Socket.IO event ignored: consumer-added {'camName': 'FRONT-CAM', 'count': 3}
+[INFO] [1777887472.003310]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 2}
+[INFO] [1777887472.005366]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 3}
+[INFO] [1777887472.022311]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 4}
+[INFO] [1777887472.025659]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 5}
+[INFO] [1777887547.424541]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 4}
+[INFO] [1777887547.425621]: Socket.IO event ignored: consumer-removed {'camName': 'FRONT-CAM', 'count': 2}
+[INFO] [1777887547.428329]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 3}
+[INFO] [1777890702.164836]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 2}
+[INFO] [1777890702.166052]: Socket.IO event ignored: consumer-removed {'camName': 'FRONT-CAM', 'count': 1}
+[INFO] [1777890702.168872]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 1}
+[INFO] [1777891210.287536]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 2}
+[INFO] [1777891210.316194]: Socket.IO event ignored: consumer-added {'camName': 'FRONT-CAM', 'count': 2}
+[INFO] [1777891210.342803]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 3}
+close stream(FRONT-CAM)
+state changed (FRONT-CAM) = StreamState.STOPPED
+[INFO] [1777896468.596200]: Socket.IO event ignored: consumer-removed {'camName': 'FRONT-CAM', 'count': 0}
+[INFO] [1777896468.597903]: Plain RTP producer closed: stream=FRONT-CAM
+close stream(REAR-CAM)
+state changed (REAR-CAM) = StreamState.STOPPED
+[INFO] [1777896468.631621]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 0}
+[INFO] [1777896468.634534]: Plain RTP producer closed: stream=REAR-CAM
+[INFO] [1777896468.637551]: Socket.IO disconnected
+on_disconnected
+Traceback (most recent call last):
+  File "/home/nvidia/dconic_nav/src/media_streamer/script/launch_stream.py", line 142, in <module>
+    rospy.spin()()
+TypeError: 'NoneType' object is not callable
+... logging to /home/nvidia/.ros/log/4d7edd26-1dd2-11b2-9a54-48b02df751df/roslaunch-ubuntu-15991.log
+Checking log directory for disk usage. This may take a while.
+Press Ctrl-C to interrupt
+Done checking log file disk usage. Usage is <1GB.
+]2;/home/nvidia/dconic_nav/src/media_streamer/launch/dynamic_stream.launch
+[1mstarted roslaunch server http://192.168.10.15:42601/[0m
+
+SUMMARY
+========
+
+PARAMETERS
+ * /dynamic_streamer_front/remote/key: xwOumAnLPs3HKPLYV...
+ * /dynamic_streamer_front/signal_host: http://10.156.196...
+ * /dynamic_streamer_front/signal_verify_ssl: False
+ * /dynamic_streamer_front/streamer/FRONT-CAM/msg_type: sensor_msgs/Compr...
+ * /dynamic_streamer_front/streamer/FRONT-CAM/security: False
+ * /dynamic_streamer_front/streamer/FRONT-CAM/topic: /camera1/usb_cam1...
+ * /dynamic_streamer_front/streamer/FRONT-CAM/type: ROS
+ * /dynamic_streamer_front/streamer/REAR-CAM/msg_type: sensor_msgs/Compr...
+ * /dynamic_streamer_front/streamer/REAR-CAM/security: False
+ * /dynamic_streamer_front/streamer/REAR-CAM/topic: /camera2/usb_cam2...
+ * /dynamic_streamer_front/streamer/REAR-CAM/type: ROS
+ * /rosdistro: noetic
+ * /rosversion: 1.17.4
+
+NODES
+  /
+    dynamic_streamer_front (media_streamer/launch_stream.py)
+
+[1mROS_MASTER_URI=http://192.168.10.15:11311[0m
+]2;/home/nvidia/dconic_nav/src/media_streamer/launch/dynamic_stream.launch http://192.168.10.15:11311
+[1mprocess[dynamic_streamer_front-1]: started with pid [16075][0m
+[dynamic_streamer_front-1] killing on exit
+shutting down processing monitor...
+... shutting down processing monitor complete
+[1mdone[0m
+ros_topic_mqtt_bridge.py:501: DeprecationWarning: Callback API version 1 is deprecated, update to latest version
+  self.client = mqtt.Client(client_id=client_id, clean_session=True, protocol=mqtt.MQTTv311)
+2026-05-06 16:44:07,413 INFO ros_topic_mqtt_bridge - [STEP:START] 브리지 시작 준비 f_cd=ITGT_PLAT_100000_2604_0039_ee0f robot_id=ITGT_PLAT_100000_2604_0039_ee0f backend=platy dry_run=False
+2026-05-06 16:44:07,415 INFO ros_topic_mqtt_bridge - [STEP:START] 1/3 MQTT 연결 단계 진입
+2026-05-06 16:44:07,415 INFO ros_topic_mqtt_bridge - [STEP:MQTT_CONNECT] 비동기 연결 시작 host=10.156.196.155 port=1883 keepalive=60 client_id=demo_agent_ros_bridge_338414_1778053447
+2026-05-06 16:44:07,419 INFO ros_topic_mqtt_bridge - [STEP:MQTT_CONNECT] TCP probe 성공 host=10.156.196.155 port=1883
+2026-05-06 16:44:07,425 INFO ros_topic_mqtt_bridge - [STEP:MQTT_CONNECT] 네트워크 루프 시작 완료, 연결 실패 시 백그라운드 재시도
+2026-05-06 16:44:07,426 INFO ros_topic_mqtt_bridge - [STEP:START] 2/3 ROS 초기화 단계 진입
+2026-05-06 16:44:07,426 INFO ros_topic_mqtt_bridge - [STEP:ROS_INIT] ROS 초기화 시도 backend=platy
+2026-05-06 16:44:07,426 INFO ros_topic_mqtt_bridge - [STEP:ROS_INIT] ROS_MASTER_URI 기존 환경값 사용: http://192.168.10.15:11311
+2026-05-06 16:44:07,426 INFO ros_topic_mqtt_bridge - [STEP:ROS_INIT] rospy 노드 초기화 시작
+2026-05-06 16:44:07,430 INFO ros_topic_mqtt_bridge - [STEP:MQTT_CONNECT] 브로커 연결 완료, 등록 구독 수=0
+/home/nvidia/dconic_nav/src/media_streamer/src/media_streamer/streamer.py:3: PyGIWarning: Gst was imported without specifying a version first. Use gi.require_version('Gst', '1.0') before import to ensure that the right version gets loaded.
+  from gi.repository import Gst, GObject
+/usr/lib/python3/dist-packages/gi/__init__.py
+[SINGLETON] Creating new instance
+[INFO] [1778053478.467273]: [SINGLETON] Creating new WSClient instance - Socket.IO http://10.156.196.159:3000
+[INFO] [1778053478.477966]: [SINGLETON] Starting Socket.IO connection...
+[INFO] [1778053478.495972]: Socket.IO connected
+on_connected
+[INFO] [1778053478.755157]: Mediasoup channel ready: ITGT_PLAT_100000_2604_0039_ee0f, response={'channelId': '59df1a9b-eaca-4206-bba8-95bb2d560e27', 'fcd': 'ITGT_PLAT_100000_2604_0039_ee0f', 'rtpCapabilities': {'codecs': [{'kind': 'video', 'mimeType': 'video/VP8', 'clockRate': 90000, 'rtcpFeedback': [{'type': 'nack', 'parameter': ''}, {'type': 'nack', 'parameter': 'pli'}, {'type': 'ccm', 'parameter': 'fir'}, {'type': 'goog-remb', 'parameter': ''}, {'type': 'transport-cc', 'parameter': ''}], 'parameters': {}, 'preferredPayloadType': 100}, {'kind': 'video', 'mimeType': 'video/rtx', 'preferredPayloadType': 101, 'clockRate': 90000, 'parameters': {'apt': 100}, 'rtcpFeedback': []}, {'kind': 'video', 'mimeType': 'video/H264', 'clockRate': 90000, 'parameters': {'level-asymmetry-allowed': 1, 'packetization-mode': 1, 'profile-level-id': '42e01f'}, 'rtcpFeedback': [{'type': 'nack', 'parameter': ''}, {'type': 'nack', 'parameter': 'pli'}, {'type': 'ccm', 'parameter': 'fir'}, {'type': 'goog-remb', 'parameter': ''}, {'type': 'transport-cc', 'parameter': ''}], 'preferredPayloadType': 102}, {'kind': 'video', 'mimeType': 'video/rtx', 'preferredPayloadType': 103, 'clockRate': 90000, 'parameters': {'apt': 102}, 'rtcpFeedback': []}, {'kind': 'audio', 'mimeType': 'audio/opus', 'clockRate': 48000, 'channels': 2, 'rtcpFeedback': [{'type': 'nack', 'parameter': ''}, {'type': 'transport-cc', 'parameter': ''}], 'parameters': {}, 'preferredPayloadType': 111}], 'headerExtensions': [{'kind': 'audio', 'uri': 'urn:ietf:params:rtp-hdrext:sdes:mid', 'preferredId': 1, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'urn:ietf:params:rtp-hdrext:sdes:mid', 'preferredId': 1, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'urn:ietf:params:rtp-hdrext:sdes:rtp-stream-id', 'preferredId': 2, 'preferredEncrypt': False, 'direction': 'recvonly'}, {'kind': 'video', 'uri': 'urn:ietf:params:rtp-hdrext:sdes:repaired-rtp-stream-id', 'preferredId': 3, 'preferredEncrypt': False, 'direction': 'recvonly'}, {'kind': 'audio', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time', 'preferredId': 4, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time', 'preferredId': 4, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'http://www.ietf.org/id/draft-holmer-rmcat-transport-wide-cc-extensions-01', 'preferredId': 5, 'preferredEncrypt': False, 'direction': 'recvonly'}, {'kind': 'video', 'uri': 'http://www.ietf.org/id/draft-holmer-rmcat-transport-wide-cc-extensions-01', 'preferredId': 5, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'urn:ietf:params:rtp-hdrext:ssrc-audio-level', 'preferredId': 6, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'https://aomediacodec.github.io/av1-rtp-spec/#dependency-descriptor-rtp-header-extension', 'preferredId': 7, 'preferredEncrypt': False, 'direction': 'recvonly'}, {'kind': 'video', 'uri': 'urn:3gpp:video-orientation', 'preferredId': 8, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'urn:ietf:params:rtp-hdrext:toffset', 'preferredId': 9, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/abs-capture-time', 'preferredId': 10, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/abs-capture-time', 'preferredId': 10, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/playout-delay', 'preferredId': 11, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/playout-delay', 'preferredId': 11, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'urn:mediasoup:params:rtp-hdrext:packet-id', 'preferredId': 12, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'urn:mediasoup:params:rtp-hdrext:packet-id', 'preferredId': 12, 'preferredEncrypt': False, 'direction': 'sendrecv'}]}}
+WARNING: omxh264enc not available, trying nvh264enc for FRONT-CAM
+WARNING: nvh264enc not available, trying x264enc for FRONT-CAM
+DEBUG: x264enc (software) created successfully for FRONT-CAM
+Successfully created pipeline for FRONT-CAM using x264enc
+[INFO] [1778053478.784321]: Plain RTP producer ready: stream=FRONT-CAM cam=FRONT-CAM rtp=10.156.196.159:39411 pt=102 ssrc=1778125338
+set connection info (FRONT-CAM)  = RtpConnectionInfo(host='10.156.196.159', port=39411, rtcp_port=36027, payload_type=102, ssrc=1778125338, srtp_key=None, srtp_salt=None)
+start pipeline
+
+Starting pipeline for FRONT-CAM
+Pipeline structure:
+Element: x264enc (x264enc)
+Element: queue (queue)
+Element: videoconvert (videoconvert)
+Element: jpegdec (jpegdec)
+Element: appsrc (appsrc)
+Element: udpsink (udpsink)
+Element: rtph264pay (rtph264pay)
+WARNING: omxh264enc not available, trying nvh264enc for REAR-CAM
+WARNING: nvh264enc not available, trying x264enc for REAR-CAM
+DEBUG: x264enc (software) created successfully for REAR-CAM
+state changed (FRONT-CAM) = StreamState.STARTED
+Pipeline state: <enum GST_STATE_PLAYING of type Gst.State>, pending: <enum GST_STATE_VOID_PENDING of type Gst.State>, return: <enum GST_STATE_CHANGE_SUCCESS of type Gst.StateChangeReturn>
+Successfully created pipeline for REAR-CAM using x264enc
+[INFO] [1778053478.800577]: Plain RTP producer ready: stream=REAR-CAM cam=REAR-CAM rtp=10.156.196.159:30644 pt=102 ssrc=1984929781
+set connection info (REAR-CAM)  = RtpConnectionInfo(host='10.156.196.159', port=30644, rtcp_port=35990, payload_type=102, ssrc=1984929781, srtp_key=None, srtp_salt=None)
+start pipeline
+
+Starting pipeline for REAR-CAM
+Pipeline structure:
+Element: x264enc (x264enc)
+Element: queue (queue)
+Element: videoconvert (videoconvert)
+Element: jpegdec (jpegdec)
+Element: appsrc (appsrc)
+Element: udpsink (udpsink)
+Element: rtph264pay (rtph264pay)
+state changed (REAR-CAM) = StreamState.STARTED
+Pipeline state: <enum GST_STATE_PLAYING of type Gst.State>, pending: <enum GST_STATE_VOID_PENDING of type Gst.State>, return: <enum GST_STATE_CHANGE_SUCCESS of type Gst.StateChangeReturn>
+<module 'sensor_msgs.msg' from '/opt/ros/noetic/lib/python3/dist-packages/sensor_msgs/msg/__init__.py'>
+<class 'sensor_msgs.msg._CompressedImage.CompressedImage'>
+<module 'sensor_msgs.msg' from '/opt/ros/noetic/lib/python3/dist-packages/sensor_msgs/msg/__init__.py'>
+<class 'sensor_msgs.msg._CompressedImage.CompressedImage'>
+[INFO] [1778053478.892946]: Socket.IO event ignored: consumer-added {'camName': 'FRONT-CAM', 'count': 1}
+[INFO] [1778053478.916774]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 1}
+[INFO] [1778053478.917804]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 2}
+[INFO] [1778053580.847491]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 1}
+[INFO] [1778053580.848747]: Socket.IO event ignored: consumer-removed {'camName': 'FRONT-CAM', 'count': 0}
+[INFO] [1778053580.850046]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 0}
+[INFO] [1778053591.209293]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 1}
+[INFO] [1778053591.283088]: Socket.IO event ignored: consumer-added {'camName': 'FRONT-CAM', 'count': 1}
+[INFO] [1778053591.365330]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 2}
+[INFO] [1778053593.087338]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 3}
+[INFO] [1778053593.132944]: Socket.IO event ignored: consumer-added {'camName': 'FRONT-CAM', 'count': 2}
+[INFO] [1778053585.046792]: [MQTT_COMMAND_RECEIVE] topic=flyinglet/ITGT_PLAT_100000_2604_0039_ee0f/robot/command command_id=11f92a31-f8ba-42c2-a7ad-967f74622761 normalized_type=play_mission raw_type=play_mission param_keys=-
+[INFO] [1778053585.050626]: [CMD→ROS] step=route command_id=11f92a31-f8ba-42c2-a7ad-967f74622761 mqtt_topic=flyinglet/ITGT_PLAT_100000_2604_0039_ee0f/robot/command backend=platy normalized_cmd=play_mission
+[INFO] [1778053585.060689]: [CMD→ROS] command_id=11f92a31-f8ba-42c2-a7ad-967f74622761 ros_topic=/path_run_request msg_type=String data=0100m16_4floor_1.csv dry_run=False
+[INFO] [1778053585.067622]: [MQTT_COMMAND_RESPONSE] topic=flyinglet/ITGT_PLAT_100000_2604_0039_ee0f/robot/command/response command_id=11f92a31-f8ba-42c2-a7ad-967f74622761 type=play_mission success=True error= emit=True
+ros_topic_mqtt_bridge.py:501: DeprecationWarning: Callback API version 1 is deprecated, update to latest version
+  self.client = mqtt.Client(client_id=client_id, clean_session=True, protocol=mqtt.MQTTv311)
+2026-05-06 16:54:39,881 INFO ros_topic_mqtt_bridge - [STEP:START] 브리지 시작 준비 f_cd=ITGT_PLAT_100000_2604_0039_ee0f robot_id=ITGT_PLAT_100000_2604_0039_ee0f backend=platy dry_run=False
+2026-05-06 16:54:39,881 INFO ros_topic_mqtt_bridge - [STEP:START] 1/3 MQTT 연결 단계 진입
+2026-05-06 16:54:39,881 INFO ros_topic_mqtt_bridge - [STEP:MQTT_CONNECT] 비동기 연결 시작 host=10.156.196.155 port=1883 keepalive=60 client_id=demo_agent_ros_bridge_359446_1778054079
+2026-05-06 16:54:39,888 INFO ros_topic_mqtt_bridge - [STEP:MQTT_CONNECT] TCP probe 성공 host=10.156.196.155 port=1883
+2026-05-06 16:54:39,933 INFO ros_topic_mqtt_bridge - [STEP:MQTT_CONNECT] 브로커 연결 완료, 등록 구독 수=0
+2026-05-06 16:54:39,938 INFO ros_topic_mqtt_bridge - [STEP:MQTT_CONNECT] 네트워크 루프 시작 완료, 연결 실패 시 백그라운드 재시도
+2026-05-06 16:54:39,938 INFO ros_topic_mqtt_bridge - [STEP:START] 2/3 ROS 초기화 단계 진입
+2026-05-06 16:54:39,939 INFO ros_topic_mqtt_bridge - [STEP:ROS_INIT] ROS 초기화 시도 backend=platy
+2026-05-06 16:54:39,939 INFO ros_topic_mqtt_bridge - [STEP:ROS_INIT] ROS_MASTER_URI 기존 환경값 사용: http://192.168.10.15:11311
+2026-05-06 16:54:39,939 INFO ros_topic_mqtt_bridge - [STEP:ROS_INIT] rospy 노드 초기화 시작
+/home/nvidia/dconic_nav/src/media_streamer/src/media_streamer/streamer.py:3: PyGIWarning: Gst was imported without specifying a version first. Use gi.require_version('Gst', '1.0') before import to ensure that the right version gets loaded.
+  from gi.repository import Gst, GObject
+ros_topic_mqtt_bridge.py:501: DeprecationWarning: Callback API version 1 is deprecated, update to latest version
+  self.client = mqtt.Client(client_id=client_id, clean_session=True, protocol=mqtt.MQTTv311)
+1970-01-01 09:07:12,181 INFO ros_topic_mqtt_bridge - [STEP:START] 브리지 시작 준비 f_cd=ITGT_PLAT_100000_2604_0039_ee0f robot_id=ITGT_PLAT_100000_2604_0039_ee0f backend=platy dry_run=False
+1970-01-01 09:07:12,181 INFO ros_topic_mqtt_bridge - [STEP:START] 1/3 MQTT 연결 단계 진입
+1970-01-01 09:07:12,199 INFO ros_topic_mqtt_bridge - [STEP:MQTT_CONNECT] 비동기 연결 시작 host=10.156.196.155 port=1883 keepalive=60 client_id=demo_agent_ros_bridge_8868_432
+1970-01-01 09:07:12,210 INFO ros_topic_mqtt_bridge - [STEP:MQTT_CONNECT] TCP probe 성공 host=10.156.196.155 port=1883
+1970-01-01 09:07:12,221 INFO ros_topic_mqtt_bridge - [STEP:MQTT_CONNECT] 네트워크 루프 시작 완료, 연결 실패 시 백그라운드 재시도
+1970-01-01 09:07:12,221 INFO ros_topic_mqtt_bridge - [STEP:START] 2/3 ROS 초기화 단계 진입
+1970-01-01 09:07:12,222 INFO ros_topic_mqtt_bridge - [STEP:ROS_INIT] ROS 초기화 시도 backend=platy
+1970-01-01 09:07:12,222 INFO ros_topic_mqtt_bridge - [STEP:ROS_INIT] ROS_MASTER_URI 기존 환경값 사용: http://192.168.10.15:11311
+1970-01-01 09:07:12,222 INFO ros_topic_mqtt_bridge - [STEP:ROS_INIT] rospy 노드 초기화 시작
+1970-01-01 09:07:12,231 INFO ros_topic_mqtt_bridge - [STEP:MQTT_CONNECT] 브로커 연결 완료, 등록 구독 수=0
+/usr/lib/python3/dist-packages/gi/__init__.py
+[SINGLETON] Creating new instance
+[INFO] [379.222830]: [SINGLETON] Creating new WSClient instance - Socket.IO http://10.156.196.159:3000
+[INFO] [379.233219]: [SINGLETON] Starting Socket.IO connection...
+[INFO] [380.266958]: Socket.IO connected
+on_connected
+[INFO] [380.559804]: Mediasoup channel ready: ITGT_PLAT_100000_2604_0039_ee0f, response={'channelId': '59df1a9b-eaca-4206-bba8-95bb2d560e27', 'fcd': 'ITGT_PLAT_100000_2604_0039_ee0f', 'rtpCapabilities': {'codecs': [{'kind': 'video', 'mimeType': 'video/VP8', 'clockRate': 90000, 'rtcpFeedback': [{'type': 'nack', 'parameter': ''}, {'type': 'nack', 'parameter': 'pli'}, {'type': 'ccm', 'parameter': 'fir'}, {'type': 'goog-remb', 'parameter': ''}, {'type': 'transport-cc', 'parameter': ''}], 'parameters': {}, 'preferredPayloadType': 100}, {'kind': 'video', 'mimeType': 'video/rtx', 'preferredPayloadType': 101, 'clockRate': 90000, 'parameters': {'apt': 100}, 'rtcpFeedback': []}, {'kind': 'video', 'mimeType': 'video/H264', 'clockRate': 90000, 'parameters': {'level-asymmetry-allowed': 1, 'packetization-mode': 1, 'profile-level-id': '42e01f'}, 'rtcpFeedback': [{'type': 'nack', 'parameter': ''}, {'type': 'nack', 'parameter': 'pli'}, {'type': 'ccm', 'parameter': 'fir'}, {'type': 'goog-remb', 'parameter': ''}, {'type': 'transport-cc', 'parameter': ''}], 'preferredPayloadType': 102}, {'kind': 'video', 'mimeType': 'video/rtx', 'preferredPayloadType': 103, 'clockRate': 90000, 'parameters': {'apt': 102}, 'rtcpFeedback': []}, {'kind': 'audio', 'mimeType': 'audio/opus', 'clockRate': 48000, 'channels': 2, 'rtcpFeedback': [{'type': 'nack', 'parameter': ''}, {'type': 'transport-cc', 'parameter': ''}], 'parameters': {}, 'preferredPayloadType': 111}], 'headerExtensions': [{'kind': 'audio', 'uri': 'urn:ietf:params:rtp-hdrext:sdes:mid', 'preferredId': 1, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'urn:ietf:params:rtp-hdrext:sdes:mid', 'preferredId': 1, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'urn:ietf:params:rtp-hdrext:sdes:rtp-stream-id', 'preferredId': 2, 'preferredEncrypt': False, 'direction': 'recvonly'}, {'kind': 'video', 'uri': 'urn:ietf:params:rtp-hdrext:sdes:repaired-rtp-stream-id', 'preferredId': 3, 'preferredEncrypt': False, 'direction': 'recvonly'}, {'kind': 'audio', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time', 'preferredId': 4, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time', 'preferredId': 4, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'http://www.ietf.org/id/draft-holmer-rmcat-transport-wide-cc-extensions-01', 'preferredId': 5, 'preferredEncrypt': False, 'direction': 'recvonly'}, {'kind': 'video', 'uri': 'http://www.ietf.org/id/draft-holmer-rmcat-transport-wide-cc-extensions-01', 'preferredId': 5, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'urn:ietf:params:rtp-hdrext:ssrc-audio-level', 'preferredId': 6, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'https://aomediacodec.github.io/av1-rtp-spec/#dependency-descriptor-rtp-header-extension', 'preferredId': 7, 'preferredEncrypt': False, 'direction': 'recvonly'}, {'kind': 'video', 'uri': 'urn:3gpp:video-orientation', 'preferredId': 8, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'urn:ietf:params:rtp-hdrext:toffset', 'preferredId': 9, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/abs-capture-time', 'preferredId': 10, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/abs-capture-time', 'preferredId': 10, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/playout-delay', 'preferredId': 11, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/playout-delay', 'preferredId': 11, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'urn:mediasoup:params:rtp-hdrext:packet-id', 'preferredId': 12, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'urn:mediasoup:params:rtp-hdrext:packet-id', 'preferredId': 12, 'preferredEncrypt': False, 'direction': 'sendrecv'}]}}
+WARNING: omxh264enc not available, trying nvh264enc for FRONT-CAM
+WARNING: nvh264enc not available, trying x264enc for FRONT-CAM
+DEBUG: x264enc (software) created successfully for FRONT-CAM
+Successfully created pipeline for FRONT-CAM using x264enc
+[INFO] [380.873287]: Socket.IO event ignored: consumer-removed {'camName': 'FRONT-CAM', 'count': 0}
+[INFO] [380.902415]: Plain RTP producer ready: stream=FRONT-CAM cam=FRONT-CAM rtp=10.156.196.159:32525 pt=102 ssrc=1371798933
+set connection info (FRONT-CAM)  = RtpConnectionInfo(host='10.156.196.159', port=32525, rtcp_port=31510, payload_type=102, ssrc=1371798933, srtp_key=None, srtp_salt=None)
+start pipeline
+
+Starting pipeline for FRONT-CAM
+Pipeline structure:
+Element: x264enc (x264enc)
+Element: queue (queue)
+Element: videoconvert (videoconvert)
+Element: jpegdec (jpegdec)
+Element: appsrc (appsrc)
+Element: udpsink (udpsink)
+Element: rtph264pay (rtph264pay)
+WARNING: omxh264enc not available, trying nvh264enc for REAR-CAM
+WARNING: nvh264enc not available, trying x264enc for REAR-CAM
+DEBUG: x264enc (software) created successfully for REAR-CAM
+Successfully created pipeline for REAR-CAM using x264enc
+state changed (FRONT-CAM) = StreamState.STARTED
+Pipeline state: <enum GST_STATE_PLAYING of type Gst.State>, pending: <enum GST_STATE_VOID_PENDING of type Gst.State>, return: <enum GST_STATE_CHANGE_SUCCESS of type Gst.StateChangeReturn>
+[INFO] [381.008116]: Socket.IO event ignored: consumer-added {'camName': 'FRONT-CAM', 'count': 1}
+[INFO] [381.062672]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 0}
+[INFO] [381.079095]: Plain RTP producer ready: stream=REAR-CAM cam=REAR-CAM rtp=10.156.196.159:32868 pt=102 ssrc=1902754989
+set connection info (REAR-CAM)  = RtpConnectionInfo(host='10.156.196.159', port=32868, rtcp_port=31721, payload_type=102, ssrc=1902754989, srtp_key=None, srtp_salt=None)
+start pipeline
+
+Starting pipeline for REAR-CAM
+Pipeline structure:
+Element: x264enc (x264enc)
+Element: queue (queue)
+Element: videoconvert (videoconvert)
+Element: jpegdec (jpegdec)
+Element: appsrc (appsrc)
+Element: udpsink (udpsink)
+Element: rtph264pay (rtph264pay)
+state changed (REAR-CAM) = StreamState.STARTED
+Pipeline state: <enum GST_STATE_PLAYING of type Gst.State>, pending: <enum GST_STATE_VOID_PENDING of type Gst.State>, return: <enum GST_STATE_CHANGE_SUCCESS of type Gst.StateChangeReturn>
+[INFO] [381.152946]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 1}
+[INFO] [381.171983]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 2}
+[INFO] [381.223734]: Socket.IO event ignored: consumer-added {'camName': 'FRONT-CAM', 'count': 2}
+[INFO] [381.268919]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 3}
+<module 'sensor_msgs.msg' from '/opt/ros/noetic/lib/python3/dist-packages/sensor_msgs/msg/__init__.py'>
+<class 'sensor_msgs.msg._CompressedImage.CompressedImage'>
+<module 'sensor_msgs.msg' from '/opt/ros/noetic/lib/python3/dist-packages/sensor_msgs/msg/__init__.py'>
+<class 'sensor_msgs.msg._CompressedImage.CompressedImage'>
+[INFO] [381.284963]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 4}
+[INFO] [459.622048]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 3}
+[INFO] [459.623566]: Socket.IO event ignored: consumer-removed {'camName': 'FRONT-CAM', 'count': 1}
+[INFO] [459.624389]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 2}
+[INFO] [504.519729]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 3}
+[INFO] [469.493406]: [MQTT_COMMAND_RECEIVE] topic=flyinglet/ITGT_PLAT_100000_2604_0039_ee0f/robot/command command_id=c16f5409-09af-4aa0-98b5-2c02f0824738 normalized_type=play_mission raw_type=play_mission param_keys=-
+[INFO] [469.496420]: [CMD→ROS] step=route command_id=c16f5409-09af-4aa0-98b5-2c02f0824738 mqtt_topic=flyinglet/ITGT_PLAT_100000_2604_0039_ee0f/robot/command backend=platy normalized_cmd=play_mission
+[INFO] [469.500516]: [CMD→ROS] command_id=c16f5409-09af-4aa0-98b5-2c02f0824738 ros_topic=/path_run_request msg_type=String data=0100m16_4floor_v2_1.csv dry_run=False
+[INFO] [469.503474]: [MQTT_COMMAND_RESPONSE] topic=flyinglet/ITGT_PLAT_100000_2604_0039_ee0f/robot/command/response command_id=c16f5409-09af-4aa0-98b5-2c02f0824738 type=play_mission success=True error= emit=True
+[INFO] [699.462519]: [MQTT_COMMAND_RECEIVE] topic=flyinglet/ITGT_PLAT_100000_2604_0039_ee0f/robot/command command_id=6c5a3e51-3866-45fc-a9d5-d17cc77bc7c8 normalized_type=mission_result_acquire_and_upload raw_type=mission_result_acquire_and_upload param_keys=-
+[INFO] [699.466043]: [CMD→ROS] step=route command_id=6c5a3e51-3866-45fc-a9d5-d17cc77bc7c8 mqtt_topic=flyinglet/ITGT_PLAT_100000_2604_0039_ee0f/robot/command backend=platy normalized_cmd=mission_result_acquire_and_upload
+[INFO] [699.468598]: [CMD→ROS] step=handler command_id=6c5a3e51-3866-45fc-a9d5-d17cc77bc7c8 handler=mission_upload (ROS 미사용, HTTP 업로드)
+[INFO] [705.293076]: [MQTT_COMMAND_RESPONSE] topic=flyinglet/ITGT_PLAT_100000_2604_0039_ee0f/robot/command/response command_id=6c5a3e51-3866-45fc-a9d5-d17cc77bc7c8 type=mission_result_acquire_and_upload success=False error=upload_failed:<urlopen error [Errno -3] Temporary failure in name resolution> emit=True
+packet queue is empty, aborting
+packet queue is empty, aborting
+[INFO] [504.622639]: Socket.IO event ignored: consumer-added {'camName': 'FRONT-CAM', 'count': 2}
+[INFO] [504.642858]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 4}
+[INFO] [847.268331]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 3}
+[INFO] [847.273809]: Socket.IO event ignored: consumer-removed {'camName': 'FRONT-CAM', 'count': 1}
+[INFO] [847.277021]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 2}
+[INFO] [980.326254]: Socket.IO disconnected
+on_disconnected
+close stream(FRONT-CAM)
+state changed (FRONT-CAM) = StreamState.STOPPED
+[INFO] [980.356853]: Socket.IO not connected yet. Queueing action=producer/stop
+close stream(REAR-CAM)
+state changed (REAR-CAM) = StreamState.STOPPED
+[INFO] [980.387544]: Socket.IO not connected yet. Queueing action=producer/stop
+[INFO] [981.338639]: Reconnecting to Socket.IO...
+[INFO] [984.353827]: [SINGLETON] Starting Socket.IO connection...
+[INFO] [984.376500]: Socket.IO connected
+on_connected
+[INFO] [984.645716]: Mediasoup channel ready: ITGT_PLAT_100000_2604_0039_ee0f, response={'channelId': '59df1a9b-eaca-4206-bba8-95bb2d560e27', 'fcd': 'ITGT_PLAT_100000_2604_0039_ee0f', 'rtpCapabilities': {'codecs': [{'kind': 'video', 'mimeType': 'video/VP8', 'clockRate': 90000, 'rtcpFeedback': [{'type': 'nack', 'parameter': ''}, {'type': 'nack', 'parameter': 'pli'}, {'type': 'ccm', 'parameter': 'fir'}, {'type': 'goog-remb', 'parameter': ''}, {'type': 'transport-cc', 'parameter': ''}], 'parameters': {}, 'preferredPayloadType': 100}, {'kind': 'video', 'mimeType': 'video/rtx', 'preferredPayloadType': 101, 'clockRate': 90000, 'parameters': {'apt': 100}, 'rtcpFeedback': []}, {'kind': 'video', 'mimeType': 'video/H264', 'clockRate': 90000, 'parameters': {'level-asymmetry-allowed': 1, 'packetization-mode': 1, 'profile-level-id': '42e01f'}, 'rtcpFeedback': [{'type': 'nack', 'parameter': ''}, {'type': 'nack', 'parameter': 'pli'}, {'type': 'ccm', 'parameter': 'fir'}, {'type': 'goog-remb', 'parameter': ''}, {'type': 'transport-cc', 'parameter': ''}], 'preferredPayloadType': 102}, {'kind': 'video', 'mimeType': 'video/rtx', 'preferredPayloadType': 103, 'clockRate': 90000, 'parameters': {'apt': 102}, 'rtcpFeedback': []}, {'kind': 'audio', 'mimeType': 'audio/opus', 'clockRate': 48000, 'channels': 2, 'rtcpFeedback': [{'type': 'nack', 'parameter': ''}, {'type': 'transport-cc', 'parameter': ''}], 'parameters': {}, 'preferredPayloadType': 111}], 'headerExtensions': [{'kind': 'audio', 'uri': 'urn:ietf:params:rtp-hdrext:sdes:mid', 'preferredId': 1, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'urn:ietf:params:rtp-hdrext:sdes:mid', 'preferredId': 1, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'urn:ietf:params:rtp-hdrext:sdes:rtp-stream-id', 'preferredId': 2, 'preferredEncrypt': False, 'direction': 'recvonly'}, {'kind': 'video', 'uri': 'urn:ietf:params:rtp-hdrext:sdes:repaired-rtp-stream-id', 'preferredId': 3, 'preferredEncrypt': False, 'direction': 'recvonly'}, {'kind': 'audio', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time', 'preferredId': 4, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time', 'preferredId': 4, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'http://www.ietf.org/id/draft-holmer-rmcat-transport-wide-cc-extensions-01', 'preferredId': 5, 'preferredEncrypt': False, 'direction': 'recvonly'}, {'kind': 'video', 'uri': 'http://www.ietf.org/id/draft-holmer-rmcat-transport-wide-cc-extensions-01', 'preferredId': 5, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'urn:ietf:params:rtp-hdrext:ssrc-audio-level', 'preferredId': 6, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'https://aomediacodec.github.io/av1-rtp-spec/#dependency-descriptor-rtp-header-extension', 'preferredId': 7, 'preferredEncrypt': False, 'direction': 'recvonly'}, {'kind': 'video', 'uri': 'urn:3gpp:video-orientation', 'preferredId': 8, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'urn:ietf:params:rtp-hdrext:toffset', 'preferredId': 9, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/abs-capture-time', 'preferredId': 10, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/abs-capture-time', 'preferredId': 10, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/playout-delay', 'preferredId': 11, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/playout-delay', 'preferredId': 11, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'urn:mediasoup:params:rtp-hdrext:packet-id', 'preferredId': 12, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'urn:mediasoup:params:rtp-hdrext:packet-id', 'preferredId': 12, 'preferredEncrypt': False, 'direction': 'sendrecv'}]}}
+WARNING: omxh264enc not available, trying nvh264enc for FRONT-CAM
+WARNING: nvh264enc not available, trying x264enc for FRONT-CAM
+DEBUG: x264enc (software) created successfully for FRONT-CAM
+Successfully created pipeline for FRONT-CAM using x264enc
+[INFO] [984.659006]: Socket.IO event ignored: consumer-removed {'camName': 'FRONT-CAM', 'count': 0}
+[INFO] [984.663274]: Plain RTP producer ready: stream=FRONT-CAM cam=FRONT-CAM rtp=10.156.196.159:34906 pt=102 ssrc=900374057
+set connection info (FRONT-CAM)  = RtpConnectionInfo(host='10.156.196.159', port=34906, rtcp_port=32834, payload_type=102, ssrc=900374057, srtp_key=None, srtp_salt=None)
+start pipeline
+
+Starting pipeline for FRONT-CAM
+Pipeline structure:
+Element: x264enc (x264enc)
+Element: queue (queue)
+Element: videoconvert (videoconvert)
+Element: jpegdec (jpegdec)
+Element: appsrc (appsrc)
+Element: udpsink (udpsink)
+Element: rtph264pay (rtph264pay)
+WARNING: omxh264enc not available, trying nvh264enc for REAR-CAM
+WARNING: nvh264enc not available, trying x264enc for REAR-CAM
+DEBUG: x264enc (software) created successfully for REAR-CAM
+state changed (FRONT-CAM) = StreamState.STARTED
+Pipeline state: <enum GST_STATE_PLAYING of type Gst.State>, pending: <enum GST_STATE_VOID_PENDING of type Gst.State>, return: <enum GST_STATE_CHANGE_SUCCESS of type Gst.StateChangeReturn>
+<module 'sensor_msgs.msg' from '/opt/ros/noetic/lib/python3/dist-packages/sensor_msgs/msg/__init__.py'>
+<class 'sensor_msgs.msg._CompressedImage.CompressedImage'>
+Successfully created pipeline for REAR-CAM using x264enc
+[INFO] [984.682895]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 0}
+[INFO] [984.684269]: Plain RTP producer ready: stream=REAR-CAM cam=REAR-CAM rtp=10.156.196.159:33288 pt=102 ssrc=2511170466
+set connection info (REAR-CAM)  = RtpConnectionInfo(host='10.156.196.159', port=33288, rtcp_port=39288, payload_type=102, ssrc=2511170466, srtp_key=None, srtp_salt=None)
+start pipeline
+
+Starting pipeline for REAR-CAM
+Pipeline structure:
+Element: x264enc (x264enc)
+Element: queue (queue)
+Element: videoconvert (videoconvert)
+Element: jpegdec (jpegdec)
+Element: appsrc (appsrc)
+Element: udpsink (udpsink)
+Element: rtph264pay (rtph264pay)
+state changed (REAR-CAM) = StreamState.STARTED
+Pipeline state: <enum GST_STATE_PLAYING of type Gst.State>, pending: <enum GST_STATE_VOID_PENDING of type Gst.State>, return: <enum GST_STATE_CHANGE_SUCCESS of type Gst.StateChangeReturn>
+<module 'sensor_msgs.msg' from '/opt/ros/noetic/lib/python3/dist-packages/sensor_msgs/msg/__init__.py'>
+<class 'sensor_msgs.msg._CompressedImage.CompressedImage'>
+[INFO] [984.771418]: Socket.IO event ignored: consumer-added {'camName': 'FRONT-CAM', 'count': 1}
+[INFO] [984.828604]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 1}
+[INFO] [984.832809]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 2}
+[INFO] [1102.500391]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 1}
+[INFO] [1102.501909]: Socket.IO event ignored: consumer-removed {'camName': 'FRONT-CAM', 'count': 0}
+[INFO] [1102.502007]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 0}
+[INFO] [1132.456319]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 1}
+[INFO] [1132.462063]: Socket.IO event ignored: consumer-added {'camName': 'FRONT-CAM', 'count': 1}
+[INFO] [1132.471505]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 2}
+[INFO] [1132.472475]: Socket.IO disconnected
+on_disconnected
+close stream(FRONT-CAM)
+state changed (FRONT-CAM) = StreamState.STOPPED
+[INFO] [1132.507522]: Socket.IO not connected yet. Queueing action=producer/stop
+close stream(REAR-CAM)
+state changed (REAR-CAM) = StreamState.STOPPED
+[INFO] [1132.533012]: Socket.IO not connected yet. Queueing action=producer/stop
+[INFO] [1133.485877]: Reconnecting to Socket.IO...
+[INFO] [1136.502108]: [SINGLETON] Starting Socket.IO connection...
+[INFO] [1136.520871]: Socket.IO connected
+on_connected
+[INFO] [1136.780348]: Mediasoup channel ready: ITGT_PLAT_100000_2604_0039_ee0f, response={'channelId': '59df1a9b-eaca-4206-bba8-95bb2d560e27', 'fcd': 'ITGT_PLAT_100000_2604_0039_ee0f', 'rtpCapabilities': {'codecs': [{'kind': 'video', 'mimeType': 'video/VP8', 'clockRate': 90000, 'rtcpFeedback': [{'type': 'nack', 'parameter': ''}, {'type': 'nack', 'parameter': 'pli'}, {'type': 'ccm', 'parameter': 'fir'}, {'type': 'goog-remb', 'parameter': ''}, {'type': 'transport-cc', 'parameter': ''}], 'parameters': {}, 'preferredPayloadType': 100}, {'kind': 'video', 'mimeType': 'video/rtx', 'preferredPayloadType': 101, 'clockRate': 90000, 'parameters': {'apt': 100}, 'rtcpFeedback': []}, {'kind': 'video', 'mimeType': 'video/H264', 'clockRate': 90000, 'parameters': {'level-asymmetry-allowed': 1, 'packetization-mode': 1, 'profile-level-id': '42e01f'}, 'rtcpFeedback': [{'type': 'nack', 'parameter': ''}, {'type': 'nack', 'parameter': 'pli'}, {'type': 'ccm', 'parameter': 'fir'}, {'type': 'goog-remb', 'parameter': ''}, {'type': 'transport-cc', 'parameter': ''}], 'preferredPayloadType': 102}, {'kind': 'video', 'mimeType': 'video/rtx', 'preferredPayloadType': 103, 'clockRate': 90000, 'parameters': {'apt': 102}, 'rtcpFeedback': []}, {'kind': 'audio', 'mimeType': 'audio/opus', 'clockRate': 48000, 'channels': 2, 'rtcpFeedback': [{'type': 'nack', 'parameter': ''}, {'type': 'transport-cc', 'parameter': ''}], 'parameters': {}, 'preferredPayloadType': 111}], 'headerExtensions': [{'kind': 'audio', 'uri': 'urn:ietf:params:rtp-hdrext:sdes:mid', 'preferredId': 1, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'urn:ietf:params:rtp-hdrext:sdes:mid', 'preferredId': 1, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'urn:ietf:params:rtp-hdrext:sdes:rtp-stream-id', 'preferredId': 2, 'preferredEncrypt': False, 'direction': 'recvonly'}, {'kind': 'video', 'uri': 'urn:ietf:params:rtp-hdrext:sdes:repaired-rtp-stream-id', 'preferredId': 3, 'preferredEncrypt': False, 'direction': 'recvonly'}, {'kind': 'audio', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time', 'preferredId': 4, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time', 'preferredId': 4, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'http://www.ietf.org/id/draft-holmer-rmcat-transport-wide-cc-extensions-01', 'preferredId': 5, 'preferredEncrypt': False, 'direction': 'recvonly'}, {'kind': 'video', 'uri': 'http://www.ietf.org/id/draft-holmer-rmcat-transport-wide-cc-extensions-01', 'preferredId': 5, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'urn:ietf:params:rtp-hdrext:ssrc-audio-level', 'preferredId': 6, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'https://aomediacodec.github.io/av1-rtp-spec/#dependency-descriptor-rtp-header-extension', 'preferredId': 7, 'preferredEncrypt': False, 'direction': 'recvonly'}, {'kind': 'video', 'uri': 'urn:3gpp:video-orientation', 'preferredId': 8, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'urn:ietf:params:rtp-hdrext:toffset', 'preferredId': 9, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/abs-capture-time', 'preferredId': 10, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/abs-capture-time', 'preferredId': 10, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/playout-delay', 'preferredId': 11, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/playout-delay', 'preferredId': 11, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'urn:mediasoup:params:rtp-hdrext:packet-id', 'preferredId': 12, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'urn:mediasoup:params:rtp-hdrext:packet-id', 'preferredId': 12, 'preferredEncrypt': False, 'direction': 'sendrecv'}]}}
+WARNING: omxh264enc not available, trying nvh264enc for FRONT-CAM
+WARNING: nvh264enc not available, trying x264enc for FRONT-CAM
+DEBUG: x264enc (software) created successfully for FRONT-CAM
+Successfully created pipeline for FRONT-CAM using x264enc
+[INFO] [1136.793537]: Plain RTP producer ready: stream=FRONT-CAM cam=FRONT-CAM rtp=10.156.196.159:39749 pt=102 ssrc=154257234
+set connection info (FRONT-CAM)  = RtpConnectionInfo(host='10.156.196.159', port=39749, rtcp_port=37256, payload_type=102, ssrc=154257234, srtp_key=None, srtp_salt=None)
+start pipeline
+
+Starting pipeline for FRONT-CAM
+Pipeline structure:
+Element: x264enc (x264enc)
+Element: queue (queue)
+Element: videoconvert (videoconvert)
+Element: jpegdec (jpegdec)
+Element: appsrc (appsrc)
+Element: udpsink (udpsink)
+Element: rtph264pay (rtph264pay)
+WARNING: omxh264enc not available, trying nvh264enc for REAR-CAM
+WARNING: nvh264enc not available, trying x264enc for REAR-CAM
+DEBUG: x264enc (software) created successfully for REAR-CAM
+state changed (FRONT-CAM) = StreamState.STARTED
+Pipeline state: <enum GST_STATE_PLAYING of type Gst.State>, pending: <enum GST_STATE_VOID_PENDING of type Gst.State>, return: <enum GST_STATE_CHANGE_SUCCESS of type Gst.StateChangeReturn>
+<module 'sensor_msgs.msg' from '/opt/ros/noetic/lib/python3/dist-packages/sensor_msgs/msg/__init__.py'>
+<class 'sensor_msgs.msg._CompressedImage.CompressedImage'>
+Successfully created pipeline for REAR-CAM using x264enc
+[INFO] [1136.808180]: Plain RTP producer ready: stream=REAR-CAM cam=REAR-CAM rtp=10.156.196.159:31808 pt=102 ssrc=4238425279
+set connection info (REAR-CAM)  = RtpConnectionInfo(host='10.156.196.159', port=31808, rtcp_port=33299, payload_type=102, ssrc=4238425279, srtp_key=None, srtp_salt=None)
+start pipeline
+
+Starting pipeline for REAR-CAM
+Pipeline structure:
+Element: x264enc (x264enc)
+Element: queue (queue)
+Element: videoconvert (videoconvert)
+Element: jpegdec (jpegdec)
+Element: appsrc (appsrc)
+Element: udpsink (udpsink)
+Element: rtph264pay (rtph264pay)
+state changed (REAR-CAM) = StreamState.STARTED
+Pipeline state: <enum GST_STATE_PLAYING of type Gst.State>, pending: <enum GST_STATE_VOID_PENDING of type Gst.State>, return: <enum GST_STATE_CHANGE_SUCCESS of type Gst.StateChangeReturn>
+<module 'sensor_msgs.msg' from '/opt/ros/noetic/lib/python3/dist-packages/sensor_msgs/msg/__init__.py'>
+<class 'sensor_msgs.msg._CompressedImage.CompressedImage'>
+[INFO] [1692.597467]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 1}
+[INFO] [1692.671049]: Socket.IO event ignored: consumer-added {'camName': 'FRONT-CAM', 'count': 1}
+[INFO] [1692.706550]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 2}
+[INFO] [1705.488786]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 1}
+packet queue is empty, aborting
+[INFO] [1705.496938]: Socket.IO event ignored: consumer-removed {'camName': 'FRONT-CAM', 'count': 0}
+[INFO] [1705.500826]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 0}
+[INFO] [1888.073422]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 1}
+[INFO] [1888.143545]: Socket.IO event ignored: consumer-added {'camName': 'FRONT-CAM', 'count': 1}
+[INFO] [1888.196052]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 2}
+[INFO] [1778057063.353420]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 3}
+[INFO] [1778057063.416468]: Socket.IO event ignored: consumer-added {'camName': 'FRONT-CAM', 'count': 2}
+[INFO] [1778057063.445388]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 4}
+[INFO] [1778057076.898848]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 3}
+[INFO] [1778057076.900115]: Socket.IO event ignored: consumer-removed {'camName': 'FRONT-CAM', 'count': 1}
+[INFO] [1778057076.902662]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 2}
+[INFO] [1778057090.159177]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 1}
+[INFO] [1778057090.160463]: Socket.IO event ignored: consumer-removed {'camName': 'FRONT-CAM', 'count': 0}
+[INFO] [1778057090.165963]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 0}
+[INFO] [1778057093.066949]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 1}
+[INFO] [1778057093.129320]: Socket.IO event ignored: consumer-added {'camName': 'FRONT-CAM', 'count': 1}
+[INFO] [1778057093.156367]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 2}
+[INFO] [1778057171.437033]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 3}
+[INFO] [1778057171.499063]: Socket.IO event ignored: consumer-added {'camName': 'FRONT-CAM', 'count': 2}
+[INFO] [1778057171.549476]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 4}
+[INFO] [1778057305.475449]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 3}
+[INFO] [1778057305.476265]: Socket.IO event ignored: consumer-removed {'camName': 'FRONT-CAM', 'count': 1}
+[INFO] [1778057305.476846]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 2}
+[INFO] [1778057324.784657]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 3}
+[INFO] [1778057324.791579]: Socket.IO event ignored: consumer-added {'camName': 'FRONT-CAM', 'count': 2}
+[INFO] [1778057324.920072]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 4}
+[INFO] [1778057911.332299]: Socket.IO disconnected
+on_disconnected
+close stream(FRONT-CAM)
+state changed (FRONT-CAM) = StreamState.STOPPED
+[INFO] [1778057911.406659]: Socket.IO not connected yet. Queueing action=producer/stop
+close stream(REAR-CAM)
+state changed (REAR-CAM) = StreamState.STOPPED
+[INFO] [1778057911.439561]: Socket.IO not connected yet. Queueing action=producer/stop
+[INFO] [1778057912.346462]: Reconnecting to Socket.IO...
+[INFO] [1778057915.364721]: [SINGLETON] Starting Socket.IO connection...
+[INFO] [1778057915.380839]: Socket.IO connected
+on_connected
+[INFO] [1778057915.831042]: Mediasoup channel ready: ITGT_PLAT_100000_2604_0039_ee0f, response={'channelId': '59df1a9b-eaca-4206-bba8-95bb2d560e27', 'fcd': 'ITGT_PLAT_100000_2604_0039_ee0f', 'rtpCapabilities': {'codecs': [{'kind': 'video', 'mimeType': 'video/VP8', 'clockRate': 90000, 'rtcpFeedback': [{'type': 'nack', 'parameter': ''}, {'type': 'nack', 'parameter': 'pli'}, {'type': 'ccm', 'parameter': 'fir'}, {'type': 'goog-remb', 'parameter': ''}, {'type': 'transport-cc', 'parameter': ''}], 'parameters': {}, 'preferredPayloadType': 100}, {'kind': 'video', 'mimeType': 'video/rtx', 'preferredPayloadType': 101, 'clockRate': 90000, 'parameters': {'apt': 100}, 'rtcpFeedback': []}, {'kind': 'video', 'mimeType': 'video/H264', 'clockRate': 90000, 'parameters': {'level-asymmetry-allowed': 1, 'packetization-mode': 1, 'profile-level-id': '42e01f'}, 'rtcpFeedback': [{'type': 'nack', 'parameter': ''}, {'type': 'nack', 'parameter': 'pli'}, {'type': 'ccm', 'parameter': 'fir'}, {'type': 'goog-remb', 'parameter': ''}, {'type': 'transport-cc', 'parameter': ''}], 'preferredPayloadType': 102}, {'kind': 'video', 'mimeType': 'video/rtx', 'preferredPayloadType': 103, 'clockRate': 90000, 'parameters': {'apt': 102}, 'rtcpFeedback': []}, {'kind': 'audio', 'mimeType': 'audio/opus', 'clockRate': 48000, 'channels': 2, 'rtcpFeedback': [{'type': 'nack', 'parameter': ''}, {'type': 'transport-cc', 'parameter': ''}], 'parameters': {}, 'preferredPayloadType': 111}], 'headerExtensions': [{'kind': 'audio', 'uri': 'urn:ietf:params:rtp-hdrext:sdes:mid', 'preferredId': 1, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'urn:ietf:params:rtp-hdrext:sdes:mid', 'preferredId': 1, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'urn:ietf:params:rtp-hdrext:sdes:rtp-stream-id', 'preferredId': 2, 'preferredEncrypt': False, 'direction': 'recvonly'}, {'kind': 'video', 'uri': 'urn:ietf:params:rtp-hdrext:sdes:repaired-rtp-stream-id', 'preferredId': 3, 'preferredEncrypt': False, 'direction': 'recvonly'}, {'kind': 'audio', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time', 'preferredId': 4, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time', 'preferredId': 4, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'http://www.ietf.org/id/draft-holmer-rmcat-transport-wide-cc-extensions-01', 'preferredId': 5, 'preferredEncrypt': False, 'direction': 'recvonly'}, {'kind': 'video', 'uri': 'http://www.ietf.org/id/draft-holmer-rmcat-transport-wide-cc-extensions-01', 'preferredId': 5, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'urn:ietf:params:rtp-hdrext:ssrc-audio-level', 'preferredId': 6, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'https://aomediacodec.github.io/av1-rtp-spec/#dependency-descriptor-rtp-header-extension', 'preferredId': 7, 'preferredEncrypt': False, 'direction': 'recvonly'}, {'kind': 'video', 'uri': 'urn:3gpp:video-orientation', 'preferredId': 8, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'urn:ietf:params:rtp-hdrext:toffset', 'preferredId': 9, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/abs-capture-time', 'preferredId': 10, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/abs-capture-time', 'preferredId': 10, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/playout-delay', 'preferredId': 11, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/playout-delay', 'preferredId': 11, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'urn:mediasoup:params:rtp-hdrext:packet-id', 'preferredId': 12, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'urn:mediasoup:params:rtp-hdrext:packet-id', 'preferredId': 12, 'preferredEncrypt': False, 'direction': 'sendrecv'}]}}
+WARNING: omxh264enc not available, trying nvh264enc for FRONT-CAM
+WARNING: nvh264enc not available, trying x264enc for FRONT-CAM
+DEBUG: x264enc (software) created successfully for FRONT-CAM
+Successfully created pipeline for FRONT-CAM using x264enc
+[INFO] [1778057915.846682]: Socket.IO event ignored: consumer-removed {'camName': 'FRONT-CAM', 'count': 0}
+[INFO] [1778057915.852464]: Plain RTP producer ready: stream=FRONT-CAM cam=FRONT-CAM rtp=10.156.196.159:32597 pt=102 ssrc=1688666914
+set connection info (FRONT-CAM)  = RtpConnectionInfo(host='10.156.196.159', port=32597, rtcp_port=33853, payload_type=102, ssrc=1688666914, srtp_key=None, srtp_salt=None)
+start pipeline
+packet queue is empty, aborting
+
+Starting pipeline for FRONT-CAM
+Pipeline structure:
+Element: x264enc (x264enc)
+Element: queue (queue)
+Element: videoconvert (videoconvert)
+Element: jpegdec (jpegdec)
+Element: appsrc (appsrc)
+Element: udpsink (udpsink)
+Element: rtph264pay (rtph264pay)
+WARNING: omxh264enc not available, trying nvh264enc for REAR-CAM
+WARNING: nvh264enc not available, trying x264enc for REAR-CAM
+DEBUG: x264enc (software) created successfully for REAR-CAM
+state changed (FRONT-CAM) = StreamState.STARTED
+Pipeline state: <enum GST_STATE_PLAYING of type Gst.State>, pending: <enum GST_STATE_VOID_PENDING of type Gst.State>, return: <enum GST_STATE_CHANGE_SUCCESS of type Gst.StateChangeReturn>
+<module 'sensor_msgs.msg' from '/opt/ros/noetic/lib/python3/dist-packages/sensor_msgs/msg/__init__.py'>
+<class 'sensor_msgs.msg._CompressedImage.CompressedImage'>
+Successfully created pipeline for REAR-CAM using x264enc
+[INFO] [1778057915.867885]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 0}
+[INFO] [1778057915.871001]: Plain RTP producer ready: stream=REAR-CAM cam=REAR-CAM rtp=10.156.196.159:33618 pt=102 ssrc=1262580134
+set connection info (REAR-CAM)  = RtpConnectionInfo(host='10.156.196.159', port=33618, rtcp_port=30597, payload_type=102, ssrc=1262580134, srtp_key=None, srtp_salt=None)
+start pipeline
+
+Starting pipeline for REAR-CAM
+Pipeline structure:
+Element: x264enc (x264enc)
+Element: queue (queue)
+Element: videoconvert (videoconvert)
+Element: jpegdec (jpegdec)
+Element: appsrc (appsrc)
+Element: udpsink (udpsink)
+Element: rtph264pay (rtph264pay)
+state changed (REAR-CAM) = StreamState.STARTED
+Pipeline state: <enum GST_STATE_PLAYING of type Gst.State>, pending: <enum GST_STATE_VOID_PENDING of type Gst.State>, return: <enum GST_STATE_CHANGE_SUCCESS of type Gst.StateChangeReturn>
+<module 'sensor_msgs.msg' from '/opt/ros/noetic/lib/python3/dist-packages/sensor_msgs/msg/__init__.py'>
+<class 'sensor_msgs.msg._CompressedImage.CompressedImage'>
+[INFO] [1778057915.985414]: Socket.IO event ignored: consumer-added {'camName': 'FRONT-CAM', 'count': 1}
+[INFO] [1778057916.005887]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 1}
+[INFO] [1778057916.017263]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 2}
+[INFO] [1778057916.028950]: Socket.IO event ignored: consumer-added {'camName': 'FRONT-CAM', 'count': 2}
+[INFO] [1778057916.102107]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 3}
+[INFO] [1778057916.105140]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 4}
+[INFO] [1778058070.406141]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 3}
+[INFO] [1778058070.407559]: Socket.IO event ignored: consumer-removed {'camName': 'FRONT-CAM', 'count': 1}
+[INFO] [1778058070.408226]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 2}
+[INFO] [1778058092.039416]: Socket.IO disconnected
+on_disconnected
+close stream(FRONT-CAM)
+state changed (FRONT-CAM) = StreamState.STOPPED
+[INFO] [1778058092.068316]: Socket.IO not connected yet. Queueing action=producer/stop
+close stream(REAR-CAM)
+state changed (REAR-CAM) = StreamState.STOPPED
+[INFO] [1778058092.095779]: Socket.IO not connected yet. Queueing action=producer/stop
+[INFO] [1778058093.050326]: Reconnecting to Socket.IO...
+[INFO] [1778058096.065015]: [SINGLETON] Starting Socket.IO connection...
+[INFO] [1778058096.103863]: Socket.IO connected
+on_connected
+[INFO] [1778058096.363455]: Mediasoup channel ready: ITGT_PLAT_100000_2604_0039_ee0f, response={'channelId': '59df1a9b-eaca-4206-bba8-95bb2d560e27', 'fcd': 'ITGT_PLAT_100000_2604_0039_ee0f', 'rtpCapabilities': {'codecs': [{'kind': 'video', 'mimeType': 'video/VP8', 'clockRate': 90000, 'rtcpFeedback': [{'type': 'nack', 'parameter': ''}, {'type': 'nack', 'parameter': 'pli'}, {'type': 'ccm', 'parameter': 'fir'}, {'type': 'goog-remb', 'parameter': ''}, {'type': 'transport-cc', 'parameter': ''}], 'parameters': {}, 'preferredPayloadType': 100}, {'kind': 'video', 'mimeType': 'video/rtx', 'preferredPayloadType': 101, 'clockRate': 90000, 'parameters': {'apt': 100}, 'rtcpFeedback': []}, {'kind': 'video', 'mimeType': 'video/H264', 'clockRate': 90000, 'parameters': {'level-asymmetry-allowed': 1, 'packetization-mode': 1, 'profile-level-id': '42e01f'}, 'rtcpFeedback': [{'type': 'nack', 'parameter': ''}, {'type': 'nack', 'parameter': 'pli'}, {'type': 'ccm', 'parameter': 'fir'}, {'type': 'goog-remb', 'parameter': ''}, {'type': 'transport-cc', 'parameter': ''}], 'preferredPayloadType': 102}, {'kind': 'video', 'mimeType': 'video/rtx', 'preferredPayloadType': 103, 'clockRate': 90000, 'parameters': {'apt': 102}, 'rtcpFeedback': []}, {'kind': 'audio', 'mimeType': 'audio/opus', 'clockRate': 48000, 'channels': 2, 'rtcpFeedback': [{'type': 'nack', 'parameter': ''}, {'type': 'transport-cc', 'parameter': ''}], 'parameters': {}, 'preferredPayloadType': 111}], 'headerExtensions': [{'kind': 'audio', 'uri': 'urn:ietf:params:rtp-hdrext:sdes:mid', 'preferredId': 1, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'urn:ietf:params:rtp-hdrext:sdes:mid', 'preferredId': 1, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'urn:ietf:params:rtp-hdrext:sdes:rtp-stream-id', 'preferredId': 2, 'preferredEncrypt': False, 'direction': 'recvonly'}, {'kind': 'video', 'uri': 'urn:ietf:params:rtp-hdrext:sdes:repaired-rtp-stream-id', 'preferredId': 3, 'preferredEncrypt': False, 'direction': 'recvonly'}, {'kind': 'audio', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time', 'preferredId': 4, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time', 'preferredId': 4, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'http://www.ietf.org/id/draft-holmer-rmcat-transport-wide-cc-extensions-01', 'preferredId': 5, 'preferredEncrypt': False, 'direction': 'recvonly'}, {'kind': 'video', 'uri': 'http://www.ietf.org/id/draft-holmer-rmcat-transport-wide-cc-extensions-01', 'preferredId': 5, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'urn:ietf:params:rtp-hdrext:ssrc-audio-level', 'preferredId': 6, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'https://aomediacodec.github.io/av1-rtp-spec/#dependency-descriptor-rtp-header-extension', 'preferredId': 7, 'preferredEncrypt': False, 'direction': 'recvonly'}, {'kind': 'video', 'uri': 'urn:3gpp:video-orientation', 'preferredId': 8, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'urn:ietf:params:rtp-hdrext:toffset', 'preferredId': 9, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/abs-capture-time', 'preferredId': 10, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/abs-capture-time', 'preferredId': 10, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/playout-delay', 'preferredId': 11, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/playout-delay', 'preferredId': 11, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'urn:mediasoup:params:rtp-hdrext:packet-id', 'preferredId': 12, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'urn:mediasoup:params:rtp-hdrext:packet-id', 'preferredId': 12, 'preferredEncrypt': False, 'direction': 'sendrecv'}]}}
+WARNING: omxh264enc not available, trying nvh264enc for FRONT-CAM
+WARNING: nvh264enc not available, trying x264enc for FRONT-CAM
+DEBUG: x264enc (software) created successfully for FRONT-CAM
+Successfully created pipeline for FRONT-CAM using x264enc
+[INFO] [1778058096.374794]: Socket.IO event ignored: consumer-removed {'camName': 'FRONT-CAM', 'count': 0}
+... logging to /home/nvidia/.ros/log/4eca00de-1dd2-11b2-bbb4-48b02df751df/roslaunch-ubuntu-7827.log
+Checking log directory for disk usage. This may take a while.
+Press Ctrl-C to interrupt
+Done checking log file disk usage. Usage is <1GB.
+]2;/home/nvidia/dconic_nav/src/media_streamer/launch/dynamic_stream.launch
+[1mstarted roslaunch server http://192.168.10.15:37265/[0m
+
+SUMMARY
+========
+
+PARAMETERS
+ * /dynamic_streamer_front/remote/key: xwOumAnLPs3HKPLYV...
+ * /dynamic_streamer_front/signal_host: http://10.156.196...
+ * /dynamic_streamer_front/signal_verify_ssl: False
+ * /dynamic_streamer_front/streamer/FRONT-CAM/msg_type: sensor_msgs/Compr...
+ * /dynamic_streamer_front/streamer/FRONT-CAM/security: False
+ * /dynamic_streamer_front/streamer/FRONT-CAM/topic: /camera1/usb_cam1...
+ * /dynamic_streamer_front/streamer/FRONT-CAM/type: ROS
+ * /dynamic_streamer_front/streamer/REAR-CAM/msg_type: sensor_msgs/Compr...
+ * /dynamic_streamer_front/streamer/REAR-CAM/security: False
+ * /dynamic_streamer_front/streamer/REAR-CAM/topic: /camera2/usb_cam2...
+ * /dynamic_streamer_front/streamer/REAR-CAM/type: ROS
+ * /rosdistro: noetic
+ * /rosversion: 1.17.4
+
+NODES
+  /
+    dynamic_streamer_front (media_streamer/launch_stream.py)
+
+[1mROS_MASTER_URI=http://192.168.10.15:11311[0m
+]2;/home/nvidia/dconic_nav/src/media_streamer/launch/dynamic_stream.launch http://192.168.10.15:11311
+[1mprocess[dynamic_streamer_front-1]: started with pid [7924][0m
+[dynamic_streamer_front-1] killing on exit
+shutting down processing monitor...
+... shutting down processing monitor complete
+[1mdone[0m
+/home/nvidia/dconic_nav/src/media_streamer/src/media_streamer/streamer.py:3: PyGIWarning: Gst was imported without specifying a version first. Use gi.require_version('Gst', '1.0') before import to ensure that the right version gets loaded.
+  from gi.repository import Gst, GObject
+/usr/lib/python3/dist-packages/gi/__init__.py
+[SINGLETON] Creating new instance
+[INFO] [1778140593.903878]: [SINGLETON] Creating new WSClient instance - Socket.IO http://10.156.196.159:3000
+[INFO] [1778140593.917018]: [SINGLETON] Starting Socket.IO connection...
+[INFO] [1778140593.932531]: Socket.IO connected
+on_connected
+[INFO] [1778140594.195116]: Mediasoup channel ready: ITGT_PLAT_100000_2604_0039_ee0f, response={'channelId': '59df1a9b-eaca-4206-bba8-95bb2d560e27', 'fcd': 'ITGT_PLAT_100000_2604_0039_ee0f', 'rtpCapabilities': {'codecs': [{'kind': 'video', 'mimeType': 'video/VP8', 'clockRate': 90000, 'rtcpFeedback': [{'type': 'nack', 'parameter': ''}, {'type': 'nack', 'parameter': 'pli'}, {'type': 'ccm', 'parameter': 'fir'}, {'type': 'goog-remb', 'parameter': ''}, {'type': 'transport-cc', 'parameter': ''}], 'parameters': {}, 'preferredPayloadType': 100}, {'kind': 'video', 'mimeType': 'video/rtx', 'preferredPayloadType': 101, 'clockRate': 90000, 'parameters': {'apt': 100}, 'rtcpFeedback': []}, {'kind': 'video', 'mimeType': 'video/H264', 'clockRate': 90000, 'parameters': {'level-asymmetry-allowed': 1, 'packetization-mode': 1, 'profile-level-id': '42e01f'}, 'rtcpFeedback': [{'type': 'nack', 'parameter': ''}, {'type': 'nack', 'parameter': 'pli'}, {'type': 'ccm', 'parameter': 'fir'}, {'type': 'goog-remb', 'parameter': ''}, {'type': 'transport-cc', 'parameter': ''}], 'preferredPayloadType': 102}, {'kind': 'video', 'mimeType': 'video/rtx', 'preferredPayloadType': 103, 'clockRate': 90000, 'parameters': {'apt': 102}, 'rtcpFeedback': []}, {'kind': 'audio', 'mimeType': 'audio/opus', 'clockRate': 48000, 'channels': 2, 'rtcpFeedback': [{'type': 'nack', 'parameter': ''}, {'type': 'transport-cc', 'parameter': ''}], 'parameters': {}, 'preferredPayloadType': 111}], 'headerExtensions': [{'kind': 'audio', 'uri': 'urn:ietf:params:rtp-hdrext:sdes:mid', 'preferredId': 1, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'urn:ietf:params:rtp-hdrext:sdes:mid', 'preferredId': 1, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'urn:ietf:params:rtp-hdrext:sdes:rtp-stream-id', 'preferredId': 2, 'preferredEncrypt': False, 'direction': 'recvonly'}, {'kind': 'video', 'uri': 'urn:ietf:params:rtp-hdrext:sdes:repaired-rtp-stream-id', 'preferredId': 3, 'preferredEncrypt': False, 'direction': 'recvonly'}, {'kind': 'audio', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time', 'preferredId': 4, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time', 'preferredId': 4, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'http://www.ietf.org/id/draft-holmer-rmcat-transport-wide-cc-extensions-01', 'preferredId': 5, 'preferredEncrypt': False, 'direction': 'recvonly'}, {'kind': 'video', 'uri': 'http://www.ietf.org/id/draft-holmer-rmcat-transport-wide-cc-extensions-01', 'preferredId': 5, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'urn:ietf:params:rtp-hdrext:ssrc-audio-level', 'preferredId': 6, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'https://aomediacodec.github.io/av1-rtp-spec/#dependency-descriptor-rtp-header-extension', 'preferredId': 7, 'preferredEncrypt': False, 'direction': 'recvonly'}, {'kind': 'video', 'uri': 'urn:3gpp:video-orientation', 'preferredId': 8, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'urn:ietf:params:rtp-hdrext:toffset', 'preferredId': 9, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/abs-capture-time', 'preferredId': 10, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/abs-capture-time', 'preferredId': 10, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/playout-delay', 'preferredId': 11, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/playout-delay', 'preferredId': 11, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'urn:mediasoup:params:rtp-hdrext:packet-id', 'preferredId': 12, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'urn:mediasoup:params:rtp-hdrext:packet-id', 'preferredId': 12, 'preferredEncrypt': False, 'direction': 'sendrecv'}]}}
+WARNING: omxh264enc not available, trying nvh264enc for FRONT-CAM
+WARNING: nvh264enc not available, trying x264enc for FRONT-CAM
+DEBUG: x264enc (software) created successfully for FRONT-CAM
+Successfully created pipeline for FRONT-CAM using x264enc
+[INFO] [1778140594.236451]: Socket.IO event ignored: consumer-removed {'camName': 'FRONT-CAM', 'count': 0}
+[INFO] [1778140594.239378]: Plain RTP producer ready: stream=FRONT-CAM cam=FRONT-CAM rtp=10.156.196.159:39203 pt=102 ssrc=2946412430
+set connection info (FRONT-CAM)  = RtpConnectionInfo(host='10.156.196.159', port=39203, rtcp_port=33246, payload_type=102, ssrc=2946412430, srtp_key=None, srtp_salt=None)
+start pipeline
+
+Starting pipeline for FRONT-CAM
+Pipeline structure:
+Element: x264enc (x264enc)
+Element: queue (queue)
+Element: videoconvert (videoconvert)
+Element: jpegdec (jpegdec)
+Element: appsrc (appsrc)
+Element: udpsink (udpsink)
+Element: rtph264pay (rtph264pay)
+WARNING: omxh264enc not available, trying nvh264enc for REAR-CAM
+WARNING: nvh264enc not available, trying x264enc for REAR-CAM
+DEBUG: x264enc (software) created successfully for REAR-CAM
+state changed (FRONT-CAM) = StreamState.STARTED
+Pipeline state: <enum GST_STATE_PLAYING of type Gst.State>, pending: <enum GST_STATE_VOID_PENDING of type Gst.State>, return: <enum GST_STATE_CHANGE_SUCCESS of type Gst.StateChangeReturn>
+Successfully created pipeline for REAR-CAM using x264enc
+[INFO] [1778140594.254759]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 0}
+[INFO] [1778140594.265994]: Plain RTP producer ready: stream=REAR-CAM cam=REAR-CAM rtp=10.156.196.159:36996 pt=102 ssrc=4286010918
+set connection info (REAR-CAM)  = RtpConnectionInfo(host='10.156.196.159', port=36996, rtcp_port=31474, payload_type=102, ssrc=4286010918, srtp_key=None, srtp_salt=None)
+start pipeline
+
+Starting pipeline for REAR-CAM
+Pipeline structure:
+Element: x264enc (x264enc)
+Element: queue (queue)
+Element: videoconvert (videoconvert)
+Element: jpegdec (jpegdec)
+Element: appsrc (appsrc)
+Element: udpsink (udpsink)
+Element: rtph264pay (rtph264pay)
+state changed (REAR-CAM) = StreamState.STARTED
+Pipeline state: <enum GST_STATE_PLAYING of type Gst.State>, pending: <enum GST_STATE_VOID_PENDING of type Gst.State>, return: <enum GST_STATE_CHANGE_SUCCESS of type Gst.StateChangeReturn>
+<module 'sensor_msgs.msg' from '/opt/ros/noetic/lib/python3/dist-packages/sensor_msgs/msg/__init__.py'>
+<class 'sensor_msgs.msg._CompressedImage.CompressedImage'>
+<module 'sensor_msgs.msg' from '/opt/ros/noetic/lib/python3/dist-packages/sensor_msgs/msg/__init__.py'>
+<class 'sensor_msgs.msg._CompressedImage.CompressedImage'>
+[INFO] [1778140698.796937]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 1}
+[INFO] [1778140698.880613]: Socket.IO event ignored: consumer-added {'camName': 'FRONT-CAM', 'count': 1}
+[INFO] [1778140698.921323]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 2}
+[INFO] [1778140724.128305]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 1}
+[INFO] [1778140724.136242]: Socket.IO event ignored: consumer-removed {'camName': 'FRONT-CAM', 'count': 0}
+[INFO] [1778140724.137788]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 0}
+[INFO] [1778140727.560630]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 1}
+[INFO] [1778140727.621654]: Socket.IO event ignored: consumer-added {'camName': 'FRONT-CAM', 'count': 1}
+[INFO] [1778140727.675416]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 2}
+close stream(FRONT-CAM)
+state changed (FRONT-CAM) = StreamState.STOPPED
+[INFO] [1778141099.031067]: Socket.IO event ignored: consumer-removed {'camName': 'FRONT-CAM', 'count': 0}
+[INFO] [1778141099.034612]: Plain RTP producer closed: stream=FRONT-CAM
+close stream(REAR-CAM)
+state changed (REAR-CAM) = StreamState.STOPPED
+[INFO] [1778141099.108184]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 0}
+[INFO] [1778141099.112618]: Plain RTP producer closed: stream=REAR-CAM
+[INFO] [1778141099.116422]: Socket.IO disconnected
+on_disconnected
+Traceback (most recent call last):
+  File "/home/nvidia/dconic_nav/src/media_streamer/script/launch_stream.py", line 142, in <module>
+    rospy.spin()()
+TypeError: 'NoneType' object is not callable
+... logging to /home/nvidia/.ros/log/4e9d8158-1dd2-11b2-aeda-48b02df751df/roslaunch-ubuntu-103022.log
+Checking log directory for disk usage. This may take a while.
+Press Ctrl-C to interrupt
+Done checking log file disk usage. Usage is <1GB.
+]2;/home/nvidia/dconic_nav/src/media_streamer/launch/dynamic_stream.launch
+[1mstarted roslaunch server http://192.168.10.15:35585/[0m
+
+SUMMARY
+========
+
+PARAMETERS
+ * /dynamic_streamer_front/remote/key: xwOumAnLPs3HKPLYV...
+ * /dynamic_streamer_front/signal_host: http://10.156.196...
+ * /dynamic_streamer_front/signal_verify_ssl: False
+ * /dynamic_streamer_front/streamer/FRONT-CAM/msg_type: sensor_msgs/Compr...
+ * /dynamic_streamer_front/streamer/FRONT-CAM/security: False
+ * /dynamic_streamer_front/streamer/FRONT-CAM/topic: /camera1/usb_cam1...
+ * /dynamic_streamer_front/streamer/FRONT-CAM/type: ROS
+ * /dynamic_streamer_front/streamer/REAR-CAM/msg_type: sensor_msgs/Compr...
+ * /dynamic_streamer_front/streamer/REAR-CAM/security: False
+ * /dynamic_streamer_front/streamer/REAR-CAM/topic: /camera2/usb_cam2...
+ * /dynamic_streamer_front/streamer/REAR-CAM/type: ROS
+ * /rosdistro: noetic
+ * /rosversion: 1.17.4
+
+NODES
+  /
+    dynamic_streamer_front (media_streamer/launch_stream.py)
+
+[1mROS_MASTER_URI=http://192.168.10.15:11311[0m
+]2;/home/nvidia/dconic_nav/src/media_streamer/launch/dynamic_stream.launch http://192.168.10.15:11311
+[1mprocess[dynamic_streamer_front-1]: started with pid [103118][0m
+[dynamic_streamer_front-1] killing on exit
+shutting down processing monitor...
+... shutting down processing monitor complete
+[1mdone[0m
+/home/nvidia/dconic_nav/src/media_streamer/src/media_streamer/streamer.py:3: PyGIWarning: Gst was imported without specifying a version first. Use gi.require_version('Gst', '1.0') before import to ensure that the right version gets loaded.
+  from gi.repository import Gst, GObject
+/usr/lib/python3/dist-packages/gi/__init__.py
+[SINGLETON] Creating new instance
+[INFO] [1778141195.983642]: [SINGLETON] Creating new WSClient instance - Socket.IO http://10.156.196.159:3000
+[INFO] [1778141196.014339]: [SINGLETON] Starting Socket.IO connection...
+[INFO] [1778141196.027316]: Socket.IO connected
+on_connected
+[INFO] [1778141196.285626]: Mediasoup channel ready: ITGT_PLAT_100000_2604_0039_ee0f, response={'channelId': '59df1a9b-eaca-4206-bba8-95bb2d560e27', 'fcd': 'ITGT_PLAT_100000_2604_0039_ee0f', 'rtpCapabilities': {'codecs': [{'kind': 'video', 'mimeType': 'video/VP8', 'clockRate': 90000, 'rtcpFeedback': [{'type': 'nack', 'parameter': ''}, {'type': 'nack', 'parameter': 'pli'}, {'type': 'ccm', 'parameter': 'fir'}, {'type': 'goog-remb', 'parameter': ''}, {'type': 'transport-cc', 'parameter': ''}], 'parameters': {}, 'preferredPayloadType': 100}, {'kind': 'video', 'mimeType': 'video/rtx', 'preferredPayloadType': 101, 'clockRate': 90000, 'parameters': {'apt': 100}, 'rtcpFeedback': []}, {'kind': 'video', 'mimeType': 'video/H264', 'clockRate': 90000, 'parameters': {'level-asymmetry-allowed': 1, 'packetization-mode': 1, 'profile-level-id': '42e01f'}, 'rtcpFeedback': [{'type': 'nack', 'parameter': ''}, {'type': 'nack', 'parameter': 'pli'}, {'type': 'ccm', 'parameter': 'fir'}, {'type': 'goog-remb', 'parameter': ''}, {'type': 'transport-cc', 'parameter': ''}], 'preferredPayloadType': 102}, {'kind': 'video', 'mimeType': 'video/rtx', 'preferredPayloadType': 103, 'clockRate': 90000, 'parameters': {'apt': 102}, 'rtcpFeedback': []}, {'kind': 'audio', 'mimeType': 'audio/opus', 'clockRate': 48000, 'channels': 2, 'rtcpFeedback': [{'type': 'nack', 'parameter': ''}, {'type': 'transport-cc', 'parameter': ''}], 'parameters': {}, 'preferredPayloadType': 111}], 'headerExtensions': [{'kind': 'audio', 'uri': 'urn:ietf:params:rtp-hdrext:sdes:mid', 'preferredId': 1, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'urn:ietf:params:rtp-hdrext:sdes:mid', 'preferredId': 1, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'urn:ietf:params:rtp-hdrext:sdes:rtp-stream-id', 'preferredId': 2, 'preferredEncrypt': False, 'direction': 'recvonly'}, {'kind': 'video', 'uri': 'urn:ietf:params:rtp-hdrext:sdes:repaired-rtp-stream-id', 'preferredId': 3, 'preferredEncrypt': False, 'direction': 'recvonly'}, {'kind': 'audio', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time', 'preferredId': 4, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time', 'preferredId': 4, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'http://www.ietf.org/id/draft-holmer-rmcat-transport-wide-cc-extensions-01', 'preferredId': 5, 'preferredEncrypt': False, 'direction': 'recvonly'}, {'kind': 'video', 'uri': 'http://www.ietf.org/id/draft-holmer-rmcat-transport-wide-cc-extensions-01', 'preferredId': 5, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'urn:ietf:params:rtp-hdrext:ssrc-audio-level', 'preferredId': 6, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'https://aomediacodec.github.io/av1-rtp-spec/#dependency-descriptor-rtp-header-extension', 'preferredId': 7, 'preferredEncrypt': False, 'direction': 'recvonly'}, {'kind': 'video', 'uri': 'urn:3gpp:video-orientation', 'preferredId': 8, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'urn:ietf:params:rtp-hdrext:toffset', 'preferredId': 9, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/abs-capture-time', 'preferredId': 10, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/abs-capture-time', 'preferredId': 10, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/playout-delay', 'preferredId': 11, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/playout-delay', 'preferredId': 11, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'urn:mediasoup:params:rtp-hdrext:packet-id', 'preferredId': 12, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'urn:mediasoup:params:rtp-hdrext:packet-id', 'preferredId': 12, 'preferredEncrypt': False, 'direction': 'sendrecv'}]}}
+WARNING: omxh264enc not available, trying nvh264enc for FRONT-CAM
+WARNING: nvh264enc not available, trying x264enc for FRONT-CAM
+DEBUG: x264enc (software) created successfully for FRONT-CAM
+Successfully created pipeline for FRONT-CAM using x264enc
+[INFO] [1778141196.316199]: Plain RTP producer ready: stream=FRONT-CAM cam=FRONT-CAM rtp=10.156.196.159:35046 pt=102 ssrc=2569902918
+set connection info (FRONT-CAM)  = RtpConnectionInfo(host='10.156.196.159', port=35046, rtcp_port=31075, payload_type=102, ssrc=2569902918, srtp_key=None, srtp_salt=None)
+start pipeline
+
+Starting pipeline for FRONT-CAM
+Pipeline structure:
+Element: x264enc (x264enc)
+Element: queue (queue)
+Element: videoconvert (videoconvert)
+Element: jpegdec (jpegdec)
+Element: appsrc (appsrc)
+Element: udpsink (udpsink)
+Element: rtph264pay (rtph264pay)
+WARNING: omxh264enc not available, trying nvh264enc for REAR-CAM
+WARNING: nvh264enc not available, trying x264enc for REAR-CAM
+DEBUG: x264enc (software) created successfully for REAR-CAM
+state changed (FRONT-CAM) = StreamState.STARTED
+Pipeline state: <enum GST_STATE_PLAYING of type Gst.State>, pending: <enum GST_STATE_VOID_PENDING of type Gst.State>, return: <enum GST_STATE_CHANGE_SUCCESS of type Gst.StateChangeReturn>
+Successfully created pipeline for REAR-CAM using x264enc
+[INFO] [1778141196.339550]: Plain RTP producer ready: stream=REAR-CAM cam=REAR-CAM rtp=10.156.196.159:35301 pt=102 ssrc=658447395
+set connection info (REAR-CAM)  = RtpConnectionInfo(host='10.156.196.159', port=35301, rtcp_port=34617, payload_type=102, ssrc=658447395, srtp_key=None, srtp_salt=None)
+start pipeline
+
+Starting pipeline for REAR-CAM
+Pipeline structure:
+Element: x264enc (x264enc)
+Element: queue (queue)
+Element: videoconvert (videoconvert)
+Element: jpegdec (jpegdec)
+Element: appsrc (appsrc)
+Element: udpsink (udpsink)
+Element: rtph264pay (rtph264pay)
+state changed (REAR-CAM) = StreamState.STARTED
+Pipeline state: <enum GST_STATE_PLAYING of type Gst.State>, pending: <enum GST_STATE_VOID_PENDING of type Gst.State>, return: <enum GST_STATE_CHANGE_SUCCESS of type Gst.StateChangeReturn>
+<module 'sensor_msgs.msg' from '/opt/ros/noetic/lib/python3/dist-packages/sensor_msgs/msg/__init__.py'>
+<class 'sensor_msgs.msg._CompressedImage.CompressedImage'>
+<module 'sensor_msgs.msg' from '/opt/ros/noetic/lib/python3/dist-packages/sensor_msgs/msg/__init__.py'>
+<class 'sensor_msgs.msg._CompressedImage.CompressedImage'>
+[INFO] [1778141196.423168]: Socket.IO event ignored: consumer-added {'camName': 'FRONT-CAM', 'count': 1}
+[INFO] [1778141196.447716]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 1}
+[INFO] [1778141196.449100]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 2}
+[INFO] [1778141239.516067]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 3}
+[INFO] [1778141239.594924]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 4}
+[INFO] [1778141239.617554]: Socket.IO event ignored: consumer-added {'camName': 'FRONT-CAM', 'count': 2}
+[INFO] [1778141270.410403]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 3}
+[INFO] [1778141270.418528]: Socket.IO event ignored: consumer-removed {'camName': 'FRONT-CAM', 'count': 1}
+[INFO] [1778141270.420470]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 2}
+[INFO] [1778141280.156061]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 3}
+[INFO] [1778141280.207011]: Socket.IO event ignored: consumer-added {'camName': 'FRONT-CAM', 'count': 2}
+packet queue is empty, aborting
+[INFO] [1778141280.242325]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 4}
+[INFO] [1778141302.630674]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 3}
+[INFO] [1778141302.634641]: Socket.IO event ignored: consumer-removed {'camName': 'FRONT-CAM', 'count': 1}
+[INFO] [1778141302.651204]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 2}
+[INFO] [1778141325.635435]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 3}
+[INFO] [1778141325.692813]: Socket.IO event ignored: consumer-added {'camName': 'FRONT-CAM', 'count': 2}
+[INFO] [1778141325.730539]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 4}
+[INFO] [1778141327.399137]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 3}
+[INFO] [1778141327.410516]: Socket.IO event ignored: consumer-removed {'camName': 'FRONT-CAM', 'count': 1}
+[INFO] [1778141327.412669]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 2}
+[INFO] [1778141339.007009]: Socket.IO event ignored: consumer-added {'camName': 'FRONT-CAM', 'count': 2}
+[INFO] [1778141339.055429]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 3}
+[INFO] [1778141339.131954]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 4}
+[INFO] [1778141375.032578]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 3}
+[INFO] [1778141375.040224]: Socket.IO event ignored: consumer-removed {'camName': 'FRONT-CAM', 'count': 1}
+[INFO] [1778141375.047268]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 2}
+[INFO] [1778141552.823807]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 3}
+[INFO] [1778141552.887829]: Socket.IO event ignored: consumer-added {'camName': 'FRONT-CAM', 'count': 2}
+[INFO] [1778141552.933044]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 4}
+[INFO] [1778141565.486347]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 3}
+[INFO] [1778141565.502447]: Socket.IO event ignored: consumer-removed {'camName': 'FRONT-CAM', 'count': 1}
+[INFO] [1778141565.507611]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 2}
+[INFO] [1778141636.394264]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 3}
+[INFO] [1778141636.503703]: Socket.IO event ignored: consumer-added {'camName': 'FRONT-CAM', 'count': 2}
+[INFO] [1778141636.580673]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 4}
+[INFO] [1778141659.617375]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 3}
+[INFO] [1778141659.629360]: Socket.IO event ignored: consumer-removed {'camName': 'FRONT-CAM', 'count': 1}
+[INFO] [1778141659.633207]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 2}
+[INFO] [1778141817.721559]: Socket.IO disconnected
+on_disconnected
+close stream(FRONT-CAM)
+state changed (FRONT-CAM) = StreamState.STOPPED
+[INFO] [1778141817.750655]: Socket.IO not connected yet. Queueing action=producer/stop
+close stream(REAR-CAM)
+state changed (REAR-CAM) = StreamState.STOPPED
+[INFO] [1778141817.772590]: Socket.IO not connected yet. Queueing action=producer/stop
+[INFO] [1778141818.730274]: Reconnecting to Socket.IO...
+[INFO] [1778141821.746694]: [SINGLETON] Starting Socket.IO connection...
+[INFO] [1778141821.759317]: Socket.IO connected
+on_connected
+[INFO] [1778141822.017860]: Mediasoup channel ready: ITGT_PLAT_100000_2604_0039_ee0f, response={'channelId': '59df1a9b-eaca-4206-bba8-95bb2d560e27', 'fcd': 'ITGT_PLAT_100000_2604_0039_ee0f', 'rtpCapabilities': {'codecs': [{'kind': 'video', 'mimeType': 'video/VP8', 'clockRate': 90000, 'rtcpFeedback': [{'type': 'nack', 'parameter': ''}, {'type': 'nack', 'parameter': 'pli'}, {'type': 'ccm', 'parameter': 'fir'}, {'type': 'goog-remb', 'parameter': ''}, {'type': 'transport-cc', 'parameter': ''}], 'parameters': {}, 'preferredPayloadType': 100}, {'kind': 'video', 'mimeType': 'video/rtx', 'preferredPayloadType': 101, 'clockRate': 90000, 'parameters': {'apt': 100}, 'rtcpFeedback': []}, {'kind': 'video', 'mimeType': 'video/H264', 'clockRate': 90000, 'parameters': {'level-asymmetry-allowed': 1, 'packetization-mode': 1, 'profile-level-id': '42e01f'}, 'rtcpFeedback': [{'type': 'nack', 'parameter': ''}, {'type': 'nack', 'parameter': 'pli'}, {'type': 'ccm', 'parameter': 'fir'}, {'type': 'goog-remb', 'parameter': ''}, {'type': 'transport-cc', 'parameter': ''}], 'preferredPayloadType': 102}, {'kind': 'video', 'mimeType': 'video/rtx', 'preferredPayloadType': 103, 'clockRate': 90000, 'parameters': {'apt': 102}, 'rtcpFeedback': []}, {'kind': 'audio', 'mimeType': 'audio/opus', 'clockRate': 48000, 'channels': 2, 'rtcpFeedback': [{'type': 'nack', 'parameter': ''}, {'type': 'transport-cc', 'parameter': ''}], 'parameters': {}, 'preferredPayloadType': 111}], 'headerExtensions': [{'kind': 'audio', 'uri': 'urn:ietf:params:rtp-hdrext:sdes:mid', 'preferredId': 1, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'urn:ietf:params:rtp-hdrext:sdes:mid', 'preferredId': 1, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'urn:ietf:params:rtp-hdrext:sdes:rtp-stream-id', 'preferredId': 2, 'preferredEncrypt': False, 'direction': 'recvonly'}, {'kind': 'video', 'uri': 'urn:ietf:params:rtp-hdrext:sdes:repaired-rtp-stream-id', 'preferredId': 3, 'preferredEncrypt': False, 'direction': 'recvonly'}, {'kind': 'audio', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time', 'preferredId': 4, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time', 'preferredId': 4, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'http://www.ietf.org/id/draft-holmer-rmcat-transport-wide-cc-extensions-01', 'preferredId': 5, 'preferredEncrypt': False, 'direction': 'recvonly'}, {'kind': 'video', 'uri': 'http://www.ietf.org/id/draft-holmer-rmcat-transport-wide-cc-extensions-01', 'preferredId': 5, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'urn:ietf:params:rtp-hdrext:ssrc-audio-level', 'preferredId': 6, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'https://aomediacodec.github.io/av1-rtp-spec/#dependency-descriptor-rtp-header-extension', 'preferredId': 7, 'preferredEncrypt': False, 'direction': 'recvonly'}, {'kind': 'video', 'uri': 'urn:3gpp:video-orientation', 'preferredId': 8, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'urn:ietf:params:rtp-hdrext:toffset', 'preferredId': 9, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/abs-capture-time', 'preferredId': 10, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/abs-capture-time', 'preferredId': 10, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/playout-delay', 'preferredId': 11, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/playout-delay', 'preferredId': 11, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'urn:mediasoup:params:rtp-hdrext:packet-id', 'preferredId': 12, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'urn:mediasoup:params:rtp-hdrext:packet-id', 'preferredId': 12, 'preferredEncrypt': False, 'direction': 'sendrecv'}]}}
+WARNING: omxh264enc not available, trying nvh264enc for FRONT-CAM
+WARNING: nvh264enc not available, trying x264enc for FRONT-CAM
+DEBUG: x264enc (software) created successfully for FRONT-CAM
+Successfully created pipeline for FRONT-CAM using x264enc
+[INFO] [1778141822.028564]: Socket.IO event ignored: consumer-removed {'camName': 'FRONT-CAM', 'count': 0}
+packet queue is empty, aborting
+[INFO] [1778141822.030107]: Plain RTP producer ready: stream=FRONT-CAM cam=FRONT-CAM rtp=10.156.196.159:33071 pt=102 ssrc=209239396
+set connection info (FRONT-CAM)  = RtpConnectionInfo(host='10.156.196.159', port=33071, rtcp_port=33705, payload_type=102, ssrc=209239396, srtp_key=None, srtp_salt=None)
+start pipeline
+
+Starting pipeline for FRONT-CAM
+Pipeline structure:
+Element: x264enc (x264enc)
+Element: queue (queue)
+Element: videoconvert (videoconvert)
+Element: jpegdec (jpegdec)
+Element: appsrc (appsrc)
+Element: udpsink (udpsink)
+Element: rtph264pay (rtph264pay)
+state changed (FRONT-CAM) = StreamState.STARTED
+Pipeline state: <enum GST_STATE_PLAYING of type Gst.State>, pending: <enum GST_STATE_VOID_PENDING of type Gst.State>, return: <enum GST_STATE_CHANGE_SUCCESS of type Gst.StateChangeReturn>
+<module 'sensor_msgs.msg' from '/opt/ros/noetic/lib/python3/dist-packages/sensor_msgs/msg/__init__.py'>
+<class 'sensor_msgs.msg._CompressedImage.CompressedImage'>
+WARNING: omxh264enc not available, trying nvh264enc for REAR-CAM
+WARNING: nvh264enc not available, trying x264enc for REAR-CAM
+DEBUG: x264enc (software) created successfully for REAR-CAM
+Successfully created pipeline for REAR-CAM using x264enc
+[INFO] [1778141822.057767]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 0}
+[INFO] [1778141822.066126]: Plain RTP producer ready: stream=REAR-CAM cam=REAR-CAM rtp=10.156.196.159:32029 pt=102 ssrc=668601881
+set connection info (REAR-CAM)  = RtpConnectionInfo(host='10.156.196.159', port=32029, rtcp_port=30074, payload_type=102, ssrc=668601881, srtp_key=None, srtp_salt=None)
+start pipeline
+
+Starting pipeline for REAR-CAM
+Pipeline structure:
+Element: x264enc (x264enc)
+Element: queue (queue)
+Element: videoconvert (videoconvert)
+Element: jpegdec (jpegdec)
+Element: appsrc (appsrc)
+Element: udpsink (udpsink)
+Element: rtph264pay (rtph264pay)
+state changed (REAR-CAM) = StreamState.STARTED
+Pipeline state: <enum GST_STATE_PLAYING of type Gst.State>, pending: <enum GST_STATE_VOID_PENDING of type Gst.State>, return: <enum GST_STATE_CHANGE_SUCCESS of type Gst.StateChangeReturn>
+<module 'sensor_msgs.msg' from '/opt/ros/noetic/lib/python3/dist-packages/sensor_msgs/msg/__init__.py'>
+<class 'sensor_msgs.msg._CompressedImage.CompressedImage'>
+[INFO] [1778141822.158400]: Socket.IO event ignored: consumer-added {'camName': 'FRONT-CAM', 'count': 1}
+[INFO] [1778141822.214631]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 1}
+[INFO] [1778141822.215987]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 2}
+[INFO] [1778141887.344172]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 3}
+[INFO] [1778141887.402776]: Socket.IO event ignored: consumer-added {'camName': 'FRONT-CAM', 'count': 2}
+[INFO] [1778141887.448247]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 4}
+[INFO] [1778142003.639513]: Socket.IO disconnected
+on_disconnected
+close stream(FRONT-CAM)
+state changed (FRONT-CAM) = StreamState.STOPPED
+[INFO] [1778142003.690468]: Socket.IO not connected yet. Queueing action=producer/stop
+close stream(REAR-CAM)
+state changed (REAR-CAM) = StreamState.STOPPED
+[INFO] [1778142003.724898]: Socket.IO not connected yet. Queueing action=producer/stop
+[INFO] [1778142004.662076]: Reconnecting to Socket.IO...
+[INFO] [1778142007.680161]: [SINGLETON] Starting Socket.IO connection...
+[INFO] [1778142007.699393]: Socket.IO connected
+on_connected
+[INFO] [1778142007.961575]: Mediasoup channel ready: ITGT_PLAT_100000_2604_0039_ee0f, response={'channelId': '59df1a9b-eaca-4206-bba8-95bb2d560e27', 'fcd': 'ITGT_PLAT_100000_2604_0039_ee0f', 'rtpCapabilities': {'codecs': [{'kind': 'video', 'mimeType': 'video/VP8', 'clockRate': 90000, 'rtcpFeedback': [{'type': 'nack', 'parameter': ''}, {'type': 'nack', 'parameter': 'pli'}, {'type': 'ccm', 'parameter': 'fir'}, {'type': 'goog-remb', 'parameter': ''}, {'type': 'transport-cc', 'parameter': ''}], 'parameters': {}, 'preferredPayloadType': 100}, {'kind': 'video', 'mimeType': 'video/rtx', 'preferredPayloadType': 101, 'clockRate': 90000, 'parameters': {'apt': 100}, 'rtcpFeedback': []}, {'kind': 'video', 'mimeType': 'video/H264', 'clockRate': 90000, 'parameters': {'level-asymmetry-allowed': 1, 'packetization-mode': 1, 'profile-level-id': '42e01f'}, 'rtcpFeedback': [{'type': 'nack', 'parameter': ''}, {'type': 'nack', 'parameter': 'pli'}, {'type': 'ccm', 'parameter': 'fir'}, {'type': 'goog-remb', 'parameter': ''}, {'type': 'transport-cc', 'parameter': ''}], 'preferredPayloadType': 102}, {'kind': 'video', 'mimeType': 'video/rtx', 'preferredPayloadType': 103, 'clockRate': 90000, 'parameters': {'apt': 102}, 'rtcpFeedback': []}, {'kind': 'audio', 'mimeType': 'audio/opus', 'clockRate': 48000, 'channels': 2, 'rtcpFeedback': [{'type': 'nack', 'parameter': ''}, {'type': 'transport-cc', 'parameter': ''}], 'parameters': {}, 'preferredPayloadType': 111}], 'headerExtensions': [{'kind': 'audio', 'uri': 'urn:ietf:params:rtp-hdrext:sdes:mid', 'preferredId': 1, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'urn:ietf:params:rtp-hdrext:sdes:mid', 'preferredId': 1, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'urn:ietf:params:rtp-hdrext:sdes:rtp-stream-id', 'preferredId': 2, 'preferredEncrypt': False, 'direction': 'recvonly'}, {'kind': 'video', 'uri': 'urn:ietf:params:rtp-hdrext:sdes:repaired-rtp-stream-id', 'preferredId': 3, 'preferredEncrypt': False, 'direction': 'recvonly'}, {'kind': 'audio', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time', 'preferredId': 4, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/abs-send-time', 'preferredId': 4, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'http://www.ietf.org/id/draft-holmer-rmcat-transport-wide-cc-extensions-01', 'preferredId': 5, 'preferredEncrypt': False, 'direction': 'recvonly'}, {'kind': 'video', 'uri': 'http://www.ietf.org/id/draft-holmer-rmcat-transport-wide-cc-extensions-01', 'preferredId': 5, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'urn:ietf:params:rtp-hdrext:ssrc-audio-level', 'preferredId': 6, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'https://aomediacodec.github.io/av1-rtp-spec/#dependency-descriptor-rtp-header-extension', 'preferredId': 7, 'preferredEncrypt': False, 'direction': 'recvonly'}, {'kind': 'video', 'uri': 'urn:3gpp:video-orientation', 'preferredId': 8, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'urn:ietf:params:rtp-hdrext:toffset', 'preferredId': 9, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/abs-capture-time', 'preferredId': 10, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/abs-capture-time', 'preferredId': 10, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/playout-delay', 'preferredId': 11, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'http://www.webrtc.org/experiments/rtp-hdrext/playout-delay', 'preferredId': 11, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'audio', 'uri': 'urn:mediasoup:params:rtp-hdrext:packet-id', 'preferredId': 12, 'preferredEncrypt': False, 'direction': 'sendrecv'}, {'kind': 'video', 'uri': 'urn:mediasoup:params:rtp-hdrext:packet-id', 'preferredId': 12, 'preferredEncrypt': False, 'direction': 'sendrecv'}]}}
+WARNING: omxh264enc not available, trying nvh264enc for FRONT-CAM
+WARNING: nvh264enc not available, trying x264enc for FRONT-CAM
+DEBUG: x264enc (software) created successfully for FRONT-CAM
+Successfully created pipeline for FRONT-CAM using x264enc
+[INFO] [1778142007.974371]: Socket.IO event ignored: consumer-removed {'camName': 'FRONT-CAM', 'count': 0}
+[INFO] [1778142007.976425]: Plain RTP producer ready: stream=FRONT-CAM cam=FRONT-CAM rtp=10.156.196.159:31550 pt=102 ssrc=3471561161
+set connection info (FRONT-CAM)  = RtpConnectionInfo(host='10.156.196.159', port=31550, rtcp_port=39928, payload_type=102, ssrc=3471561161, srtp_key=None, srtp_salt=None)
+start pipeline
+
+Starting pipeline for FRONT-CAM
+Pipeline structure:
+Element: x264enc (x264enc)
+Element: queue (queue)
+Element: videoconvert (videoconvert)
+Element: jpegdec (jpegdec)
+Element: appsrc (appsrc)
+Element: udpsink (udpsink)
+Element: rtph264pay (rtph264pay)
+WARNING: omxh264enc not available, trying nvh264enc for REAR-CAM
+WARNING: nvh264enc not available, trying x264enc for REAR-CAM
+DEBUG: x264enc (software) created successfully for REAR-CAM
+state changed (FRONT-CAM) = StreamState.STARTED
+Pipeline state: <enum GST_STATE_PLAYING of type Gst.State>, pending: <enum GST_STATE_VOID_PENDING of type Gst.State>, return: <enum GST_STATE_CHANGE_SUCCESS of type Gst.StateChangeReturn>
+<module 'sensor_msgs.msg' from '/opt/ros/noetic/lib/python3/dist-packages/sensor_msgs/msg/__init__.py'>
+<class 'sensor_msgs.msg._CompressedImage.CompressedImage'>
+Successfully created pipeline for REAR-CAM using x264enc
+[INFO] [1778142007.998425]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 0}
+[INFO] [1778142008.000122]: Plain RTP producer ready: stream=REAR-CAM cam=REAR-CAM rtp=10.156.196.159:35812 pt=102 ssrc=2576204512
+set connection info (REAR-CAM)  = RtpConnectionInfo(host='10.156.196.159', port=35812, rtcp_port=30612, payload_type=102, ssrc=2576204512, srtp_key=None, srtp_salt=None)
+start pipeline
+
+Starting pipeline for REAR-CAM
+Pipeline structure:
+Element: x264enc (x264enc)
+Element: queue (queue)
+Element: videoconvert (videoconvert)
+Element: jpegdec (jpegdec)
+Element: appsrc (appsrc)
+Element: udpsink (udpsink)
+Element: rtph264pay (rtph264pay)
+state changed (REAR-CAM) = StreamState.STARTED
+Pipeline state: <enum GST_STATE_PLAYING of type Gst.State>, pending: <enum GST_STATE_VOID_PENDING of type Gst.State>, return: <enum GST_STATE_CHANGE_SUCCESS of type Gst.StateChangeReturn>
+<module 'sensor_msgs.msg' from '/opt/ros/noetic/lib/python3/dist-packages/sensor_msgs/msg/__init__.py'>
+<class 'sensor_msgs.msg._CompressedImage.CompressedImage'>
+[INFO] [1778142008.342653]: Socket.IO event ignored: consumer-added {'camName': 'FRONT-CAM', 'count': 1}
+[INFO] [1778142008.346684]: Socket.IO event ignored: consumer-added {'camName': 'FRONT-CAM', 'count': 2}
+[INFO] [1778142008.347734]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 1}
+[INFO] [1778142008.349243]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 2}
+[INFO] [1778142008.351511]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 3}
+[INFO] [1778142008.355749]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 4}
+[INFO] [1778142061.018856]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 3}
+[INFO] [1778142061.026991]: Socket.IO event ignored: consumer-removed {'camName': 'FRONT-CAM', 'count': 1}
+[INFO] [1778142061.028388]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 2}
+[INFO] [1778142470.948278]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 1}
+[INFO] [1778142470.950506]: Socket.IO event ignored: consumer-removed {'camName': 'FRONT-CAM', 'count': 0}
+[INFO] [1778142470.954012]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 0}
+[INFO] [1778142547.457567]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 1}
+[INFO] [1778142547.512912]: Socket.IO event ignored: consumer-added {'camName': 'FRONT-CAM', 'count': 1}
+[INFO] [1778142547.544649]: Socket.IO event ignored: consumer-added {'camName': 'REAR-CAM', 'count': 2}
+[INFO] [1778142562.798157]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 1}
+[INFO] [1778142562.811688]: Socket.IO event ignored: consumer-removed {'camName': 'FRONT-CAM', 'count': 0}
+[INFO] [1778142562.846803]: Socket.IO event ignored: consumer-removed {'camName': 'REAR-CAM', 'count': 0}
+close stream(FRONT-CAM)
+state changed (FRONT-CAM) = StreamState.STOPPED
+[INFO] [1778150453.406261]: Plain RTP producer closed: stream=FRONT-CAM
+close stream(REAR-CAM)
+state changed (REAR-CAM) = StreamState.STOPPED
+[INFO] [1778150453.435428]: Plain RTP producer closed: stream=REAR-CAM
+[INFO] [1778150453.442107]: Socket.IO disconnected
+on_disconnected
+Traceback (most recent call last):
+  File "/home/nvidia/dconic_nav/src/media_streamer/script/launch_stream.py", line 142, in <module>
+    rospy.spin()()
+TypeError: 'NoneType' object is not callable
+... logging to /home/nvidia/.ros/log/4e9d8158-1dd2-11b2-aeda-48b02df751df/roslaunch-ubuntu-115536.log
+Checking log directory for disk usage. This may take a while.
+Press Ctrl-C to interrupt
+Done checking log file disk usage. Usage is <1GB.
+]2;/home/nvidia/dconic_nav/src/media_streamer/launch/dynamic_stream.launch
+[1mstarted roslaunch server http://192.168.10.15:45017/[0m
+
+SUMMARY
+========
+
+PARAMETERS
+ * /dynamic_streamer_front/remote/key: xwOumAnLPs3HKPLYV...
+ * /dynamic_streamer_front/signal_host: http://10.156.196...
+ * /dynamic_streamer_front/signal_verify_ssl: False
+ * /dynamic_streamer_front/streamer/FRONT-CAM/msg_type: sensor_msgs/Compr...
+ * /dynamic_streamer_front/streamer/FRONT-CAM/security: False
+ * /dynamic_streamer_front/streamer/FRONT-CAM/topic: /camera1/usb_cam1...
+ * /dynamic_streamer_front/streamer/FRONT-CAM/type: ROS
+ * /dynamic_streamer_front/streamer/REAR-CAM/msg_type: sensor_msgs/Compr...
+ * /dynamic_streamer_front/streamer/REAR-CAM/security: False
+ * /dynamic_streamer_front/streamer/REAR-CAM/topic: /camera2/usb_cam2...
+ * /dynamic_streamer_front/streamer/REAR-CAM/type: ROS
+ * /rosdistro: noetic
+ * /rosversion: 1.17.4
+
+NODES
+  /
+    dynamic_streamer_front (media_streamer/launch_stream.py)
+
+[1mROS_MASTER_URI=http://192.168.10.15:11311[0m
+]2;/home/nvidia/dconic_nav/src/media_streamer/launch/dynamic_stream.launch http://192.168.10.15:11311
+[1mprocess[dynamic_streamer_front-1]: started with pid [115656][0m
+[dynamic_streamer_front-1] killing on exit
+shutting down processing monitor...
+... shutting down processing monitor complete
+[1mdone[0m

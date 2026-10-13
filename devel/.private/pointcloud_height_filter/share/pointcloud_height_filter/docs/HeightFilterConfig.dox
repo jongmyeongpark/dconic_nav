@@ -1,0 +1,10 @@
+\subsubsection parameters ROS parameters
+
+Reads and maintains the following parameters on the ROS server
+
+- \b "~enabled" : \b [bool] Enable height filter (false = pass-through) min: False, default: True, max: True
+- \b "~camera_height" : \b [double] Camera optical center height above floor (m) min: 0.0, default: 1.177, max: 3.0
+- \b "~camera_pitch" : \b [double] Camera downward tilt angle (radians, + = tilt down) min: -0.5, default: 0.0, max: 0.5
+- \b "~min_obstacle_height" : \b [double] Minimum world-frame obstacle height to keep (m) min: 0.0, default: 0.1, max: 2.0
+- \b "~max_obstacle_height" : \b [double] Maximum world-frame obstacle height to keep (m) min: 0.0, default: 1.8, max: 3.0
+

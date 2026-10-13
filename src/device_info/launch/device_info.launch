@@ -1,0 +1,3 @@
+<launch>
+    <node pkg="device_info" type="device_info" name="device_info" output="screen"/>
+</launch>

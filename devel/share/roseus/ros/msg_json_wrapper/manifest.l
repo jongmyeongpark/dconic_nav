@@ -1,0 +1,1 @@
+/home/nvidia/dconic_nav/devel/.private/msg_json_wrapper/share/roseus/ros/msg_json_wrapper/manifest.l

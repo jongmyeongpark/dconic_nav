@@ -1,0 +1,9 @@
+[35m[1mScanning dependencies of target virtual_costmap_layer_gencfg[0m
+[ 33%] [34m[1mGenerating dynamic reconfigure files from cfg/VirtualLayer.cfg: /home/nvidia/dconic_nav/devel/.private/virtual_costmap_layer/include/virtual_costmap_layer/VirtualLayerConfig.h /home/nvidia/dconic_nav/devel/.private/virtual_costmap_layer/lib/python3/dist-packages/virtual_costmap_layer/cfg/VirtualLayerConfig.py[0m
+Generating reconfiguration files for VirtualLayer in virtual_costmap_layer
+Wrote header file in /home/nvidia/dconic_nav/devel/.private/virtual_costmap_layer/include/virtual_costmap_layer/VirtualLayerConfig.h
+[ 33%] Built target virtual_costmap_layer_gencfg
+[35m[1mScanning dependencies of target virtual_layer[0m
+[ 66%] [32mBuilding CXX object CMakeFiles/virtual_layer.dir/src/virtual_layer.cpp.o[0m
+[100%] [32m[1mLinking CXX shared library /home/nvidia/dconic_nav/devel/.private/virtual_costmap_layer/lib/libvirtual_layer.so[0m
+[100%] Built target virtual_layer

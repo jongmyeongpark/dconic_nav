@@ -1,0 +1,60 @@
+#!/usr/bin/env python
+import rospy
+import cv2
+import os
+import time
+from datetime import datetime
+from sensor_msgs.msg import Image
+from std_msgs.msg import Int32
+from cv_bridge import CvBridge
+
+bridge = CvBridge()
+
+# ========================================
+# 특정 waypoint만 찍을 때 사용
+# 아래 CAPTURE_AT 리스트에 번호 입력
+# ========================================
+CAPTURE_AT = [6, 9]
+
+# 저장 경로 - 오늘 날짜 폴더
+ROOT_DIR = "/home/nvidia/images"
+SESSION_DIR = os.path.join(ROOT_DIR, datetime.now().strftime('%Y-%m-%d'))
+os.makedirs(SESSION_DIR, exist_ok=True)
+
+prev_waypoint = -1
+
+def waypoint_cb(msg):
+    global prev_waypoint
+    curr = msg.data
+
+    if curr != prev_waypoint and prev_waypoint >= 0:
+        arrived = prev_waypoint
+        rospy.loginfo(f"Waypoint {arrived} 완료 감지")
+
+        # if arrived >= 0:  # 항상 찍기
+        if arrived in CAPTURE_AT:  # 특정 번호만 찍기
+            rospy.loginfo(f"→ 촬영 시작! waypoint {arrived}")
+            capture("/camera1/usb_cam1/image_raw")
+
+    prev_waypoint = curr
+
+def capture(topic):
+    try:
+        msg = rospy.wait_for_message(topic, Image, timeout=3.0)
+        img = bridge.imgmsg_to_cv2(msg, "bgr8")
+
+        now_time = datetime.now().strftime('%H%M%S')
+        # 예: 1745123456.jpg
+        filename = os.path.join(SESSION_DIR, f"{now_time}.jpg")
+        cv2.imwrite(filename, img)
+        rospy.loginfo(f"저장 완료: {filename}")
+
+    except rospy.ROSException:
+        rospy.logwarn(f"timeout - 이미지 수신 실패")
+
+if __name__ == "__main__":
+    rospy.init_node("waypoint_camera_capture")
+    rospy.Subscriber("/current_waypoint_from_fw", Int32, waypoint_cb)
+    rospy.loginfo(f"waypoint_camera_capture 노드 시작")
+    rospy.loginfo(f"저장 경로: {SESSION_DIR}")
+    rospy.spin()

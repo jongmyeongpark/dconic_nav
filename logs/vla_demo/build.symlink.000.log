@@ -1,0 +1,12 @@
+Symlinking /home/nvidia/dconic_nav/devel/share/vla_demo/cmake/vla_demoConfig.cmake
+Symlinking /home/nvidia/dconic_nav/devel/share/vla_demo/cmake/vla_demoConfig-version.cmake
+Symlinking /home/nvidia/dconic_nav/devel/lib/pkgconfig/vla_demo.pc
+Symlinking /home/nvidia/dconic_nav/devel/lib/vla_demo/vla_move.py
+Symlinking /home/nvidia/dconic_nav/devel/lib/vla_demo/move_to.py
+Symlinking /home/nvidia/dconic_nav/devel/lib/vla_demo/vla_upload.py
+Symlinking /home/nvidia/dconic_nav/devel/lib/vla_demo/move.py
+Symlinking /home/nvidia/dconic_nav/devel/lib/vla_demo/yolo_captured.py
+Symlinking /home/nvidia/dconic_nav/devel/lib/vla_demo/vla_judgment.py
+Symlinking /home/nvidia/dconic_nav/devel/lib/vla_demo/vla_find_object.py
+Symlinking /home/nvidia/dconic_nav/devel/lib/vla_demo/vla_demo.py
+Symlinking /home/nvidia/dconic_nav/devel/lib/vla_demo/vla_capture.py

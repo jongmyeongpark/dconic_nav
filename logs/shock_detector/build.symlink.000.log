@@ -1,0 +1,4 @@
+Symlinking /home/nvidia/dconic_nav/devel/share/shock_detector/cmake/shock_detectorConfig-version.cmake
+Symlinking /home/nvidia/dconic_nav/devel/share/shock_detector/cmake/shock_detectorConfig.cmake
+Symlinking /home/nvidia/dconic_nav/devel/lib/pkgconfig/shock_detector.pc
+Symlinking /home/nvidia/dconic_nav/devel/lib/shock_detector/shock_detector.py

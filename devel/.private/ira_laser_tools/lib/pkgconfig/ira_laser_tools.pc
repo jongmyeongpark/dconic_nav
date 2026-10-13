@@ -1,0 +1,8 @@
+prefix=/home/nvidia/dconic_nav/devel/.private/ira_laser_tools
+
+Name: ira_laser_tools
+Description: Description of ira_laser_tools
+Version: 1.0.4
+Cflags: -I/home/nvidia/dconic_nav/devel/.private/ira_laser_tools/include
+Libs: -L${prefix}/lib 
+Requires: 

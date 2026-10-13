@@ -1,0 +1,1 @@
+/home/nvidia/dconic_nav/devel/.private/cpu_monitor/lib/pkgconfig/cpu_monitor.pc

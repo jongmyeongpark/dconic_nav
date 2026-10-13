@@ -1,0 +1,1 @@
+/home/nvidia/dconic_nav/devel/.private/battery_checker/lib/pkgconfig/battery_checker.pc

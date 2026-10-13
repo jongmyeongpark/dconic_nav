@@ -1,0 +1,5 @@
+<launch>
+  <node pkg="lift_controller" type="lift_controller.py" name="lift_controller" output="screen">    
+  </node>
+</launch>
+

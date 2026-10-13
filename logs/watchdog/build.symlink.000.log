@@ -1,0 +1,8 @@
+Symlinking /home/nvidia/dconic_nav/devel/share/roseus/ros/watchdog/manifest.l
+Symlinking /home/nvidia/dconic_nav/devel/share/watchdog/cmake/watchdog-msg-paths.cmake
+Symlinking /home/nvidia/dconic_nav/devel/share/watchdog/cmake/watchdogConfig.cmake
+Symlinking /home/nvidia/dconic_nav/devel/share/watchdog/cmake/watchdog-msg-extras.cmake
+Symlinking /home/nvidia/dconic_nav/devel/share/watchdog/cmake/watchdogConfig-version.cmake
+Symlinking /home/nvidia/dconic_nav/devel/lib/pkgconfig/watchdog.pc
+Symlinking /home/nvidia/dconic_nav/devel/lib/watchdog/watchdog
+Symlinking /home/nvidia/dconic_nav/devel/lib/python3/dist-packages/watchdog/__init__.py

@@ -1,0 +1,138 @@
+#include <ros/ros.h>
+#include <serial/serial.h>
+#include <std_msgs/String.h>
+#include <std_msgs/Char.h>
+#include <std_msgs/Empty.h>
+#include <std_msgs/Int32.h>
+#include <std_msgs/Float32.h>
+#include <std_msgs/Empty.h>
+#include <std_msgs/Bool.h>
+#include <std_srvs/Empty.h>
+#include <std_msgs/Int32.h>
+
+serial::Serial batterySerial_;
+
+ros::Publisher requestBatteryPublisher_;
+
+void batterySerialInitialize()
+{
+    try
+    {
+        //batterySerial_.setPort("/dev/battery");
+		batterySerial_.setPort("/dev/ttyUSB_Battery");
+        batterySerial_.setBaudrate(19200);
+        serial::Timeout to = serial::Timeout::simpleTimeout(1000);
+        batterySerial_.setTimeout(to);
+        batterySerial_.open();
+    }
+    catch (serial::IOException& e)
+    {
+        ROS_ERROR_STREAM("Unable to open battery serial port ");
+    }
+
+    if(batterySerial_.isOpen())
+    {
+        ROS_INFO_STREAM("Battery serial Port initialized");
+    }
+	else
+    {
+        ROS_ERROR_STREAM("Can not open battery serial port ");
+    }
+}
+
+void batteryCallback(const std_msgs::Int32::ConstPtr& msg)
+{
+    //ROS_INFO_STREAM("Recieved number from battery request : " << msg->data);
+
+    unsigned char* transmissionBuffer = new unsigned char[11];
+
+    unsigned char firstHeader = 0xAF;
+    unsigned char secondHeader = 0xFA;
+
+    unsigned char address = 0x60;
+    unsigned char length = 0x05;
+    unsigned char command = 0x01; // 상태 요청
+    unsigned char order = 0x60;
+    unsigned char data1 = 0x45;
+    unsigned char data2 = 0x00;
+    unsigned char checksum = 0x0B;
+    
+    unsigned char firstFooter = 0xAF;
+    unsigned char secondFooter = 0xA0;
+
+    transmissionBuffer[0] = firstHeader;
+    transmissionBuffer[1] = secondHeader;
+    transmissionBuffer[2] = address;
+    transmissionBuffer[3] = length;
+    transmissionBuffer[4] = command;
+    transmissionBuffer[5] = order;
+    transmissionBuffer[6] = data1;
+    transmissionBuffer[7] = data2;
+    transmissionBuffer[8] = checksum;
+    transmissionBuffer[9] = firstFooter;
+    transmissionBuffer[10] = secondFooter;
+
+    batterySerial_.write(transmissionBuffer, 11);
+}
+
+
+
+float batteryMessageParser(char* buffer)
+{
+    int address = (int)buffer[2];
+    int length = (int)buffer[3];
+    int command = (int)buffer[4];
+    int order = (int)buffer[5];
+
+	float batteryRemaining = (buffer[8] << 16) + buffer[9];
+
+    return batteryRemaining;
+}
+
+
+
+void pubBatteryCheckCallback(const ros::TimerEvent& e)
+{
+    std_msgs::Int32 temp;
+    temp.data = 1;
+
+    requestBatteryPublisher_.publish(temp);
+}
+
+
+
+int main (int argc, char** argv)
+{
+    ros::init(argc, argv, "battery_checker_node");
+    ros::NodeHandle nh;
+    ros::Rate loop_rate(1);
+
+    ros::Subscriber batteryInfoSubscriber = nh.subscribe("/requestBattery", 1000, batteryCallback);
+    ros::Publisher recievedDataPublisher = nh.advertise<std_msgs::Float32>("/batteryRemaining", 1000);
+    requestBatteryPublisher_ = nh.advertise<std_msgs::Int32>("/requestBattery", 1000);
+	
+    ros::Timer batteryTimer = nh.createTimer( ros::Duration(5.0), pubBatteryCheckCallback );
+
+    batterySerialInitialize();
+	
+    while(ros::ok())
+    {
+        ros::spinOnce();
+
+        if( batterySerial_.available() )
+        {
+            std_msgs::String recievedData;
+            recievedData.data = batterySerial_.read(batterySerial_.available());
+            
+            std::vector<char> temp(recievedData.data.begin(), recievedData.data.end());
+            temp.push_back('\0');
+            char* buffer = &temp[0];
+            std_msgs::Float32 batteryRemaining;
+            batteryRemaining.data = batteryMessageParser(buffer);
+
+            recievedDataPublisher.publish(batteryRemaining);
+        }         
+
+        loop_rate.sleep();
+    }
+}

@@ -1,0 +1,10 @@
+[01m[K/home/nvidia/dconic_nav/src/flyinglet_agents/msg_converter/src/msg_json_wrapper_node.cpp:[m[K In function ‘[01m[Kint main(int, char**)[m[K’:
+[01m[K/home/nvidia/dconic_nav/src/flyinglet_agents/msg_converter/src/msg_json_wrapper_node.cpp:421:83:[m[K [01;31m[Kerror: [m[K‘[01m[KB[m[K’ was not declared in this scope
+  421 |             double transformedX = (A_ * currentAmclPose_.pose.pose.position.x) - ([01;31m[KB[m[K * currentAmclPose_.pose.pose.position.y) + OFFSET_X_;
+      |                                                                                   [01;31m[K^[m[K
+[01m[K/home/nvidia/dconic_nav/src/flyinglet_agents/msg_converter/src/msg_json_wrapper_node.cpp:422:83:[m[K [01;31m[Kerror: [m[K‘[01m[KA[m[K’ was not declared in this scope
+  422 |             double transformedY = (B_ * currentAmclPose_.pose.pose.position.x) + ([01;31m[KA[m[K * currentAmclPose_.pose.pose.position.y) + OFFSET_Y_;
+      |                                                                                   [01;31m[K^[m[K
+make[2]: *** [CMakeFiles/msg_converter.dir/build.make:63: CMakeFiles/msg_converter.dir/src/msg_json_wrapper_node.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:1115: CMakeFiles/msg_converter.dir/all] Error 2
+make: *** [Makefile:141: all] Error 2

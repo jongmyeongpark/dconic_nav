@@ -1,0 +1,8 @@
+prefix=/home/nvidia/dconic_nav/devel/.private/tf2_bullet
+
+Name: tf2_bullet
+Description: Description of tf2_bullet
+Version: 0.7.7
+Cflags: -I/home/nvidia/dconic_nav/src/geometry2-noetic-devel/tf2_bullet/include -I/usr/include/bullet
+Libs: -L${prefix}/lib 
+Requires: 

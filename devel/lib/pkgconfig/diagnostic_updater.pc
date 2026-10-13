@@ -1,0 +1,1 @@
+/home/nvidia/dconic_nav/devel/.private/diagnostic_updater/lib/pkgconfig/diagnostic_updater.pc

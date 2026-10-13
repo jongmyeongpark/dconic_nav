@@ -1,0 +1,8 @@
+prefix=/home/nvidia/dconic_nav/devel/.private/restricted_area_maker
+
+Name: restricted_area_maker
+Description: Description of restricted_area_maker
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

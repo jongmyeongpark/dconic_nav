@@ -1,0 +1,13 @@
+{"waypoint_name" : "hyundai_trade_230504_small2_230523" , "length" : 12 , "tasks" : [
+    {"task" : "pause" , "times" : 3},
+    {"task" : "none","times" : 0},
+    {"task" : "none","times" : 0},
+    {"task" : "none","times" : 0},
+    {"task" : "pause","times" : 20},
+    {"task" : "none","times" : 0},
+    {"task" : "none","times" : 0},
+    {"task" : "none","times" : 0},
+    {"task" : "none","times" : 0},
+    {"task" : "none","times" : 0},
+    {"task" : "none","times" : 0},
+    {"task" : "none","times" : 0}]}

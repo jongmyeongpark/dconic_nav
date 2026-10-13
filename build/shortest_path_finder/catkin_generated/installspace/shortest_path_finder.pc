@@ -1,0 +1,8 @@
+prefix=/home/nvidia/dconic_nav/install
+
+Name: shortest_path_finder
+Description: Description of shortest_path_finder
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

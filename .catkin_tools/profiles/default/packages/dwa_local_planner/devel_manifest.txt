@@ -1,0 +1,12 @@
+navigation/dwa_local_planner
+/home/nvidia/dconic_nav/devel/.private/dwa_local_planner/share/dwa_local_planner/docs/DWAPlannerConfig-usage.dox /home/nvidia/dconic_nav/devel/share/dwa_local_planner/docs/DWAPlannerConfig-usage.dox
+/home/nvidia/dconic_nav/devel/.private/dwa_local_planner/share/dwa_local_planner/docs/DWAPlannerConfig.dox /home/nvidia/dconic_nav/devel/share/dwa_local_planner/docs/DWAPlannerConfig.dox
+/home/nvidia/dconic_nav/devel/.private/dwa_local_planner/share/dwa_local_planner/docs/DWAPlannerConfig.wikidoc /home/nvidia/dconic_nav/devel/share/dwa_local_planner/docs/DWAPlannerConfig.wikidoc
+/home/nvidia/dconic_nav/devel/.private/dwa_local_planner/share/dwa_local_planner/cmake/dwa_local_plannerConfig.cmake /home/nvidia/dconic_nav/devel/share/dwa_local_planner/cmake/dwa_local_plannerConfig.cmake
+/home/nvidia/dconic_nav/devel/.private/dwa_local_planner/share/dwa_local_planner/cmake/dwa_local_plannerConfig-version.cmake /home/nvidia/dconic_nav/devel/share/dwa_local_planner/cmake/dwa_local_plannerConfig-version.cmake
+/home/nvidia/dconic_nav/devel/.private/dwa_local_planner/lib/libdwa_local_planner.so /home/nvidia/dconic_nav/devel/lib/libdwa_local_planner.so
+/home/nvidia/dconic_nav/devel/.private/dwa_local_planner/lib/pkgconfig/dwa_local_planner.pc /home/nvidia/dconic_nav/devel/lib/pkgconfig/dwa_local_planner.pc
+/home/nvidia/dconic_nav/devel/.private/dwa_local_planner/lib/python3/dist-packages/dwa_local_planner/__init__.py /home/nvidia/dconic_nav/devel/lib/python3/dist-packages/dwa_local_planner/__init__.py
+/home/nvidia/dconic_nav/devel/.private/dwa_local_planner/lib/python3/dist-packages/dwa_local_planner/cfg/__init__.py /home/nvidia/dconic_nav/devel/lib/python3/dist-packages/dwa_local_planner/cfg/__init__.py
+/home/nvidia/dconic_nav/devel/.private/dwa_local_planner/lib/python3/dist-packages/dwa_local_planner/cfg/DWAPlannerConfig.py /home/nvidia/dconic_nav/devel/lib/python3/dist-packages/dwa_local_planner/cfg/DWAPlannerConfig.py
+/home/nvidia/dconic_nav/devel/.private/dwa_local_planner/include/dwa_local_planner/DWAPlannerConfig.h /home/nvidia/dconic_nav/devel/include/dwa_local_planner/DWAPlannerConfig.h

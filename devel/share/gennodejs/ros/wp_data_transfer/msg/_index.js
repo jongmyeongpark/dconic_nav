@@ -1,0 +1,1 @@
+/home/nvidia/dconic_nav/devel/.private/wp_data_transfer/share/gennodejs/ros/wp_data_transfer/msg/_index.js

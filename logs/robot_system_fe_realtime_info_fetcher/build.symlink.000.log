@@ -1,0 +1,4 @@
+Symlinking /home/nvidia/dconic_nav/devel/share/robot_system_fe_realtime_info_fetcher/cmake/robot_system_fe_realtime_info_fetcherConfig-version.cmake
+Symlinking /home/nvidia/dconic_nav/devel/share/robot_system_fe_realtime_info_fetcher/cmake/robot_system_fe_realtime_info_fetcherConfig.cmake
+Symlinking /home/nvidia/dconic_nav/devel/lib/pkgconfig/robot_system_fe_realtime_info_fetcher.pc
+Symlinking /home/nvidia/dconic_nav/devel/lib/python3/dist-packages/robot_system_fe_realtime_info_fetcher/__init__.py

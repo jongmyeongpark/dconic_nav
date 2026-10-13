@@ -1,0 +1,36 @@
+{
+    "waypoint_name": "office231201_schedule6",
+    "length": 6,
+    "tasks": [
+        {
+            "task": "none",
+            "task_value": 0,
+            "task_num": 0
+        },
+        {
+            "task": "media",
+            "task_value": 3,
+            "task_num": 1
+        },
+        {
+            "task": "speak",
+            "task_value": 3,
+            "task_num": 2
+        },
+        {
+            "task": "media",
+            "task_value": 5,
+            "task_num": 2
+        },
+        {
+            "task": "speak",
+            "task_value": 5,
+            "task_num": 1
+        },
+        {
+            "task": "media",
+            "task_value": 5,
+            "task_num": 1
+        }
+    ]
+}

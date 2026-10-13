@@ -1,0 +1,4 @@
+<launch>
+  <node name="vla_judgment" pkg="vla_demo" type="vla_judgment.py" output="screen"/>
+  <node name="vla_find_object" pkg="vla_demo" type="vla_find_object.py" output="screen"/>
+</launch>

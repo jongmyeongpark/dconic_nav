@@ -1,0 +1,93 @@
+#define FAS_GetboardInfo 		    0x01
+#define FAS_GetMotorInfo 		    0x05
+#define FAS_SaveAllParameters 	    0x10
+#define FAS_GetRomParameter 	    0x11
+#define FAS_SetParameter 		    0x12
+#define FAS_GetParameter 		    0x13
+#define FAS_SetIOOutput 		    0x20
+#define FAS_SetIOInput 		        0x21
+#define FAS_GetIOInput 		        0x22
+#define FAS_GetIOOutput 		    0x23
+#define FAS_SetIOAssignMap 		    0x24
+#define FAS_GetIOAssignMap 		    0x25
+#define FAS_IOAssignMapReadROM		0x26
+#define FAS_TriggerOutput_RunA      0x27
+#define FAS_TriggerOutput_Status    0x28
+#define FAS_SetTriggerOutputEx		0x7E
+#define FAS_GetTriggerOut putEx 	0x7F
+#define FAS_ServoEnable 		    0x2A
+#define FAS_ServoAlarmReset 		0x2B
+#define FAS_GetAlarmType 		    0x2E
+#define FAS_MoveStop 		        0x31
+#define FAS_EmergencyStop 		    0x32
+#define FAS_MoveOriginSingleAxis    0x33
+#define FAS_MoveSingleAxisAbsPos    0x34
+#define FAS_MoveSingleAxisIncPos    0x35
+#define FAS_MoveToLimit 		    0x36
+#define FAS_MoveVelocity 		    0x37
+#define FAS_PositionAbsOverride     0x38
+#define FAS_PositionIncOverride     0x39
+#define FAS_VelocityOverride 	    0x3A
+#define FAS_MoveSingleAxisAbsPosEx  0x80
+#define FAS_MoveSingleAxisIncPosEx  0x81
+#define FAS_MoveVelocityEx 		    0x82
+#define FAS_GetAxisStatus 		    0x40
+#define FAS_GetIOAxisStatus 		0x41
+#define FAS_GetMotionStatus 		0x42
+#define FAS_GetAllStatus 		    0x43
+#define FAS_SetCommandPos           0x50
+#define FAS_GetCommandPos           0x51
+#define FAS_SetActualPos 		    0x52
+#define FAS_GetActualPos 		    0x53
+#define FAS_GetPosError 		    0x54
+#define FAS_GetActualVel 		    0x55
+#define FAS_ClearPosition 		    0x56
+#define FAS_MovePause 		        0x58
+#define FAS_PosTableReadItem 		0x60
+#define FAS_PosTableWriteItem 		0x61
+#define FAS_PosTableReadROM 		0x62
+#define FAS_PosTableWriteROM 		0x63
+#define FAS_PosTableRunItem 		0x64
+#define FAS_PosTableReadOneItem     0x6A
+#define FAS_PosTableWriteOneItem    0x6B
+#define FAS_MovePush 		        0x78
+#define FAS_GetPushStatus 	        0x79
+
+//Frame Type ‘0x65 ~ 0x69’, ‘0x90 ~ 0x92’는 내부 사용 목적
+//
+//
+		
+// 1-2-5 FAS_GetAxisStatus return value
+#define	FFLAG_ERRORALL			0x00000001
+#define	FFLAG_HWPOSILMT			0x00000002
+#define	FFLAG_HWNEGALMT			0x00000004
+#define	FFLAG_SWPOGILMT			0x00000008
+#define	FFLAG_SWNEGALMT			0x00000010
+#define	FFLAG_RESERVED0			0x00000020
+#define	FFLAG_RESERVED1			0x00000040
+#define	FFLAG_ERRPOSOVERFLOW	0x00000080
+#define	FFLAG_ERROVERCURRENT	0x00000100
+#define	FFLAG_ERROVERSPEED		0x00000200
+#define	FFLAG_ERRPOSTRACKING	0x00000400
+#define	FFLAG_ERROVERLOAD		0x00000800
+#define	FFLAG_ERROVERHEAT		0x00001000
+#define	FFLAG_ERRBACKEMF		0x00002000
+#define	FFLAG_ERRMOTORPOWER		0x00004000
+#define	FFLAG_ERRINPOSITION		0x00008000
+#define	FFLAG_EMGSTOP			0x00010000
+#define	FFLAG_SLOWSTOP			0x00020000
+#define	FFLAG_ORIGINRETURNING	0x00040000
+#define	FFLAG_INPOSITION		0x00080000
+#define	FFLAG_SERVOON			0x00100000
+#define	FFLAG_ALARMRESET		0x00200000
+#define	FFLAG_PTSTOPPED			0x00400000
+#define	FFLAG_ORIGINSENSOR		0x00800000
+#define	FFLAG_ZPULSE			0x01000000
+#define	FFLAG_ORIGINRETOK		0x02000000
+#define	FFLAG_MOTIONDIR			0x04000000
+#define	FFLAG_MOTIONING			0x08000000
+#define	FFLAG_MOTIONPAUSE		0x10000000
+#define	FFLAG_MOTIONACCEL		0x20000000
+#define	FFLAG_MOTIONDECEL		0x40000000
+#define	FFLAG_MOTIONCONST		0x80000000
+

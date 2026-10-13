@@ -1,0 +1,12 @@
+[33m[1mCMake Warning[0m at /home/nvidia/dconic_nav/src/hdmi_serial_switcher/CMakeLists.txt:23 (add_executable):
+  Cannot generate a safe runtime search path for target
+  hdmi_serial_switcher_node because there is a cycle in the constraint graph:
+
+    dir 0 is [/opt/ros/noetic/lib]
+      dir 1 must precede it due to runtime library [libserial.so]
+    dir 1 is [/home/nvidia/dconic_nav/devel/.private/hdmi_serial_switcher/lib]
+      dir 0 must precede it due to runtime library [libserial.so]
+
+  Some of these libraries may not be found correctly.
+
+

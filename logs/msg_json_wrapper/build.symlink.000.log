@@ -1,0 +1,8 @@
+Symlinking /home/nvidia/dconic_nav/devel/share/roseus/ros/msg_json_wrapper/manifest.l
+Symlinking /home/nvidia/dconic_nav/devel/share/msg_json_wrapper/cmake/msg_json_wrapper-msg-extras.cmake
+Symlinking /home/nvidia/dconic_nav/devel/share/msg_json_wrapper/cmake/msg_json_wrapperConfig.cmake
+Symlinking /home/nvidia/dconic_nav/devel/share/msg_json_wrapper/cmake/msg_json_wrapperConfig-version.cmake
+Symlinking /home/nvidia/dconic_nav/devel/share/msg_json_wrapper/cmake/msg_json_wrapper-msg-paths.cmake
+Symlinking /home/nvidia/dconic_nav/devel/lib/pkgconfig/msg_json_wrapper.pc
+Symlinking /home/nvidia/dconic_nav/devel/lib/msg_json_wrapper/msg_json_wrapper
+Symlinking /home/nvidia/dconic_nav/devel/lib/python3/dist-packages/msg_json_wrapper/__init__.py

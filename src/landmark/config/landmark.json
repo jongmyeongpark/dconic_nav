@@ -1,0 +1,17 @@
+{
+    "feature_num" : 100,
+    "th_sim" : 100,
+    "th_error" : 100,
+    "th_unjudge" : 500,
+    "th_unjudge_cnt" : 10,
+    "xmin" : 0,
+    "ymin" : -20,
+    "xmax" : 110,
+    "ymax" : 130,
+    "unit" : 10,
+    "path_embed" : "$(find landmark)/scripts/dataset_feature",
+    "path_map" : "$(find landmark)/scripts/dataset_map",
+    "path_info" : "$(find landmark)/scripts/dataset_info",
+    "path_temp" : "$(find landmark)/scripts/dataset_temp",
+    "path_result" : "$(find landmark)/scripts/results"
+}

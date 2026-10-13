@@ -1,0 +1,8 @@
+prefix=/home/nvidia/dconic_nav/devel/.private/md
+
+Name: md
+Description: Description of md
+Version: 0.0.0
+Cflags: -I/home/nvidia/dconic_nav/devel/.private/md/include -I/home/nvidia/dconic_nav/src/md/include
+Libs: -L${prefix}/lib -lmd
+Requires: roscpp serial std_msgs

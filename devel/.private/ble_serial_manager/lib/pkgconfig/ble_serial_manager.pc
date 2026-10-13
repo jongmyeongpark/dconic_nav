@@ -1,0 +1,8 @@
+prefix=/home/nvidia/dconic_nav/devel/.private/ble_serial_manager
+
+Name: ble_serial_manager
+Description: Description of ble_serial_manager
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: serial std_msgs

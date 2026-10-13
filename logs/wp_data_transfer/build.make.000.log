@@ -1,0 +1,202 @@
+[35m[1mScanning dependencies of target std_msgs_generate_messages_cpp[0m
+[  0%] Built target std_msgs_generate_messages_cpp
+[35m[1mScanning dependencies of target _wp_data_transfer_generate_messages_check_deps_wpdata[0m
+[  0%] Built target _wp_data_transfer_generate_messages_check_deps_wpdata
+[35m[1mScanning dependencies of target std_msgs_generate_messages_nodejs[0m
+[  0%] Built target std_msgs_generate_messages_nodejs
+[35m[1mScanning dependencies of target std_msgs_generate_messages_py[0m
+[  0%] Built target std_msgs_generate_messages_py
+[35m[1mScanning dependencies of target std_msgs_generate_messages_lisp[0m
+[  0%] Built target std_msgs_generate_messages_lisp
+[35m[1mScanning dependencies of target std_msgs_generate_messages_eus[0m
+[  0%] Built target std_msgs_generate_messages_eus
+[35m[1mScanning dependencies of target wp_data_transfer_generate_messages_cpp[0m
+[  9%] [34m[1mGenerating C++ code from wp_data_transfer/wpdata.msg[0m
+[  9%] Built target wp_data_transfer_generate_messages_cpp
+[35m[1mScanning dependencies of target wp_data_transfer_generate_messages_nodejs[0m
+[ 18%] [34m[1mGenerating Javascript code from wp_data_transfer/wpdata.msg[0m
+[ 18%] Built target wp_data_transfer_generate_messages_nodejs
+[35m[1mScanning dependencies of target wp_data_transfer_generate_messages_py[0m
+[ 27%] [34m[1mGenerating Python from MSG wp_data_transfer/wpdata[0m
+[35m[1mScanning dependencies of target wp_data_transfer_generate_messages_lisp[0m
+[ 36%] [34m[1mGenerating Lisp code from wp_data_transfer/wpdata.msg[0m
+[35m[1mScanning dependencies of target wp_data_transfer_generate_messages_eus[0m
+[ 45%] [34m[1mGenerating EusLisp code from wp_data_transfer/wpdata.msg[0m
+[ 45%] Built target wp_data_transfer_generate_messages_lisp
+[ 54%] [34m[1mGenerating Python msg __init__.py for wp_data_transfer[0m
+[ 63%] [34m[1mGenerating EusLisp manifest code for wp_data_transfer[0m
+[35m[1mScanning dependencies of target wp_msg_subscriber[0m
+[ 72%] [32mBuilding CXX object CMakeFiles/wp_msg_subscriber.dir/src/wp_msg_subscriber.cpp.o[0m
+[ 72%] Built target wp_data_transfer_generate_messages_py
+[35m[1mScanning dependencies of target wp_msg_publisher[0m
+[ 81%] [32mBuilding CXX object CMakeFiles/wp_msg_publisher.dir/src/wp_msg_publisher.cpp.o[0m
+[ 81%] Built target wp_data_transfer_generate_messages_eus
+[35m[1mScanning dependencies of target wp_data_transfer_generate_messages[0m
+[ 81%] Built target wp_data_transfer_generate_messages
+In file included from [01m[K/opt/ros/noetic/include/ros/ros.h:40[m[K,
+                 from [01m[K/home/nvidia/dconic_nav/src/wp_data_transfer/src/wp_msg_subscriber.cpp:1[m[K:
+[01m[K/home/nvidia/dconic_nav/src/wp_data_transfer/src/wp_msg_subscriber.cpp:[m[K In function ‘[01m[Kvoid msgCallback(const ConstPtr&)[m[K’:
+[01m[K/home/nvidia/dconic_nav/src/wp_data_transfer/src/wp_msg_subscriber.cpp:11:12:[m[K [01;35m[Kwarning: [m[Kformat ‘[01m[K%f[m[K’ expects argument of type ‘[01m[Kdouble[m[K’, but argument 9 has type ‘[01m[Kint[m[K’ [[01;35m[K-Wformat=[m[K]
+   11 |   ROS_INFO([01;35m[K"send msg.x[%d]=%.2f | send msg.y[%d]=%.2f | send msg.z[%d]=%.2f | send msg.qx[%d]=%.2f | send msg.qy[%d]=%.2f | send msg.qz[%d]=%.2f | send msg.qw[%d]=%.2f"[m[K,i ,[32m[Ki[m[K ,i ,i ,i ,i ,i ,msg->x[i] ,msg->y[i] ,msg->z[i] ,msg->qx[i] ,msg->qy[i] ,msg->qz[i] ,msg->qw[i]);
+      |            [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K    [32m[K~[m[K
+      |                                                                                                                                                                             [32m[K|[m[K
+      |                                                                                                                                                                             [32m[Kint[m[K
+[01m[K/opt/ros/noetic/include/ros/console.h:351:165:[m[K [01;36m[Knote: [m[Kin definition of macro ‘[01m[KROSCONSOLE_PRINT_AT_LOCATION_WITH_FILTER[m[K’
+  351 |     ::ros::console::print(filter, __rosconsole_define_location__loc.logger_, __rosconsole_define_location__loc.level_, __FILE__, __LINE__, __ROSCONSOLE_FUNCTION__, [01;36m[K__VA_ARGS__[m[K)
+      |                                                                                                                                                                     [01;36m[K^~~~~~~~~~~[m[K
+[01m[K/opt/ros/noetic/include/ros/console.h:390:7:[m[K [01;36m[Knote: [m[Kin expansion of macro ‘[01m[KROSCONSOLE_PRINT_AT_LOCATION[m[K’
+  390 |       [01;36m[KROSCONSOLE_PRINT_AT_LOCATION[m[K(__VA_ARGS__); \
+      |       [01;36m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/opt/ros/noetic/include/ros/console.h:575:35:[m[K [01;36m[Knote: [m[Kin expansion of macro ‘[01m[KROS_LOG_COND[m[K’
+  575 | #define ROS_LOG(level, name, ...) [01;36m[KROS_LOG_COND[m[K(true, level, name, __VA_ARGS__)
+      |                                   [01;36m[K^~~~~~~~~~~~[m[K
+[01m[K/opt/ros/noetic/include/rosconsole/macros_generated.h:110:23:[m[K [01;36m[Knote: [m[Kin expansion of macro ‘[01m[KROS_LOG[m[K’
+  110 | #define ROS_INFO(...) [01;36m[KROS_LOG[m[K(::ros::console::levels::Info, ROSCONSOLE_DEFAULT_NAME, __VA_ARGS__)
+      |                       [01;36m[K^~~~~~~[m[K
+[01m[K/home/nvidia/dconic_nav/src/wp_data_transfer/src/wp_msg_subscriber.cpp:11:3:[m[K [01;36m[Knote: [m[Kin expansion of macro ‘[01m[KROS_INFO[m[K’
+   11 |   [01;36m[KROS_INFO[m[K("send msg.x[%d]=%.2f | send msg.y[%d]=%.2f | send msg.z[%d]=%.2f | send msg.qx[%d]=%.2f | send msg.qy[%d]=%.2f | send msg.qz[%d]=%.2f | send msg.qw[%d]=%.2f",i ,i ,i ,i ,i ,i ,i ,msg->x[i] ,msg->y[i] ,msg->z[i] ,msg->qx[i] ,msg->qy[i] ,msg->qz[i] ,msg->qw[i]);
+      |   [01;36m[K^~~~~~~~[m[K
+[01m[K/home/nvidia/dconic_nav/src/wp_data_transfer/src/wp_msg_subscriber.cpp:11:31:[m[K [01;36m[Knote: [m[Kformat string is defined here
+   11 |   ROS_INFO("send msg.x[%d]=[01;36m[K%.2f[m[K | send msg.y[%d]=%.2f | send msg.z[%d]=%.2f | send msg.qx[%d]=%.2f | send msg.qy[%d]=%.2f | send msg.qz[%d]=%.2f | send msg.qw[%d]=%.2f",i ,i ,i ,i ,i ,i ,i ,msg->x[i] ,msg->y[i] ,msg->z[i] ,msg->qx[i] ,msg->qy[i] ,msg->qz[i] ,msg->qw[i]);
+      |                            [01;36m[K~~~^[m[K
+      |                               [01;36m[K|[m[K
+      |                               [01;36m[Kdouble[m[K
+      |                            [32m[K%.2d[m[K
+In file included from [01m[K/opt/ros/noetic/include/ros/ros.h:40[m[K,
+                 from [01m[K/home/nvidia/dconic_nav/src/wp_data_transfer/src/wp_msg_subscriber.cpp:1[m[K:
+[01m[K/home/nvidia/dconic_nav/src/wp_data_transfer/src/wp_msg_subscriber.cpp:11:12:[m[K [01;35m[Kwarning: [m[Kformat ‘[01m[K%f[m[K’ expects argument of type ‘[01m[Kdouble[m[K’, but argument 11 has type ‘[01m[Kint[m[K’ [[01;35m[K-Wformat=[m[K]
+   11 |   ROS_INFO([01;35m[K"send msg.x[%d]=%.2f | send msg.y[%d]=%.2f | send msg.z[%d]=%.2f | send msg.qx[%d]=%.2f | send msg.qy[%d]=%.2f | send msg.qz[%d]=%.2f | send msg.qw[%d]=%.2f"[m[K,i ,i ,i ,[32m[Ki[m[K ,i ,i ,i ,msg->x[i] ,msg->y[i] ,msg->z[i] ,msg->qx[i] ,msg->qy[i] ,msg->qz[i] ,msg->qw[i]);
+      |            [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K          [32m[K~[m[K
+      |                                                                                                                                                                                   [32m[K|[m[K
+      |                                                                                                                                                                                   [32m[Kint[m[K
+[01m[K/opt/ros/noetic/include/ros/console.h:351:165:[m[K [01;36m[Knote: [m[Kin definition of macro ‘[01m[KROSCONSOLE_PRINT_AT_LOCATION_WITH_FILTER[m[K’
+  351 |     ::ros::console::print(filter, __rosconsole_define_location__loc.logger_, __rosconsole_define_location__loc.level_, __FILE__, __LINE__, __ROSCONSOLE_FUNCTION__, [01;36m[K__VA_ARGS__[m[K)
+      |                                                                                                                                                                     [01;36m[K^~~~~~~~~~~[m[K
+[01m[K/opt/ros/noetic/include/ros/console.h:390:7:[m[K [01;36m[Knote: [m[Kin expansion of macro ‘[01m[KROSCONSOLE_PRINT_AT_LOCATION[m[K’
+  390 |       [01;36m[KROSCONSOLE_PRINT_AT_LOCATION[m[K(__VA_ARGS__); \
+      |       [01;36m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/opt/ros/noetic/include/ros/console.h:575:35:[m[K [01;36m[Knote: [m[Kin expansion of macro ‘[01m[KROS_LOG_COND[m[K’
+  575 | #define ROS_LOG(level, name, ...) [01;36m[KROS_LOG_COND[m[K(true, level, name, __VA_ARGS__)
+      |                                   [01;36m[K^~~~~~~~~~~~[m[K
+[01m[K/opt/ros/noetic/include/rosconsole/macros_generated.h:110:23:[m[K [01;36m[Knote: [m[Kin expansion of macro ‘[01m[KROS_LOG[m[K’
+  110 | #define ROS_INFO(...) [01;36m[KROS_LOG[m[K(::ros::console::levels::Info, ROSCONSOLE_DEFAULT_NAME, __VA_ARGS__)
+      |                       [01;36m[K^~~~~~~[m[K
+[01m[K/home/nvidia/dconic_nav/src/wp_data_transfer/src/wp_msg_subscriber.cpp:11:3:[m[K [01;36m[Knote: [m[Kin expansion of macro ‘[01m[KROS_INFO[m[K’
+   11 |   [01;36m[KROS_INFO[m[K("send msg.x[%d]=%.2f | send msg.y[%d]=%.2f | send msg.z[%d]=%.2f | send msg.qx[%d]=%.2f | send msg.qy[%d]=%.2f | send msg.qz[%d]=%.2f | send msg.qw[%d]=%.2f",i ,i ,i ,i ,i ,i ,i ,msg->x[i] ,msg->y[i] ,msg->z[i] ,msg->qx[i] ,msg->qy[i] ,msg->qz[i] ,msg->qw[i]);
+      |   [01;36m[K^~~~~~~~[m[K
+[01m[K/home/nvidia/dconic_nav/src/wp_data_transfer/src/wp_msg_subscriber.cpp:11:21:[m[K [01;36m[Knote: [m[Kformat string is defined here
+   11 |   ROS_INFO("send [01;36m[Kmsg.[m[Kx[%d]=%.2f | send msg.y[%d]=%.2f | send msg.z[%d]=%.2f | send msg.qx[%d]=%.2f | send msg.qy[%d]=%.2f | send msg.qz[%d]=%.2f | send msg.qw[%d]=%.2f",i ,i ,i ,i ,i ,i ,i ,msg->x[i] ,msg->y[i] ,msg->z[i] ,msg->qx[i] ,msg->qy[i] ,msg->qz[i] ,msg->qw[i]);
+      |                  [01;36m[K~~~^[m[K
+      |                     [01;36m[K|[m[K
+      |                     [01;36m[Kdouble[m[K
+      |                  [32m[Kmsgd[m[K
+In file included from [01m[K/opt/ros/noetic/include/ros/ros.h:40[m[K,
+                 from [01m[K/home/nvidia/dconic_nav/src/wp_data_transfer/src/wp_msg_subscriber.cpp:1[m[K:
+[01m[K/home/nvidia/dconic_nav/src/wp_data_transfer/src/wp_msg_subscriber.cpp:11:12:[m[K [01;35m[Kwarning: [m[Kformat ‘[01m[K%f[m[K’ expects argument of type ‘[01m[Kdouble[m[K’, but argument 13 has type ‘[01m[Kint[m[K’ [[01;35m[K-Wformat=[m[K]
+   11 |   ROS_INFO([01;35m[K"send msg.x[%d]=%.2f | send msg.y[%d]=%.2f | send msg.z[%d]=%.2f | send msg.qx[%d]=%.2f | send msg.qy[%d]=%.2f | send msg.qz[%d]=%.2f | send msg.qw[%d]=%.2f"[m[K,i ,i ,i ,i ,i ,[32m[Ki[m[K ,i ,msg->x[i] ,msg->y[i] ,msg->z[i] ,msg->qx[i] ,msg->qy[i] ,msg->qz[i] ,msg->qw[i]);
+      |            [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K                [32m[K~[m[K
+      |                                                                                                                                                                                         [32m[K|[m[K
+      |                                                                                                                                                                                         [32m[Kint[m[K
+[01m[K/opt/ros/noetic/include/ros/console.h:351:165:[m[K [01;36m[Knote: [m[Kin definition of macro ‘[01m[KROSCONSOLE_PRINT_AT_LOCATION_WITH_FILTER[m[K’
+  351 |     ::ros::console::print(filter, __rosconsole_define_location__loc.logger_, __rosconsole_define_location__loc.level_, __FILE__, __LINE__, __ROSCONSOLE_FUNCTION__, [01;36m[K__VA_ARGS__[m[K)
+      |                                                                                                                                                                     [01;36m[K^~~~~~~~~~~[m[K
+[01m[K/opt/ros/noetic/include/ros/console.h:390:7:[m[K [01;36m[Knote: [m[Kin expansion of macro ‘[01m[KROSCONSOLE_PRINT_AT_LOCATION[m[K’
+  390 |       [01;36m[KROSCONSOLE_PRINT_AT_LOCATION[m[K(__VA_ARGS__); \
+      |       [01;36m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/opt/ros/noetic/include/ros/console.h:575:35:[m[K [01;36m[Knote: [m[Kin expansion of macro ‘[01m[KROS_LOG_COND[m[K’
+  575 | #define ROS_LOG(level, name, ...) [01;36m[KROS_LOG_COND[m[K(true, level, name, __VA_ARGS__)
+      |                                   [01;36m[K^~~~~~~~~~~~[m[K
+[01m[K/opt/ros/noetic/include/rosconsole/macros_generated.h:110:23:[m[K [01;36m[Knote: [m[Kin expansion of macro ‘[01m[KROS_LOG[m[K’
+  110 | #define ROS_INFO(...) [01;36m[KROS_LOG[m[K(::ros::console::levels::Info, ROSCONSOLE_DEFAULT_NAME, __VA_ARGS__)
+      |                       [01;36m[K^~~~~~~[m[K
+[01m[K/home/nvidia/dconic_nav/src/wp_data_transfer/src/wp_msg_subscriber.cpp:11:3:[m[K [01;36m[Knote: [m[Kin expansion of macro ‘[01m[KROS_INFO[m[K’
+   11 |   [01;36m[KROS_INFO[m[K("send msg.x[%d]=%.2f | send msg.y[%d]=%.2f | send msg.z[%d]=%.2f | send msg.qx[%d]=%.2f | send msg.qy[%d]=%.2f | send msg.qz[%d]=%.2f | send msg.qw[%d]=%.2f",i ,i ,i ,i ,i ,i ,i ,msg->x[i] ,msg->y[i] ,msg->z[i] ,msg->qx[i] ,msg->qy[i] ,msg->qz[i] ,msg->qw[i]);
+      |   [01;36m[K^~~~~~~~[m[K
+[01m[K/home/nvidia/dconic_nav/src/wp_data_transfer/src/wp_msg_subscriber.cpp:11:43:[m[K [01;36m[Knote: [m[Kformat string is defined here
+   11 |   ROS_INFO("send msg.x[%d]=%.2f | send [01;36m[Kmsg.[m[Ky[%d]=%.2f | send msg.z[%d]=%.2f | send msg.qx[%d]=%.2f | send msg.qy[%d]=%.2f | send msg.qz[%d]=%.2f | send msg.qw[%d]=%.2f",i ,i ,i ,i ,i ,i ,i ,msg->x[i] ,msg->y[i] ,msg->z[i] ,msg->qx[i] ,msg->qy[i] ,msg->qz[i] ,msg->qw[i]);
+      |                                        [01;36m[K~~~^[m[K
+      |                                           [01;36m[K|[m[K
+      |                                           [01;36m[Kdouble[m[K
+      |                                        [32m[Kmsgd[m[K
+In file included from [01m[K/opt/ros/noetic/include/ros/ros.h:40[m[K,
+                 from [01m[K/home/nvidia/dconic_nav/src/wp_data_transfer/src/wp_msg_subscriber.cpp:1[m[K:
+[01m[K/home/nvidia/dconic_nav/src/wp_data_transfer/src/wp_msg_subscriber.cpp:11:12:[m[K [01;35m[Kwarning: [m[Kformat ‘[01m[K%d[m[K’ expects argument of type ‘[01m[Kint[m[K’, but argument 16 has type ‘[01m[Kdouble[m[K’ [[01;35m[K-Wformat=[m[K]
+   11 |   ROS_INFO([01;35m[K"send msg.x[%d]=%.2f | send msg.y[%d]=%.2f | send msg.z[%d]=%.2f | send msg.qx[%d]=%.2f | send msg.qy[%d]=%.2f | send msg.qz[%d]=%.2f | send msg.qw[%d]=%.2f"[m[K,i ,i ,i ,i ,i ,i ,i ,msg->x[i] ,msg->y[i] ,msg->z[i] ,msg->qx[i] ,msg->qy[i] ,msg->qz[i] ,msg->qw[i]);
+      |            [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/opt/ros/noetic/include/ros/console.h:351:165:[m[K [01;36m[Knote: [m[Kin definition of macro ‘[01m[KROSCONSOLE_PRINT_AT_LOCATION_WITH_FILTER[m[K’
+  351 |     ::ros::console::print(filter, __rosconsole_define_location__loc.logger_, __rosconsole_define_location__loc.level_, __FILE__, __LINE__, __ROSCONSOLE_FUNCTION__, [01;36m[K__VA_ARGS__[m[K)
+      |                                                                                                                                                                     [01;36m[K^~~~~~~~~~~[m[K
+[01m[K/opt/ros/noetic/include/ros/console.h:390:7:[m[K [01;36m[Knote: [m[Kin expansion of macro ‘[01m[KROSCONSOLE_PRINT_AT_LOCATION[m[K’
+  390 |       [01;36m[KROSCONSOLE_PRINT_AT_LOCATION[m[K(__VA_ARGS__); \
+      |       [01;36m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/opt/ros/noetic/include/ros/console.h:575:35:[m[K [01;36m[Knote: [m[Kin expansion of macro ‘[01m[KROS_LOG_COND[m[K’
+  575 | #define ROS_LOG(level, name, ...) [01;36m[KROS_LOG_COND[m[K(true, level, name, __VA_ARGS__)
+      |                                   [01;36m[K^~~~~~~~~~~~[m[K
+[01m[K/opt/ros/noetic/include/rosconsole/macros_generated.h:110:23:[m[K [01;36m[Knote: [m[Kin expansion of macro ‘[01m[KROS_LOG[m[K’
+  110 | #define ROS_INFO(...) [01;36m[KROS_LOG[m[K(::ros::console::levels::Info, ROSCONSOLE_DEFAULT_NAME, __VA_ARGS__)
+      |                       [01;36m[K^~~~~~~[m[K
+[01m[K/home/nvidia/dconic_nav/src/wp_data_transfer/src/wp_msg_subscriber.cpp:11:3:[m[K [01;36m[Knote: [m[Kin expansion of macro ‘[01m[KROS_INFO[m[K’
+   11 |   [01;36m[KROS_INFO[m[K("send msg.x[%d]=%.2f | send msg.y[%d]=%.2f | send msg.z[%d]=%.2f | send msg.qx[%d]=%.2f | send msg.qy[%d]=%.2f | send msg.qz[%d]=%.2f | send msg.qw[%d]=%.2f",i ,i ,i ,i ,i ,i ,i ,msg->x[i] ,msg->y[i] ,msg->z[i] ,msg->qx[i] ,msg->qy[i] ,msg->qz[i] ,msg->qw[i]);
+      |   [01;36m[K^~~~~~~~[m[K
+[01m[K/home/nvidia/dconic_nav/src/wp_data_transfer/src/wp_msg_subscriber.cpp:11:83:[m[K [01;36m[Knote: [m[Kformat string is defined here
+   11 |   ROS_INFO("send msg.x[%d]=%.2f | send msg.y[%d]=%.2f | send msg.z[%d]=%.2f | sen[01;36m[Kd [m[Kmsg.qx[%d]=%.2f | send msg.qy[%d]=%.2f | send msg.qz[%d]=%.2f | send msg.qw[%d]=%.2f",i ,i ,i ,i ,i ,i ,i ,msg->x[i] ,msg->y[i] ,msg->z[i] ,msg->qx[i] ,msg->qy[i] ,msg->qz[i] ,msg->qw[i]);
+      |                                                                                  [01;36m[K~^[m[K
+      |                                                                                   [01;36m[K|[m[K
+      |                                                                                   [01;36m[Kint[m[K
+      |                                                                                  [32m[Kdf[m[K
+In file included from [01m[K/opt/ros/noetic/include/ros/ros.h:40[m[K,
+                 from [01m[K/home/nvidia/dconic_nav/src/wp_data_transfer/src/wp_msg_subscriber.cpp:1[m[K:
+[01m[K/home/nvidia/dconic_nav/src/wp_data_transfer/src/wp_msg_subscriber.cpp:11:12:[m[K [01;35m[Kwarning: [m[Kformat ‘[01m[K%d[m[K’ expects argument of type ‘[01m[Kint[m[K’, but argument 18 has type ‘[01m[Kdouble[m[K’ [[01;35m[K-Wformat=[m[K]
+   11 |   ROS_INFO([01;35m[K"send msg.x[%d]=%.2f | send msg.y[%d]=%.2f | send msg.z[%d]=%.2f | send msg.qx[%d]=%.2f | send msg.qy[%d]=%.2f | send msg.qz[%d]=%.2f | send msg.qw[%d]=%.2f"[m[K,i ,i ,i ,i ,i ,i ,i ,msg->x[i] ,msg->y[i] ,msg->z[i] ,msg->qx[i] ,msg->qy[i] ,msg->qz[i] ,msg->qw[i]);
+      |            [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/opt/ros/noetic/include/ros/console.h:351:165:[m[K [01;36m[Knote: [m[Kin definition of macro ‘[01m[KROSCONSOLE_PRINT_AT_LOCATION_WITH_FILTER[m[K’
+  351 |     ::ros::console::print(filter, __rosconsole_define_location__loc.logger_, __rosconsole_define_location__loc.level_, __FILE__, __LINE__, __ROSCONSOLE_FUNCTION__, [01;36m[K__VA_ARGS__[m[K)
+      |                                                                                                                                                                     [01;36m[K^~~~~~~~~~~[m[K
+[01m[K/opt/ros/noetic/include/ros/console.h:390:7:[m[K [01;36m[Knote: [m[Kin expansion of macro ‘[01m[KROSCONSOLE_PRINT_AT_LOCATION[m[K’
+  390 |       [01;36m[KROSCONSOLE_PRINT_AT_LOCATION[m[K(__VA_ARGS__); \
+      |       [01;36m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/opt/ros/noetic/include/ros/console.h:575:35:[m[K [01;36m[Knote: [m[Kin expansion of macro ‘[01m[KROS_LOG_COND[m[K’
+  575 | #define ROS_LOG(level, name, ...) [01;36m[KROS_LOG_COND[m[K(true, level, name, __VA_ARGS__)
+      |                                   [01;36m[K^~~~~~~~~~~~[m[K
+[01m[K/opt/ros/noetic/include/rosconsole/macros_generated.h:110:23:[m[K [01;36m[Knote: [m[Kin expansion of macro ‘[01m[KROS_LOG[m[K’
+  110 | #define ROS_INFO(...) [01;36m[KROS_LOG[m[K(::ros::console::levels::Info, ROSCONSOLE_DEFAULT_NAME, __VA_ARGS__)
+      |                       [01;36m[K^~~~~~~[m[K
+[01m[K/home/nvidia/dconic_nav/src/wp_data_transfer/src/wp_msg_subscriber.cpp:11:3:[m[K [01;36m[Knote: [m[Kin expansion of macro ‘[01m[KROS_INFO[m[K’
+   11 |   [01;36m[KROS_INFO[m[K("send msg.x[%d]=%.2f | send msg.y[%d]=%.2f | send msg.z[%d]=%.2f | send msg.qx[%d]=%.2f | send msg.qy[%d]=%.2f | send msg.qz[%d]=%.2f | send msg.qw[%d]=%.2f",i ,i ,i ,i ,i ,i ,i ,msg->x[i] ,msg->y[i] ,msg->z[i] ,msg->qx[i] ,msg->qy[i] ,msg->qz[i] ,msg->qw[i]);
+      |   [01;36m[K^~~~~~~~[m[K
+[01m[K/home/nvidia/dconic_nav/src/wp_data_transfer/src/wp_msg_subscriber.cpp:11:106:[m[K [01;36m[Knote: [m[Kformat string is defined here
+   11 |   ROS_INFO("send msg.x[%d]=%.2f | send msg.y[%d]=%.2f | send msg.z[%d]=%.2f | send msg.qx[%d]=%.2f | sen[01;36m[Kd [m[Kmsg.qy[%d]=%.2f | send msg.qz[%d]=%.2f | send msg.qw[%d]=%.2f",i ,i ,i ,i ,i ,i ,i ,msg->x[i] ,msg->y[i] ,msg->z[i] ,msg->qx[i] ,msg->qy[i] ,msg->qz[i] ,msg->qw[i]);
+      |                                                                                                         [01;36m[K~^[m[K
+      |                                                                                                          [01;36m[K|[m[K
+      |                                                                                                          [01;36m[Kint[m[K
+      |                                                                                                         [32m[Kdf[m[K
+In file included from [01m[K/opt/ros/noetic/include/ros/ros.h:40[m[K,
+                 from [01m[K/home/nvidia/dconic_nav/src/wp_data_transfer/src/wp_msg_subscriber.cpp:1[m[K:
+[01m[K/home/nvidia/dconic_nav/src/wp_data_transfer/src/wp_msg_subscriber.cpp:11:12:[m[K [01;35m[Kwarning: [m[Kformat ‘[01m[K%d[m[K’ expects argument of type ‘[01m[Kint[m[K’, but argument 20 has type ‘[01m[Kdouble[m[K’ [[01;35m[K-Wformat=[m[K]
+   11 |   ROS_INFO([01;35m[K"send msg.x[%d]=%.2f | send msg.y[%d]=%.2f | send msg.z[%d]=%.2f | send msg.qx[%d]=%.2f | send msg.qy[%d]=%.2f | send msg.qz[%d]=%.2f | send msg.qw[%d]=%.2f"[m[K,i ,i ,i ,i ,i ,i ,i ,msg->x[i] ,msg->y[i] ,msg->z[i] ,msg->qx[i] ,msg->qy[i] ,msg->qz[i] ,msg->qw[i]);
+      |            [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/opt/ros/noetic/include/ros/console.h:351:165:[m[K [01;36m[Knote: [m[Kin definition of macro ‘[01m[KROSCONSOLE_PRINT_AT_LOCATION_WITH_FILTER[m[K’
+  351 |     ::ros::console::print(filter, __rosconsole_define_location__loc.logger_, __rosconsole_define_location__loc.level_, __FILE__, __LINE__, __ROSCONSOLE_FUNCTION__, [01;36m[K__VA_ARGS__[m[K)
+      |                                                                                                                                                                     [01;36m[K^~~~~~~~~~~[m[K
+[01m[K/opt/ros/noetic/include/ros/console.h:390:7:[m[K [01;36m[Knote: [m[Kin expansion of macro ‘[01m[KROSCONSOLE_PRINT_AT_LOCATION[m[K’
+  390 |       [01;36m[KROSCONSOLE_PRINT_AT_LOCATION[m[K(__VA_ARGS__); \
+      |       [01;36m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/opt/ros/noetic/include/ros/console.h:575:35:[m[K [01;36m[Knote: [m[Kin expansion of macro ‘[01m[KROS_LOG_COND[m[K’
+  575 | #define ROS_LOG(level, name, ...) [01;36m[KROS_LOG_COND[m[K(true, level, name, __VA_ARGS__)
+      |                                   [01;36m[K^~~~~~~~~~~~[m[K
+[01m[K/opt/ros/noetic/include/rosconsole/macros_generated.h:110:23:[m[K [01;36m[Knote: [m[Kin expansion of macro ‘[01m[KROS_LOG[m[K’
+  110 | #define ROS_INFO(...) [01;36m[KROS_LOG[m[K(::ros::console::levels::Info, ROSCONSOLE_DEFAULT_NAME, __VA_ARGS__)
+      |                       [01;36m[K^~~~~~~[m[K
+[01m[K/home/nvidia/dconic_nav/src/wp_data_transfer/src/wp_msg_subscriber.cpp:11:3:[m[K [01;36m[Knote: [m[Kin expansion of macro ‘[01m[KROS_INFO[m[K’
+   11 |   [01;36m[KROS_INFO[m[K("send msg.x[%d]=%.2f | send msg.y[%d]=%.2f | send msg.z[%d]=%.2f | send msg.qx[%d]=%.2f | send msg.qy[%d]=%.2f | send msg.qz[%d]=%.2f | send msg.qw[%d]=%.2f",i ,i ,i ,i ,i ,i ,i ,msg->x[i] ,msg->y[i] ,msg->z[i] ,msg->qx[i] ,msg->qy[i] ,msg->qz[i] ,msg->qw[i]);
+      |   [01;36m[K^~~~~~~~[m[K
+[01m[K/home/nvidia/dconic_nav/src/wp_data_transfer/src/wp_msg_subscriber.cpp:11:129:[m[K [01;36m[Knote: [m[Kformat string is defined here
+   11 |   ROS_INFO("send msg.x[%d]=%.2f | send msg.y[%d]=%.2f | send msg.z[%d]=%.2f | send msg.qx[%d]=%.2f | send msg.qy[%d]=%.2f | sen[01;36m[Kd [m[Kmsg.qz[%d]=%.2f | send msg.qw[%d]=%.2f",i ,i ,i ,i ,i ,i ,i ,msg->x[i] ,msg->y[i] ,msg->z[i] ,msg->qx[i] ,msg->qy[i] ,msg->qz[i] ,msg->qw[i]);
+      |                                                                                                                                [01;36m[K~^[m[K
+      |                                                                                                                                 [01;36m[K|[m[K
+      |                                                                                                                                 [01;36m[Kint[m[K
+      |                                                                                                                                [32m[Kdf[m[K
+[ 90%] [32m[1mLinking CXX executable /home/nvidia/dconic_nav/devel/.private/wp_data_transfer/lib/wp_data_transfer/wp_msg_subscriber[0m
+[ 90%] Built target wp_msg_subscriber
+[100%] [32m[1mLinking CXX executable /home/nvidia/dconic_nav/devel/.private/wp_data_transfer/lib/wp_data_transfer/wp_msg_publisher[0m
+[100%] Built target wp_msg_publisher

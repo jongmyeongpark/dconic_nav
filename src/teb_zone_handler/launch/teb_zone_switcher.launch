@@ -1,0 +1,5 @@
+<launch>
+  <node pkg="teb_zone_handler" type="teb_zone_switcher.py"
+        name="parking_teb_switcher" output="screen"/>
+
+</launch>

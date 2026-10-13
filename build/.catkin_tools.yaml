@@ -1,0 +1,6 @@
+devel_space: /home/nvidia/dconic_nav/devel
+install: false
+install_space: /home/nvidia/dconic_nav/install
+profile: default
+source_space: /home/nvidia/dconic_nav/src
+workspace: /home/nvidia/dconic_nav

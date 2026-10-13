@@ -1,0 +1,1 @@
+/home/nvidia/dconic_nav/devel/.private/diagnostic_aggregator/lib/pkgconfig/diagnostic_aggregator.pc

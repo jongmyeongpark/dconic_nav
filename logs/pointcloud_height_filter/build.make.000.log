@@ -1,0 +1,9 @@
+[35m[1mScanning dependencies of target pointcloud_height_filter_gencfg[0m
+[ 33%] [34m[1mGenerating dynamic reconfigure files from cfg/HeightFilter.cfg: /home/nvidia/dconic_nav/devel/.private/pointcloud_height_filter/include/pointcloud_height_filter/HeightFilterConfig.h /home/nvidia/dconic_nav/devel/.private/pointcloud_height_filter/lib/python3/dist-packages/pointcloud_height_filter/cfg/HeightFilterConfig.py[0m
+Generating reconfiguration files for HeightFilter in pointcloud_height_filter
+Wrote header file in /home/nvidia/dconic_nav/devel/.private/pointcloud_height_filter/include/pointcloud_height_filter/HeightFilterConfig.h
+[ 33%] Built target pointcloud_height_filter_gencfg
+[35m[1mScanning dependencies of target height_filter_node[0m
+[ 66%] [32mBuilding CXX object CMakeFiles/height_filter_node.dir/src/height_filter_node.cpp.o[0m
+[100%] [32m[1mLinking CXX executable /home/nvidia/dconic_nav/devel/.private/pointcloud_height_filter/lib/pointcloud_height_filter/height_filter_node[0m
+[100%] Built target height_filter_node

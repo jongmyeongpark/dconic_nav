@@ -1,0 +1,3 @@
+<launch>
+    <node pkg="ble_serial_manager" type="ble_serial_manager" name="ble_serial_manager" output="screen"/>
+</launch>

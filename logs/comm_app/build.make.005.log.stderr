@@ -1,0 +1,25 @@
+[01m[K/home/nvidia/dconic_nav/src/comm_app/src/map_info.cpp:[m[K In function ‘[01m[Kbool gotoChargeCallback(std_srvs::Empty::Request&, std_srvs::Empty::Response&)[m[K’:
+[01m[K/home/nvidia/dconic_nav/src/comm_app/src/map_info.cpp:580:1:[m[K [01;35m[Kwarning: [m[Kno return statement in function returning non-void [[01;35m[K-Wreturn-type[m[K]
+  580 | [01;35m[K}[m[K
+      | [01;35m[K^[m[K
+[01m[K/home/nvidia/dconic_nav/src/comm_app/src/map_info.cpp:[m[K In function ‘[01m[Kvoid charge_setting_callback(const String&)[m[K’:
+[01m[K/home/nvidia/dconic_nav/src/comm_app/src/map_info.cpp:698:14:[m[K [01;31m[Kerror: [m[K‘[01m[Kjson[m[K’ does not name a type
+  698 |     } catch ([01;31m[Kjson[m[K::parse_error& e) {
+      |              [01;31m[K^~~~[m[K
+[01m[K/home/nvidia/dconic_nav/src/comm_app/src/map_info.cpp:698:31:[m[K [01;31m[Kerror: [m[Kexpected unqualified-id before ‘[01m[K&[m[K’ token
+  698 |     } catch (json::parse_error[01;31m[K&[m[K e) {
+      |                               [01;31m[K^[m[K
+[01m[K/home/nvidia/dconic_nav/src/comm_app/src/map_info.cpp:698:31:[m[K [01;31m[Kerror: [m[Kexpected ‘[01m[K)[m[K’ before ‘[01m[K&[m[K’ token
+  698 |     } catch [34m[K([m[Kjson::parse_error[01;31m[K&[m[K e) {
+      |             [34m[K~[m[K                 [01;31m[K^[m[K
+      |                               [32m[K)[m[K
+[01m[K/home/nvidia/dconic_nav/src/comm_app/src/map_info.cpp:698:31:[m[K [01;31m[Kerror: [m[Kexpected ‘[01m[K{[m[K’ before ‘[01m[K&[m[K’ token
+[01m[K/home/nvidia/dconic_nav/src/comm_app/src/map_info.cpp:698:33:[m[K [01;31m[Kerror: [m[K‘[01m[Ke[m[K’ was not declared in this scope
+  698 |     } catch (json::parse_error& [01;31m[Ke[m[K) {
+      |                                 [01;31m[K^[m[K
+[01m[K/home/nvidia/dconic_nav/src/comm_app/src/map_info.cpp:700:7:[m[K [01;31m[Kerror: [m[Kexpected primary-expression before ‘[01m[Kcatch[m[K’
+  700 |     } [01;31m[Kcatch[m[K (std::exception& e) {
+      |       [01;31m[K^~~~~[m[K
+make[2]: *** [CMakeFiles/comm_app.dir/build.make:63: CMakeFiles/comm_app.dir/src/map_info.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:690: CMakeFiles/comm_app.dir/all] Error 2
+make: *** [Makefile:141: all] Error 2

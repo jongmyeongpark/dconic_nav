@@ -1,0 +1,12 @@
+Symlinking /home/nvidia/dconic_nav/devel/share/global_planner/docs/GlobalPlannerConfig.dox
+Symlinking /home/nvidia/dconic_nav/devel/share/global_planner/docs/GlobalPlannerConfig.wikidoc
+Symlinking /home/nvidia/dconic_nav/devel/share/global_planner/docs/GlobalPlannerConfig-usage.dox
+Symlinking /home/nvidia/dconic_nav/devel/share/global_planner/cmake/global_plannerConfig.cmake
+Symlinking /home/nvidia/dconic_nav/devel/share/global_planner/cmake/global_plannerConfig-version.cmake
+Symlinking /home/nvidia/dconic_nav/devel/lib/libglobal_planner.so
+Symlinking /home/nvidia/dconic_nav/devel/lib/global_planner/planner
+Symlinking /home/nvidia/dconic_nav/devel/lib/pkgconfig/global_planner.pc
+Symlinking /home/nvidia/dconic_nav/devel/lib/python3/dist-packages/global_planner/__init__.py
+Symlinking /home/nvidia/dconic_nav/devel/lib/python3/dist-packages/global_planner/cfg/__init__.py
+Symlinking /home/nvidia/dconic_nav/devel/lib/python3/dist-packages/global_planner/cfg/GlobalPlannerConfig.py
+Symlinking /home/nvidia/dconic_nav/devel/include/global_planner/GlobalPlannerConfig.h

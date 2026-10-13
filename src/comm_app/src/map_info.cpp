@@ -1,0 +1,1889 @@
+#include <stdio.h>
+#include <ros/ros.h>
+#include <std_msgs/Int32.h>
+#include <std_msgs/Empty.h>
+#include <std_msgs/String.h>
+#include <geometry_msgs/PoseWithCovarianceStamped.h>
+#include <actionlib_msgs/GoalID.h>
+#include <ros/console.h>
+#include <stdlib.h>
+#include <fstream>
+#include <string.h>
+#include <std_srvs/Empty.h>
+#include <comm_app/state_msg.h>
+#include <geometry_msgs/PoseStamped.h>
+#include <experimental/filesystem>
+#include <string>
+#include <iostream>
+#include <tf2/LinearMath/Quaternion.h>
+#include <tf2_geometry_msgs/tf2_geometry_msgs.h>
+#include <comm_app/start_drive.h>
+#include <sstream>
+#include <vector>
+#include <limits>
+#include <geometry_msgs/Twist.h>
+#include <geometry_msgs/Pose.h>
+#include <tf/tf.h>
+#include <nlohmann/json.hpp>
+
+
+
+#define PI 3.141592
+#define DEG2RAD (PI / 180.0)
+#define RAD2DEG (180.0 / PI)
+
+typedef struct tagPOINT
+{
+    double x;
+    double y;
+} POINT;
+
+typedef struct tagLINE
+{
+    POINT p1;
+    POINT p2;
+} LINE;
+
+double getDistance(POINT a, POINT b);
+double getMin(double d1, double d2);
+double getMax(double d1, double d2);
+
+
+bool is_map_list = false;
+bool is_map_select;
+bool is_map_running = false;
+bool is_map_save = false;
+bool is_map_clean = false;
+bool is_wp_list = false;
+bool is_path_run = false;
+bool is_particle = false;
+bool is_initialpose = false;
+bool is_delivery = false;
+bool is_cruze = false;
+bool is_move = false;
+bool is_comeback = false;
+bool is_charge = false;
+bool is_follow = false;
+bool is_find_person = false;
+bool is_path_cancel = false;
+bool is_shutdown = false;
+bool is_start_mapping = false;
+bool is_terminate_mapping = false;
+bool is_manual_move_forward = false;
+bool is_manual_move_left = false;
+bool is_manual_move_stop = false;
+bool is_manual_move_right = false;
+bool is_manual_move_back = false;
+bool is_rosnode_cleanup = false;
+bool is_save_simultaneous_map = false;
+
+int is_map_create = -1;
+int is_wp_launch = -1;
+int is_usbcam_launch = -1;
+int is_sensors_launch = -1;
+int is_all_launch = -1;
+int is_move_pause = -1;
+
+int driving_state = -1;
+
+std::string map_name_run = "";
+std::string map_name_save = "";
+std::string path_file_name = "";
+std::string sub_name = "";
+std::string comeback_sub_name = "";
+std::string sub_repet_time = "";
+std::string sub_time = "";
+geometry_msgs::PoseWithCovarianceStamped initpose_;
+
+geometry_msgs::PoseStamped currentGoal_;
+
+int currentWaypoint_;
+
+geometry_msgs::PoseWithCovarianceStamped currentAmclPose_;
+
+int amclPosePubCount_;
+
+ros::Publisher path_run_cancel_request_pub_;
+
+ros::Publisher moveBaseCancelPub_;
+
+ros::Publisher start_auto_parking_pub_;
+
+ros::Publisher path_run_request_pub_;
+
+std::ofstream poseToSaveFile_;
+    
+bool isInitialized_;
+
+const std::string currentDateTime() {
+    time_t     now = time(0);
+    struct tm  tstruct;
+    char       buf[80];
+    tstruct = *localtime(&now);
+    int year = tstruct.tm_year + 1900;
+    int month = tstruct.tm_mon + 1;
+    int day = tstruct.tm_mday;
+    int hour = tstruct.tm_hour;
+    int min = tstruct.tm_min;
+    int sec = tstruct.tm_sec;
+    std::stringstream sstream ;
+    sstream << year;
+    sstream << std::setfill('0') << std::setw(2) << month;
+    sstream << std::setfill('0') << std::setw(2) << day << "-" ;
+    sstream << std::setfill('0') << std::setw(2) << hour ;
+    sstream << std::setfill('0') << std::setw(2) << min ;
+    sstream << std::setfill('0') << std::setw(2) << sec;
+    std::string bufString = sstream.str() ;
+    return bufString;
+}
+
+// developer mode =====================================================================
+// 1. sensors launch
+void sensors_launch_CallBack(const std_msgs::Int32::ConstPtr & _sensors_launch_req)
+{
+  // kill : 0, run : 1
+  ROS_INFO("sensors_launch_CallBack message \n");
+  is_sensors_launch = _sensors_launch_req->data;
+}
+
+// 2. follow_waypoints launch/kill
+void wp_launch_CallBack(const std_msgs::Int32::ConstPtr & _wp_launch_req)
+{
+  // kill : 0, run : 1
+  ROS_INFO("wp_launch_request_CallBack message \n");
+  is_wp_launch = _wp_launch_req->data;
+}
+
+// 3. camera launch/kill
+void usbcam_launch_CallBack(const std_msgs::Int32::ConstPtr & _usbcam_launch_req)
+{
+  // kill : 0, run : 1
+  ROS_INFO("usbcam_launch_CallBack message \n");
+  is_usbcam_launch = _usbcam_launch_req->data;
+}
+
+// 4. all launch/kill
+void all_launch_CallBack(const std_msgs::Int32::ConstPtr & _all_launch_req)
+{
+  // kill : 0, run : 1
+  ROS_INFO("all_launch_request_CallBack message \n");
+  is_all_launch = _all_launch_req->data;
+}
+
+//=====================================================================================
+
+// 5. launch slam package
+void map_create_CallBack(const std_msgs::Int32::ConstPtr & _map_create_req)
+{
+  ROS_INFO("map_create_CallBack message = %d\n", _map_create_req->data);
+  // kill : 0, not_auto : 1, auto : 2
+  is_map_create = _map_create_req->data;
+}
+
+// 6. map list transport
+void map_list_request_CallBack(const std_msgs::Empty::ConstPtr & _map_list_req)
+{
+  ROS_INFO("map_list_request_CallBack message \n");
+  is_map_list = true;
+}
+
+// 7. save map data
+void map_save_CallBack(const std_msgs::String::ConstPtr & _save_map_name)
+{
+  ROS_INFO("map_save_CallBack message = %s\n", _save_map_name->data.c_str());
+  map_name_save = _save_map_name->data;
+  is_map_save = true;
+}
+
+// 8. map_name sub
+void map_select_CallBack(const std_msgs::String::ConstPtr & _map_name)
+{
+  ROS_INFO("map_select_CallBack message = %s\n", _map_name->data.c_str());
+  map_name_run = _map_name->data;
+  is_map_select = true;
+}
+
+// 9. map_running_request sub
+void map_running_CallBack(const std_msgs::Empty::ConstPtr & _map_running_req)
+{
+  ROS_INFO("map_running_CallBack message\n");
+  is_map_running = true;
+}
+
+// 10. wp list transport
+void wp_list_request_CallBack(const std_msgs::Empty::ConstPtr & _wp_list_req)
+{
+  ROS_INFO("wp_list_request_CallBack message\n ");
+  is_wp_list = true;
+}
+
+// 11. paht run - Receiving the number of repetitions and the name of the path file name
+void path_run_CallBack(const std_msgs::String::ConstPtr & _path_run_req) 
+{
+  ROS_INFO("path_run_CallBack message");
+  path_file_name = _path_run_req->data;
+  //ROS_INFO("path_file_name = %s", path_file_name.c_str());
+  sub_repet_time = path_file_name.substr(0, 4); //repetitions and time
+  //sub_time = path_file_name.substr(2, 4); //time
+  sub_name = path_file_name.substr(4); //file name
+  ROS_INFO("repet/time = %s, file_name = %s\n", sub_repet_time.c_str(), sub_name.c_str());
+  std::string path_run_cmd ="cp /home/nvidia/dconic_nav/src/follow_waypoints/saved_path/" + sub_name +" /home/nvidia/dconic_nav/src/follow_waypoints/saved_path/pose.csv";
+  //system("pwd");
+  system(path_run_cmd.c_str());
+
+  path_run_cmd ="cp /home/nvidia/dconic_nav/src/follow_waypoints/saved_path/" + sub_name +" /home/nvidia/dconic_nav/src/follow_waypoints/saved_path/latest.csv";
+  system(path_run_cmd.c_str());
+
+
+  is_path_run = true;
+}
+
+// 12.path_cancel_CallBack
+void path_cancel_CallBack(const std_msgs::Empty::ConstPtr & _path_run_cancel_request)
+{
+  ROS_INFO("path_cancel_CallBack message\n ");
+  is_path_cancel = true;
+  driving_state = 0 ;
+}
+
+// 13. clean map
+void map_clean_CallBack(const std_msgs::Empty::ConstPtr & _map_clean_req)
+{
+  ROS_INFO("clean_map_CallBack message\n");
+  is_map_clean = true;
+}
+
+// 14. particles initialization (for localization)
+void particles_init_CallBack(const std_msgs::Empty::ConstPtr & _particle_req)
+{
+  ROS_INFO("particles_init_CallBack message\n ");
+  is_particle = true;
+}
+
+// 15. initialpose
+void initialpose_CallBack(const geometry_msgs::PoseWithCovarianceStampedConstPtr &_initialpose)
+{
+  ROS_INFO("initialpose_CallBack message\n");
+  initpose_ = *_initialpose;
+  is_initialpose = true;
+}
+
+
+//drive list=============================================================================
+// 16. delivery
+void delivery_CallBack(const std_msgs::Empty::ConstPtr & _delivery_req)
+{
+  ROS_INFO("delivery_CallBack message\n ");
+  is_delivery = true;
+}
+
+// 17. cruze
+void cruze_CallBack(const std_msgs::Empty::ConstPtr & _cruze_req)
+{
+  ROS_INFO("cruze_CallBack message\n ");
+  is_cruze = true;
+}
+
+// 18. move (pause)
+void move_CallBack(const std_msgs::Int32::ConstPtr & _move_req)
+{
+  ROS_INFO("move_CallBack message\n ");
+  is_move_pause = _move_req->data;
+  is_move = true;
+}
+
+// 19. comeback
+void comeback_CallBack(const std_msgs::Empty::ConstPtr & _comeback_req)
+{
+  ROS_INFO("comeback_CallBack message\n ");
+
+  // comeback_sub_name = map_name_run + "_comeback.csv"; //file name
+  // ROS_INFO("comeback_sub_name = %s\n", comeback_sub_name.c_str());
+  // std::string path_run_cmd ="cp /home/nvidia/dconic_nav/src/follow_waypoints/saved_path/" + comeback_sub_name +" /home/nvidia/dconic_nav/src/follow_waypoints/saved_path/pose.csv";
+  // system(path_run_cmd.c_str());
+
+  is_comeback = true;
+}
+
+// 20. charge
+void charge_CallBack(const std_msgs::Empty::ConstPtr & _charge_req)
+{
+  ROS_INFO("charge_CallBack message\n ");
+
+  // comeback_sub_name = map_name_run + "_charge.csv"; //file name
+  // ROS_INFO("comeback_sub_name = %s\n", comeback_sub_name.c_str());
+  // std::string path_run_cmd ="cp /home/nvidia/dconic_nav/src/follow_waypoints/saved_path/" + comeback_sub_name +" /home/nvidia/dconic_nav/src/follow_waypoints/saved_path/pose.csv";
+  //system(path_run_cmd.c_str());
+
+  is_charge = true;
+}
+
+// 21. follow
+void follow_CallBack(const std_msgs::Empty::ConstPtr & _follow_req)
+{
+  ROS_INFO("follow_CallBack message\n ");
+  is_follow = true;
+}
+
+// 22. find person
+void find_person_CallBack(const std_msgs::Empty::ConstPtr & _find_person_req)
+{
+  ROS_INFO("find_person_CallBack message\n ");
+  is_find_person = true;
+}
+
+// 23. shutdown
+void shutdown_request_CallBack(const std_msgs::Empty::ConstPtr & _shutdown_req)
+{
+  ROS_INFO("shutdown_CallBack message\n ");
+  is_shutdown = true;
+}
+
+// 24. drive_finish_noti
+void drive_finish_noti_CallBack(const std_msgs::Empty::ConstPtr & _drv_fnsh_noti)
+{
+  ROS_INFO("drive_finish_noti message\n ");
+  driving_state = 0 ;
+}
+
+// 25. drive_start_noti
+void drive_start_noti_CallBack(const std_msgs::Empty::ConstPtr & _drv_strt_noti)
+{
+  ROS_INFO("drive_start_noti message\n ");
+  driving_state = 2 ;
+}
+
+// 26. drive_start_noti
+void motor_by_run_Callback(const std_msgs::Int32::ConstPtr & _motor_by_run)
+{
+  int value = _motor_by_run->data;
+
+  if (value == 0)
+  {
+    //driving_state = 0 ;
+  }
+  else if (value == 1){
+    //driving_state = 2 ;
+  }
+}
+
+// 27. pause_signal_from_fw
+void pause_signal_from_fw_Callback(const std_msgs::Int32::ConstPtr & _pause_signal_from_fw)
+{
+  int value = _pause_signal_from_fw->data;
+  if (value == 1){
+    driving_state = 1;
+  }
+}
+
+// 28. cancel_signal_from_fw_sub
+void cancel_signal_from_fw_Callback(const std_msgs::Empty::ConstPtr & _cancel_signal_from_fw_sub){
+  driving_state = 0 ;
+}
+
+// 29. move_base_simple_goal_sub
+void move_base_simple_goal_Callback(const geometry_msgs::PoseStamped & _move_base_simple_goal_msg){
+  currentGoal_ = _move_base_simple_goal_msg;
+}
+
+// 30. current_waypoint_sub
+void current_waypoint_Callback(const std_msgs::Int32 & _current_waypoint_msg){
+  currentWaypoint_ = _current_waypoint_msg.data;
+}
+
+// 31. current amcl pose sub
+void current_amcl_pose_Callback(const geometry_msgs::PoseWithCovarianceStamped & _current_amcl_pose_msg){
+  currentAmclPose_ = _current_amcl_pose_msg;
+}
+
+// 32. drive start service callback
+bool driveStartServiceCallback(comm_app::start_drive::Request &req, comm_app::start_drive::Response &res){
+  ROS_INFO("Drive Start Service Callback message");
+  
+  ROS_INFO("Start Drive!!");
+  path_file_name = req.str;
+  //ROS_INFO("path_file_name = %s", path_file_name.c_str());
+  sub_repet_time = path_file_name.substr(0, 4); //repetitions and time
+  //sub_time = path_file_name.substr(2, 4); //time
+  sub_name = path_file_name.substr(4); //file name
+  ROS_INFO("repet/time = %s, file_name = %s\n", sub_repet_time.c_str(), sub_name.c_str());
+  std::string path_run_cmd ="cp /home/nvidia/dconic_nav/src/follow_waypoints/saved_path/" + sub_name +" /home/nvidia/dconic_nav/src/follow_waypoints/saved_path/pose.csv";
+  //system("pwd");
+  system(path_run_cmd.c_str());
+  
+  path_run_cmd ="cp /home/nvidia/dconic_nav/src/follow_waypoints/saved_path/" + sub_name +" /home/nvidia/dconic_nav/src/follow_waypoints/saved_path/latest.csv";
+  system(path_run_cmd.c_str());
+
+  is_path_run = true;
+  res.str = req.str;
+
+	std_msgs::String msg;
+	msg.data = req.str;
+
+	path_run_request_pub_.publish(msg);
+  
+  return true;
+}
+
+// 33. drive pause service callback
+bool drivePauseServiceCallback(std_srvs::Empty::Request &req, std_srvs::Empty::Response &res){
+  ros::Time currentTime = ros::Time::now();
+  long temp = currentTime.toSec();
+  long nanoTemp = currentTime.toNSec();
+  nanoTemp = nanoTemp % 1000000000UL;
+  const time_t old = (time_t)temp;
+  struct tm *oldt = gmtime(&old);
+  int hour = oldt->tm_hour;
+  int min = oldt->tm_min;
+  int sec = oldt->tm_sec;
+  std::stringstream sstream ;
+  sstream << std::setfill('0') << std::setw(2) << hour ;
+  sstream << std::setfill('0') << std::setw(2) << min ;
+  sstream << std::setfill('0') << std::setw(2) << sec;
+  sstream << ".";
+  sstream << std::setfill('0') << std::setw(3) << nanoTemp;
+
+  std::string bufString = sstream.str() ;
+
+//  std_msgs::String stringMsg;
+//  stringMsg.data = bufString;
+//  commandTimePublisher_.publish(stringMsg);            
+  ROS_INFO("Drive Pause Service CallBack message\n ");
+  is_move_pause = 1;
+  is_move = true;
+  return true;
+}
+
+// 34. drive cancel service callback
+bool driveCancelServiceCallback(std_srvs::Empty::Request &req, std_srvs::Empty::Response &res){
+  ROS_INFO("Drive Cancel Service CallBack message\n ");
+  actionlib_msgs::GoalID goalIdMsg;
+  moveBaseCancelPub_.publish(goalIdMsg);
+  std_msgs::Empty msg;
+  path_run_cancel_request_pub_.publish(msg);
+  is_path_cancel = true;
+  driving_state = 0 ;
+  return true;
+}
+
+// 35. drive resume service callback
+bool driveResumeServiceCallback(std_srvs::Empty::Request &req, std_srvs::Empty::Response &res){
+  ROS_INFO("Drive Resume Service CallBack message\n ");
+  is_move_pause = 2;
+  is_move = true;
+  return true;
+}
+
+// 36. initialpose service callback
+bool initialposeServiceCallback(std_srvs::Empty::Request &req, std_srvs::Empty::Response &res){
+  ROS_INFO("initialpose Service CallBack message\n");
+  initpose_.header.stamp = ros::Time::now();
+  /*    TheHyundai charging location
+    parkingPointPose_.pose.position.x = 52.5494566161;
+    parkingPointPose_.pose.position.y = -14.7370018379;
+    parkingPointPose_.pose.position.z = 0.0;
+    parkingPointPose_.pose.orientation.x = 0.0;
+    parkingPointPose_.pose.orientation.y = 0.0;
+    parkingPointPose_.pose.orientation.z = -0.467479981121;
+    parkingPointPose_.pose.orientation.w = 0.88400365794;
+  */
+
+  // 5??
+  // initpose_.pose.pose.position.x = 41.4297758299;
+  // initpose_.pose.pose.position.y = 77.1351368531;
+  // initpose_.pose.pose.position.z = 0.0;
+  // initpose_.pose.pose.orientation.x = 0.0;
+  // initpose_.pose.pose.orientation.y = 0.0;
+  // initpose_.pose.pose.orientation.z = -0.461888473833;
+  // initpose_.pose.pose.orientation.w = 0.886938012343;
+
+  // 6?? next to megabox door
+  // initpose_.pose.pose.position.x = 151.079011597;
+  // initpose_.pose.pose.position.y = 23.4197604903;
+  // initpose_.pose.pose.position.z = 0.0;
+  // initpose_.pose.pose.orientation.x = 0.0;
+  // initpose_.pose.pose.orientation.y = 0.0;
+  // initpose_.pose.pose.orientation.z = -0.730690486755;
+  // initpose_.pose.pose.orientation.w = 0.682708878341;
+
+      // 6?? next to NEXPERIUM 
+  //initpose_.pose.pose.position.x = 164.751669876;
+  //initpose_.pose.pose.position.y = 46.248691273;
+  //initpose_.pose.pose.position.z = 0.0;
+  //initpose_.pose.pose.orientation.x = 0.0;
+  //initpose_.pose.pose.orientation.y = 0.0;
+  //initpose_.pose.pose.orientation.z = 0.691736042192;
+  //initpose_.pose.pose.orientation.w = 0.722150433035;
+  
+    //initpose_.header.stamp = ros::Time::now();
+ // the parc1 240402
+  initpose_.pose.pose.position.x = 16.8525511463;
+  initpose_.pose.pose.position.y = -19.4374764884;
+  initpose_.pose.pose.position.z = 0.0;
+  initpose_.pose.pose.orientation.x = 0.0;
+  initpose_.pose.pose.orientation.y = 0.0;
+  initpose_.pose.pose.orientation.z = -0.363197779863;
+  initpose_.pose.pose.orientation.w = 0.931712065341;;
+  
+  initpose_.pose.covariance[6 * 0 + 0] = 0.5 * 0.5;
+  initpose_.pose.covariance[6 * 1 + 1] = 0.5 * 0.5;
+  initpose_.pose.covariance[6 * 5 + 5] = (float) (PI / 12.0 * PI / 12.0);
+  is_initialpose = true;
+
+  return true;
+}
+
+void initialize_position_callback (const std_msgs::Empty & msg){
+  ROS_INFO("initialize position from ui CallBack message\n");
+  initpose_.header.stamp = ros::Time::now();  
+  // the parc1 240402
+  initpose_.pose.pose.position.x = 16.8525511463;
+  initpose_.pose.pose.position.y = -19.4374764884;
+  initpose_.pose.pose.position.z = 0.0;
+  initpose_.pose.pose.orientation.x = 0.0;
+  initpose_.pose.pose.orientation.y = 0.0;
+  initpose_.pose.pose.orientation.z = -0.363197779863;
+  initpose_.pose.pose.orientation.w = 0.931712065341;
+  
+  initpose_.pose.covariance[6 * 0 + 0] = 0.5 * 0.5;
+  initpose_.pose.covariance[6 * 1 + 1] = 0.5 * 0.5;
+  initpose_.pose.covariance[6 * 5 + 5] = (float) (PI / 12.0 * PI / 12.0);
+  is_initialpose = true;
+}
+
+// 37. pit in service callback
+bool pitInServiceCallback(std_srvs::Empty::Request &req, std_srvs::Empty::Response &res){
+  ROS_INFO("Pit In Service CallBack message\n ");
+  is_comeback = true;
+  return true;
+}
+
+// 38. recover service callback
+bool recoverServiceCallback(std_srvs::Empty::Request &req, std_srvs::Empty::Response &res){
+  ROS_INFO("Recover Service CallBack message\n ");
+  
+  return true;
+}
+
+bool gotoChargeCallback(std_srvs::Empty::Request &req, std_srvs::Empty::Response &res){
+  ROS_INFO("Go to Charge Service CallBack message\n ");
+
+  // std_msgs::Empty emtpyMsgForCancel;
+  // path_run_cancel_request_pub_.publish(emtpyMsgForCancel);
+  // system("rostopic pub -1 /move_base/cancel actionlib_msgs/GoalID -- {}");
+
+  // std_msgs::Empty msg;
+
+  // start_auto_parking_pub_.publish(msg);
+
+  is_charge = true;
+}
+
+void go_to_charge_callback(const std_msgs::Empty & msg){
+  ROS_INFO("Go to Charge Topic CallBack message\n ");
+  is_charge = true;
+}
+
+void update_map_to_be_run_Callback(const std_msgs::String & msg){
+  std::ofstream outputFileMapToBeRun("/home/nvidia/dconic_nav/src/map/map.txt");
+  if (outputFileMapToBeRun.is_open()) {
+      outputFileMapToBeRun << msg.data ;
+      outputFileMapToBeRun.close();
+  }
+}
+
+void start_mapping_callback(const std_msgs::Empty & msg){
+  ROS_INFO("Start Mapping");
+  is_start_mapping = true;
+}
+
+void terminate_mapping_callback(const std_msgs::Empty & msg){
+  ROS_INFO("Terminate Mapping");
+  is_terminate_mapping = true;
+}
+
+void manual_move_forward_callback(const std_msgs::Empty & msg){
+  ROS_INFO("Manual Move Forward");
+  is_manual_move_forward = true;
+}
+void manual_move_left_callback(const std_msgs::Empty & msg){
+  ROS_INFO("Manual Move Left");
+  is_manual_move_left = true;
+}
+void manual_move_stop_callback(const std_msgs::Empty & msg){
+  ROS_INFO("Manual Move Stop");
+  is_manual_move_stop = true;  
+}
+void manual_move_right_callback(const std_msgs::Empty & msg){
+  ROS_INFO("Manual Move Right");
+  is_manual_move_right = true;
+}
+void manual_move_back_callback(const std_msgs::Empty & msg){
+  ROS_INFO("Manual Move Back");
+  is_manual_move_back = true;
+}
+
+void request_rosnode_cleanup_callback(const std_msgs::Empty & msg){
+  ROS_INFO("Requested Rosnode Cleanup");
+  is_rosnode_cleanup = true;
+}
+
+void save_simultaneous_map_callback(const std_msgs::Empty & msg){
+  ROS_INFO("Save simultaneous Map");
+  is_save_simultaneous_map = true;
+}
+
+
+void initialpose_flyinglet_callback(const std_msgs::Empty& msg){
+  ROS_INFO("initialpose_flyinglet Topic CallBack\n");
+  initpose_.header.stamp = ros::Time::now();
+  
+  // parc1 240325
+  initpose_.header.stamp = ros::Time::now();
+  // the parc1 240402
+  initpose_.pose.pose.position.x = 16.8525511463;
+  initpose_.pose.pose.position.y = -19.4374764884;
+  initpose_.pose.pose.position.z = 0.0;
+  initpose_.pose.pose.orientation.x = 0.0;
+  initpose_.pose.pose.orientation.y = 0.0;
+  initpose_.pose.pose.orientation.z = -0.363197779863;
+  initpose_.pose.pose.orientation.w = 0.931712065341;
+
+  // <office debugging 250224>
+  // initpose_.pose.pose.position.x = 0.04062275948966487;
+  // initpose_.pose.pose.position.y = 0.1635447593426158;
+  // initpose_.pose.pose.position.z = 0.0;
+  // initpose_.pose.pose.orientation.x = 0.0;
+  // initpose_.pose.pose.orientation.y = 0.0;
+  // initpose_.pose.pose.orientation.z = 0.2560775042762043;
+  // initpose_.pose.pose.orientation.w = 0.9666562531756936;
+  // </office debugging 250224>
+  
+  initpose_.pose.covariance[6 * 0 + 0] = 0.5 * 0.5;
+  initpose_.pose.covariance[6 * 1 + 1] = 0.5 * 0.5;
+  initpose_.pose.covariance[6 * 5 + 5] = (float) (PI / 12.0 * PI / 12.0);
+  
+  is_initialpose = true;
+
+}
+
+void charge_setting_callback(const std_msgs::String& msg){
+  ROS_INFO("Received Charge Setting Data: %s", msg.data.c_str());
+
+    try {
+        // 1. String 데이터를 JSON 객체로 파싱
+        nlohmann::json j = nlohmann::json::parse(msg.data);
+
+        // 파싱된 데이터 확인 (선택사항)
+        std::vector<std::string> times = j["times"];
+        int battery = j["battery"];
+        ROS_INFO("Battery Threshold: %d%%", battery);
+        for(const auto& t : times) {
+            ROS_INFO("Scheduled Time: %s", t.c_str());
+        }
+
+        // 2. JSON 파일로 저장할 경로 지정 (로봇 환경에 맞게 수정하세요)
+        std::string file_path = "/home/nvidia/charge_setting/charge_setting.json"; 
+        
+        // 3. 파일 출력 (std::setw(4)를 주면 들여쓰기가 되어 보기 좋게 저장됩니다)
+        std::ofstream file_out(file_path);
+        if (file_out.is_open()) {
+            file_out << std::setw(4) << j << std::endl;
+            file_out.close();
+            ROS_INFO("Successfully saved to %s", file_path.c_str());
+        } else {
+            ROS_ERROR("Failed to open file for writing: %s", file_path.c_str());
+        }
+
+    } catch (nlohmann::json::parse_error& e) {
+        ROS_ERROR("JSON Parsing Error: %s", e.what());
+    } catch (std::exception& e) {
+        ROS_ERROR("Exception occurred: %s", e.what());
+    }
+}
+ 
+//========================================================================================
+
+int main(int argc, char **argv)
+{
+  ROS_INFO("map info start\n");
+  ros::init(argc, argv, "map_info");
+  ros::NodeHandle nh;
+
+  // package launch
+  ros::Subscriber sensors_launch_sub = nh.subscribe("sensors_launch", 10, sensors_launch_CallBack);
+  ros::Subscriber wp_launch_sub = nh.subscribe("wp_launch", 10, wp_launch_CallBack);
+  ros::Subscriber usbcam_launch_sub = nh.subscribe("usbcam_launch", 10, usbcam_launch_CallBack);
+  ros::Subscriber all_launch_sub = nh.subscribe("all_launch", 10, all_launch_CallBack);
+  
+  // map_info
+  ros::Subscriber map_list_sub = nh.subscribe("map_list_request", 10, map_list_request_CallBack);
+  ros::Subscriber map_select_sub = nh.subscribe("map_select", 10, map_select_CallBack);
+  ros::Subscriber map_create_sub = nh.subscribe("map_create", 10, map_create_CallBack);
+  ros::Subscriber map_save_sub = nh.subscribe("map_save", 10, map_save_CallBack);
+  ros::Subscriber map_running_sub = nh.subscribe("map_running_request", 10, map_running_CallBack);
+
+  // waypoints
+  ros::Subscriber wp_list_sub = nh.subscribe("wp_list_request", 10, wp_list_request_CallBack);
+  ros::Subscriber path_run_sub = nh.subscribe("path_run_request", 10, path_run_CallBack);
+  ros::Subscriber wp_run_cancel_sub = nh.subscribe("path_run_cancel_request", 10 ,path_cancel_CallBack); 
+  
+  // for drive better
+  ros::Subscriber map_clean_sub = nh.subscribe("map_clean", 10, map_clean_CallBack);
+  ros::Subscriber particles_init_sub = nh.subscribe("particles_init", 10, particles_init_CallBack);
+  ros::Subscriber initialpose_sub = nh.subscribe("initialpose_app", 10, initialpose_CallBack);
+
+  // drive list
+  ros::Subscriber delivery_sub = nh.subscribe("delivery_request", 10, delivery_CallBack);
+  ros::Subscriber cruze_sub = nh.subscribe("cruze_request", 10, cruze_CallBack);
+ 
+  ros::Subscriber comeback_sub = nh.subscribe("comeback_request", 10, comeback_CallBack);
+  ros::Subscriber charge_sub = nh.subscribe("charge_request", 10, charge_CallBack);
+  ros::Subscriber follow_sub = nh.subscribe("follow_request", 10, follow_CallBack);
+  ros::Subscriber find_person_sub = nh.subscribe("find_person_request", 10, find_person_CallBack);
+
+  // shutdown
+  ros::Subscriber shutdown_sub = nh.subscribe("shutdown_request", 10, shutdown_request_CallBack);
+  
+  // subscribe drive_finish_noti
+  ros::Subscriber drive_finish_noti_sub = nh.subscribe("drive_finish_noti", 10, drive_finish_noti_CallBack);
+
+  // subscribe drive_start_noti
+  ros::Subscriber drive_start_noti_sub = nh.subscribe("drive_start_noti", 10, drive_start_noti_CallBack);
+
+  // subscribe motor_by_run
+  ros::Subscriber motor_by_run_sub = nh.subscribe("motor_by_run", 10, motor_by_run_Callback);
+
+  // subcribe pause signal from follow_waypoint
+  ros::Subscriber pause_signal_from_fw_sub = nh.subscribe("pause_signal_from_fw", 10, pause_signal_from_fw_Callback);
+
+  // subscribe cancel signal from follow_waypoint
+  ros::Subscriber cancel_signal_from_fw_sub = nh.subscribe("cancel_signal_from_fw", 10, cancel_signal_from_fw_Callback);
+
+  // subscribe move_base_simple/goal
+  ros::Subscriber move_base_simple_goal_sub = nh.subscribe("/move_base/current_goal", 10, move_base_simple_goal_Callback);
+
+  //subscribe current amcl pose
+  ros::Subscriber current_amcl_pose_sub = nh.subscribe("amcl_pose", 10, current_amcl_pose_Callback);
+
+  //service drive_start_srv
+  ros::ServiceServer srvDriveStart = nh.advertiseService("drive_start_srv", driveStartServiceCallback); 
+
+  //service drive_pause_srv
+  ros::ServiceServer srvDrivePause = nh.advertiseService("drive_pause_srv", drivePauseServiceCallback); 
+
+  //service drive_cancel_srv
+  ros::ServiceServer srvDriveCancel = nh.advertiseService("drive_cancel_srv", driveCancelServiceCallback); 
+
+  //service drive_resume_srv
+  ros::ServiceServer srvDriveResume = nh.advertiseService("drive_resume_srv", driveResumeServiceCallback); 
+  
+  //service initialpose_srv
+  ros::ServiceServer srvInitialpose = nh.advertiseService("initialpose_srv", initialposeServiceCallback); 
+
+  //service goToCharge_srv
+  ros::ServiceServer srvGoToCharge = nh.advertiseService("gotocharge_srv", gotoChargeCallback); 
+
+  ros::Subscriber go_to_charge_subscriber = nh.subscribe("go_to_charge",10 , go_to_charge_callback);
+  
+  //service pit_in_srv
+  ros::ServiceServer srvPitIn = nh.advertiseService("pit_in_srv", pitInServiceCallback); 
+
+  //service recover_srv
+  ros::ServiceServer srvRecover = nh.advertiseService("recover_srv", recoverServiceCallback); 
+
+  //update map to be run
+  ros::Subscriber updateMapToBeRunSub = nh.subscribe("update_map_to_be_run", 10, update_map_to_be_run_Callback);
+
+  //start mapping
+  ros::Subscriber start_mapping_subscriber = nh.subscribe("start_mapping", 10, start_mapping_callback);
+
+  //terminate mapping
+  ros::Subscriber terminate_mapping_subscriber = nh.subscribe("terminate_mapping", 10, terminate_mapping_callback);
+
+  //manual moving
+  ros::Subscriber manual_move_forward = nh.subscribe("manual_move_forward", 10, manual_move_forward_callback);
+  ros::Subscriber manual_move_left = nh.subscribe("manual_move_left", 10, manual_move_left_callback);
+  ros::Subscriber manual_move_stop = nh.subscribe("manual_move_stop", 10, manual_move_stop_callback);
+  ros::Subscriber manual_move_right = nh.subscribe("manual_move_right", 10, manual_move_right_callback);
+  ros::Subscriber manual_move_back = nh.subscribe("manual_move_back", 10, manual_move_back_callback);
+
+  //rosnode cleanup
+  ros::Subscriber rosnode_cleanup_subscriber = nh.subscribe("request_rosnode_cleanup", 10, request_rosnode_cleanup_callback);
+
+  //save simultaneous map
+  ros::Subscriber save_simultaneous_map_subscriber = nh.subscribe("save_simultaneous_map", 10, save_simultaneous_map_callback);
+
+  // initialize_position from robot UI
+  ros::Subscriber initialize_position_subscriber = nh.subscribe("initialize_position" ,1 , initialize_position_callback);
+  ros::Subscriber initialpose_flyinglet_subscriber = nh.subscribe("/initialpose_flyinglet", 1, initialpose_flyinglet_callback);
+
+  //ros::Subscriber charge_setting_subscriber = nh.subscribe("/charge_setting", 1, charge_setting_callback);
+
+  // result to app
+  ros::Publisher map_list_pub = nh.advertise<std_msgs::String>("map_name_list", 10);
+  ros::Publisher path_list_pub = nh.advertise<std_msgs::String>("path_name_list", 10);
+  ros::Publisher path_repet_pub = nh.advertise<std_msgs::String>("path_repet", 10);
+  ros::Publisher state_msg_pub = nh.advertise<comm_app::state_msg>("state_msg", 10);
+  ros::Publisher map_running_pub = nh.advertise<std_msgs::String>("map_running", 10, true);
+  ros::Publisher driving_state_pub = nh.advertise<std_msgs::Int32>("driving_state", 10);
+ 
+
+  // initialpose pub
+  ros::Publisher initpose_pub = nh.advertise<geometry_msgs::PoseWithCovarianceStamped>("initialpose", 10);
+
+  std_srvs::Empty::Request req;
+  std_srvs::Empty::Response resp;
+  comm_app::state_msg state;
+
+  ros::Rate r(10);
+
+  // 21.02.05 sykim add - is_move trigger
+  
+  ros::Publisher pause_pub = nh.advertise<std_msgs::Int32>("/move_request", 10);
+
+  ros::Publisher current_goal_pub = nh.advertise<geometry_msgs::PoseStamped>("current_goal", 10);
+
+  ros::Publisher current_waypoint_pub = nh.advertise<std_msgs::Int32>("current_waypoint", 10);
+
+  ros::Publisher current_amcl_pose_pub = nh.advertise<geometry_msgs::PoseWithCovarianceStamped>("current_amcl_pose", 10);
+
+  ros::Publisher path_file_name_pub = nh.advertise<std_msgs::String>("path_file_name_from_map_info", 10, true);
+
+  path_run_request_pub_ = nh.advertise<std_msgs::String>("/path_run_request", 10, true);
+
+  path_run_cancel_request_pub_ = nh.advertise<std_msgs::Empty>("path_run_cancel_request", 10);
+
+  start_auto_parking_pub_ = nh.advertise<std_msgs::Empty>("/start_auto_parking", 1);
+
+  moveBaseCancelPub_ = nh.advertise<actionlib_msgs::GoalID>("/move_base/cancel", 10);
+
+  ros::Publisher cmd_vel_pub = nh.advertise<geometry_msgs::Twist>("cmd_vel", 10);
+
+  ros::Publisher saved_simultaneous_map_ack_pub = nh.advertise<std_msgs::String>("/saved_simultaneous_map_ack", 10);
+  ros::Publisher initialRunStartPub = nh.advertise<std_msgs::Empty>("/initial_run_start", 1);
+
+  ros::Publisher initialDriveForTurnPublisher = nh.advertise<std_msgs::Empty>("/initial_drive_for_turn", 1);
+  
+  amclPosePubCount_ = 0;
+
+  is_map_select = true;
+
+  ros::Publisher control_ezi_servo_pub = nh.advertise<std_msgs::Int32>("/control_ezi_servo", 1);
+  ros::Publisher control_ezi_servo_jog_pub = nh.advertise<std_msgs::Int32>("/control_ezi_servo_jog", 1);
+  ros::Publisher control_ezi_servo_stop_pub = nh.advertise<std_msgs::Empty>("/control_ezi_servo_stop", 1);
+  ros::Publisher request_lift_up_pub = nh.advertise<std_msgs::Empty>("/request_lift_up", 1);
+  ros::Publisher request_lift_down_pub = nh.advertise<std_msgs::Empty>("/request_lift_down", 1);
+
+  ros::Publisher request_display_pub = nh.advertise<std_msgs::Int32>("/request_display", 1);
+
+  ros::Publisher request_load_restricted_area_pub = nh.advertise<std_msgs::Empty>("/request_load_restricted_area", 1);
+
+  int eziServoAngleValue = 0;
+
+  bool isRunningEziServoPositive = false;
+  bool isRunningEziServoNegative = false;
+
+  //map_name_run = "parc1_240325";
+  //map_name_run = "210907";
+  //map_name_run = "park_map_12_3";
+  // map_name_run = "office_231023";
+
+
+  std::ifstream inputFileMap("/home/nvidia/dconic_nav/src/map/map.txt");
+  if (!inputFileMap.is_open()) {
+      ROS_ERROR("Could not open the file - '/home/nvidia/dconic_nav/src/map/map.txt'");
+      exit(EXIT_FAILURE);
+  }
+  std::stringstream ssMap;
+  ssMap << inputFileMap.rdbuf();
+  map_name_run = ssMap.str();
+
+  int initialCount = 0 ;
+
+  int initialCountForInitialPose =0;
+
+  int cancellingCount = 0;
+
+  int chargeCount = 0;
+
+  int cleanMapCount = 0 ;
+
+  geometry_msgs::Twist cmdVelTwist;
+  cmdVelTwist.linear.x = 0.0;
+  cmdVelTwist.angular.z = 0.0;
+
+  isInitialized_ = false;
+
+  while (ros::ok())
+  { 
+    
+    ros::spinOnce();
+    r.sleep();
+
+    if(initialCount != 100){
+      ++initialCount ;
+      continue;
+    }
+
+    if(!isInitialized_){
+
+      ++ initialCountForInitialPose ;
+
+      if (initialCountForInitialPose == 200){
+
+        // initialpose
+        // lotte folk museum docking station position
+        // initpose_.pose.pose.position.x = 85.3859127827;
+        // initpose_.pose.pose.position.y = -19.075368001;
+        // initpose_.pose.pose.position.z = 0.0;
+        // initpose_.pose.pose.orientation.x = 0.0;
+        // initpose_.pose.pose.orientation.y = 0.0;
+        // initpose_.pose.pose.orientation.z = 0.999658236481;
+        // initpose_.pose.pose.orientation.w = 0.0261421161238;
+        
+        // initpose_.pose.covariance[6 * 0 + 0] = 0.5 * 0.5;
+        // initpose_.pose.covariance[6 * 1 + 1] = 0.5 * 0.5;
+        // initpose_.pose.covariance[6 * 5 + 5] = (float) (PI / 12.0 * PI / 12.0);
+
+        // the parc1 240325
+        // initpose_.pose.pose.position.x = 7.9468175473;
+        // initpose_.pose.pose.position.y = -8.22632359997;
+        // initpose_.pose.pose.position.z = 0.0;
+        // initpose_.pose.pose.orientation.x = 0.0;
+        // initpose_.pose.pose.orientation.y = 0.0;
+        // initpose_.pose.pose.orientation.z = 0.702187536874;
+        // initpose_.pose.pose.orientation.w = 0.711992038621;
+
+
+        // <office debugging 250224>
+        // initpose_.pose.pose.position.x = 0.04062275948966487;
+        // initpose_.pose.pose.position.y = 0.1635447593426158;
+        // initpose_.pose.pose.position.z = 0.0;
+        // initpose_.pose.pose.orientation.x = 0.0;
+        // initpose_.pose.pose.orientation.y = 0.0;
+        // initpose_.pose.pose.orientation.z = 0.2560775042762043;
+        // initpose_.pose.pose.orientation.w = 0.9666562531756936;
+        // </office debugging 250224>
+
+        // the parc1 240402
+        // initpose_.pose.pose.position.x = 16.8525511463;
+        // initpose_.pose.pose.position.y = -19.4374764884;
+        // initpose_.pose.pose.position.z = 0.0;
+        // initpose_.pose.pose.orientation.x = 0.0;
+        // initpose_.pose.pose.orientation.y = 0.0;
+        // initpose_.pose.pose.orientation.z = -0.363197779863;
+        // initpose_.pose.pose.orientation.w = 0.931712065341;
+        
+        // initpose_.pose.covariance[6 * 0 + 0] = 0.5 * 0.5;
+        // initpose_.pose.covariance[6 * 1 + 1] = 0.5 * 0.5;
+        // initpose_.pose.covariance[6 * 5 + 5] = (float) (PI / 12.0 * PI / 12.0);
+
+        // std::cout << "initial initpose. " << std::endl ;
+
+        // is_initialpose = true;
+      }
+      
+      else if (initialCountForInitialPose == 300){
+        //std_msgs::Empty emptyMsg;
+        //initialDriveForTurnPublisher.publish(emptyMsg);
+        isInitialized_ = true;
+      }
+
+      // else if (initialCountForInitialPose == 300){
+      //   POINT currentPoint;
+      //   currentPoint.x = currentAmclPose_.pose.pose.position.x;
+      //   currentPoint.y = currentAmclPose_.pose.pose.position.y;
+      //   POINT initialposePoint;
+      //   initialposePoint.x = initpose_.pose.pose.position.x;
+      //   initialposePoint.y = initpose_.pose.pose.position.y;
+      //   // if (getDistance(currentPoint,initialposePoint) <= 1.0){
+      //   //   // std_msgs::Empty emptyMsg;
+      //   //   // initialDriveForTurnPublisher.publish(emptyMsg);
+      //   //   isInitialized_ = true;
+      //   // }        
+      // }
+
+    }
+  
+
+
+// developer mode ==============================================================================================
+    // 1. launch sensors=============================================================================================
+    if(is_sensors_launch == 1) {
+      system("roslaunch dconic_2dnav sensors.launch &");
+
+      state.topic_name = "sensors_launch_state";
+      state.result = 1;
+      state_msg_pub.publish(state);
+      is_sensors_launch = -1;
+    }
+    else if(is_sensors_launch == 0) {
+      system("rosnode kill /base_link_to_base_footprint /base_link_to_imu /base_link_to_laser /front_laser/gl_ros_driver_node /imu_node /md_node /rear_laser/gl_ros_driver_node /vel_cmd_node /localization_teleop");
+
+      state.topic_name = "sensors_launch_state";
+      state.result = 0;
+      state_msg_pub.publish(state);
+      is_sensors_launch = -1;
+    }
+
+    // 2. follow_waypoints launch/kill==============================================================================
+    if(is_wp_launch == 1) {	// roslaunch follow_waypoints
+      system("roslaunch follow_waypoints follow_waypoints.launch &");
+      
+      state.topic_name = "wp_launch_state";
+      state.result = 1;
+      state_msg_pub.publish(state);
+      is_wp_launch = -1;
+    }
+    else if(is_wp_launch == 0) {	// kill follow_waypoints
+      system("rosnode kill /follow_waypoints");
+      
+      state.topic_name = "wp_launch_state";
+      state.result = 0;
+      state_msg_pub.publish(state);
+      is_wp_launch = -1;
+    }
+
+    // 3. usbcam launch/kill=============================================================================================
+    if(is_usbcam_launch == 1) {	// roslaunch usbcam
+      system("roslaunch usb_cam usb_cam-test.launch &");
+      
+      state.topic_name = "usbcam_launch_state";
+      state.result = 1;
+      state_msg_pub.publish(state);
+      is_usbcam_launch = -1;
+    }
+    else if(is_usbcam_launch == 0) {	// kill usbcam
+      system("rosnode kill /usb_cam /image_view");
+      
+      state.topic_name = "usbcam_launch_state";
+      state.result = 0;
+      state_msg_pub.publish(state);
+      is_usbcam_launch = -1;
+    }
+
+    // 4. all launch/kill=============================================================================================
+    if(is_all_launch == 1) {	// roslaunch all
+      system("rosnode list | grep -v sonar_to_laserscan_node | grep -v serial_node | grep -v rosout | grep -v teleop | grep -v turtle_joy | grep -v map_info | grep -v android | grep -v map_server | grep -v move_base | grep -v rviz | grep -v robot_pose_ekf | grep -v amcl | grep -v joint_state_publisher | grep -v front_laser/gl_ros_driver_node | grep -v laserscan_multi_merger | grep -v rear_laser/gl_ros_driver_node | grep -v localization_teleop | grep -v watchdog | xargs rosnode kill");
+
+      //system("roslaunch dconic_2dnav all.launch &");
+      system("roslaunch dconic_2dnav all.launch &");
+      
+      state.topic_name = "all_launch_state";
+      state.result = 1;
+      state_msg_pub.publish(state);
+      is_all_launch = -1;
+    }
+    else if(is_all_launch == 0) {	// kill all
+      system("rosnode list | grep -v sonar_to_laserscan_node | grep -v serial_node | grep -v rosout | grep -v teleop | grep -v turtle_joy | grep -v map_info | grep -v android | grep -v watchdog | xargs rosnode kill");
+      system("roslaunch md md.launch &");
+      
+      state.topic_name = "all_launch_state";
+      state.result = 0;
+      state_msg_pub.publish(state);
+      is_all_launch = -1;
+    }
+
+//==============================================================================================================================
+
+    // 5. launch slam package - not_auto=============================================================================================
+    if(is_map_create == 1) {
+      system("rosnode list | grep -v sonar_to_laserscan_node | grep -v serial_node | grep -v rosout | grep -v teleop | grep -v turtle_joy | grep -v map_info | grep -v android | grep -v localization_teleop | grep -v checking_pose | grep -v plan_recovery | grep -v watchdog | xargs rosnode kill");
+
+      system("roslaunch dconic_2dnav sensors.launch &");
+      system("roslaunch robot_pose_ekf robot_pose_ekf.launch &");
+      system("roslaunch gmapping slam_gmapping_pr2.launch &");
+
+      state.topic_name = "map_create_state";
+      state.result = 1;
+      state_msg_pub.publish(state);
+      is_map_create = -1;
+    }
+    // 5. launch slam package - auto
+    else if(is_map_create == 2) {
+      ROS_INFO("MAP CREATE AUTO");
+      system("rosnode list | grep -v sonar_to_laserscan_node | grep -v serial_node | grep -v rosout | grep -v teleop | grep -v turtle_joy | grep -v map_info | grep -v android | grep -v localization_teleop | grep -v checking_pose | grep -v plan_recovery | xargs rosnode kill");
+      
+      system("roslaunch dconic_2dnav sensors.launch &");
+      system("roslaunch explore_dconic_2dnav move_base.launch &");
+      system("roslaunch gmapping slam_gmapping_pr2.launch &");
+      ros::Duration(15).sleep();
+      system("roslaunch explore_lite explore.launch &");
+
+      state.topic_name = "map_create_state";
+      state.result = 2;
+      state_msg_pub.publish(state);
+      is_map_create = -1;
+    }
+    // 5. launch slam package - kill
+    else if(is_map_create == 0) {
+
+      ROS_INFO("MAP CREATE KILL");
+      system("rosnode list | grep -v sonar_to_laserscan_node | grep -v serial_node | grep -v rosout | grep -v teleop | grep -v turtle_joy | grep -v map_info | grep -v android | grep -v localization_teleop | xargs rosnode kill");
+
+      //system("roslauch comm_app map_info.launch");
+
+      state.result = 0;
+      state_msg_pub.publish(state);
+      is_map_create = -1;
+    }
+
+    // 6. map list transport=============================================================================================
+    if(is_map_list) {
+      //system("( ls ~/dconic_nav/src/map | grep .pgm | wc -l ; ls ~/dconic_nav/src/map | grep .pgm ) > ~/dconic_nav/list.csv");
+      //system("ls ~/dconic_nav/src/map | grep .pgm > ~/dconic_nav/list.csv");
+
+      std::ofstream fout("/home/nvidia/dconic_nav/list.csv");
+      std::string path = "/home/nvidia/dconic_nav/src/map/";
+      for (const auto & entry : std::experimental::filesystem::directory_iterator(path)){
+          const std::string ext = entry.path().extension();
+          if (ext == ".pgm"){
+            fout << entry.path().filename().string() << std::endl;
+          }
+      }
+      fout.close();
+
+
+      // load .csv file
+      std::string file_name = "/home/nvidia/dconic_nav/list.csv";
+      std::ifstream fin;
+      fin.open(file_name.c_str());
+      //ROS_INFO("file name = %s\n", file_name.c_str());
+      std::string line = "";
+
+      if(!fin.is_open()){
+        ROS_INFO("File open fail\n");
+      }
+
+      int str_len = 0;
+      std::string str = "";
+      std::string split = ".pgm";
+      std_msgs::String map_list;
+      
+      // read file and make string
+      while(std::getline(fin, line)){
+        str_len = strlen(line.c_str());
+        //ROS_INFO("line.c_str() = %s\n", line.c_str());
+        if(str_len > 0){
+          //ROS_INFO("substr %s\n", line.substr(0, line.find(split)).c_str() );
+          str += line.substr(0, line.find(split)) +",";
+        }
+        else{
+          break;
+        }
+      }
+
+      int list_len = strlen(str.c_str());
+      str.resize(list_len-1);
+      //ROS_INFO("str = %s\n", str.c_str());
+      map_list.data = str;
+      ROS_INFO("map_list.data = %s\n", map_list.data.c_str());
+
+      map_list_pub.publish(map_list);
+      fin.close();
+      is_map_list = false;
+      
+    }
+
+    // 7. save map data - map_server=============================================================================================
+    if(is_map_save) {
+      system(("rosrun map_server map_saver --occ 70 --free 10 -f /home/nvidia/dconic_nav/src/map/" + map_name_save).c_str());
+      
+      // map check
+      ROS_INFO("save map data!!!!!!!!!!!");
+
+      state.topic_name = "map_save_state";
+      state.result = 1;
+      state_msg_pub.publish(state);
+      is_map_save = false;
+    }
+
+    // 8. launch navigation package, map_name sub - move_base=============================================================================================
+    if(is_map_select) {
+      //system("rosnode list | grep -v closest_obs_from_robot | grep -v sonar_to_laserscan_node | grep -v serial_node | grep -v rosout | grep -v teleop | grep -v turtle_joy | grep -v map_info | grep -v android | grep -v base_link_to_base_footprint | grep -v base_link_to_imu | grep -v base_link_to_laser | grep -v imu_node | grep -v joint_state_publisher | grep -v md_node | grep -v robot_state_publisher | grep -v localization_teleop | grep -v vel_cmd_node | grep -v front_laser/gl_ros_driver_node | grep -v rear_laser/gl_ros_driver_node | grep -v checking_pose | grep -v plan_recovery | grep -v watchdog | grep -v usb_cam | grep -v node_alive_server | grep -v diag_agg | grep -v msg_json_wrapper | grep -v serial_example | grep -v rosbridge_agent | grep -v autonomous_parker | grep -v ble_serial_manager | grep -v media_controller | grep -v rosping | xargs rosnode kill");
+      system("rosnode kill /move_base");
+      system("rosnode kill /map_server");
+      system("rosnode kill /amcl"); 
+      system("rosnode kill /slam_gmapping");
+      //system("rosnode kill /ezi_servo_controller");
+      //system("roslaunch ezi_servo_controller ezi_servo_controller.launch &");
+
+      // parc1 250224
+      //system("roslaunch dconic_2dnav move_base.launch map_name:=parc1_240325 &");
+
+      // 
+      system( ("roslaunch dconic_2dnav move_base.launch map_name:=" + map_name_run+ " &").c_str() ) ;
+      
+      //system("roslaunch follow_waypoints follow_waypoints.launch &");
+      //system("roslaunch gl_ros_driver gl_ros_driver_multi.launch &");
+      //system("roslaunch wp_data_transfer wp_data_transfer.launch &");
+      
+      //system("roslaunch ble_serial_manager ble_serial_manager.launch &");
+      
+      std_msgs::String map_running;
+      map_running.data = map_name_run;
+      map_running_pub.publish(map_running);
+      is_map_select = false;
+    }
+
+    // 9. running map_name pub=============================================================================================
+    if(is_map_running) {
+      std_msgs::String map_running;
+      map_running.data = map_name_run;
+      map_running_pub.publish(map_running);
+      is_map_running = false;
+    }
+
+    // 10. wp list transport=============================================================================================
+    if(is_wp_list){
+      // 21.01.27 sykim change - release version
+      //system("ls ~/dconic_nav/src/follow_waypoints/saved_path | grep .csv > ~/dconic_nav/src/follow_waypoints/saved_path/pathlist.csv");
+      //system("ls ~/dconic_nav/src/share/follow_waypoints/saved_path | grep .csv > ~/dconic_nav/src/share/follow_waypoints/saved_path/pathlist.csv");
+      
+      std::ofstream fout("/home/nvidia/dconic_nav/src/follow_waypoints/saved_path/pathlist.csv");
+      std::string path = "/home/nvidia/dconic_nav/src/follow_waypoints/saved_path/";
+      for (const auto & entry : std::experimental::filesystem::directory_iterator(path)){
+        const std::string ext = entry.path().extension();
+        if (ext == ".csv"){
+          fout << entry.path().filename().string() << std::endl;
+        }
+      }
+      fout.close();
+
+      // load .csv file
+      // 21.01.27 sykim change - release version
+      std::string path_file_name = "/home/nvidia/dconic_nav/src/follow_waypoints/saved_path/pathlist.csv";
+      //std::string path_file_name = "/home/nvidia/dconic_nav/src/share/follow_waypoints/saved_path/pathlist.csv";
+      std::ifstream fin;
+      ROS_INFO("file name = %s\n", path_file_name.c_str());
+      std::string line = "";
+      fin.open(path_file_name.c_str());
+
+      if(!fin.is_open()){
+        ROS_INFO("File open fail\n");
+      }
+
+      int str_len = 1;
+      std::string str = "";
+      std_msgs::String path_list;
+      //str_len = strlen(line.c_str());
+      //ROS_INFO("line.c_str() = %s\n", line.c_str());
+      
+      // read file and make string
+      while(std::getline(fin, line)){
+        str_len = strlen(line.c_str());
+        //ROS_INFO("line.c_str() = %s\n", line.c_str());
+        if(str_len > 0){
+          //ROS_INFO("substr %s\n", line.c_str() );
+          str += line +",";
+        }
+        else{
+          break;
+        }
+      }
+      fin.close();
+      int list_len = strlen(str.c_str());
+      str.resize(list_len-1);
+      //ROS_INFO("str = %s\n", str.c_str());
+      path_list.data = str;
+      ROS_INFO("path_list.data = %s\n", path_list.data.c_str());
+      path_list_pub.publish(path_list);
+      
+      is_wp_list = false;      
+    }
+    
+    // 11. path run=============================================================================================
+    if(is_path_run) {
+      ROS_INFO("sub_repet_time = %s\n", sub_repet_time.c_str());
+      std_msgs::String repet;
+      repet.data = sub_repet_time;
+      system("rostopic pub /start_journey std_msgs/Empty -1");
+
+      path_repet_pub.publish(repet);
+
+      std_msgs::String pathFileNameMsg;
+      std::string subPathString =  path_file_name.substr(4);
+      std::string pathNameString = subPathString.substr(0,subPathString.size()-4);
+      
+      pathFileNameMsg.data = pathNameString;
+      path_file_name_pub.publish(pathFileNameMsg);
+
+      std_msgs::Empty emptyMsg;
+      request_load_restricted_area_pub.publish(emptyMsg);
+
+      is_path_run = false;
+    }
+
+    // 12. path cancel
+    if(is_path_cancel){
+      ROS_INFO("path cancel!!!!\n");
+
+      //system("rostopic pub -1 /move_base/cancel actionlib_msgs/GoalID -- {}");
+      actionlib_msgs::GoalID goalIdMsg;
+      moveBaseCancelPub_.publish(goalIdMsg);
+      
+      state.topic_name = "path_run_cancel_request_state";
+      state.result = 1;
+      state_msg_pub.publish(state);
+      is_path_cancel = false;
+    }
+
+    // 13. clean map=============================================================================================
+    if(is_map_clean) {
+      ros::service::call("move_base/clear_costmaps", req, resp);
+
+      state.topic_name = "map_clean_state";
+      state.result = 1;
+      state_msg_pub.publish(state);
+      is_map_clean = false;
+    }
+
+    // 14. particles initialization=============================================================================================
+    if(is_particle) {
+      ros::service::call("global_localization", req, resp);
+
+      state.topic_name = "particles_init_state";
+      state.result = 1;
+      state_msg_pub.publish(state);
+      is_particle = false;
+    }
+
+    // 15. initialpose=============================================================================================
+    if(is_initialpose) {
+      initpose_.header.frame_id = "map";
+      initpose_.header.seq = 0;
+      //initpose.header.stamp.secs = 0;
+      //initpose.header.stamp.nsecs = 0;
+
+      initpose_pub.publish(initpose_);
+      //state.topic_name = "particles_init_state";
+      //state.result = 1;
+      //state_msg_pub.publish(state);
+      is_initialpose = false;
+      std::cout << "is initialized !!!" << std::endl;
+    }
+
+// drive list==============================================================================================================
+    // 16. delivery============================================================================================================
+    if(is_delivery) {
+      // temp
+
+      ROS_INFO("delivery source\n");
+      state.topic_name = "delivery_request_state";
+      state.result = 1;
+      state_msg_pub.publish(state);
+      is_delivery = false;
+    }
+
+    // 17. cruze
+    if(is_cruze) {
+      // temp
+
+      ROS_INFO("cruze source\n");
+      state.topic_name = "cruze_request_state";
+      state.result = 1;
+      state_msg_pub.publish(state);
+      is_cruze = false;
+    }
+
+    // 18. move
+    if(is_move) {
+      std_msgs::Int32 pause_flag;
+      // temp
+
+      if(is_move_pause == 1){
+        ROS_INFO("is_move driving pause : %d", is_move_pause);
+        ROS_INFO("move source\n");
+        state.topic_name = "move_request_state";
+        state.result = 1;
+        state_msg_pub.publish(state);
+
+        pause_flag.data = 1;
+        pause_pub.publish(pause_flag);        
+        driving_state = 1;
+      }
+      else if (is_move_pause == 2){
+        ROS_INFO("is_move driving go : %d", is_move_pause);        
+        pause_flag.data = 2;
+        pause_pub.publish(pause_flag);        
+        driving_state = 2;
+      }      
+
+      is_move = false;
+    }
+
+    // 19. comeback
+    if(is_comeback) {
+      // temp
+      ROS_INFO("comeback home\n");
+
+      if (cancellingCount == 0){
+        std_msgs::Empty emtpyMsgForCancel;
+        path_run_cancel_request_pub_.publish(emtpyMsgForCancel);
+        actionlib_msgs::GoalID goalIdMsg;
+        moveBaseCancelPub_.publish(goalIdMsg);
+      }
+
+      ++cancellingCount;
+      // std_msgs::String repet;
+      // repet.data = "0100";
+      // system("rostopic pub /start_journey std_msgs/Empty -1");
+
+      // path_repet_pub.publish(repet);
+
+      // state.topic_name = "comeback_request_state";
+      // state.result = 1;
+      // state_msg_pub.publish(state);
+
+      if (cancellingCount >= 10){
+
+        auto ss = std::ostringstream{};
+        std::ifstream input_file("/home/nvidia/dconic_nav/src/follow_waypoints/saved_path/latest.csv");
+        if (!input_file.is_open()) {
+            std::cerr << "Could not open the file - '/home/nvidia/dconic_nav/src/follow_waypoints/saved_path/latest.csv'" << std::endl;
+            exit(EXIT_FAILURE);
+        }
+        ss << input_file.rdbuf();
+        std::string file_contents;
+        char delimiter = ',';
+        std::istringstream sstream(ss.str());
+        std::vector<std::string> items;
+        std::string record;
+
+        std::vector<geometry_msgs::PoseStamped> waypointsVector;
+
+        int counter = 0;
+        while (std::getline(sstream, record)) {
+          std::istringstream line(record);
+          while (std::getline(line, record, delimiter)) {
+              items.push_back(record);
+          }
+          geometry_msgs::PoseStamped tempPose;
+          tempPose.pose.position.x = std::stod(items[0]);
+          tempPose.pose.position.y = std::stod(items[1]);
+          tempPose.pose.position.z = std::stod(items[2]);
+          tempPose.pose.orientation.x = std::stod(items[3]);
+          tempPose.pose.orientation.y = std::stod(items[4]);
+          tempPose.pose.orientation.z = std::stod(items[5]);
+          tempPose.pose.orientation.w = std::stod(items[6]);
+
+          waypointsVector.push_back(tempPose);
+
+          items.clear();
+
+          counter += 1;
+        }
+
+        // for (int i = 0 ; i < waypointsVector.size() ; ++i){
+        //   std::cout << i << " " << waypointsVector[i].pose.position.x << std::endl;
+        // }      
+
+        int currentWaypointIndex = 0;
+        double minDistancePoseToLine = std::numeric_limits<double>::max();
+        
+        for (int i = 0 ; i < waypointsVector.size() ; ++i){
+          double tempDistance;
+          POINT p;        // �� p
+          LINE l;     // p1, p2 �� �մ� ���� l(��)
+          POINT a;        // p �� p1, p2 �� ������ �������� ����
+
+          double m1;  // l �� ����
+          double k1;  // l �� ������ y = mx + k1 �� ��� k1
+
+          double m2;  // l �� ������ ������ ����
+          double k2;  // l �� ������ ������ ������ y = mx + k2 �� ��� k2
+          p.x = currentAmclPose_.pose.pose.position.x;
+          p.y = currentAmclPose_.pose.pose.position.y;
+          l.p1.x = waypointsVector[i].pose.position.x;
+          l.p1.y = waypointsVector[i].pose.position.y;
+
+          if (i == waypointsVector.size()-1 ){
+            l.p2.x = waypointsVector[0].pose.position.x;
+            l.p2.y = waypointsVector[0].pose.position.y;
+          }        
+          else {
+            l.p2.x = waypointsVector[i+1].pose.position.x;
+            l.p2.y = waypointsVector[i+1].pose.position.y;
+          }
+
+          if ( l.p1.x == l.p2.x )
+          {
+              // �� ��� ������ ������ ���� ������ ����������
+              a.x = l.p1.x;
+              a.y = p.y;
+          }
+          // ������ ������ ���
+          else if ( l.p1.y == l.p2.y )
+          {
+              a.x = p.x;
+              a.y = l.p1.y;
+          }
+          // �� ���� ���
+          else
+          {
+              // ���� m1
+              m1 = (l.p1.y - l.p2.y) / (l.p1.x - l.p2.x);
+              // ��� k1
+              k1 = -m1 * l.p1.x + l.p1.y;
+
+              // �� ������� ����?
+              // ���� ���� l �� �����ϴ� ������ �������� y = m1x + k1 �� ���������ϴ�.
+              // ���� ���� �� p �� ������ ���� ������ �����ϴ� ������ �������� ���� ���ô�.
+              // �� ������ �����ϱ� ������ m1 * m2 = -1 �Դϴ�.
+
+              // ���� m2
+              m2 = -1.0 / m1;
+              // p �� ������ ������ yp = m2 * xp + k2 => k2 = yp - m2 * xp
+              k2 = p.y - m2 * p.x;
+
+              // �� ���� y = m1x + k1, y = m2x + k2 �� ������ ���Ѵ�
+              a.x = (k2 - k1) / (m1 - m2);
+              a.y = m1 * a.x + k1;
+          }
+
+          // ���� ���� ���� ���� �ִ� �� Ȯ��
+          if ( a.x >= getMin(l.p1.x, l.p2.x) && a.x <= getMax(l.p1.x, l.p2.x) &&
+              a.y >= getMin(l.p1.y, l.p2.y) && a.y <= getMax(l.p1.y, l.p2.y) )
+          // ���� ������ �������� ������ p �� a ���� �Ÿ��� �ּ� �Ÿ���
+          {
+              tempDistance = getDistance(p, a);
+          }
+          // ���� ������ ���� ���� ������ p~p1 �Ǵ� p~p2 �� ���� ���� �ּ� �Ÿ���
+          else
+          {            
+              tempDistance = getMin(getDistance(p, l.p1), getDistance(p, l.p2));
+          }
+
+          if (tempDistance < minDistancePoseToLine){
+            minDistancePoseToLine = tempDistance;
+            currentWaypointIndex = i;
+          }
+        }
+
+        std::cout << currentWaypointIndex << std::endl;
+
+        std::vector<geometry_msgs::PoseStamped> returningWaypointsVector;
+        if ( currentWaypointIndex < waypointsVector.size() / 2  ){ // reverse
+          for (int i = currentWaypointIndex ; i >= 0 ; --i){
+            returningWaypointsVector.push_back(waypointsVector[i]);
+            
+            tf2::Quaternion qOrig;
+            tf2::Quaternion qRot;
+            tf2::Quaternion qNew;
+
+            tf2::convert(returningWaypointsVector[returningWaypointsVector.size()-1].pose.orientation, qOrig);
+            double y180 = 3.14159;
+            qRot.setRPY(0,0,y180);
+
+            qNew = qRot * qOrig;
+            qNew.normalize();
+
+            tf2::convert(qNew, returningWaypointsVector[returningWaypointsVector.size()-1].pose.orientation);
+          }
+        }
+        else if ( currentWaypointIndex < waypointsVector.size() - 1 ){ // forward
+          for (int i = currentWaypointIndex+1 ; i < waypointsVector.size()-1 ; ++i){
+            returningWaypointsVector.push_back(waypointsVector[i]);
+          }
+        }
+        else{
+          
+        }
+
+        if ( returningWaypointsVector.size() >0 ){
+          std::ofstream returningWaypointFile;
+          returningWaypointFile.open("/home/nvidia/dconic_nav/src/follow_waypoints/saved_path/pose.csv", std::ios::out | std::ios::trunc );
+          for (int i = 0 ; i < returningWaypointsVector.size() ; ++i){
+            returningWaypointFile << returningWaypointsVector[i].pose.position.x << "," << returningWaypointsVector[i].pose.position.y << "," << 
+              returningWaypointsVector[i].pose.position.z << "," << returningWaypointsVector[i].pose.orientation.x << "," << 
+              returningWaypointsVector[i].pose.orientation.y << "," << returningWaypointsVector[i].pose.orientation.z << "," << 
+              returningWaypointsVector[i].pose.orientation.w << std::endl;
+          }
+          returningWaypointFile.close();
+
+          returningWaypointFile.open("/home/nvidia/dconic_nav/src/follow_waypoints/saved_path/return.csv", std::ios::out | std::ios::trunc );
+          for (int i = 0 ; i < returningWaypointsVector.size() ; ++i){
+            returningWaypointFile << returningWaypointsVector[i].pose.position.x << "," << returningWaypointsVector[i].pose.position.y << "," << 
+              returningWaypointsVector[i].pose.position.z << "," << returningWaypointsVector[i].pose.orientation.x << "," << 
+              returningWaypointsVector[i].pose.orientation.y << "," << returningWaypointsVector[i].pose.orientation.z << "," << 
+              returningWaypointsVector[i].pose.orientation.w << std::endl;
+          }
+          returningWaypointFile.close();
+
+          path_file_name = "0100return.csv";
+          std_msgs::String msgForPathRunRequest;
+          msgForPathRunRequest.data = path_file_name;
+          path_run_request_pub_.publish(msgForPathRunRequest);
+          
+          is_path_run = true;
+        }
+
+        state.topic_name = "comeback_request_state";
+        state.result = 1;
+        state_msg_pub.publish(state);
+        is_comeback = false;
+
+        cancellingCount = 0;
+      }
+    }
+
+    // 20. charge
+    if(is_charge) {
+      // temp
+      ROS_INFO("Go To Charge\n");
+      // std_msgs::String repet;
+      // repet.data = "0100";
+      // system("rostopic pub /start_journey std_msgs/Empty -1");
+
+      // path_repet_pub.publish(repet);
+      if (chargeCount == 0){
+        std_msgs::Empty emtpyMsgForCancel;
+        path_run_cancel_request_pub_.publish(emtpyMsgForCancel);
+        system("rostopic pub -1 /move_base/cancel actionlib_msgs/GoalID -- {}");
+      }
+
+      ++chargeCount;
+
+      if (chargeCount >= 10){
+        std_msgs::Empty msg;
+        start_auto_parking_pub_.publish(msg);
+        state.topic_name = "charge_request_state";
+        state.result = 1;
+        state_msg_pub.publish(state);
+        chargeCount = 0;
+        is_charge = false;
+      }
+    }
+
+    // 21. follow
+    if(is_follow) {
+      // temp
+
+      ROS_INFO("follow source\n");
+      state.topic_name = "follow_request_state";
+      state.result = 1;
+      state_msg_pub.publish(state);
+      is_follow = false;
+    }
+
+    // 22. find person
+    if(is_find_person) {
+      // temp
+
+      ROS_INFO("find person source\n");
+      state.topic_name = "find_person_state";
+      state.result = 1;
+      state_msg_pub.publish(state);
+      is_find_person = false;
+    }
+//=======================================================================================================================
+
+    // 23. dconic shutdown
+    if(is_shutdown) {
+      system("shutdown -h now &");
+
+      //state_msg_pub.publish(state);
+      is_shutdown = false;
+    }
+
+    if(is_start_mapping){
+      system("rosnode kill /move_base");
+      system("rosnode kill /map_server");
+      system("rosnode kill /amcl"); 
+      system("rosnode kill /slam_gmapping");
+
+      // ros::param::set("/map_merge/init_pose_x", -16.2);
+      // ros::param::set("/map_merge/init_pose_y", -16.2);
+      // ros::param::set("/map_merge/init_pose_z", 0.0);
+      // ros::param::set("/map_merge/init_pose_yaw", 0.0);
+
+      // tf::Quaternion q(currentAmclPose_.pose.pose.orientation.x, currentAmclPose_.pose.pose.orientation.y, 
+      //                 currentAmclPose_.pose.pose.orientation.z, currentAmclPose_.pose.pose.orientation.w);
+      // tf::Matrix3x3 m(q);
+      // double roll, pitch, yaw;
+      // m.getRPY(roll, pitch, yaw);
+      // // ros::param::set("/simultaneous_mapping/map_merge/init_pose_x", currentAmclPose_.pose.pose.position.x);
+      // // ros::param::set("/simultaneous_mapping/map_merge/init_pose_y", currentAmclPose_.pose.pose.position.y);
+      // ros::param::set("/simultaneous_mapping/map_merge/init_pose_x", -14.6);
+      // ros::param::set("/simultaneous_mapping/map_merge/init_pose_y", -14.6);
+      // ros::param::set("/simultaneous_mapping/map_merge/init_pose_z", 0.0);
+      // ros::param::set("/simultaneous_mapping/map_merge/init_pose_yaw", 0.0);
+      
+      system("roslaunch gmapping slam_gmapping_pr2.launch &");
+
+      is_start_mapping = false;
+    }
+
+    if (is_terminate_mapping){
+
+      system("rosnode kill /slam_gmapping");
+      is_terminate_mapping = false;
+    }
+    
+
+    if(is_manual_move_forward){
+      cmdVelTwist.linear.x += 0.08;
+      cmd_vel_pub.publish(cmdVelTwist);
+
+      // std_msgs::Empty emptyMsg;
+      // request_lift_up_pub.publish(emptyMsg);
+  
+      is_manual_move_forward = false;
+    }
+
+    if(is_manual_move_left){
+      cmdVelTwist.angular.z += 0.1;
+      cmd_vel_pub.publish(cmdVelTwist);
+      // eziServoAngleValue -= 90;
+      // std_msgs::Int32 eziServoAngleMsg;
+      // eziServoAngleMsg.data = eziServoAngleValue;
+      // control_ezi_servo_pub.publish(eziServoAngleMsg);
+      
+      // if (!isRunningEziServoNegative){
+      //   int eziServoDirection = 1;
+      //   std_msgs::Int32 eziServoDirectionMsg;
+      //   eziServoDirectionMsg.data = eziServoDirection;
+      //   control_ezi_servo_jog_pub.publish(eziServoDirectionMsg);
+      //   isRunningEziServoPositive = false;
+      //   isRunningEziServoNegative = true;
+      // }
+      // else {
+      //   std_msgs::Empty eziServoStopMsg;
+      //   control_ezi_servo_stop_pub.publish(eziServoStopMsg);
+      //   isRunningEziServoPositive = false;
+      //   isRunningEziServoNegative = false;
+      // }
+
+      is_manual_move_left = false;
+    }
+
+    if(is_manual_move_stop){
+      cmdVelTwist.linear.x = 0.0;
+      cmdVelTwist.angular.z = 0.0;
+      cmd_vel_pub.publish(cmdVelTwist);
+
+      // eziServoAngleValue = 0;
+      // std_msgs::Int32 eziServoAngleMsg;
+      // eziServoAngleMsg.data = eziServoAngleValue;
+      // control_ezi_servo_pub.publish(eziServoAngleMsg);
+      // isRunningEziServoNegative = false;
+      // isRunningEziServoPositive = false;
+
+      
+      // if (poseToSaveFile_.is_open() ) {
+      //   poseToSaveFile_ << currentAmclPose_.pose.pose.position.x << "," << currentAmclPose_.pose.pose.position.y << "," << 
+      //           currentAmclPose_.pose.pose.position.z << "," << currentAmclPose_.pose.pose.orientation.x << "," << 
+      //           currentAmclPose_.pose.pose.orientation.y << "," << currentAmclPose_.pose.pose.orientation.z << "," << 
+      //           currentAmclPose_.pose.pose.orientation.w << std::endl;        
+
+      //   std_msgs::String simultaneousMapFileNameMsg;
+      //   std::string dataToAck = std::to_string(currentAmclPose_.pose.pose.position.x) + std::string(" , ") + std::to_string(currentAmclPose_.pose.pose.position.y) ;
+      //   simultaneousMapFileNameMsg.data = dataToAck;
+      //   saved_simultaneous_map_ack_pub.publish(simultaneousMapFileNameMsg);
+      //}
+  
+      is_manual_move_stop = false;
+    }
+
+    if(is_manual_move_right){
+      cmdVelTwist.angular.z -= 0.1;
+      cmd_vel_pub.publish(cmdVelTwist);
+      // eziServoAngleValue += 90;
+      // std_msgs::Int32 eziServoAngleMsg;
+      // eziServoAngleMsg.data = eziServoAngleValue;
+      // control_ezi_servo_pub.publish(eziServoAngleMsg);
+
+      // if (!isRunningEziServoPositive){
+      //   int eziServoDirection = 0;
+      //   std_msgs::Int32 eziServoDirectionMsg;
+      //   eziServoDirectionMsg.data = eziServoDirection;
+      //   control_ezi_servo_jog_pub.publish(eziServoDirectionMsg);
+      //   isRunningEziServoPositive = true;
+      //   isRunningEziServoNegative = false;
+      // }
+      // else {
+      //   std_msgs::Empty eziServoStopMsg;
+      //   control_ezi_servo_stop_pub.publish(eziServoStopMsg);
+      //   isRunningEziServoPositive = false;
+      //   isRunningEziServoNegative = false;
+      // }
+
+
+      is_manual_move_right = false;
+    }
+
+    if(is_manual_move_back){
+      cmdVelTwist.linear.x -= 0.08;
+      cmd_vel_pub.publish(cmdVelTwist);
+
+      // std_msgs::Empty emptyMsg;
+      // request_lift_down_pub.publish(emptyMsg);
+  
+      is_manual_move_back = false;
+    }
+
+    if (is_rosnode_cleanup){
+      //system("rosnode cleanup");
+      //system("y");
+      is_rosnode_cleanup = false;
+    }
+
+    if (is_save_simultaneous_map){
+      std::string simultaneousMapFileName = currentDateTime();
+      //system( ("rosrun map_server map_saver -f /home/nvidia/dconic_nav/src/map/mergeTest/" + simultaneousMapFileName + " map:=/simultaneous_mapping/map &").c_str() );
+      system( ("rosrun map_server map_saver -f /home/nvidia/dconic_nav/src/map/" + simultaneousMapFileName + " &").c_str() );
+      std_msgs::String simultaneousMapFileNameMsg;
+      simultaneousMapFileNameMsg.data = simultaneousMapFileName;
+      saved_simultaneous_map_ack_pub.publish(simultaneousMapFileNameMsg);
+      is_save_simultaneous_map = false;
+    }
+    
+
+    //publish driving state (STOP, PAUSE, or GO)
+    // std_msgs::Int32 driving_state_msg;
+    // driving_state_msg.data = driving_state;
+    // driving_state_pub.publish(driving_state_msg);
+
+    current_goal_pub.publish(currentGoal_);
+
+    if (currentAmclPose_.pose.pose.position.x != 0.0 || currentAmclPose_.pose.pose.position.y != 0.0){
+      if (amclPosePubCount_ == 0){
+        currentAmclPose_.header.stamp = ros::Time::now();
+        current_amcl_pose_pub.publish(currentAmclPose_);        
+      }
+      amclPosePubCount_ = (amclPosePubCount_ + 1) % 5 ;
+    }
+    
+    //if (cleanMapCount == 200){
+    //  ros::service::call("move_base/clear_costmaps", req, resp);
+    //  cleanMapCount = 0;
+   // }
+    //++cleanMapCount;
+    
+    ros::spinOnce();
+    r.sleep();
+  }
+}
+
+
+double getDistance(POINT a, POINT b)
+{
+    return sqrt( (b.x-a.x)*(b.x-a.x) + (b.y-a.y)*(b.y-a.y) );
+}
+
+double getMin(double d1, double d2)
+{
+    if ( d1 < d2 )
+        return d1;
+
+    return d2;
+}
+
+double getMax(double d1, double d2)
+{
+    if ( d1 > d2 )
+        return d1;
+
+    return d2;
+}

@@ -1,0 +1,4 @@
+Symlinking /home/nvidia/dconic_nav/devel/share/flyinglet_agent/cmake/flyinglet_agentConfig.cmake
+Symlinking /home/nvidia/dconic_nav/devel/share/flyinglet_agent/cmake/flyinglet_agentConfig-version.cmake
+Symlinking /home/nvidia/dconic_nav/devel/lib/pkgconfig/flyinglet_agent.pc
+Symlinking /home/nvidia/dconic_nav/devel/lib/python3/dist-packages/flyinglet_agent/__init__.py

@@ -1,0 +1,4 @@
+[01m[K/home/nvidia/dconic_nav/src/comm_app/src/map_info.cpp:[m[K In function ‘[01m[Kbool gotoChargeCallback(std_srvs::Empty::Request&, std_srvs::Empty::Response&)[m[K’:
+[01m[K/home/nvidia/dconic_nav/src/comm_app/src/map_info.cpp:580:1:[m[K [01;35m[Kwarning: [m[Kno return statement in function returning non-void [[01;35m[K-Wreturn-type[m[K]
+  580 | [01;35m[K}[m[K
+      | [01;35m[K^[m[K

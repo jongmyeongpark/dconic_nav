@@ -1,0 +1,4 @@
+Symlinking /home/nvidia/dconic_nav/devel/share/flyinglet_auth/cmake/flyinglet_authConfig-version.cmake
+Symlinking /home/nvidia/dconic_nav/devel/share/flyinglet_auth/cmake/flyinglet_authConfig.cmake
+Symlinking /home/nvidia/dconic_nav/devel/lib/pkgconfig/flyinglet_auth.pc
+Symlinking /home/nvidia/dconic_nav/devel/lib/python3/dist-packages/flyinglet_auth/__init__.py

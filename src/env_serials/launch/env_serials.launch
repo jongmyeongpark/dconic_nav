@@ -1,0 +1,5 @@
+<launch>
+  <node name="env_serials" pkg="env_serials" type="env_serials.py" output="screen">
+    <param name="env_serials_device" value="/dev/ttyEnv" />
+  </node>
+</launch>

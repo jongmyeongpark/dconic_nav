@@ -1,0 +1,7 @@
+set(robot_system_fe_realtime_info_fetcher_SETUP_PY_SETUP_MODULE "setuptools")
+set(robot_system_fe_realtime_info_fetcher_SETUP_PY_VERSION "0.2.1")
+set(robot_system_fe_realtime_info_fetcher_SETUP_PY_SCRIPTS "")
+set(robot_system_fe_realtime_info_fetcher_SETUP_PY_PACKAGES "robot_system_fe_realtime_info_fetcher")
+set(robot_system_fe_realtime_info_fetcher_SETUP_PY_PACKAGE_DIRS "src/robot_system_fe_realtime_info_fetcher")
+set(robot_system_fe_realtime_info_fetcher_SETUP_PY_MODULES "")
+set(robot_system_fe_realtime_info_fetcher_SETUP_PY_MODULE_DIRS "")

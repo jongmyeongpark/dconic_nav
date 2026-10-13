@@ -1,0 +1,4 @@
+Symlinking /home/nvidia/dconic_nav/devel/share/move_slow_and_clear/cmake/move_slow_and_clearConfig-version.cmake
+Symlinking /home/nvidia/dconic_nav/devel/share/move_slow_and_clear/cmake/move_slow_and_clearConfig.cmake
+Symlinking /home/nvidia/dconic_nav/devel/lib/libmove_slow_and_clear.so
+Symlinking /home/nvidia/dconic_nav/devel/lib/pkgconfig/move_slow_and_clear.pc

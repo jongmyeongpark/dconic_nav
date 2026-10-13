@@ -1,0 +1,8 @@
+prefix=/home/nvidia/dconic_nav/devel/.private/battery_checker
+
+Name: battery_checker
+Description: Description of battery_checker
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

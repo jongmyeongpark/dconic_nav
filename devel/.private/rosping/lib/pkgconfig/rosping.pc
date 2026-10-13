@@ -1,0 +1,8 @@
+prefix=/home/nvidia/dconic_nav/devel/.private/rosping
+
+Name: rosping
+Description: Description of rosping
+Version: 2.1.24
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: roscpp std_msgs

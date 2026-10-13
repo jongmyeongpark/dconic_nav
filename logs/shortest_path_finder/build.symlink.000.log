@@ -1,0 +1,4 @@
+Symlinking /home/nvidia/dconic_nav/devel/share/shortest_path_finder/cmake/shortest_path_finderConfig-version.cmake
+Symlinking /home/nvidia/dconic_nav/devel/share/shortest_path_finder/cmake/shortest_path_finderConfig.cmake
+Symlinking /home/nvidia/dconic_nav/devel/lib/pkgconfig/shortest_path_finder.pc
+Symlinking /home/nvidia/dconic_nav/devel/lib/shortest_path_finder/shortest_path_finder.py

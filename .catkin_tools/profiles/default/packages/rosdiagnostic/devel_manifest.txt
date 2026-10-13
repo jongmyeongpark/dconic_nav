@@ -1,0 +1,6 @@
+diagnostics/rosdiagnostic
+/home/nvidia/dconic_nav/devel/.private/rosdiagnostic/share/rosdiagnostic/cmake/rosdiagnosticConfig-version.cmake /home/nvidia/dconic_nav/devel/share/rosdiagnostic/cmake/rosdiagnosticConfig-version.cmake
+/home/nvidia/dconic_nav/devel/.private/rosdiagnostic/share/rosdiagnostic/cmake/rosdiagnosticConfig.cmake /home/nvidia/dconic_nav/devel/share/rosdiagnostic/cmake/rosdiagnosticConfig.cmake
+/home/nvidia/dconic_nav/devel/.private/rosdiagnostic/bin/rosdiagnostic /home/nvidia/dconic_nav/devel/bin/rosdiagnostic
+/home/nvidia/dconic_nav/devel/.private/rosdiagnostic/lib/pkgconfig/rosdiagnostic.pc /home/nvidia/dconic_nav/devel/lib/pkgconfig/rosdiagnostic.pc
+/home/nvidia/dconic_nav/devel/.private/rosdiagnostic/lib/python3/dist-packages/rosdiagnostic/__init__.py /home/nvidia/dconic_nav/devel/lib/python3/dist-packages/rosdiagnostic/__init__.py

@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/nvidia/dconic_nav/devel/.private/position_evaluator/setup.sh

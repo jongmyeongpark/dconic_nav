@@ -1,0 +1,5 @@
+<launch>
+  <!-- <node name="vla_capture" pkg="vla_demo" type="vla_capture.py" output="screen"/> -->
+  <node name="vla_upload" pkg="vla_demo" type="vla_upload.py" output="screen"/>
+  
+</launch>

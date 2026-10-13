@@ -1,0 +1,2 @@
+set(media_controller_MESSAGE_FILES "/home/nvidia/dconic_nav/src/media_controller/msg/CongestionLevel.msg;/home/nvidia/dconic_nav/src/media_controller/msg/VideoLength.msg;/home/nvidia/dconic_nav/src/media_controller/msg/VideoPriority.msg;/home/nvidia/dconic_nav/src/media_controller/msg/IntArray.msg")
+set(media_controller_SERVICE_FILES "/home/nvidia/dconic_nav/src/media_controller/srv/video_info.srv")

@@ -1,0 +1,8 @@
+prefix=/home/nvidia/dconic_nav/install
+
+Name: flyinglet_auth
+Description: Description of flyinglet_auth
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

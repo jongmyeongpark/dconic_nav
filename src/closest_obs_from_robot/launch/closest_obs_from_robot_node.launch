@@ -1,0 +1,3 @@
+<launch>
+    <node pkg="closest_obs_from_robot" type="closest_obs_from_robot" name="closest_obs_from_robot" output="screen"/>
+</launch>

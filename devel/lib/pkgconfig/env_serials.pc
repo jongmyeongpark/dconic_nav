@@ -1,0 +1,1 @@
+/home/nvidia/dconic_nav/devel/.private/env_serials/lib/pkgconfig/env_serials.pc

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>lift_controller</name>
+  <version>3.0.0</version>
+  <description>Hi</description>
+
+  <maintainer email="jm.lee@integrit.ai">Integrit</maintainer>
+  <license>MIT</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>roscpp</depend>
+
+  
+  <build_depend>std_msgs</build_depend>
+
+  <exec_depend>std_msgs</exec_depend>
+  <depend>rospy</depend>
+  
+</package>

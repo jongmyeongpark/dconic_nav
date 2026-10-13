@@ -1,0 +1,4 @@
+Symlinking /home/nvidia/dconic_nav/devel/share/lift_controller/cmake/lift_controllerConfig-version.cmake
+Symlinking /home/nvidia/dconic_nav/devel/share/lift_controller/cmake/lift_controllerConfig.cmake
+Symlinking /home/nvidia/dconic_nav/devel/lib/pkgconfig/lift_controller.pc
+Symlinking /home/nvidia/dconic_nav/devel/lib/lift_controller/lift_controller.py

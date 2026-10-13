@@ -1,0 +1,5 @@
+[33m[1mCMake Warning[0m at /home/nvidia/dconic_nav/src/virtual_costmap_layer/CMakeLists.txt:7 (project):
+  VERSION keyword not followed by a value or was followed by a value that
+  expanded to nothing.
+
+

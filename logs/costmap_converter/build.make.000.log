@@ -1,0 +1,82 @@
+[35m[1mScanning dependencies of target _costmap_converter_generate_messages_check_deps_ObstacleMsg[0m
+[35m[1mScanning dependencies of target costmap_converter_gencfg[0m
+[35m[1mScanning dependencies of target std_msgs_generate_messages_cpp[0m
+[35m[1mScanning dependencies of target _costmap_converter_generate_messages_check_deps_ObstacleArrayMsg[0m
+[  3%] [34m[1mGenerating dynamic reconfigure files from cfg/dynamic_reconfigure/CostmapToPolygonsDBSMCCH.cfg: /home/nvidia/dconic_nav/devel/.private/costmap_converter/include/costmap_converter/CostmapToPolygonsDBSMCCHConfig.h /home/nvidia/dconic_nav/devel/.private/costmap_converter/lib/python3/dist-packages/costmap_converter/cfg/CostmapToPolygonsDBSMCCHConfig.py[0m
+[  3%] Built target std_msgs_generate_messages_cpp
+[35m[1mScanning dependencies of target geometry_msgs_generate_messages_cpp[0m
+[  3%] Built target geometry_msgs_generate_messages_cpp
+Generating reconfiguration files for CostmapToPolygonsDBSMCCH in costmap_converter
+Wrote header file in /home/nvidia/dconic_nav/devel/.private/costmap_converter/include/costmap_converter/CostmapToPolygonsDBSMCCHConfig.h
+[35m[1mScanning dependencies of target std_msgs_generate_messages_lisp[0m
+[  3%] Built target std_msgs_generate_messages_lisp
+[  6%] [34m[1mGenerating dynamic reconfigure files from cfg/dynamic_reconfigure/CostmapToPolygonsDBSConcaveHull.cfg: /home/nvidia/dconic_nav/devel/.private/costmap_converter/include/costmap_converter/CostmapToPolygonsDBSConcaveHullConfig.h /home/nvidia/dconic_nav/devel/.private/costmap_converter/lib/python3/dist-packages/costmap_converter/cfg/CostmapToPolygonsDBSConcaveHullConfig.py[0m
+[  6%] Built target _costmap_converter_generate_messages_check_deps_ObstacleMsg
+[35m[1mScanning dependencies of target std_msgs_generate_messages_py[0m
+[35m[1mScanning dependencies of target geometry_msgs_generate_messages_lisp[0m
+[  6%] Built target _costmap_converter_generate_messages_check_deps_ObstacleArrayMsg
+[  6%] Built target geometry_msgs_generate_messages_lisp
+[  6%] Built target std_msgs_generate_messages_py
+Generating reconfiguration files for CostmapToPolygonsDBSConcaveHull in costmap_converter
+Wrote header file in /home/nvidia/dconic_nav/devel/.private/costmap_converter/include/costmap_converter/CostmapToPolygonsDBSConcaveHullConfig.h
+[35m[1mScanning dependencies of target geometry_msgs_generate_messages_nodejs[0m
+[35m[1mScanning dependencies of target std_msgs_generate_messages_nodejs[0m
+[ 10%] Built target geometry_msgs_generate_messages_nodejs
+[ 10%] [34m[1mGenerating dynamic reconfigure files from cfg/dynamic_reconfigure/CostmapToLinesDBSMCCH.cfg: /home/nvidia/dconic_nav/devel/.private/costmap_converter/include/costmap_converter/CostmapToLinesDBSMCCHConfig.h /home/nvidia/dconic_nav/devel/.private/costmap_converter/lib/python3/dist-packages/costmap_converter/cfg/CostmapToLinesDBSMCCHConfig.py[0m
+[35m[1mScanning dependencies of target geometry_msgs_generate_messages_py[0m
+[ 10%] Built target std_msgs_generate_messages_nodejs
+[35m[1mScanning dependencies of target std_msgs_generate_messages_eus[0m
+[ 10%] Built target geometry_msgs_generate_messages_py
+[ 10%] Built target std_msgs_generate_messages_eus
+[35m[1mScanning dependencies of target geometry_msgs_generate_messages_eus[0m
+Generating reconfiguration files for CostmapToLinesDBSMCCH in costmap_converter
+Wrote header file in /home/nvidia/dconic_nav/devel/.private/costmap_converter/include/costmap_converter/CostmapToLinesDBSMCCHConfig.h
+[35m[1mScanning dependencies of target costmap_converter_generate_messages_lisp[0m
+[35m[1mScanning dependencies of target costmap_converter_generate_messages_cpp[0m
+[ 10%] Built target geometry_msgs_generate_messages_eus
+[ 13%] [34m[1mGenerating dynamic reconfigure files from cfg/dynamic_reconfigure/CostmapToLinesDBSRANSAC.cfg: /home/nvidia/dconic_nav/devel/.private/costmap_converter/include/costmap_converter/CostmapToLinesDBSRANSACConfig.h /home/nvidia/dconic_nav/devel/.private/costmap_converter/lib/python3/dist-packages/costmap_converter/cfg/CostmapToLinesDBSRANSACConfig.py[0m
+[ 16%] [34m[1mGenerating C++ code from costmap_converter/ObstacleMsg.msg[0m
+[ 20%] [34m[1mGenerating Lisp code from costmap_converter/ObstacleMsg.msg[0m
+[35m[1mScanning dependencies of target costmap_converter_generate_messages_py[0m
+[ 23%] [34m[1mGenerating Python from MSG costmap_converter/ObstacleMsg[0m
+Generating reconfiguration files for CostmapToLinesDBSRANSAC in costmap_converter
+Wrote header file in /home/nvidia/dconic_nav/devel/.private/costmap_converter/include/costmap_converter/CostmapToLinesDBSRANSACConfig.h
+[ 26%] [34m[1mGenerating dynamic reconfigure files from cfg/dynamic_reconfigure/CostmapToDynamicObstacles.cfg: /home/nvidia/dconic_nav/devel/.private/costmap_converter/include/costmap_converter/CostmapToDynamicObstaclesConfig.h /home/nvidia/dconic_nav/devel/.private/costmap_converter/lib/python3/dist-packages/costmap_converter/cfg/CostmapToDynamicObstaclesConfig.py[0m
+[ 30%] [34m[1mGenerating Lisp code from costmap_converter/ObstacleArrayMsg.msg[0m
+Generating reconfiguration files for CostmapToDynamicObstacles in costmap_converter
+Wrote header file in /home/nvidia/dconic_nav/devel/.private/costmap_converter/include/costmap_converter/CostmapToDynamicObstaclesConfig.h
+[ 33%] [34m[1mGenerating C++ code from costmap_converter/ObstacleArrayMsg.msg[0m
+[ 33%] Built target costmap_converter_generate_messages_lisp
+[ 36%] [34m[1mGenerating Python from MSG costmap_converter/ObstacleArrayMsg[0m
+[ 36%] Built target costmap_converter_gencfg
+[35m[1mScanning dependencies of target costmap_converter_generate_messages_nodejs[0m
+[ 40%] [34m[1mGenerating Javascript code from costmap_converter/ObstacleMsg.msg[0m
+[ 43%] [34m[1mGenerating Javascript code from costmap_converter/ObstacleArrayMsg.msg[0m
+[ 43%] Built target costmap_converter_generate_messages_cpp
+[35m[1mScanning dependencies of target costmap_converter_generate_messages_eus[0m
+[ 50%] [34m[1mGenerating EusLisp code from costmap_converter/ObstacleMsg.msg[0m
+[ 50%] [34m[1mGenerating EusLisp code from costmap_converter/ObstacleArrayMsg.msg[0m
+[ 50%] Built target costmap_converter_generate_messages_nodejs
+[35m[1mScanning dependencies of target costmap_converter[0m
+[ 53%] [34m[1mGenerating EusLisp manifest code for costmap_converter[0m
+[ 56%] [34m[1mGenerating Python msg __init__.py for costmap_converter[0m
+[ 60%] [32mBuilding CXX object CMakeFiles/costmap_converter.dir/src/costmap_to_polygons.cpp.o[0m
+[ 63%] [32mBuilding CXX object CMakeFiles/costmap_converter.dir/src/costmap_to_polygons_concave.cpp.o[0m
+[ 63%] Built target costmap_converter_generate_messages_py
+[ 66%] [32mBuilding CXX object CMakeFiles/costmap_converter.dir/src/costmap_to_lines_convex_hull.cpp.o[0m
+[ 70%] [32mBuilding CXX object CMakeFiles/costmap_converter.dir/src/costmap_to_lines_ransac.cpp.o[0m
+[ 70%] Built target costmap_converter_generate_messages_eus
+[35m[1mScanning dependencies of target costmap_converter_generate_messages[0m
+[ 70%] Built target costmap_converter_generate_messages
+[ 73%] [32mBuilding CXX object CMakeFiles/costmap_converter.dir/src/costmap_to_dynamic_obstacles/costmap_to_dynamic_obstacles.cpp.o[0m
+[ 76%] [32mBuilding CXX object CMakeFiles/costmap_converter.dir/src/costmap_to_dynamic_obstacles/background_subtractor.cpp.o[0m
+[ 80%] [32mBuilding CXX object CMakeFiles/costmap_converter.dir/src/costmap_to_dynamic_obstacles/blob_detector.cpp.o[0m
+[ 83%] [32mBuilding CXX object CMakeFiles/costmap_converter.dir/src/costmap_to_dynamic_obstacles/multitarget_tracker/Ctracker.cpp.o[0m
+[ 86%] [32mBuilding CXX object CMakeFiles/costmap_converter.dir/src/costmap_to_dynamic_obstacles/multitarget_tracker/Kalman.cpp.o[0m
+[ 90%] [32mBuilding CXX object CMakeFiles/costmap_converter.dir/src/costmap_to_dynamic_obstacles/multitarget_tracker/HungarianAlg.cpp.o[0m
+[ 93%] [32m[1mLinking CXX shared library /home/nvidia/dconic_nav/devel/.private/costmap_converter/lib/libcostmap_converter.so[0m
+[ 93%] Built target costmap_converter
+[35m[1mScanning dependencies of target standalone_converter[0m
+[ 96%] [32mBuilding CXX object CMakeFiles/standalone_converter.dir/src/costmap_converter_node.cpp.o[0m
+[100%] [32m[1mLinking CXX executable /home/nvidia/dconic_nav/devel/.private/costmap_converter/lib/costmap_converter/standalone_converter[0m
+[100%] Built target standalone_converter

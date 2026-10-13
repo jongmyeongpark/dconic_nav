@@ -1,0 +1,4 @@
+flyinglet_agents/remote_cmd_15
+/home/nvidia/dconic_nav/devel/.private/remote_cmd_15/share/remote_cmd_15/cmake/remote_cmd_15Config-version.cmake /home/nvidia/dconic_nav/devel/share/remote_cmd_15/cmake/remote_cmd_15Config-version.cmake
+/home/nvidia/dconic_nav/devel/.private/remote_cmd_15/share/remote_cmd_15/cmake/remote_cmd_15Config.cmake /home/nvidia/dconic_nav/devel/share/remote_cmd_15/cmake/remote_cmd_15Config.cmake
+/home/nvidia/dconic_nav/devel/.private/remote_cmd_15/lib/pkgconfig/remote_cmd_15.pc /home/nvidia/dconic_nav/devel/lib/pkgconfig/remote_cmd_15.pc

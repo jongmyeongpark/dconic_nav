@@ -1,0 +1,23 @@
+remote:
+  key: xwOumAnLPs3HKPLYVz6F94blhCgXeMnW2A0Mlqj8
+
+streamer:
+  FRONT-CAM:
+    type: ROS
+    topic: /camera1/usb_cam1/image_raw/compressed
+    msg_type: sensor_msgs/CompressedImage
+    security: false
+  REAR-CAM:
+    type: ROS
+    topic: /camera2/usb_cam2/image_raw/compressed
+    msg_type: sensor_msgs/CompressedImage
+    security: false
+
+  # front-thermal:
+  #   type: RTSP
+  #   url : rtsp://admin:admin@192.168.10.14:554/snl/live/2/1
+  #   security: false
+  # front-tbt:
+  #   type: RTSP
+  #   url : rtsp://admin:admin@192.168.10.14:554/snl/live/1/1
+  #   security: false

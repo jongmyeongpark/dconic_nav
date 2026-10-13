@@ -1,0 +1,117 @@
+TebLocalPlannerROS:
+# sykim add
+ controller_frequency: 5.0 #21.02.19 dhjeon before 10.0
+# sykim block
+# change odom=>robot_pose_ekf/odom
+# odom_topic: amcl_pose
+# odom_topic: odom_combined
+# map_frame: /odom
+# odom_topic: amcl_pose
+ # Trajectory
+  
+ teb_autosize: True
+ dt_ref: 0.3 #0.9 #21.02.19 dhjeon before 0.5
+ dt_hysteresis: 0.1 #0.3 #21.02.19 dhjeon before 0.1
+ global_plan_overwrite_orientation: True
+ max_global_plan_lookahead_dist: 3.0
+ feasibility_check_no_poses: 10 #5
+ allow_init_with_backwards_motion: False #21.02.19 dhjeon add
+ global_plan_via_point_sep: 0.5  # 0.2
+ weight_viapoint: 3.0 # 100
+ # Robot
+         
+ max_vel_x: 0.8 #0.5
+ max_vel_x_backwards: 0.1
+ max_vel_theta: 0.8 #0.3
+ acc_lim_x: 0.1 # 21.01.14 dhjeon straight accel decrease 0.1=>0.06 
+ acc_lim_theta: 0.1 # 21.01.14 dhjeon rotate accel decrease 0.1=>0.8
+ min_turning_radius: 0.0
+ wheelbase: 0.0 #5.3 # 21.01.15 sykim change - not car base
+ is_footprint_dynamic: True
+# sykim block
+ footprint_model: # types: "point", "circular", "two_circles", "line", "polygon"
+   type: "circular" #"point"
+   radius: 0.35 # for type "circular"
+   #20.12.29 sykim robot size increase
+   line_start: [-0.26, 0.0] # [0.26, 0.0] # for type "line"
+   line_end: [0.26, 0.0] #[0.0, 0.0] # for type "line"
+   front_offset: 0.1 # for type "two_circles"
+   front_radius: 0.35 # for type "two_circles"
+   rear_offset: 0.1 # for type "two_circles"
+   rear_radius: 0.35 # for type "two_circles"
+   vertices: [[-0.27, -0.35], [-0.35, -0.27], [-0.35, 0.27], [-0.27, 0.35], [0.27, 0.35], [0.35, 0.27], [0.35, -0.27], [0.27, -0.35]] # for type "polygon"
+
+ # GoalTolerance
+
+ xy_goal_tolerance: 0.3 # 0.15
+ yaw_goal_tolerance: 0.1
+ free_goal_vel: False
+    
+ # Obstacles
+ min_obstacle_dist: 0.3 #0.5 #0.36 # 21.01.15 sykim change - plan dist from obstacle   0.6 => 0.7 jmlee 210604
+ inflation_dist: 0.4 #sykim add
+ dynamic_obstacle_inflation_dist: 0.4 #sykim add
+ include_costmap_obstacles: True
+ include_dynamic_obstacles: True #sykim add
+ costmap_obstacles_behind_robot_dist: 1.0
+ obstacle_poses_affected: 5
+ costmap_converter_plugin: "costmap_converter::CostmapToPolygonsDBSMCCH"
+# costmap_converter_plugin: "costmap_converter::CostmapToLinesDBSRANSAC"
+# costmap_converter_plugin: "costmap_converter::CostmapToLinesDBSMCCH"
+# costmap_converter_plugin: "costmap_converter::CostmapToPolygonsDBSConcaveHull"
+# costmap_converter_plugin: "" # deactivate plugin
+ costmap_converter_spin_thread: True
+ costmap_converter_rate: 5
+ costmap_converter/CostmapToPolygonsDBSMCCH:
+    cluster_max_distance: 0.3
+    cluster_min_pts: 2
+    cluster_max_pts: 30
+    convex_hull_min_pt_separation: 0.1
+ 
+ legacy_obstacle_association: False
+ 
+ # melodic version add
+ obstacle_proximity_ratio_max_vel: 0.05
+ obstacle_proximity_lower_bound: 0.4
+ obstacle_proximity_upper_bound: 1.0
+
+ # Optimization
+    
+ no_inner_iterations: 2 #5
+ no_outer_iterations: 1 #4
+ optimization_activate: True
+ optimization_verbose: False
+ penalty_epsilon: 0.02 #dhjeon 20.12.17 change-(befor value:0.1) this value should be smaller than acc_lim_**
+ #weight_max_vel_x: 1
+ #weight_max_vel_theta: 1
+ #weight_acc_lim_x: 1
+ #weight_acc_lim_theta: 0.5 # 21.02.02 dhjeon change - 1 to 0.5
+ weight_kinematics_nh: 1000
+ weight_kinematics_forward_drive: 5 #5 #allows to back, robot in a corner #900 #1 #21.02.19 dhjeon 100->5
+ weight_kinematics_turning_radius: 0.0
+ weight_optimaltime: 1.2 # 23.07.06 jsok 1 => 10
+ weight_obstacle: 5.0 #50 #sykim change
+ weight_dynamic_obstacle: 5.0 # not in use yet
+ weight_adapt_factor: 1.5
+# alternative_time_cost: True #False # not in use yet
+ selection_alternative_time_cost: False # not in use yet
+ switching_blocking_period: 3.0 #mskim add
+ selection_prefer_initial_plan: 0.9 #mskim add
+ # Homotopy Class Planner
+
+ enable_homotopy_class_planning: False
+ enable_multithreading: True
+ simple_exploration: False
+ selection_cost_hysteresis: 1.0
+ max_number_classes: 3
+ roadmap_graph_no_samples: 15
+ roadmap_graph_area_width: 5
+ h_signature_prescaler: 0.5
+ h_signature_threshold: 0.1
+ obstacle_keypoint_offset: 0.1
+ obstacle_heading_threshold: 0.45
+ hysteresis_threshold: 0.1
+ hysteresis_reduction: 0.1
+ visualize_hc_graph: False
+
+ use_teb: true

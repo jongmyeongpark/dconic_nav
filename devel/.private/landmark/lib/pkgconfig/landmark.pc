@@ -1,0 +1,8 @@
+prefix=/home/nvidia/dconic_nav/devel/.private/landmark
+
+Name: landmark
+Description: Description of landmark
+Version: 0.0.0
+Cflags: -I/home/nvidia/dconic_nav/devel/.private/landmark/include
+Libs: -L${prefix}/lib -llandmark
+Requires: geometry_msgs message_generation roscpp rospy sensor_msgs std_msgs

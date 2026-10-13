@@ -1,0 +1,3 @@
+<launch>
+    <node pkg="restricted_area_maker" type="restricted_area_maker_node" name="restricted_area_maker" output="screen"/>
+</launch>

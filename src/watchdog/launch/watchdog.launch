@@ -1,0 +1,3 @@
+<launch>
+    <node pkg="watchdog" type="watchdog" name="watchdog" output="screen"/>
+</launch>

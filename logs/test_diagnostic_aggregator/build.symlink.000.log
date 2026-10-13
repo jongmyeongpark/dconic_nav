@@ -1,0 +1,4 @@
+Symlinking /home/nvidia/dconic_nav/devel/share/test_diagnostic_aggregator/cmake/test_diagnostic_aggregatorConfig.cmake
+Symlinking /home/nvidia/dconic_nav/devel/share/test_diagnostic_aggregator/cmake/test_diagnostic_aggregatorConfig-version.cmake
+Symlinking /home/nvidia/dconic_nav/devel/lib/libtest_diagnostic_aggregator.so
+Symlinking /home/nvidia/dconic_nav/devel/lib/pkgconfig/test_diagnostic_aggregator.pc

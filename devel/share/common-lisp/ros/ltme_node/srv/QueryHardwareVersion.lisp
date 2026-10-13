@@ -1,0 +1,1 @@
+/home/nvidia/dconic_nav/devel/.private/ltme_node/share/common-lisp/ros/ltme_node/srv/QueryHardwareVersion.lisp

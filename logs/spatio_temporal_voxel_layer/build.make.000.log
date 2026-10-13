@@ -1,0 +1,140 @@
+[35m[1mScanning dependencies of target dynamic_reconfigure_generate_messages_lisp[0m
+[35m[1mScanning dependencies of target std_msgs_generate_messages_eus[0m
+[35m[1mScanning dependencies of target _spatio_temporal_voxel_layer_generate_messages_check_deps_SaveGrid[0m
+[35m[1mScanning dependencies of target std_msgs_generate_messages_lisp[0m
+[35m[1mScanning dependencies of target dynamic_reconfigure_generate_messages_nodejs[0m
+[35m[1mScanning dependencies of target std_msgs_generate_messages_nodejs[0m
+[  0%] Built target dynamic_reconfigure_generate_messages_lisp
+[  0%] Built target std_msgs_generate_messages_eus
+[  0%] Built target std_msgs_generate_messages_nodejs
+[35m[1mScanning dependencies of target dynamic_reconfigure_generate_messages_eus[0m
+[  0%] Built target std_msgs_generate_messages_lisp
+[  0%] Built target dynamic_reconfigure_generate_messages_nodejs
+[35m[1mScanning dependencies of target dynamic_reconfigure_generate_messages_cpp[0m
+[35m[1mScanning dependencies of target std_msgs_generate_messages_py[0m
+[35m[1mScanning dependencies of target std_msgs_generate_messages_cpp[0m
+[35m[1mScanning dependencies of target dynamic_reconfigure_generate_messages_py[0m
+[  0%] Built target dynamic_reconfigure_generate_messages_eus
+[  0%] Built target dynamic_reconfigure_generate_messages_cpp
+[  0%] Built target std_msgs_generate_messages_py
+[  0%] Built target dynamic_reconfigure_generate_messages_py
+[  0%] Built target std_msgs_generate_messages_cpp
+[35m[1mScanning dependencies of target spatio_temporal_voxel_layer_gencfg[0m
+[  0%] Built target _spatio_temporal_voxel_layer_generate_messages_check_deps_SaveGrid
+[  6%] [34m[1mGenerating dynamic reconfigure files from cfg/SpatioTemporalVoxelLayer.cfg: /home/nvidia/dconic_nav/devel/.private/spatio_temporal_voxel_layer/include/spatio_temporal_voxel_layer/SpatioTemporalVoxelLayerConfig.h /home/nvidia/dconic_nav/devel/.private/spatio_temporal_voxel_layer/lib/python3/dist-packages/spatio_temporal_voxel_layer/cfg/SpatioTemporalVoxelLayerConfig.py[0m
+[35m[1mScanning dependencies of target spatio_temporal_voxel_layer_generate_messages_nodejs[0m
+[35m[1mScanning dependencies of target spatio_temporal_voxel_layer_generate_messages_lisp[0m
+[35m[1mScanning dependencies of target spatio_temporal_voxel_layer_generate_messages_cpp[0m
+[35m[1mScanning dependencies of target spatio_temporal_voxel_layer_generate_messages_eus[0m
+[35m[1mScanning dependencies of target spatio_temporal_voxel_layer_generate_messages_py[0m
+[ 13%] [34m[1mGenerating Javascript code from spatio_temporal_voxel_layer/SaveGrid.srv[0m
+[ 20%] [34m[1mGenerating Lisp code from spatio_temporal_voxel_layer/SaveGrid.srv[0m
+[ 26%] [34m[1mGenerating C++ code from spatio_temporal_voxel_layer/SaveGrid.srv[0m
+[ 33%] [34m[1mGenerating EusLisp code from spatio_temporal_voxel_layer/SaveGrid.srv[0m
+[ 40%] [34m[1mGenerating Python code from SRV spatio_temporal_voxel_layer/SaveGrid[0m
+Generating reconfiguration files for SpatioTemporalVoxelLayer in spatio_temporal_voxel_layer
+Wrote header file in /home/nvidia/dconic_nav/devel/.private/spatio_temporal_voxel_layer/include/spatio_temporal_voxel_layer/SpatioTemporalVoxelLayerConfig.h
+[ 40%] Built target spatio_temporal_voxel_layer_generate_messages_nodejs
+[ 46%] [34m[1mGenerating EusLisp manifest code for spatio_temporal_voxel_layer[0m
+[ 46%] Built target spatio_temporal_voxel_layer_gencfg
+[ 46%] Built target spatio_temporal_voxel_layer_generate_messages_lisp
+[ 46%] Built target spatio_temporal_voxel_layer_generate_messages_cpp
+[35m[1mScanning dependencies of target spatio_temporal_voxel_layer[0m
+[ 53%] [34m[1mGenerating Python srv __init__.py for spatio_temporal_voxel_layer[0m
+[ 60%] [32mBuilding CXX object CMakeFiles/spatio_temporal_voxel_layer.dir/src/spatio_temporal_voxel_grid.cpp.o[0m
+[ 66%] [32mBuilding CXX object CMakeFiles/spatio_temporal_voxel_layer.dir/src/spatio_temporal_voxel_layer.cpp.o[0m
+[ 73%] [32mBuilding CXX object CMakeFiles/spatio_temporal_voxel_layer.dir/src/measurement_buffer.cpp.o[0m
+[ 80%] [32mBuilding CXX object CMakeFiles/spatio_temporal_voxel_layer.dir/src/frustum_models/depth_camera_frustum.cpp.o[0m
+[ 80%] Built target spatio_temporal_voxel_layer_generate_messages_py
+[ 86%] [32mBuilding CXX object CMakeFiles/spatio_temporal_voxel_layer.dir/src/frustum_models/three_dimensional_lidar_frustum.cpp.o[0m
+[ 86%] Built target spatio_temporal_voxel_layer_generate_messages_eus
+[ 93%] [32mBuilding CXX object CMakeFiles/spatio_temporal_voxel_layer.dir/src/vdb2pc.cpp.o[0m
+In file included from [01m[K/usr/include/openvdb/tree/LeafBuffer.h:37[m[K,
+                 from [01m[K/usr/include/openvdb/tree/LeafNode.h:38[m[K,
+                 from [01m[K/usr/include/openvdb/tree/Tree.h:45[m[K,
+                 from [01m[K/usr/include/openvdb/Grid.h:39[m[K,
+                 from [01m[K/usr/include/openvdb/openvdb.h:39[m[K,
+                 from [01m[K/home/nvidia/dconic_nav/src/spatio_temporal_voxel_layer/include/spatio_temporal_voxel_layer/frustum_models/frustum.hpp:48[m[K,
+                 from [01m[K/home/nvidia/dconic_nav/src/spatio_temporal_voxel_layer/include/spatio_temporal_voxel_layer/frustum_models/depth_camera_frustum.hpp:44[m[K,
+                 from [01m[K/home/nvidia/dconic_nav/src/spatio_temporal_voxel_layer/src/frustum_models/depth_camera_frustum.cpp:38[m[K:
+[01m[K/usr/include/tbb/atomic.h:21:141:[m[K [01;36m[Knote: [m[K#pragma message: TBB Warning: tbb/atomic.h is deprecated. For details, please see Deprecated Features appendix in the TBB reference manual.
+   21 | #pragma message("TBB Warning: tbb/atomic.h is deprecated. For details, please see Deprecated Features appendix in the TBB reference manual."[01;36m[K)[m[K
+      |                                                                                                                                             [01;36m[K^[m[K
+In file included from [01m[K/usr/include/openvdb/tree/LeafBuffer.h:37[m[K,
+                 from [01m[K/usr/include/openvdb/tree/LeafNode.h:38[m[K,
+                 from [01m[K/usr/include/openvdb/tree/Tree.h:45[m[K,
+                 from [01m[K/usr/include/openvdb/Grid.h:39[m[K,
+                 from [01m[K/usr/include/openvdb/openvdb.h:39[m[K,
+                 from [01m[K/home/nvidia/dconic_nav/src/spatio_temporal_voxel_layer/include/spatio_temporal_voxel_layer/frustum_models/frustum.hpp:48[m[K,
+                 from [01m[K/home/nvidia/dconic_nav/src/spatio_temporal_voxel_layer/include/spatio_temporal_voxel_layer/frustum_models/three_dimensional_lidar_frustum.hpp:44[m[K,
+                 from [01m[K/home/nvidia/dconic_nav/src/spatio_temporal_voxel_layer/src/frustum_models/three_dimensional_lidar_frustum.cpp:38[m[K:
+[01m[K/usr/include/tbb/atomic.h:21:141:[m[K [01;36m[Knote: [m[K#pragma message: TBB Warning: tbb/atomic.h is deprecated. For details, please see Deprecated Features appendix in the TBB reference manual.
+   21 | #pragma message("TBB Warning: tbb/atomic.h is deprecated. For details, please see Deprecated Features appendix in the TBB reference manual."[01;36m[K)[m[K
+      |                                                                                                                                             [01;36m[K^[m[K
+[35m[1mScanning dependencies of target spatio_temporal_voxel_layer_generate_messages[0m
+[ 93%] Built target spatio_temporal_voxel_layer_generate_messages
+In file included from [01m[K/usr/include/openvdb/tree/LeafBuffer.h:37[m[K,
+                 from [01m[K/usr/include/openvdb/tree/LeafNode.h:38[m[K,
+                 from [01m[K/usr/include/openvdb/tree/Tree.h:45[m[K,
+                 from [01m[K/usr/include/openvdb/Grid.h:39[m[K,
+                 from [01m[K/usr/include/openvdb/openvdb.h:39[m[K,
+                 from [01m[K/home/nvidia/dconic_nav/src/spatio_temporal_voxel_layer/include/spatio_temporal_voxel_layer/spatio_temporal_voxel_grid.hpp:64[m[K,
+                 from [01m[K/home/nvidia/dconic_nav/src/spatio_temporal_voxel_layer/include/spatio_temporal_voxel_layer/spatio_temporal_voxel_layer.hpp:45[m[K,
+                 from [01m[K/home/nvidia/dconic_nav/src/spatio_temporal_voxel_layer/src/spatio_temporal_voxel_layer.cpp:38[m[K:
+[01m[K/usr/include/tbb/atomic.h:21:141:[m[K [01;36m[Knote: [m[K#pragma message: TBB Warning: tbb/atomic.h is deprecated. For details, please see Deprecated Features appendix in the TBB reference manual.
+   21 | #pragma message("TBB Warning: tbb/atomic.h is deprecated. For details, please see Deprecated Features appendix in the TBB reference manual."[01;36m[K)[m[K
+      |                                                                                                                                             [01;36m[K^[m[K
+In file included from [01m[K/usr/include/openvdb/tree/LeafBuffer.h:37[m[K,
+                 from [01m[K/usr/include/openvdb/tree/LeafNode.h:38[m[K,
+                 from [01m[K/usr/include/openvdb/tree/Tree.h:45[m[K,
+                 from [01m[K/usr/include/openvdb/Grid.h:39[m[K,
+                 from [01m[K/usr/include/openvdb/openvdb.h:39[m[K,
+                 from [01m[K/home/nvidia/dconic_nav/src/spatio_temporal_voxel_layer/include/spatio_temporal_voxel_layer/spatio_temporal_voxel_grid.hpp:64[m[K,
+                 from [01m[K/home/nvidia/dconic_nav/src/spatio_temporal_voxel_layer/src/spatio_temporal_voxel_grid.cpp:38[m[K:
+[01m[K/usr/include/tbb/atomic.h:21:141:[m[K [01;36m[Knote: [m[K#pragma message: TBB Warning: tbb/atomic.h is deprecated. For details, please see Deprecated Features appendix in the TBB reference manual.
+   21 | #pragma message("TBB Warning: tbb/atomic.h is deprecated. For details, please see Deprecated Features appendix in the TBB reference manual."[01;36m[K)[m[K
+      |                                                                                                                                             [01;36m[K^[m[K
+In file included from [01m[K/usr/include/openvdb/tools/VolumeToMesh.h:50[m[K,
+                 from [01m[K/usr/include/openvdb/tools/LevelSetRebuild.h:38[m[K,
+                 from [01m[K/usr/include/openvdb/tools/GridTransformer.h:43[m[K,
+                 from [01m[K/home/nvidia/dconic_nav/src/spatio_temporal_voxel_layer/include/spatio_temporal_voxel_layer/spatio_temporal_voxel_grid.hpp:65[m[K,
+                 from [01m[K/home/nvidia/dconic_nav/src/spatio_temporal_voxel_layer/include/spatio_temporal_voxel_layer/spatio_temporal_voxel_layer.hpp:45[m[K,
+                 from [01m[K/home/nvidia/dconic_nav/src/spatio_temporal_voxel_layer/src/spatio_temporal_voxel_layer.cpp:38[m[K:
+[01m[K/usr/include/tbb/task_scheduler_init.h:21:154:[m[K [01;36m[Knote: [m[K#pragma message: TBB Warning: tbb/task_scheduler_init.h is deprecated. For details, please see Deprecated Features appendix in the TBB reference manual.
+   21 | #pragma message("TBB Warning: tbb/task_scheduler_init.h is deprecated. For details, please see Deprecated Features appendix in the TBB reference manual."[01;36m[K)[m[K
+      |                                                                                                                                                          [01;36m[K^[m[K
+In file included from [01m[K/usr/include/openvdb/tools/VolumeToMesh.h:50[m[K,
+                 from [01m[K/usr/include/openvdb/tools/LevelSetRebuild.h:38[m[K,
+                 from [01m[K/usr/include/openvdb/tools/GridTransformer.h:43[m[K,
+                 from [01m[K/home/nvidia/dconic_nav/src/spatio_temporal_voxel_layer/include/spatio_temporal_voxel_layer/spatio_temporal_voxel_grid.hpp:65[m[K,
+                 from [01m[K/home/nvidia/dconic_nav/src/spatio_temporal_voxel_layer/src/spatio_temporal_voxel_grid.cpp:38[m[K:
+[01m[K/usr/include/tbb/task_scheduler_init.h:21:154:[m[K [01;36m[Knote: [m[K#pragma message: TBB Warning: tbb/task_scheduler_init.h is deprecated. For details, please see Deprecated Features appendix in the TBB reference manual.
+   21 | #pragma message("TBB Warning: tbb/task_scheduler_init.h is deprecated. For details, please see Deprecated Features appendix in the TBB reference manual."[01;36m[K)[m[K
+      |                                                                                                                                                          [01;36m[K^[m[K
+In file included from [01m[K/usr/include/openvdb/tree/LeafBuffer.h:37[m[K,
+                 from [01m[K/usr/include/openvdb/tree/LeafNode.h:38[m[K,
+                 from [01m[K/usr/include/openvdb/tree/Tree.h:45[m[K,
+                 from [01m[K/usr/include/openvdb/Grid.h:39[m[K,
+                 from [01m[K/usr/include/openvdb/openvdb.h:39[m[K,
+                 from [01m[K/home/nvidia/dconic_nav/src/spatio_temporal_voxel_layer/include/spatio_temporal_voxel_layer/vdb2pc.hpp:42[m[K,
+                 from [01m[K/home/nvidia/dconic_nav/src/spatio_temporal_voxel_layer/src/vdb2pc.cpp:38[m[K:
+[01m[K/usr/include/tbb/atomic.h:21:141:[m[K [01;36m[Knote: [m[K#pragma message: TBB Warning: tbb/atomic.h is deprecated. For details, please see Deprecated Features appendix in the TBB reference manual.
+   21 | #pragma message("TBB Warning: tbb/atomic.h is deprecated. For details, please see Deprecated Features appendix in the TBB reference manual."[01;36m[K)[m[K
+      |                                                                                                                                             [01;36m[K^[m[K
+In file included from [01m[K/usr/include/openvdb/tools/Morphology.h:57[m[K,
+                 from [01m[K/usr/include/openvdb/tools/RayIntersector.h:68[m[K,
+                 from [01m[K/home/nvidia/dconic_nav/src/spatio_temporal_voxel_layer/include/spatio_temporal_voxel_layer/spatio_temporal_voxel_grid.hpp:66[m[K,
+                 from [01m[K/home/nvidia/dconic_nav/src/spatio_temporal_voxel_layer/src/spatio_temporal_voxel_grid.cpp:38[m[K:
+[01m[K/usr/include/tbb/tbb_thread.h:21:145:[m[K [01;36m[Knote: [m[K#pragma message: TBB Warning: tbb/tbb_thread.h is deprecated. For details, please see Deprecated Features appendix in the TBB reference manual.
+   21 | #pragma message("TBB Warning: tbb/tbb_thread.h is deprecated. For details, please see Deprecated Features appendix in the TBB reference manual."[01;36m[K)[m[K
+      |                                                                                                                                                 [01;36m[K^[m[K
+In file included from [01m[K/usr/include/openvdb/tools/Morphology.h:57[m[K,
+                 from [01m[K/usr/include/openvdb/tools/RayIntersector.h:68[m[K,
+                 from [01m[K/home/nvidia/dconic_nav/src/spatio_temporal_voxel_layer/include/spatio_temporal_voxel_layer/spatio_temporal_voxel_grid.hpp:66[m[K,
+                 from [01m[K/home/nvidia/dconic_nav/src/spatio_temporal_voxel_layer/include/spatio_temporal_voxel_layer/spatio_temporal_voxel_layer.hpp:45[m[K,
+                 from [01m[K/home/nvidia/dconic_nav/src/spatio_temporal_voxel_layer/src/spatio_temporal_voxel_layer.cpp:38[m[K:
+[01m[K/usr/include/tbb/tbb_thread.h:21:145:[m[K [01;36m[Knote: [m[K#pragma message: TBB Warning: tbb/tbb_thread.h is deprecated. For details, please see Deprecated Features appendix in the TBB reference manual.
+   21 | #pragma message("TBB Warning: tbb/tbb_thread.h is deprecated. For details, please see Deprecated Features appendix in the TBB reference manual."[01;36m[K)[m[K
+      |                                                                                                                                                 [01;36m[K^[m[K
+[100%] [32m[1mLinking CXX shared library /home/nvidia/dconic_nav/devel/.private/spatio_temporal_voxel_layer/lib/libspatio_temporal_voxel_layer.so[0m
+[100%] Built target spatio_temporal_voxel_layer

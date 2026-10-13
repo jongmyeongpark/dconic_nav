@@ -1,0 +1,5 @@
+<launch>
+  <node name="yolo_chair_capture" pkg="vla_demo" type="yolo_captured.py" output="screen"/>
+  <node name="gpt_response_handler" pkg="vla_demo" type="move_to.py" output="screen"/>
+  <node name="gpt_image_describer" pkg="vla_demo" type="move.py" output="screen"/>
+</launch>

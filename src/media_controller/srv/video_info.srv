@@ -1,0 +1,5 @@
+# Request video info
+bool rq
+---
+int16[] videoLength
+int16[] videoPriority

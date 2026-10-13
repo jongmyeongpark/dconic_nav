@@ -1,0 +1,7 @@
+Symlinking /home/nvidia/dconic_nav/devel/share/diagnostic_aggregator/cmake/diagnostic_aggregatorConfig-version.cmake
+Symlinking /home/nvidia/dconic_nav/devel/share/diagnostic_aggregator/cmake/diagnostic_aggregatorConfig.cmake
+Symlinking /home/nvidia/dconic_nav/devel/lib/libdiagnostic_aggregator.so
+Symlinking /home/nvidia/dconic_nav/devel/lib/pkgconfig/diagnostic_aggregator.pc
+Symlinking /home/nvidia/dconic_nav/devel/lib/diagnostic_aggregator/add_analyzers
+Symlinking /home/nvidia/dconic_nav/devel/lib/diagnostic_aggregator/analyzer_loader
+Symlinking /home/nvidia/dconic_nav/devel/lib/diagnostic_aggregator/aggregator_node

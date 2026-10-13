@@ -1,0 +1,29 @@
+<package>
+  <name>media_streamer</name>
+  <version>0.1.0</version>
+  <description>
+    Media Streamer
+  </description>
+  <author>Daeyoon Lee</author>
+  <maintainer email="dleodbs.0724@gmail.com">Dayoon Lee</maintainer>
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <buildtool_depend>python-setuptools</buildtool_depend>
+
+  <run_depend>rospy</run_depend>
+  <!-- <run_depend>gst-python</run_depend>
+
+  <exec_depend>rospkg</exec_depend>
+  <exec_depend>rosbridge_library</exec_depend>
+
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>sensor_msgs</exec_depend>
+  <exec_depend>rosgraph_msgs</exec_depend>
+
+  <exec_depend>python-inject-pip</exec_depend> -->
+
+  <export>
+  </export>
+
+</package>

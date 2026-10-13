@@ -1,0 +1,8 @@
+prefix=/home/nvidia/dconic_nav/install
+
+Name: rosdiagnostic
+Description: Description of rosdiagnostic
+Version: 1.9.7
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

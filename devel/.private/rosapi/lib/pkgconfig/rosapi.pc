@@ -1,0 +1,8 @@
+prefix=/home/nvidia/dconic_nav/devel/.private/rosapi
+
+Name: rosapi
+Description: Description of rosapi
+Version: 0.11.13
+Cflags: -I/home/nvidia/dconic_nav/devel/.private/rosapi/include
+Libs: -L${prefix}/lib 
+Requires: message_runtime

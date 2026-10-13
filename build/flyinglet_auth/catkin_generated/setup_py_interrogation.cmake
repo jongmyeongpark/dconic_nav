@@ -1,0 +1,7 @@
+set(flyinglet_auth_SETUP_PY_SETUP_MODULE "setuptools")
+set(flyinglet_auth_SETUP_PY_VERSION "0.0.0")
+set(flyinglet_auth_SETUP_PY_SCRIPTS "")
+set(flyinglet_auth_SETUP_PY_PACKAGES "flyinglet_auth")
+set(flyinglet_auth_SETUP_PY_PACKAGE_DIRS "src/flyinglet_auth")
+set(flyinglet_auth_SETUP_PY_MODULES "")
+set(flyinglet_auth_SETUP_PY_MODULE_DIRS "")

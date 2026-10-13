@@ -1,0 +1,5 @@
+Symlinking /home/nvidia/dconic_nav/devel/share/tf2_kdl/cmake/tf2_kdlConfig.cmake
+Symlinking /home/nvidia/dconic_nav/devel/share/tf2_kdl/cmake/tf2_kdlConfig-version.cmake
+Symlinking /home/nvidia/dconic_nav/devel/lib/pkgconfig/tf2_kdl.pc
+Symlinking /home/nvidia/dconic_nav/devel/lib/tf2_kdl/test.py
+Symlinking /home/nvidia/dconic_nav/devel/lib/python3/dist-packages/tf2_kdl/__init__.py

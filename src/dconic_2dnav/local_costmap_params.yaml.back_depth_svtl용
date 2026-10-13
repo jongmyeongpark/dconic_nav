@@ -1,0 +1,58 @@
+local_costmap:
+  global_frame: odom_combined
+  robot_base_frame: base_link
+  update_frequency: 2.0
+  publish_frequency: 2.0
+  static_map: false
+  rolling_window: true
+  width: 7.0
+  height: 7.0
+  always_send_full_costmap: true
+
+  plugins:
+    - {name: stvl, type: "spatio_temporal_voxel_layer/SpatioTemporalVoxelLayer"}
+    - {name: inflation_layer, type: "costmap_2d::InflationLayer"}
+
+  stvl:
+    enabled: true
+    voxel_decay: 2.0          # FOV 밖 장애물 유지 시간 (초)
+    decay_model: 0            # 0=linear
+    voxel_size: 0.10          # 10cm voxel
+    track_unknown_space: false
+    observation_sources: camera_front camera_rear
+    origin_z: 0.0
+    z_resolution: 0.10
+    z_voxels: 20              # 0~2m 높이 커버
+    unknown_threshold: 15
+    marked_threshold: 0
+    combination_method: 1
+    publish_voxel_map: false
+    update_footprint_enabled: true
+    camera_front:
+      data_type: PointCloud2
+      topic: /depth_anything/pointcloud_front
+      sensor_frame: usb_cam1
+      observation_persistence: 0.0
+      expected_update_rate: 0.0
+      marking: true
+      clearing: false         # raycasting 제거 → voxel_decay로 소멸
+      min_obstacle_height: 0.05
+      max_obstacle_height: 2.0
+      obstacle_range: 7.0
+      model_type: 1           # 1=3D PointCloud2
+    camera_rear:
+      data_type: PointCloud2
+      topic: /depth_anything/pointcloud_rear
+      sensor_frame: usb_cam2
+      observation_persistence: 0.0
+      expected_update_rate: 0.0
+      marking: true
+      clearing: false
+      min_obstacle_height: 0.05
+      max_obstacle_height: 2.0
+      obstacle_range: 7.0
+      model_type: 1
+
+  inflation_layer:
+    inflation_radius: 0.5
+    cost_scaling_factor: 3.0

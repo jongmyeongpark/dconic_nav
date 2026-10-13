@@ -1,0 +1,2 @@
+set(landmark_MESSAGE_FILES "/home/nvidia/dconic_nav/src/landmark/msg/img_pose.msg;/home/nvidia/dconic_nav/src/landmark/msg/img_pose_result.msg;/home/nvidia/dconic_nav/src/landmark/msg/VisionCheckResult.msg;/home/nvidia/dconic_nav/src/landmark/msg/VisionPose.msg;/home/nvidia/dconic_nav/src/landmark/msg/des_vector.msg;/home/nvidia/dconic_nav/src/landmark/msg/relocal.msg")
+set(landmark_SERVICE_FILES "")

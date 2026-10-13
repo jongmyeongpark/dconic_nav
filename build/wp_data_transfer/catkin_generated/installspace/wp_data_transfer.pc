@@ -1,0 +1,8 @@
+prefix=/home/nvidia/dconic_nav/install
+
+Name: wp_data_transfer
+Description: Description of wp_data_transfer
+Version: 0.0.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib -lwp_data_transfer
+Requires: roscpp std_msgs

@@ -1,0 +1,14 @@
+Symlinking /home/nvidia/dconic_nav/devel/share/amcl/docs/AMCLConfig-usage.dox
+Symlinking /home/nvidia/dconic_nav/devel/share/amcl/docs/AMCLConfig.dox
+Symlinking /home/nvidia/dconic_nav/devel/share/amcl/docs/AMCLConfig.wikidoc
+Symlinking /home/nvidia/dconic_nav/devel/share/amcl/cmake/amclConfig-version.cmake
+Symlinking /home/nvidia/dconic_nav/devel/share/amcl/cmake/amclConfig.cmake
+Symlinking /home/nvidia/dconic_nav/devel/lib/libamcl_pf.so
+Symlinking /home/nvidia/dconic_nav/devel/lib/libamcl_sensors.so
+Symlinking /home/nvidia/dconic_nav/devel/lib/libamcl_map.so
+Symlinking /home/nvidia/dconic_nav/devel/lib/pkgconfig/amcl.pc
+Symlinking /home/nvidia/dconic_nav/devel/lib/python3/dist-packages/amcl/__init__.py
+Symlinking /home/nvidia/dconic_nav/devel/lib/python3/dist-packages/amcl/cfg/__init__.py
+Symlinking /home/nvidia/dconic_nav/devel/lib/python3/dist-packages/amcl/cfg/AMCLConfig.py
+Symlinking /home/nvidia/dconic_nav/devel/lib/amcl/amcl
+Symlinking /home/nvidia/dconic_nav/devel/include/amcl/AMCLConfig.h

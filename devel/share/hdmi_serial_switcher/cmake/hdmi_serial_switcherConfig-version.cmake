@@ -1,0 +1,1 @@
+/home/nvidia/dconic_nav/devel/.private/hdmi_serial_switcher/share/hdmi_serial_switcher/cmake/hdmi_serial_switcherConfig-version.cmake

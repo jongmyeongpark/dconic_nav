@@ -1,0 +1,24 @@
+<launch>
+
+    <!-- send image -->
+    <node pkg="landmark" type="send_img.py" name="send_img" output="screen" respawn="false">
+        <param name="cam1" value="/usb_cam1/image_raw" />
+        <param name="cam2" value="/usb_cam2/image_raw" />
+    </node>
+
+
+    <!-- sim_check -->
+    <node pkg="landmark" type="sim_check_location_orb.py" name="location_sim_checker" output="screen" respawn="false">
+        <rosparam command="load" file="$(find landmark)/config/landmark.json" />
+    </node>
+
+
+    <!-- DB_update -->
+    <node pkg="landmark" type="new_embed_orb.py" name="dataset_update" output="screen" respawn="false">
+        <rosparam command="load" file="$(find landmark)/config/landmark.json" />
+    </node>
+
+    <!-- Relocalization -->
+    <node pkg="landmark" type="relocal.py" name="relocal" output="screen" respawn="false"/>
+
+</launch>

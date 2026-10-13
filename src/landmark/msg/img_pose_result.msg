@@ -1,0 +1,11 @@
+time stamp
+int32 sim_id
+float32 score
+float32[] amclPose
+float32[] visionPose
+float32 diff_xy
+float32 diff_rotate
+bool valid_status
+bool mismatch_status
+bool unjudge_status
+int8 relocal_status

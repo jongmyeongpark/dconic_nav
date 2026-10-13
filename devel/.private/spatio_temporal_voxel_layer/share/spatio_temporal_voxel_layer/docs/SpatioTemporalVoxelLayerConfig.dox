@@ -1,0 +1,16 @@
+\subsubsection parameters ROS parameters
+
+Reads and maintains the following parameters on the ROS server
+
+- \b "~enabled" : \b [bool] Enabled or not min: False, default: True, max: True
+- \b "~publish_voxel_map" : \b [bool] Publishes the voxel map min: False, default: False, max: True
+- \b "~voxel_size" : \b [double] Size of the voxel in meters min: 0.001, default: 0.05, max: 10.0
+- \b "~combination_method" : \b [int] Combination methods min: -2147483648, default: 1, max: 2147483647
+- \b "~mark_threshold" : \b [double] Over this threshold, the measurement will be marked min: 0.0, default: 0.0, max: 200.0
+- \b "~update_footprint_enabled" : \b [bool] Cleans where the robot's footprint is min: False, default: True, max: True
+- \b "~track_unknown_space" : \b [bool] If true, marks will be UNKNOWN (255) otherwise, FREE (0) min: False, default: True, max: True
+- \b "~decay_model" : \b [int] Decay models min: -2147483648, default: 0, max: 2147483647
+- \b "~voxel_decay" : \b [double] Seconds if linear, e^n if exponential min: -1.0, default: 10.0, max: 200.0
+- \b "~mapping_mode" : \b [bool] Mapping mode min: False, default: False, max: True
+- \b "~map_save_duration" : \b [double] f mapping, how often to save a map for safety min: 1.0, default: 60.0, max: 2000.0
+

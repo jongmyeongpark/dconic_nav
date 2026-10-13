@@ -1,0 +1,8 @@
+prefix=/home/nvidia/dconic_nav/devel/.private/ezi_servo_controller
+
+Name: ezi_servo_controller
+Description: Description of ezi_servo_controller
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: roscpp std_msgs serial

@@ -1,0 +1,7 @@
+<?xml version="0.1"?>
+
+<launch>
+    <include file="$(find comm_app)/launch/map_info.launch" />
+    <include file="$(find dconic_2dnav)/all.launch" />
+
+</launch>

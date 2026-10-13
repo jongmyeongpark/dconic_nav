@@ -1,0 +1,5 @@
+shock_detector
+/home/nvidia/dconic_nav/devel/.private/shock_detector/share/shock_detector/cmake/shock_detectorConfig-version.cmake /home/nvidia/dconic_nav/devel/share/shock_detector/cmake/shock_detectorConfig-version.cmake
+/home/nvidia/dconic_nav/devel/.private/shock_detector/share/shock_detector/cmake/shock_detectorConfig.cmake /home/nvidia/dconic_nav/devel/share/shock_detector/cmake/shock_detectorConfig.cmake
+/home/nvidia/dconic_nav/devel/.private/shock_detector/lib/pkgconfig/shock_detector.pc /home/nvidia/dconic_nav/devel/lib/pkgconfig/shock_detector.pc
+/home/nvidia/dconic_nav/devel/.private/shock_detector/lib/shock_detector/shock_detector.py /home/nvidia/dconic_nav/devel/lib/shock_detector/shock_detector.py

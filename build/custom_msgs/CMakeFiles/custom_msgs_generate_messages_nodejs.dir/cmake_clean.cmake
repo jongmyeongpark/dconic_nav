@@ -1,0 +1,41 @@
+file(REMOVE_RECURSE
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/gennodejs/ros/custom_msgs/msg/AppCmd.js"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/gennodejs/ros/custom_msgs/msg/Battery.js"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/gennodejs/ros/custom_msgs/msg/BatteryState.js"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/gennodejs/ros/custom_msgs/msg/Bumper.js"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/gennodejs/ros/custom_msgs/msg/ChargingState.js"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/gennodejs/ros/custom_msgs/msg/ColorRGB.js"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/gennodejs/ros/custom_msgs/msg/DefineSong.js"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/gennodejs/ros/custom_msgs/msg/Dependency.js"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/gennodejs/ros/custom_msgs/msg/DetectedFaces.js"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/gennodejs/ros/custom_msgs/msg/FaceInfo.js"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/gennodejs/ros/custom_msgs/msg/Form.js"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/gennodejs/ros/custom_msgs/msg/HeadCmd.js"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/gennodejs/ros/custom_msgs/msg/HeadPose.js"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/gennodejs/ros/custom_msgs/msg/Heartbeat.js"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/gennodejs/ros/custom_msgs/msg/Image64.js"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/gennodejs/ros/custom_msgs/msg/Info.js"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/gennodejs/ros/custom_msgs/msg/LedRGBColors.js"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/gennodejs/ros/custom_msgs/msg/Leds.js"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/gennodejs/ros/custom_msgs/msg/Log.js"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/gennodejs/ros/custom_msgs/msg/MachineDescription.js"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/gennodejs/ros/custom_msgs/msg/Map64.js"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/gennodejs/ros/custom_msgs/msg/MessageRTC.js"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/gennodejs/ros/custom_msgs/msg/Mode.js"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/gennodejs/ros/custom_msgs/msg/NormalizedFaces.js"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/gennodejs/ros/custom_msgs/msg/Obstacles.js"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/gennodejs/ros/custom_msgs/msg/PhoneCmdVel.js"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/gennodejs/ros/custom_msgs/msg/PlaySong.js"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/gennodejs/ros/custom_msgs/msg/Process.js"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/gennodejs/ros/custom_msgs/msg/Service.js"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/gennodejs/ros/custom_msgs/msg/State.js"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/gennodejs/ros/custom_msgs/msg/TextCmd.js"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/gennodejs/ros/custom_msgs/msg/Transition.js"
+  "/home/nvidia/dconic_nav/devel/.private/custom_msgs/share/gennodejs/ros/custom_msgs/msg/Zone.js"
+  "CMakeFiles/custom_msgs_generate_messages_nodejs"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang )
+  include(CMakeFiles/custom_msgs_generate_messages_nodejs.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

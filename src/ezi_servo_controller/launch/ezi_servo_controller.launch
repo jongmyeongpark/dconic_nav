@@ -1,0 +1,3 @@
+<launch>
+      <node pkg="ezi_servo_controller" type="ezi_servo_controller" name="ezi_servo_controller" output="screen"/>
+</launch>

@@ -1,0 +1,3 @@
+<launch>
+    <node pkg="wp_data_transfer" type="wp_msg_subscriber" name="wp_msg_subscriber" output="screen"/>
+</launch>

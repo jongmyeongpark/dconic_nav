@@ -1,0 +1,7 @@
+set(media_streamer_SETUP_PY_SETUP_MODULE "setuptools")
+set(media_streamer_SETUP_PY_VERSION "0.1.0")
+set(media_streamer_SETUP_PY_SCRIPTS "")
+set(media_streamer_SETUP_PY_PACKAGES "media_streamer")
+set(media_streamer_SETUP_PY_PACKAGE_DIRS "src/media_streamer")
+set(media_streamer_SETUP_PY_MODULES "")
+set(media_streamer_SETUP_PY_MODULE_DIRS "")

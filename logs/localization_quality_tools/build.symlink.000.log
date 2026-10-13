@@ -1,0 +1,6 @@
+Symlinking /home/nvidia/dconic_nav/devel/share/localization_quality_tools/cmake/localization_quality_toolsConfig.cmake
+Symlinking /home/nvidia/dconic_nav/devel/share/localization_quality_tools/cmake/localization_quality_toolsConfig-version.cmake
+Symlinking /home/nvidia/dconic_nav/devel/lib/pkgconfig/localization_quality_tools.pc
+Symlinking /home/nvidia/dconic_nav/devel/lib/localization_quality_tools/particle_cluster_quality.py
+Symlinking /home/nvidia/dconic_nav/devel/lib/localization_quality_tools/pose_on_costmap_checker.py
+Symlinking /home/nvidia/dconic_nav/devel/lib/localization_quality_tools/localization_quality_checker.py

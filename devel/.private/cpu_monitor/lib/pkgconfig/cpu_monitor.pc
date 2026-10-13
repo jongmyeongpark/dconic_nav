@@ -1,0 +1,8 @@
+prefix=/home/nvidia/dconic_nav/devel/.private/cpu_monitor
+
+Name: cpu_monitor
+Description: Description of cpu_monitor
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

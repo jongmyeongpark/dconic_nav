@@ -1,0 +1,21 @@
+[ 16%] Built target costmap_converter_gencfg
+[ 16%] Built target std_msgs_generate_messages_cpp
+[ 16%] Built target _costmap_converter_generate_messages_check_deps_ObstacleArrayMsg
+[ 16%] Built target geometry_msgs_generate_messages_cpp
+[ 16%] Built target _costmap_converter_generate_messages_check_deps_ObstacleMsg
+[ 16%] Built target std_msgs_generate_messages_lisp
+[ 16%] Built target geometry_msgs_generate_messages_lisp
+[ 16%] Built target std_msgs_generate_messages_py
+[ 16%] Built target geometry_msgs_generate_messages_py
+[ 16%] Built target geometry_msgs_generate_messages_nodejs
+[ 16%] Built target std_msgs_generate_messages_eus
+[ 16%] Built target std_msgs_generate_messages_nodejs
+[ 16%] Built target geometry_msgs_generate_messages_eus
+[ 23%] Built target costmap_converter_generate_messages_cpp
+[ 30%] Built target costmap_converter_generate_messages_lisp
+[ 36%] Built target costmap_converter_generate_messages_nodejs
+[ 46%] Built target costmap_converter_generate_messages_py
+[ 56%] Built target costmap_converter_generate_messages_eus
+[ 56%] Built target costmap_converter_generate_messages
+[ 93%] Built target costmap_converter
+[100%] Built target standalone_converter

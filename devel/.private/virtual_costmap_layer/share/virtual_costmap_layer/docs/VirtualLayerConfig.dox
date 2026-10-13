@@ -1,0 +1,10 @@
+\subsubsection parameters ROS parameters
+
+Reads and maintains the following parameters on the ROS server
+
+- \b "~enabled" : \b [bool] Whether to apply this plugin or not min: False, default: True, max: True
+- \b "~one_zone" : \b [bool] Save only one zone of navigation or not min: False, default: True, max: True
+- \b "~clear_obstacles" : \b [bool] Whether to clear obstacles or not min: False, default: True, max: True
+- \b "~map_frame" : \b [str] Name of the map frame min: , default: odom_combined, max: 
+- \b "~base_frame" : \b [str] Name of the base frame of the robot min: , default: base_link, max: 
+

@@ -1,0 +1,4 @@
+Symlinking /home/nvidia/dconic_nav/devel/share/esp32/cmake/esp32Config.cmake
+Symlinking /home/nvidia/dconic_nav/devel/share/esp32/cmake/esp32Config-version.cmake
+Symlinking /home/nvidia/dconic_nav/devel/lib/esp32/esp32_ir1.py
+Symlinking /home/nvidia/dconic_nav/devel/lib/pkgconfig/esp32.pc

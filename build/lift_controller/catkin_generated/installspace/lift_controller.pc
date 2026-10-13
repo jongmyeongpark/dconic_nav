@@ -1,0 +1,8 @@
+prefix=/home/nvidia/dconic_nav/install
+
+Name: lift_controller
+Description: Description of lift_controller
+Version: 3.0.0
+Cflags: 
+Libs: -L${prefix}/lib -llift_controller
+Requires: rospy std_msgs

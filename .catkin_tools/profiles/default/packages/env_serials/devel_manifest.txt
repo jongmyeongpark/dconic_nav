@@ -1,0 +1,4 @@
+env_serials
+/home/nvidia/dconic_nav/devel/.private/env_serials/share/env_serials/cmake/env_serialsConfig-version.cmake /home/nvidia/dconic_nav/devel/share/env_serials/cmake/env_serialsConfig-version.cmake
+/home/nvidia/dconic_nav/devel/.private/env_serials/share/env_serials/cmake/env_serialsConfig.cmake /home/nvidia/dconic_nav/devel/share/env_serials/cmake/env_serialsConfig.cmake
+/home/nvidia/dconic_nav/devel/.private/env_serials/lib/pkgconfig/env_serials.pc /home/nvidia/dconic_nav/devel/lib/pkgconfig/env_serials.pc

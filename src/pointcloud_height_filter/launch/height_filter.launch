@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- 전방 카메라 높이 필터 -->
+  <node name="height_filter_front" pkg="pointcloud_height_filter" type="height_filter_node"
+        output="screen" respawn="true">
+    <param name="input_topic"   value="/depth_anything/pointcloud_raw_front"/>
+    <param name="output_topic"  value="/depth_anything/pointcloud_front"/>
+
+    <!-- 초기값 — rqt_reconfigure 로 실시간 튜닝 가능 -->
+    <param name="camera_height"       value="1.177"/>
+    <param name="camera_pitch"        value="0.0"/>    <!-- 라디안, 양수=아래쪽 기울기 -->
+    <param name="min_obstacle_height" value="0.10"/>   <!-- 0.3 → 0.1로 낮게 시작해서 올려가며 튜닝 -->
+    <param name="max_obstacle_height" value="1.80"/>
+    <param name="enabled"             value="true"/>
+  </node>
+
+  <!-- 후방 카메라 높이 필터 -->
+  <node name="height_filter_rear" pkg="pointcloud_height_filter" type="height_filter_node"
+        output="screen" respawn="true">
+    <param name="input_topic"   value="/depth_anything/pointcloud_raw_rear"/>
+    <param name="output_topic"  value="/depth_anything/pointcloud_rear"/>
+
+    <param name="camera_height"       value="1.177"/>
+    <param name="camera_pitch"        value="0.0"/>
+    <param name="min_obstacle_height" value="0.10"/>
+    <param name="max_obstacle_height" value="1.80"/>
+    <param name="enabled"             value="true"/>
+  </node>
+
+</launch>

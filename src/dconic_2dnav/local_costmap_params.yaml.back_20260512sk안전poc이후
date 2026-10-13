@@ -1,0 +1,48 @@
+local_costmap:
+# change odom=>robot_pose_ekf/odom_combined
+  global_frame: odom_combined
+#  global_frame: map
+  robot_base_frame: base_link
+# 20.11.30 sykim change-costmap clean test
+  update_frequency: 5.0 #3.0 #dhjeon 20.12.17 change-(before value:5.0) our system cannot be update to 5Hz. need to optimize to speed
+  publish_frequency: 5.0 #5.0 #1.0  
+  static_map: false
+  rolling_window: true
+  width: 7.0 #21.02.19 dhjeon before 20.0
+  height: 7.0 #21.02.19 dhjeon before 20.0
+  always_send_full_costmap: true
+  
+  plugins:
+    - {name: obstacle_layer, type: "costmap_2d::ObstacleLayer"}
+#    - {name: sonar, type: "range_sensor_layer::RangeSensorLayer"}
+    - {name: virtual_layer, type: "virtual_costmap_layer::VirtualLayer" }
+    - {name: inflation_layer, type: "costmap_2d::InflationLayer"}
+
+  obstacle_layer:
+    observation_sources: laser
+    laser: {data_type: LaserScan, topic: scan_multi, marking: true, clearing: true, inf_is_valid: true}
+
+  sonar:
+    topics: ["/sonar1", "/sonar2", "/sonar3", "/sonar4", "/sonar5"]
+    topics: ["/sonar1", "/sonar2", "/sonar3", "/sonar4"]
+    no_readings_timeout: 1.0
+    clear_threshold: 0.3
+    mark_threshold: 0.6 #0.8
+    clear_on_max_reading: true #21.02.05 jdh
+
+  virtual_layer:
+    enabled:              true
+    zone_topics:          [/virtual_costmap_layer/zone]
+    obstacle_topics:      [/virtual_costmap_layer/obstacles]
+    one_zone:             false
+    forms:    
+     - [0.4, 0.0]
+     - [[0.4, 0.0]]
+     - [[-0.4, 0.0],[0.0, 0.4]]
+     - [[5, 5],[-5, 5],[-5, -5],[5, -5]]
+    is_local:                true
+
+  inflation_layer:
+    inflation_radius: 0.7 # 1.0 => 0.43 210517
+    cost_scaling_factor: 10.0 #2.0=> 10.0 210517
+

@@ -1,0 +1,3 @@
+<launch>
+    <node pkg="rosping" type="rosping" name="rosping" output="screen"/>
+</launch>

@@ -1,0 +1,5 @@
+Symlinking /home/nvidia/dconic_nav/devel/share/ble_serial_manager/cmake/ble_serial_managerConfig.cmake
+Symlinking /home/nvidia/dconic_nav/devel/share/ble_serial_manager/cmake/ble_serial_managerConfig-version.cmake
+Symlinking /home/nvidia/dconic_nav/devel/lib/pkgconfig/ble_serial_manager.pc
+Symlinking /home/nvidia/dconic_nav/devel/lib/ble_serial_manager/Serial_Check_node
+Symlinking /home/nvidia/dconic_nav/devel/lib/ble_serial_manager/ble_serial_manager

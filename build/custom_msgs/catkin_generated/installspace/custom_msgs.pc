@@ -1,0 +1,8 @@
+prefix=/home/nvidia/dconic_nav/install
+
+Name: custom_msgs
+Description: Description of custom_msgs
+Version: 0.1.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib 
+Requires: roscpp rospy message_runtime std_msgs geometry_msgs nav_msgs

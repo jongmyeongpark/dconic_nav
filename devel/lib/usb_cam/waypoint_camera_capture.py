@@ -1,0 +1,1 @@
+/home/nvidia/dconic_nav/devel/.private/usb_cam/lib/usb_cam/waypoint_camera_capture.py

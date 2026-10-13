@@ -1,0 +1,1 @@
+/home/nvidia/dconic_nav/devel/.private/ble_serial_manager/lib/pkgconfig/ble_serial_manager.pc

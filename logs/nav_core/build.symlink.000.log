@@ -1,0 +1,3 @@
+Symlinking /home/nvidia/dconic_nav/devel/share/nav_core/cmake/nav_coreConfig-version.cmake
+Symlinking /home/nvidia/dconic_nav/devel/share/nav_core/cmake/nav_coreConfig.cmake
+Symlinking /home/nvidia/dconic_nav/devel/lib/pkgconfig/nav_core.pc

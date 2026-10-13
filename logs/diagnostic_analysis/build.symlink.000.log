@@ -1,0 +1,6 @@
+Symlinking /home/nvidia/dconic_nav/devel/share/diagnostic_analysis/cmake/diagnostic_analysisConfig-version.cmake
+Symlinking /home/nvidia/dconic_nav/devel/share/diagnostic_analysis/cmake/diagnostic_analysisConfig.cmake
+Symlinking /home/nvidia/dconic_nav/devel/lib/pkgconfig/diagnostic_analysis.pc
+Symlinking /home/nvidia/dconic_nav/devel/lib/diagnostic_analysis/export_csv.py
+Symlinking /home/nvidia/dconic_nav/devel/lib/diagnostic_analysis/sparse_csv.py
+Symlinking /home/nvidia/dconic_nav/devel/lib/python3/dist-packages/diagnostic_analysis/__init__.py

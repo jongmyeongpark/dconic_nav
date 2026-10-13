@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<launch>
+
+  <arg name="base_global_planner" default="global_planner/GlobalPlanner"/>
+  <arg name="base_local_planner"  default="teb_local_planner/TebLocalPlannerROS"/>
+  <arg name="cmd_vel_topic"       default="/cmd_vel"/>
+  <arg name="odom_topic"          default="robot_pose_ekf/odom_combined"/>
+
+  <!-- move_base: AMCL/map 없이 odom 기준으로만 동작 -->
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+    <param name="base_global_planner"  value="$(arg base_global_planner)"/>
+    <param name="base_local_planner"   value="$(arg base_local_planner)"/>
+    <param name="controller_frequency" value="5.0"/>
+
+    <rosparam file="$(find dconic_2dnav)/costmap_common_params.yaml"  command="load" ns="global_costmap"/>
+    <rosparam file="$(find dconic_2dnav)/costmap_common_params.yaml"  command="load" ns="local_costmap"/>
+    <rosparam file="$(find dconic_2dnav)/local_costmap_params.yaml"   command="load"/>
+    <rosparam file="$(find dconic_2dnav)/global_costmap_params.yaml"  command="load"/>
+    <rosparam file="$(find dconic_2dnav)/base_global_planner_param.yaml" command="load"/>
+    <rosparam file="$(find dconic_2dnav)/teb_local_planner.yaml"      command="load"/>
+    <rosparam file="$(find dconic_2dnav)/costmap_converter_params.yaml" command="load"/>
+
+    <remap from="cmd_vel" to="$(arg cmd_vel_topic)"/>
+    <remap from="odom"    to="$(arg odom_topic)"/>
+  </node>
+
+</launch>

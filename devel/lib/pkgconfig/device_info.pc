@@ -1,0 +1,1 @@
+/home/nvidia/dconic_nav/devel/.private/device_info/lib/pkgconfig/device_info.pc

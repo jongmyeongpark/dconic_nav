@@ -1,0 +1,8 @@
+robot_bridge/rosbridge_server
+/home/nvidia/dconic_nav/devel/.private/rosbridge_server/share/rosbridge_server/cmake/rosbridge_serverConfig-version.cmake /home/nvidia/dconic_nav/devel/share/rosbridge_server/cmake/rosbridge_serverConfig-version.cmake
+/home/nvidia/dconic_nav/devel/.private/rosbridge_server/share/rosbridge_server/cmake/rosbridge_serverConfig.cmake /home/nvidia/dconic_nav/devel/share/rosbridge_server/cmake/rosbridge_serverConfig.cmake
+/home/nvidia/dconic_nav/devel/.private/rosbridge_server/lib/pkgconfig/rosbridge_server.pc /home/nvidia/dconic_nav/devel/lib/pkgconfig/rosbridge_server.pc
+/home/nvidia/dconic_nav/devel/.private/rosbridge_server/lib/python3/dist-packages/rosbridge_server/__init__.py /home/nvidia/dconic_nav/devel/lib/python3/dist-packages/rosbridge_server/__init__.py
+/home/nvidia/dconic_nav/devel/.private/rosbridge_server/lib/rosbridge_server/rosbridge_websocket.py /home/nvidia/dconic_nav/devel/lib/rosbridge_server/rosbridge_websocket.py
+/home/nvidia/dconic_nav/devel/.private/rosbridge_server/lib/rosbridge_server/rosbridge_tcp.py /home/nvidia/dconic_nav/devel/lib/rosbridge_server/rosbridge_tcp.py
+/home/nvidia/dconic_nav/devel/.private/rosbridge_server/lib/rosbridge_server/rosbridge_udp.py /home/nvidia/dconic_nav/devel/lib/rosbridge_server/rosbridge_udp.py

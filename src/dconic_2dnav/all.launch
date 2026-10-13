@@ -1,0 +1,10 @@
+<?xml version="0.1"?>
+
+<launch>
+
+    <include file="$(find dconic_2dnav)/sensors.launch" />
+    <include file="$(find follow_waypoints)/launch/follow_waypoints.launch" />
+    <include file="$(find device_info)/launch/device_info.launch" />
+    <include file="$(find wp_data_transfer)/launch/wp_data_transfer.launch" />
+
+</launch>

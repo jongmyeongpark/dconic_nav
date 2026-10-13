@@ -1,0 +1,4 @@
+Symlinking /home/nvidia/dconic_nav/devel/share/rosping/cmake/rospingConfig-version.cmake
+Symlinking /home/nvidia/dconic_nav/devel/share/rosping/cmake/rospingConfig.cmake
+Symlinking /home/nvidia/dconic_nav/devel/lib/pkgconfig/rosping.pc
+Symlinking /home/nvidia/dconic_nav/devel/lib/rosping/rosping

@@ -1,0 +1,7 @@
+[01m[K/home/nvidia/dconic_nav/src/follow_waypoints/src/follow_waypoints.cpp:[m[K In function ‘[01m[Kint main(int, char**)[m[K’:
+[01m[K/home/nvidia/dconic_nav/src/follow_waypoints/src/follow_waypoints.cpp:487:13:[m[K [01;31m[Kerror: [m[K‘[01m[KpreviousDrivingState_[m[K’ was not declared in this scope
+  487 |         if ([01;31m[KpreviousDrivingState_[m[K != drivingState_){
+      |             [01;31m[K^~~~~~~~~~~~~~~~~~~~~[m[K
+make[2]: *** [CMakeFiles/follow_waypoints.dir/build.make:63: CMakeFiles/follow_waypoints.dir/src/follow_waypoints.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:211: CMakeFiles/follow_waypoints.dir/all] Error 2
+make: *** [Makefile:141: all] Error 2

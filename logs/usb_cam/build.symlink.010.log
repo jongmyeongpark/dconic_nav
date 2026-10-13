@@ -1,0 +1,6 @@
+Linked: (/home/nvidia/dconic_nav/devel/.private/usb_cam/share/usb_cam/cmake/usb_camConfig.cmake, /home/nvidia/dconic_nav/devel/share/usb_cam/cmake/usb_camConfig.cmake)
+Linked: (/home/nvidia/dconic_nav/devel/.private/usb_cam/share/usb_cam/cmake/usb_camConfig-version.cmake, /home/nvidia/dconic_nav/devel/share/usb_cam/cmake/usb_camConfig-version.cmake)
+Linked: (/home/nvidia/dconic_nav/devel/.private/usb_cam/lib/libusb_cam.so, /home/nvidia/dconic_nav/devel/lib/libusb_cam.so)
+Linked: (/home/nvidia/dconic_nav/devel/.private/usb_cam/lib/pkgconfig/usb_cam.pc, /home/nvidia/dconic_nav/devel/lib/pkgconfig/usb_cam.pc)
+Linked: (/home/nvidia/dconic_nav/devel/.private/usb_cam/lib/usb_cam/usb_cam_node, /home/nvidia/dconic_nav/devel/lib/usb_cam/usb_cam_node)
+Linked: (/home/nvidia/dconic_nav/devel/.private/usb_cam/lib/usb_cam/waypoint_camera_capture.py, /home/nvidia/dconic_nav/devel/lib/usb_cam/waypoint_camera_capture.py)

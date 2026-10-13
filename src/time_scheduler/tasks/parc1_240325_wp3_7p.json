@@ -1,0 +1,41 @@
+{
+    "waypoint_name": "parc1_240325_wp2_9p",
+    "length": 8,
+    "tasks": [
+        {
+            "task": "none",
+            "task_value": 0,
+            "task_num": 0
+        },
+        {
+            "task": "none",
+            "task_value": 0,
+            "task_num": 0
+        },
+        {
+            "task": "speak",
+            "task_value": 60,
+            "task_num": 1
+        },
+        {
+            "task": "none",
+            "task_value": 0,
+            "task_num": 0
+        },
+        {
+            "task": "none",
+            "task_value": 0,
+            "task_num": 0
+        },
+        {
+            "task": "speak",
+            "task_value": 60,
+            "task_num": 2
+        },
+        {
+            "task": "none",
+            "task_value": 0,
+            "task_num": 0
+        }
+    ]
+}

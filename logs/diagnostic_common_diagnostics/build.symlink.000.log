@@ -1,0 +1,9 @@
+Symlinking /home/nvidia/dconic_nav/devel/share/diagnostic_common_diagnostics/cmake/diagnostic_common_diagnosticsConfig-version.cmake
+Symlinking /home/nvidia/dconic_nav/devel/share/diagnostic_common_diagnostics/cmake/diagnostic_common_diagnosticsConfig.cmake
+Symlinking /home/nvidia/dconic_nav/devel/lib/diagnostic_common_diagnostics/cpu_monitor.py
+Symlinking /home/nvidia/dconic_nav/devel/lib/diagnostic_common_diagnostics/sensors_monitor.py
+Symlinking /home/nvidia/dconic_nav/devel/lib/diagnostic_common_diagnostics/hd_monitor.py
+Symlinking /home/nvidia/dconic_nav/devel/lib/diagnostic_common_diagnostics/ntp_monitor.py
+Symlinking /home/nvidia/dconic_nav/devel/lib/diagnostic_common_diagnostics/tf_monitor.py
+Symlinking /home/nvidia/dconic_nav/devel/lib/pkgconfig/diagnostic_common_diagnostics.pc
+Symlinking /home/nvidia/dconic_nav/devel/lib/python3/dist-packages/diagnostic_common_diagnostics/__init__.py

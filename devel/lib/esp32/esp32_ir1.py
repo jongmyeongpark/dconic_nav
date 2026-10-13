@@ -1,0 +1,1 @@
+/home/nvidia/dconic_nav/devel/.private/esp32/lib/esp32/esp32_ir1.py

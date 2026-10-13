@@ -1,0 +1,1 @@
+/home/nvidia/dconic_nav/devel/.private/ltme_node/share/roseus/ros/ltme_node/srv/QuerySerial.l

@@ -1,0 +1,1 @@
+/home/nvidia/dconic_nav/devel/.private/node_alive/share/roseus/ros/node_alive/manifest.l

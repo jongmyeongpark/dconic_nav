@@ -1,0 +1,1 @@
+/home/nvidia/dconic_nav/devel/.private/localization_quality_tools/lib/pkgconfig/localization_quality_tools.pc

@@ -1,0 +1,1 @@
+/home/nvidia/dconic_nav/devel/.private/comm_app/share/roseus/ros/comm_app/msg/state_msg.l

@@ -1,0 +1,8 @@
+prefix=/home/nvidia/dconic_nav/devel/.private/diagnostic_analysis
+
+Name: diagnostic_analysis
+Description: Description of diagnostic_analysis
+Version: 1.9.7
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: diagnostic_msgs rosbag roslib

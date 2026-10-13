@@ -1,0 +1,246 @@
+#!/usr/bin/env python
+# Software License Agreement (BSD License)
+#
+# Copyright (c) 2012, Willow Garage, Inc.
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions
+# are met:
+#
+#  * Redistributions of source code must retain the above copyright
+#    notice, this list of conditions and the following disclaimer.
+#  * Redistributions in binary form must reproduce the above
+#    copyright notice, this list of conditions and the following
+#    disclaimer in the documentation and/or other materials provided
+#    with the distribution.
+#  * Neither the name of Willow Garage, Inc. nor the names of its
+#    contributors may be used to endorse or promote products derived
+#    from this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+# POSSIBILITY OF SUCH DAMAGE.
+
+from __future__ import print_function
+import rospy
+import sys
+import json
+
+from twisted.python import log
+from twisted.internet import reactor, ssl, endpoints
+from twisted.internet.error import CannotListenError, ReactorNotRunning
+from distutils.version import LooseVersion
+import autobahn #to check version
+from autobahn.twisted.websocket import WebSocketServerFactory, listenWS, WebSocketClientFactory
+from autobahn.websocket.compress import (PerMessageDeflateOffer,
+                                         PerMessageDeflateOfferAccept)
+log.startLogging(sys.stdout)
+
+from rosbridge_agent.autobahn_websocket import RosbridgeWebSocketClient, ReconnectWebsocketClientFactory
+from rosbridge_agent import ClientManager
+from rosbridge_agent.util import get_ephemeral_port
+
+from rosbridge_library.capabilities.advertise import Advertise
+from rosbridge_library.capabilities.publish import Publish
+from rosbridge_library.capabilities.subscribe import Subscribe
+from rosbridge_library.capabilities.advertise_service import AdvertiseService
+from rosbridge_library.capabilities.unadvertise_service import UnadvertiseService
+from rosbridge_library.capabilities.call_service import CallService
+
+from std_msgs.msg import String
+
+
+class OnShutdownHook :
+    def __init__(self, connector):
+        self.connector = connector
+
+    def shutdown_hook(self):
+        try:
+            self.connector.disconnect()
+            reactor.stop()
+        except ReactorNotRunning:
+            rospy.logwarn("Can't stop the reactor, it wasn't running")
+
+def callback_identification(data):
+    rospy.loginfo("callback_identification %s", data.data)
+    subscriber.unregister()
+
+    id_text = data.data
+    ids = json.loads(id_text)
+    f_code = ids.get("f_code", None)
+    serial = ids.get("serial", None)
+    api_key = rospy.get_param('~api_key', False)
+
+    RosbridgeWebSocketClient.f_code = f_code
+    RosbridgeWebSocketClient.serial = serial
+
+    use_compression = rospy.get_param('~use_compression', False)
+
+    def handle_compression_offers(offers):
+        if not use_compression:
+            return
+        for offer in offers:
+            if isinstance(offer, PerMessageDeflateOffer):
+                return PerMessageDeflateOfferAccept(offer)
+
+    if RosbridgeWebSocketClient.max_message_size == "None":
+        RosbridgeWebSocketClient.max_message_size = None
+
+    ping_interval = float(rospy.get_param('~websocket_ping_interval', 0))
+    ping_timeout = float(rospy.get_param('~websocket_ping_timeout', 30))
+    null_origin = rospy.get_param('~websocket_null_origin', True) #default to original behaviour
+
+    retry_startup_delay = rospy.get_param('~retry_startup_delay', 2.0)  # seconds
+    use_compression = rospy.get_param('~use_compression', False)
+
+    # get RosbridgeProtocol parameters
+    RosbridgeWebSocketClient.fragment_timeout = rospy.get_param('~fragment_timeout',
+                                                          RosbridgeWebSocketClient.fragment_timeout)
+
+    RosbridgeWebSocketClient.delay_between_messages = rospy.get_param('~delay_between_messages',
+                                                                RosbridgeWebSocketClient.delay_between_messages)
+
+    RosbridgeWebSocketClient.max_message_size = rospy.get_param('~max_message_size',
+                                                          RosbridgeWebSocketClient.max_message_size)
+
+    RosbridgeWebSocketClient.unregister_timeout = rospy.get_param('~unregister_timeout',
+                                                          RosbridgeWebSocketClient.unregister_timeout)
+
+    bson_only_mode = rospy.get_param('~bson_only_mode', False)
+                                                          
+    if RosbridgeWebSocketClient.max_message_size == "None":
+        RosbridgeWebSocketClient.max_message_size = None
+
+    client_manager = ClientManager()
+    RosbridgeWebSocketClient.client_manager = client_manager
+
+    server_url = rospy.get_param('~server_url')
+    server_host = rospy.get_param('~server_host')
+    server_port = rospy.get_param('~server_port')
+
+    client_factory = ReconnectWebsocketClientFactory(server_url)
+    client_factory.protocol = RosbridgeWebSocketClient
+
+    if LooseVersion(autobahn.__version__) < LooseVersion("0.15.0"):
+        client_factory.setProtocolOptions(
+            perMessageCompressionAccept=handle_compression_offers,
+            autoPingInterval=ping_interval,
+            autoPingTimeout=ping_timeout,
+            # url=server_url
+        )
+    else:
+        client_factory.setProtocolOptions(
+            perMessageCompressionAccept=handle_compression_offers,
+            autoPingInterval=ping_interval,
+            autoPingTimeout=ping_timeout,
+            # url=server_url
+            # allowNullOrigin=null_origin,
+        )
+
+    client_factory.headers = {
+        "x-f_code": f_code,
+        "x-serial": serial,
+        "x-api-key": api_key
+    }
+
+    rospy.loginfo('Rosbridge WebSocket client request connected at %s:%s' % (server_url, server_port))
+    connector = reactor.connectSSL(server_host, server_port, client_factory, ssl.ClientContextFactory())
+    onShutdownHook = OnShutdownHook(connector)
+
+    # endpoint = endpoints.HostnameEndpoint(reactor, server_host, server_port)
+    # startTLSClient = yield endpoint.connect(client_factory)
+    # onShutdownHook = OnShutdownHook(startTLSClient)
+
+    rospy.on_shutdown(onShutdownHook.shutdown_hook)
+    
+    reactor.run()
+
+
+
+if __name__ == "__main__":
+    rospy.init_node("rosbridge_agent_websocket")
+
+    rospy.loginfo("rosbridge_agent_websocket start")
+    subscriber = rospy.Subscriber("/flyinglet/identification", String, callback_identification, queue_size=1)
+
+    rospy.spin()
+
+    # rospy.init_node("rosbridge_agent_websocket")
+
+    # use_compression = rospy.get_param('~use_compression', False)
+
+    # def handle_compression_offers(offers):
+    #     if not use_compression:
+    #         return
+    #     for offer in offers:
+    #         if isinstance(offer, PerMessageDeflateOffer):
+    #             return PerMessageDeflateOfferAccept(offer)
+
+    # if RosbridgeWebSocketClient.max_message_size == "None":
+    #     RosbridgeWebSocketClient.max_message_size = None
+
+    # ping_interval = float(rospy.get_param('~websocket_ping_interval', 0))
+    # ping_timeout = float(rospy.get_param('~websocket_ping_timeout', 30))
+    # null_origin = rospy.get_param('~websocket_null_origin', True) #default to original behaviour
+
+    # retry_startup_delay = rospy.get_param('~retry_startup_delay', 2.0)  # seconds
+    # use_compression = rospy.get_param('~use_compression', False)
+
+    # # get RosbridgeProtocol parameters
+    # RosbridgeWebSocketClient.fragment_timeout = rospy.get_param('~fragment_timeout',
+    #                                                       RosbridgeWebSocketClient.fragment_timeout)
+
+    # RosbridgeWebSocketClient.delay_between_messages = rospy.get_param('~delay_between_messages',
+    #                                                             RosbridgeWebSocketClient.delay_between_messages)
+
+    # RosbridgeWebSocketClient.max_message_size = rospy.get_param('~max_message_size',
+    #                                                       RosbridgeWebSocketClient.max_message_size)
+
+    # RosbridgeWebSocketClient.unregister_timeout = rospy.get_param('~unregister_timeout',
+    #                                                       RosbridgeWebSocketClient.unregister_timeout)
+
+    # bson_only_mode = rospy.get_param('~bson_only_mode', False)
+                                                          
+    # if RosbridgeWebSocketClient.max_message_size == "None":
+    #     RosbridgeWebSocketClient.max_message_size = None
+
+    # client_manager = ClientManager()
+    # RosbridgeWebSocketClient.client_manager = client_manager
+
+    # server_uri = rospy.get_param('~server_uri')
+    # server_port = rospy.get_param('~server_port')
+
+    # client_factory = ReconnectWebsocketClientFactory()
+    # client_factory.protocol = RosbridgeWebSocketClient
+
+    # if LooseVersion(autobahn.__version__) < LooseVersion("0.15.0"):
+    #     client_factory.setProtocolOptions(
+    #         perMessageCompressionAccept=handle_compression_offers,
+    #         autoPingInterval=ping_interval,
+    #         autoPingTimeout=ping_timeout,
+    #     )
+    # else:
+    #     client_factory.setProtocolOptions(
+    #         perMessageCompressionAccept=handle_compression_offers,
+    #         autoPingInterval=ping_interval,
+    #         autoPingTimeout=ping_timeout,
+    #         # allowNullOrigin=null_origin,
+    #     )
+
+    # rospy.loginfo('Rosbridge WebSocket client request connected at %s:%s' % (server_uri, server_port))
+    # connector = reactor.connectTCP(server_uri, server_port, client_factory)
+
+    # onShutdownHook = OnShutdownHook(connector)
+    # rospy.on_shutdown(onShutdownHook.shutdown_hook)
+    
+    # reactor.run()

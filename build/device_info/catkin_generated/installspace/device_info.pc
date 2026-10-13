@@ -1,0 +1,8 @@
+prefix=/home/nvidia/dconic_nav/install
+
+Name: device_info
+Description: Description of device_info
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

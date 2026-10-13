@@ -1,0 +1,8 @@
+prefix=/home/nvidia/dconic_nav/devel/.private/charge_manager
+
+Name: charge_manager
+Description: Description of charge_manager
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

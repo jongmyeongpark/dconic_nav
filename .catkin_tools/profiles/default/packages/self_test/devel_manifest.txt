@@ -1,0 +1,11 @@
+diagnostics/self_test
+/home/nvidia/dconic_nav/devel/.private/self_test/share/self_test/cmake/self_testConfig.cmake /home/nvidia/dconic_nav/devel/share/self_test/cmake/self_testConfig.cmake
+/home/nvidia/dconic_nav/devel/.private/self_test/share/self_test/cmake/self_testConfig-version.cmake /home/nvidia/dconic_nav/devel/share/self_test/cmake/self_testConfig-version.cmake
+/home/nvidia/dconic_nav/devel/.private/self_test/lib/pkgconfig/self_test.pc /home/nvidia/dconic_nav/devel/lib/pkgconfig/self_test.pc
+/home/nvidia/dconic_nav/devel/.private/self_test/lib/self_test/nominal_selftest /home/nvidia/dconic_nav/devel/lib/self_test/nominal_selftest
+/home/nvidia/dconic_nav/devel/.private/self_test/lib/self_test/selftest_example /home/nvidia/dconic_nav/devel/lib/self_test/selftest_example
+/home/nvidia/dconic_nav/devel/.private/self_test/lib/self_test/exception_selftest /home/nvidia/dconic_nav/devel/lib/self_test/exception_selftest
+/home/nvidia/dconic_nav/devel/.private/self_test/lib/self_test/run_selftest /home/nvidia/dconic_nav/devel/lib/self_test/run_selftest
+/home/nvidia/dconic_nav/devel/.private/self_test/lib/self_test/no_id_selftest /home/nvidia/dconic_nav/devel/lib/self_test/no_id_selftest
+/home/nvidia/dconic_nav/devel/.private/self_test/lib/self_test/selftest_rostest /home/nvidia/dconic_nav/devel/lib/self_test/selftest_rostest
+/home/nvidia/dconic_nav/devel/.private/self_test/lib/self_test/error_selftest /home/nvidia/dconic_nav/devel/lib/self_test/error_selftest

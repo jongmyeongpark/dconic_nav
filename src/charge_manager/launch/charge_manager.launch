@@ -1,0 +1,3 @@
+<launch>
+    <node pkg="charge_manager" type="charge_manager_node" name="charge_manager" output="screen"/>
+</launch>

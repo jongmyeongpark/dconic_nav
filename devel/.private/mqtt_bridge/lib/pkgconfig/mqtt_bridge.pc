@@ -1,0 +1,8 @@
+prefix=/home/nvidia/dconic_nav/devel/.private/mqtt_bridge
+
+Name: mqtt_bridge
+Description: Description of mqtt_bridge
+Version: 0.2.1
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

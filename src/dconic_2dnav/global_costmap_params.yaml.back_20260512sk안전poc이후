@@ -1,0 +1,41 @@
+GlobalPlanner:
+  allow_unknown: false # dhjeon 20.12.17 add-To prohibit track unknown space
+global_costmap:
+  global_frame: map
+  rolling_window: true #true 210907 jmlee
+  robot_base_frame: base_link
+  update_frequency: 1.0 #5.0
+  publish_frequency: 1.0 #test
+  track_unknown_space: false
+  static_map: false
+  width: 50.0
+  height: 50.0
+  always_send_full_costmap: true
+
+
+  plugins:
+    - {name: static_layer, type: "costmap_2d::StaticLayer"}
+    - {name: virtual_layer, type: "virtual_costmap_layer::VirtualLayer" }
+    - {name: inflation_layer, type: "costmap_2d::InflationLayer"}
+
+  static_layer:
+    map_topic: map
+    subscribe_to_updates: true
+    track_unknown_space: false
+    
+  virtual_layer:
+    enabled:              true
+    zone_topics:          [/virtual_costmap_layer/zone]
+    obstacle_topics:      [/virtual_costmap_layer/obstacles]
+    one_zone:             false
+    forms:    
+     - [0.4, 0.0]
+     - [[0.4, 0.0]]
+     - [[-0.4, 0.0],[0.0, 0.4]]
+     - [[5, 5],[-5, 5],[-5, -5],[5, -5]] 
+    is_local:                false
+
+  inflation_layer:
+    inflation_radius: 0.7 # 1.0 => 2.0 210604
+    cost_scaling_factor: 10.0 # 4.0 => 1.0  210604
+

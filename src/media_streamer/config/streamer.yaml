@@ -1,0 +1,18 @@
+remote:
+  key: xwOumAnLPs3HKPLYVz6F94blhCgXeMnW2A0Mlqj8
+  robot_id: tesla_model_s
+
+streamer:
+  front:
+    topic: /usb_cam1/image_raw/compressed
+    msg_type: sensor_msgs/CompressedImage
+  back: 
+    topic: /usb_cam2/image_raw/compressed
+    msg_type: sensor_msgs/CompressedImage
+  # thermal: 
+  #   topic: /thermal_cam/thermal
+  #   msg_type: sensor_msgs/CompressedImage
+  # top:
+  #   topic: /usb_cam3/image_raw/compressed
+  #   msg_type: sensor_msgs/CompressedImage
+    

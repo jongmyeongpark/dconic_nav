@@ -1,0 +1,4 @@
+[ 71%] Built target serial
+[ 85%] [32mBuilding CXX object CMakeFiles/hdmi_serial_switcher_node.dir/src/hdmi_serial_switcher_node.cpp.o[0m
+[100%] [32m[1mLinking CXX executable /home/nvidia/dconic_nav/devel/.private/hdmi_serial_switcher/lib/hdmi_serial_switcher/hdmi_serial_switcher_node[0m
+[100%] Built target hdmi_serial_switcher_node

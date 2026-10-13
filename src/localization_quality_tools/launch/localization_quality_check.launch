@@ -1,0 +1,10 @@
+<launch>
+  <!-- Localization Quality Checker -->
+  <node pkg="localization_quality_tools" type="localization_quality_checker.py" name="localization_quality_checker" output="screen" />
+
+  <!-- Particle Cluster Quality --> 
+  <node pkg="localization_quality_tools" type="particle_cluster_quality.py" name="particle_cluster_quality" output="screen"/> 
+
+  <!-- Pose on Costmap Checker -->
+  <node pkg="localization_quality_tools" type="pose_on_costmap_checker.py" name="pose_on_costmap_checker" output="screen"/>
+</launch>

@@ -1,0 +1,4 @@
+Symlinking /home/nvidia/dconic_nav/devel/share/restricted_area_maker/cmake/restricted_area_makerConfig.cmake
+Symlinking /home/nvidia/dconic_nav/devel/share/restricted_area_maker/cmake/restricted_area_makerConfig-version.cmake
+Symlinking /home/nvidia/dconic_nav/devel/lib/pkgconfig/restricted_area_maker.pc
+Symlinking /home/nvidia/dconic_nav/devel/lib/restricted_area_maker/restricted_area_maker_node

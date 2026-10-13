@@ -1,0 +1,13 @@
+<launch>
+  <env name="ROSCONSOLE_FORMAT" value="[${severity}][${thread}][${node}/${function}:${line}]: ${message}"/>
+
+  <node pkg="follow_waypoints" type="follow_waypoints" name="follow_waypoints" output="screen" clear_params="true">
+    <param name="goal_frame_id" value="map"/>
+  </node>
+  <!-- waypoint camera capture -->
+  <node pkg="usb_cam" type="waypoint_camera_capture.py"
+        name="waypoint_camera_capture" output="screen" respawn="true"
+        launch-prefix="python3"/>
+
+</launch>
+

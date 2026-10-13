@@ -1,0 +1,15 @@
+<!-- -*- mode: XML -*- -->
+<launch>
+    <remap from="tf_old" to="tf" />
+    <node pkg="tf" type="tf_remap" name="tf_remapper" output="screen">
+       <rosparam param="mappings">
+          [{old: base_link, new: base_link2}]
+       </rosparam>
+       <param name="is_bidirectional" value="true" />
+     </node>
+
+  <!-- rviz -->
+  <!-- <node pkg="rviz" type="rviz" name="rviz" />  -->
+  <!--<node pkg="rviz" type="rviz" name="rviz" args="-d $(find gmapping)/rviz/gmapping.rviz"/>-->
+  <!--<node pkg="rviz" type="rviz" name="rviz" args="/home/nvidia/dconic_explr/src/navigation_rviz_conf.rviz"/>-->
+</launch>

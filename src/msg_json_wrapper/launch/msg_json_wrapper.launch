@@ -1,0 +1,3 @@
+<launch>
+    <node pkg="msg_json_wrapper" type="msg_json_wrapper" name="msg_json_wrapper" output="screen"/>
+</launch>

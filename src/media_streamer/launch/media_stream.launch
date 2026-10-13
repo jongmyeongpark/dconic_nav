@@ -1,0 +1,13 @@
+<launch>
+
+  <!-- Socket.IO base URL for flyinglet-media. Override with http(s)://<server>:3000 in deployment. -->
+  <arg name="signal_host" default="http://localhost:3000" />
+  <arg name="signal_verify_ssl" default="true" />
+
+  <node name="media_streamer" pkg="media_streamer" type="launch_stream.py"  output="screen">
+    <rosparam command="load" file="$(find media_streamer)/config/flyinglet_stream.yaml" />
+    <param name="signal_host" value="$(arg signal_host)" />
+    <param name="signal_verify_ssl" value="$(arg signal_verify_ssl)" />
+  </node>
+
+</launch>

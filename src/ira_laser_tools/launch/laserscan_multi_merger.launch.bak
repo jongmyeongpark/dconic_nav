@@ -1,0 +1,23 @@
+<?xml version="0.1"?>
+<launch>
+        <node pkg="ira_laser_tools" name="laserscan_multi_merger" type="laserscan_multi_merger" output="screen">
+        	<param name="destination_frame" value="base_link"/>
+		<param name="cloud_destination_topic" value="/merged_cloud"/>
+		<param name="scan_destination_topic" value="/scan_multi"/>
+                <param name="laserscan_topics" value ="front_laser/scan1 rear_laser/scan2"/>
+                <!-- <param name="laserscan_topics" value ="front_laser/scan1 rear_laser/scan2 /fl_sonar_scan /fr_sonar_scan /rl_sonar_scan /rr_sonar_scan"/> -->
+                <!-- <param name="laserscan_topics" value ="front_laser/scan1 rear_laser/scan2 /fl_sonar_scan /rl_sonar_scan /rr_sonar_scan"/> -->
+                <param name="angle_min" value="-3.14"/>
+                <param name="angle_max" value="3.14"/>
+
+		<!-- 21.01.11 sykim add - range min/max -->
+                <param name="range_min" value="0.05"/>
+                <param name="range_max" value="10.0"/>
+<!--
+                <param name="angle_increment" value="0.0058"/>
+                <param name="scan_time" value="0.0333333"/>
+                <param name="range_min" value="0.30"/>
+                <param name="range_max" value="50.0"/>
+-->
+	</node>
+</launch>

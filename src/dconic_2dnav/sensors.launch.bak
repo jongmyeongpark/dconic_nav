@@ -1,0 +1,133 @@
+<?xml version="0.1"?>
+
+<launch>
+    <!-- static transforms -->
+    <!-- 200909, mskim block, not used, tf create by dconic.urdf -->
+    <!--<include file="$(find dconic_2dnav)/static_transforms.launch.xml" />-->
+
+    <!-- execute GL310 for point-cloud publish 
+    <include file="$(find gl_ros_driver_udp)/launch/gl_ros_driver_udp.launch"/> -->
+
+    <!-- ltme lidar -->
+    <include file="$(find ltme_node)/launch/ltme02a.launch"/>
+
+    <!-- launch sick lidar tim5xx twin
+    <include file="$(find sick_scan)/launch/sick_tim_5xx_twin.launch"/> -->
+
+    <!-- IMU 
+    <include file="$(find razor_imu_9dof)/launch/razor-pub.launch"/> -->
+
+    <!-- MD motor -->
+    <include file="$(find md)/launch/md.launch"/>
+    
+    <!-- joystic 
+    <include file="$(find learning_joy)/launch/turtle_joy.launch"/> -->
+
+    <!-- closest_obs_from_robot -->
+    <include file="$(find closest_obs_from_robot)/launch/closest_obs_from_robot_node.launch"/>
+
+    <!-- checking pose
+    <include file="$(find checking_pose)/launch/checking_pose.launch"/> -->
+
+    <!-- 5sec later auto restart, but next goal in FW 
+    <include file="$(find plan_recovery)/launch/plan_recovery.launch"/> -->
+
+    <!-- sona r 
+    <include file="$(find sonar_to_laserscan)/launch/sonar_to_laserscan.launch"/> -->
+
+    <!-- ultra sonic sensor
+    <node pkg="rosserial_python" type="serial_node.py" args="/dev/ttySonarBottom" name="serial_sonar_bottom" respawn="false" /> -->
+
+    <!-- ultra sonic sensor
+    <node pkg="rosserial_python" type="serial_node.py" args="/dev/ttySonarTop" name="serial_sonar_top" respawn="false" /> -->
+
+    <!-- ultra sonic sensor 
+    <node pkg="rosserial_python" type="serial_node.py" args="/dev/ttySonar" name="serial_sonar" respawn="false" /> -->
+
+    <!-- Run URDF -->
+    <include file="$(find dconic_2dnav)/display.launch"/>  
+   
+    <!-- Run Watchdog -->
+    <include file="$(find watchdog)/launch/watchdog.launch"/>
+
+    <!-- Node Alive -->
+    <include file="$(find node_alive)/launch/server.launch"/>
+  
+    <!-- Diagnostic Aggregator -->
+    <include file="$(find diagnostic_aggregator)/demo/aggregator.launch"/>
+
+    <!-- flyinglet authroization  -->
+    <!-- <include file="$(find flyinglet_auth)/launch/flyinglet_auth.launch"/> -->
+    <!-- <include file="$(find flyinglet_agent)/launch/flyinglet_agent.launch"/> -->
+
+    <!-- Msg Json Wrapper -->
+    <include file="$(find msg_converter)/launch/msg_json_wrapper.launch"/>
+
+    <!-- rosbridge server -->
+    <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch"/> 
+
+    <!-- Ros bridge   -->
+    <include file="$(find rosbridge_agent)/launch/rosbridge_websocket.launch"/>
+    
+    <!-- aws bridge  -->
+    <!-- <include file="$(find mqtt_bridge)/launch/aws_bridge.launch"/> -->
+
+    <!-- autonomous parker node -->
+    <include file="$(find autonomous_parker)/launch/autonomous_parker.launch"/>
+
+    <!-- rosping node ping to 192.168.10.1 -->
+    <include file="$(find rosping)/launch/rosping.launch"/>
+
+    <!-- Run Robot pose ekf -->
+    <include file="$(find robot_pose_ekf)/robot_pose_ekf.launch" />
+
+    <!-- Run lasercan merge -->
+    <include file="$(find ira_laser_tools)/launch/laserscan_multi_merger.launch"/>
+    
+    <!-- time scheduler -->
+    <include file="$(find time_scheduler)/launch/time_scheduler.launch"/>
+
+    <!-- Run restricted area maker -->
+    <include file="$(find restricted_area_maker)/launch/restricted_area_maker.launch"/>
+  
+    <!-- Run battery_checker -->
+    <include file="$(find battery_checker)/launch/battery_checker.launch"/>
+
+    <!-- Run Ezi Servo Head Motor Controller  -->
+    <include file="$(find ezi_servo_controller)/launch/ezi_servo_controller.launch"/>
+
+    <!--Run Lift Controller 
+    <include file="$(find lift_controller)/launch/lift_controller.launch"/> -->
+
+    <!-- ble serial manager node -->
+    <include file="$(find ble_serial_manager)/launch/ble_serial_manager.launch"/>
+
+    <!-- hdmi switch -->
+    <include file="$(find hdmi_serial_switcher)/launch/hdmi_serial_switcher.launch"/>
+    
+    <!-- landmark  -->
+    <!-- <include file="$(find landmark)/launch/landmark.launch"/> -->
+
+    <!-- shortest path finder -->
+    <include file="$(find shortest_path_finder)/launch/shortest_path_finder.launch"/>
+    
+    <!-- robot_system_fe_realtime_info_fetcher
+    <include file="$(find robot_system_fe_realtime_info_fetcher)/launch/robot_system_fe_realtime_info_fetcher.launch"/> -->
+
+    <!-- image_view -->
+    <include file="$(find image_view)/launch/image_view.launch"/>
+
+    <!-- esp32  
+    <include file="$(find esp32)/launch/esp32.launch"/> -->
+
+    <!-- environment esp32 -->
+    <!-- <include file="$(find env_serials)/launch/env_serials.launch"/> -->
+
+    <!-- vla demo -->
+    <!-- <include file="$(find vla_demo)/launch/vla_demo.launch"/> -->
+
+    <!-- remote_cmd_15 -->
+    <include file="$(find remote_cmd_15)/launch/remote_cmd_15.launch"/>
+
+</launch>
+  

@@ -1,0 +1,3 @@
+<launch>
+    <node pkg="comm_app" type="comm_app" name="map_info" output="screen"/>
+</launch>

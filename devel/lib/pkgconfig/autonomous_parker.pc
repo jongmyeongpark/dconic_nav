@@ -1,0 +1,1 @@
+/home/nvidia/dconic_nav/devel/.private/autonomous_parker/lib/pkgconfig/autonomous_parker.pc

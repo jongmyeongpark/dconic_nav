@@ -1,0 +1,1 @@
+/home/nvidia/dconic_nav/devel/.private/costmap_converter/share/roseus/ros/costmap_converter/msg/ObstacleArrayMsg.l

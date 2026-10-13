@@ -1,0 +1,376 @@
+#include "ros/ros.h"
+#include "ros/console.h"
+#include "geometry_msgs/PointStamped.h"
+#include "custom_msgs/Zone.h"
+#include "custom_msgs/Obstacles.h"
+#include "custom_msgs/Form.h"
+#include <math.h>
+#include <vector>
+#include <iostream>
+#include <string>
+#include <sstream>
+#include <visualization_msgs/Marker.h>
+#include <std_msgs/Empty.h>
+#include <jsoncpp/json/json.h>
+#include <fstream>
+#include <std_msgs/String.h>
+
+std::vector<geometry_msgs::PointStamped> clickedPoints_;
+
+visualization_msgs::Marker visualizationPoints_;
+
+ros::Publisher restricted_area_pub_;
+ros::Publisher restricted_obstacle_pub_;
+
+ros::Publisher clear_restriced_area_pub_;
+
+ros::Publisher restricted_multi_area_pub_;
+
+ros::Publisher requested_restricted_area_pub_;
+
+std::vector<custom_msgs::Zone> restricted_zone_vector_;
+
+std::string currentMapName_;
+
+void loadAreasFromJsonFile(const std::string fileName){
+    
+    std_msgs::Empty emptyMsg;
+    clear_restriced_area_pub_.publish(emptyMsg);
+
+    std::string restrictedAreaPath = "/home/nvidia/dconic_nav/src/restricted_area_maker/restricted_areas/" + fileName + ".json";
+    std::ifstream restrictedAreaFile(restrictedAreaPath.data());
+
+    std::cout << restrictedAreaPath << std::endl;
+
+    std::string str;
+	for (char p; restrictedAreaFile >> p;){
+		str += p;
+    }
+
+    std::cout << str << std::endl;
+
+	Json::Reader reader;
+	Json::Value root;
+	bool parsingRet = reader.parse(str, root);
+
+    int polygonSize = root["polygon_size"].asInt();
+	std::cout << std::endl << "polygon size : " << polygonSize << std::endl;
+
+    const Json::Value polygons = root["polygons"];
+
+    for ( int index = 0; index < polygonSize ; ++index )  
+    {
+        //std::cout << tasks[index] << std::endl;
+		//std::cout << index << "  " << tasks[index]["task"] << std::endl;
+        int pointSize = polygons[index]["point_size"].asInt();
+        const Json::Value points = polygons[index]["points"];
+        custom_msgs::Zone zoneMsg;
+        for (int j = 0 ; j < pointSize ; ++j){
+            geometry_msgs::Point pointTemp;
+            pointTemp.x = points[j]["x"].asDouble();
+            pointTemp.y = points[j]["y"].asDouble();
+            pointTemp.z = 0;
+            zoneMsg.area.form.push_back(pointTemp);            
+        }
+        restricted_area_pub_.publish(zoneMsg);  
+        std::cout << "restricted_area_pub_ is published." << std::endl;
+
+        restricted_zone_vector_. push_back(zoneMsg);   
+        std::cout << "restricted_zone_vector_ size : " << restricted_zone_vector_.size() << std::endl;
+    }   
+}
+
+
+void saveToJsonFile(){
+    std::string restrictedAreaPath = "/home/nvidia/dconic_nav/src/restricted_area_maker/restricted_areas/" + currentMapName_ + ".json";
+    Json::Value root;
+    root["map_name"] = currentMapName_;
+    root["polygon_size"] = (int) restricted_zone_vector_.size();
+    Json::Value polygons;
+    for (int i = 0 ; i < restricted_zone_vector_.size() ; ++i){
+        Json::Value item;
+        item["id"] = i;
+        item["name"] = "name" + std::to_string(i) ;
+        item["point_size"] = (int) restricted_zone_vector_[i].area.form.size();
+        Json::Value points;
+        for (int j = 0 ; j < restricted_zone_vector_[i].area.form.size() ; ++j){
+            Json::Value pointsValue;
+            pointsValue["x"] = restricted_zone_vector_[i].area.form[j].x;
+            pointsValue["y"] = restricted_zone_vector_[i].area.form[j].y;
+            points.append(pointsValue);
+        }
+
+        item["points"] = points;
+        polygons.append(item);
+    }
+    root["polygons"] = polygons;
+    
+    Json::StyledWriter writer;
+    std::string str = writer.write(root);
+
+    std::ofstream stream ;
+    stream.open(restrictedAreaPath);
+    stream << str;
+
+    std::cout << str.c_str() << std::endl;
+
+}
+
+
+void clickedPointCallback(const geometry_msgs::PointStamped& msg){
+
+    ROS_INFO("clicked %f, %f", msg.point.x, msg.point.y);
+
+    clickedPoints_.push_back(msg);
+    geometry_msgs::Point pointTempViz;
+    pointTempViz.x = msg.point.x;
+    pointTempViz.y = msg.point.y;
+    pointTempViz.z = 0;
+    visualizationPoints_.points.push_back(pointTempViz);
+
+    if (clickedPoints_.size() > 1){
+        geometry_msgs::PointStamped lastPoint = clickedPoints_[clickedPoints_.size()-1];
+        geometry_msgs::PointStamped firstPoint = clickedPoints_[0];
+
+        if ( sqrt((lastPoint.point.x-firstPoint.point.x) * (lastPoint.point.x-firstPoint.point.x) + (lastPoint.point.y-firstPoint.point.y) * (lastPoint.point.y-firstPoint.point.y)) < 0.1 ){
+            
+            if (clickedPoints_.size() == 2){
+                // pub obstacle point (if z!=0 circle radius = z)
+                custom_msgs::Form formMsg;
+                custom_msgs::Obstacles obstaclesMsg;
+                geometry_msgs::Point pointTemp;
+                pointTemp.x = clickedPoints_[0].point.x;
+                pointTemp.y = clickedPoints_[0].point.y;
+                pointTemp.z = 0;
+                formMsg.form.push_back(pointTemp);
+                obstaclesMsg.list.push_back(formMsg);
+
+                ROS_INFO("make obstacle point  %f, %f", pointTemp.x, pointTemp.y);
+                restricted_obstacle_pub_.publish(obstaclesMsg);
+            }
+            
+            else if (clickedPoints_.size() == 3){
+                // pub obstacle line
+                custom_msgs::Obstacles obstaclesMsg;
+                custom_msgs::Form formMsg;
+                for (int i = 0 ; i < clickedPoints_.size()-1 ; ++i){
+                    geometry_msgs::Point pointTemp;
+                    pointTemp.x = clickedPoints_[i].point.x;
+                    pointTemp.y = clickedPoints_[i].point.y;
+                    pointTemp.z = 0;
+                    formMsg.form.push_back(pointTemp);
+                    obstaclesMsg.list.push_back(formMsg);
+                }
+
+                ROS_INFO("make obstacle line  (%f , %f) -> (%f , %f) ", clickedPoints_[0].point.x, clickedPoints_[0].point.y, clickedPoints_[1].point.x, clickedPoints_[1].point.y);
+                restricted_obstacle_pub_.publish(obstaclesMsg);
+
+            }
+            else {
+                // pub zone
+                custom_msgs::Zone zoneMsg;
+                for (int i = 0 ; i < clickedPoints_.size()-1 ; ++i){
+                    geometry_msgs::Point pointTemp;
+                    pointTemp.x = clickedPoints_[i].point.x;
+                    pointTemp.y = clickedPoints_[i].point.y;
+                    pointTemp.z = 0;
+                    zoneMsg.area.form.push_back(pointTemp);                    
+                }
+                ROS_INFO("make zone  %d", clickedPoints_.size());
+
+                restricted_area_pub_.publish(zoneMsg);
+
+                restricted_zone_vector_.push_back(zoneMsg);
+
+                saveToJsonFile();
+            }
+
+            clickedPoints_.clear();
+            visualizationPoints_.points.clear();
+        }
+    }
+
+    //std::cout << "AMCL Pose : ( " << amclPoseX_ << "  ,  " << amclPoseY_ << " )" << std::endl; 
+}
+
+void testRestrictedAreaCallback(const std_msgs::Empty& msg ){
+    custom_msgs::Zone zoneMsg;
+    geometry_msgs::Point pointTemp;
+    pointTemp.x = 7.02670406422-0.1;
+    pointTemp.y = 120.866842974-0.1;
+    pointTemp.z = 0;
+    zoneMsg.area.form.push_back(pointTemp);
+    pointTemp.x = 7.02670406422+0.1;
+    pointTemp.y = 120.866842974-0.1;
+    pointTemp.z = 0;
+    zoneMsg.area.form.push_back(pointTemp);
+    pointTemp.x = 7.02670406422+0.1;
+    pointTemp.y = 120.866842974+0.1;
+    pointTemp.z = 0;
+    zoneMsg.area.form.push_back(pointTemp);
+    pointTemp.x = 7.02670406422-0.1;
+    pointTemp.y = 120.866842974+0.1;
+    pointTemp.z = 0;
+    zoneMsg.area.form.push_back(pointTemp);
+
+    restricted_area_pub_.publish(zoneMsg);
+
+    ROS_INFO("restricted_area published!!!\n");
+}
+
+void requestRestrictedAreaCallback(const std_msgs::String& msg){
+    std::string restrictedAreaPath = "/home/nvidia/dconic_nav/src/restricted_area_maker/restricted_areas/" + msg.data + ".json";
+    std::ifstream restrictedAreaFile(restrictedAreaPath.data());
+
+    std::cout << restrictedAreaPath << std::endl;
+
+    std::string str;
+	for (char p; restrictedAreaFile >> p;){
+		str += p;
+    }
+
+    std::cout << str << std::endl;
+
+    std_msgs::String restrictedAreaJsonMsg;
+    restrictedAreaJsonMsg.data = str;
+    requested_restricted_area_pub_.publish(restrictedAreaJsonMsg);
+}
+
+void updateRestrictedAreaCallback(const std_msgs::String& msg){
+    std::string text = msg.data;
+    Json::Value root;
+    Json::Reader reader;
+    bool parsingSuccessful = reader.parse( text, root );
+    if ( !parsingSuccessful )
+    {
+        std::cout << "Error parsing the string" << std::endl;
+    }
+
+    std::string mapName = root["map_name"].asString();
+
+    std::string restrictedAreaJsonPath = "/home/nvidia/dconic_nav/src/restricted_area_maker/restricted_areas/" + mapName + ".json";
+
+    std::ofstream restrictedAreaFile(restrictedAreaJsonPath.data());
+    if(restrictedAreaFile.is_open()){
+        restrictedAreaFile << text ;
+        restrictedAreaFile.close();
+    }
+
+    loadAreasFromJsonFile(mapName);
+}
+
+void currentMapRunningCallback(const std_msgs::String& msg){
+    if(msg.data != ""){
+        //loadAreasFromJsonFile(msg.data);
+        currentMapName_=  msg.data;
+    }
+}
+
+void requestLoadRestrictedAreaCallback(const std_msgs::Empty& msg){
+    loadAreasFromJsonFile(currentMapName_);
+}
+
+int main(int argc, char **argv)
+{
+    ROS_INFO("restricted_area_maker\n");
+    ros::init(argc, argv, "restricted_area_maker");
+    ros::NodeHandle nh;
+    ros::Rate r(2.0);
+
+    currentMapName_ = "";
+
+    std::ifstream inputFileMap("/home/nvidia/dconic_nav/src/map/map.txt");
+    if (!inputFileMap.is_open()) {
+      ROS_ERROR("Could not open the file - '/home/nvidia/dconic_nav/src/map/map.txt'");
+      exit(EXIT_FAILURE);
+    }
+    std::stringstream ssMap;
+    ssMap << inputFileMap.rdbuf();
+    currentMapName_ = ssMap.str();
+
+    ros::Subscriber clicked_point_sub = nh.subscribe("/clicked_point", 10, clickedPointCallback);
+
+    restricted_area_pub_ = nh.advertise<custom_msgs::Zone>("/virtual_costmap_layer/zone", 10);
+    restricted_obstacle_pub_ = nh.advertise<custom_msgs::Obstacles>("/virtual_costmap_layer/obstacles", 10);
+    clear_restriced_area_pub_ = nh.advertise<std_msgs::Empty>("/virtual_costmap_layer/clear_zone", 10);
+    requested_restricted_area_pub_ = nh.advertise<std_msgs::String>("/requested_restricted_area", 10);
+
+    ros::Publisher clicked_points_marker_pub = nh.advertise<visualization_msgs::Marker>("clicked_points_visualization_makrer", 10);
+
+    ros::Subscriber is_teb_initialized_sub = nh.subscribe("/test_restricted_area", 10, testRestrictedAreaCallback);
+
+    ros::Subscriber update_restricted_area_sub = nh.subscribe("/update_restricted_area", 10, updateRestrictedAreaCallback);
+
+    ros::Subscriber request_restricted_area_sub = nh.subscribe("/request_restricted_area", 10, requestRestrictedAreaCallback);
+
+    ros::Subscriber current_map_running_sub = nh.subscribe("/map_running", 10, currentMapRunningCallback);
+
+    ros::Subscriber request_load_restricted_area_sub = nh.subscribe("/request_load_restricted_area", 1, requestLoadRestrictedAreaCallback);
+
+    visualizationPoints_.header.frame_id = "map";
+    visualizationPoints_.header.stamp = ros::Time::now();
+    visualizationPoints_.id = 0;
+    visualizationPoints_.type = visualization_msgs::Marker::POINTS;
+    visualizationPoints_.scale.x = 0.2;
+    visualizationPoints_.scale.y = 0.2;
+    visualizationPoints_.color.g = 1.0f;
+    visualizationPoints_.color.a = 1.0;
+    visualizationPoints_.pose.orientation.w = 1.0;
+
+
+    int count = 0 ;
+    while (ros::ok())
+    {           
+        // if (count == 20){
+        //     custom_msgs::Zone zoneMsg;
+        //     geometry_msgs::Point pointTemp;
+        //     pointTemp.x = 6.91235856752 - 0.01;
+        //     pointTemp.y = 121.152393391 - 0.01;
+        //     pointTemp.z = 0;
+        //     zoneMsg.area.form.push_back(pointTemp);
+        //     pointTemp.x = 6.91235856752 + 0.01;
+        //     pointTemp.y = 121.152393391 - 0.01;
+        //     pointTemp.z = 0;
+        //     zoneMsg.area.form.push_back(pointTemp);
+        //     pointTemp.x = 6.91235856752 + 0.01;
+        //     pointTemp.y = 121.152393391 + 0.01;
+        //     pointTemp.z = 0;
+        //     zoneMsg.area.form.push_back(pointTemp);
+        //     pointTemp.x = 6.91235856752 - 0.01;
+        //     pointTemp.y = 121.152393391 + 0.01;
+        //     pointTemp.z = 0;
+        //     zoneMsg.area.form.push_back(pointTemp);
+
+        //     restricted_area_pub_.publish(zoneMsg);
+        // }
+        // else if (count == 40)
+        // {
+        //     custom_msgs::Zone zoneMsg;
+        //     geometry_msgs::Point pointTemp;
+        //     pointTemp.x = 9.06969588011 - 0.01;
+        //     pointTemp.y = 120.857653941 - 0.01;
+        //     pointTemp.z = 0;
+        //     zoneMsg.area.form.push_back(pointTemp);
+        //     pointTemp.x = 9.06969588011 + 0.01;
+        //     pointTemp.y = 120.857653941 - 0.01;
+        //     pointTemp.z = 0;
+        //     zoneMsg.area.form.push_back(pointTemp);
+        //     pointTemp.x = 9.06969588011 + 0.01;
+        //     pointTemp.y = 120.857653941 + 0.01;
+        //     pointTemp.z = 0;
+        //     zoneMsg.area.form.push_back(pointTemp);
+        //     restricted_area_pub_.publish(zoneMsg);
+        // }
+
+        if (count == 20){
+            //loadAreasFromJsonFile("park_map_test");
+        }
+
+        clicked_points_marker_pub.publish(visualizationPoints_);
+        ros::spinOnce();
+        r.sleep(); 
+
+        ++count;
+    }
+}
+

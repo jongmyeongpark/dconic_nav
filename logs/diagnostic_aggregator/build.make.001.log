@@ -1,0 +1,4 @@
+[  0%] Built target diagnostic_msgs_generate_messages_cpp
+[ 58%] Built target diagnostic_aggregator
+[ 83%] Built target analyzer_loader
+[100%] Built target aggregator_node

@@ -1,0 +1,8 @@
+prefix=/home/nvidia/dconic_nav/devel/.private/time_scheduler
+
+Name: time_scheduler
+Description: Description of time_scheduler
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: std_msgs roscpp geometry_msgs sensor_msgs

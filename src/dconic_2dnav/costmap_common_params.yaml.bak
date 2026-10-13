@@ -1,0 +1,37 @@
+##footprint + footprint_padding = robot size (meter) ####mskim 
+#footprint: [[-0.18, -0.26], [-0.26, -0.18], [-0.26, 0.18], [-0.18, 0.26], [0.18, 0.26], [0.26, 0.18], [0.26, -0.18], [0.18, -0.26]]
+footprint: [[-0.25, -0.35], [-0.35, -0.25], [-0.35, 0.25], [-0.25, 0.35], [0.25, 0.35], [0.35, 0.25], [0.35, -0.25], [0.25, -0.35]]
+#robot_radius: 0.35
+footprint_padding: 0.03 #0.08 #0.09 #20.12.29 sykim increase robot size
+
+robot_base_frame: base_link
+# 20.11.30 sykim change-map clear test
+update_frequency: 10.0 #mskim 21.01.21 change-(befor value:5.0) our system cannot be update to 5Hz. need to optimize to speed up the program
+publish_frequency: 20.0
+transform_tolerance: 3.0 #dhjeon 20.12.17 change-(befor value:0.3) our system is slow. need to optimize to speed up
+
+resolution: 0.05
+
+obstacle_range: 5.0
+raytrace_range: 10.0
+
+#layer definitions
+static:
+    map_topic: map
+    subscribe_to_updates: true
+
+obstacle_layer:
+    observation_sources: laser
+    laser: {data_type: LaserScan, topic: scan_multi, marking: true, clearing: true, inf_is_valid: true}
+
+#21.01.21 mskim sonar sensor not used
+#sonar:
+#    topics: ["/sonar1", "/sonar2", "/sonar3", "/sonar4"] ##mskim, temp blocked, sonar2 active wrong
+#    topics: ["/sonar1", "/sonar3", "/sonar4"]
+#    no_readings_timeout: 1.0
+#    clear_threshold: 0.2
+#    mark_threshold: 0.9 #0.8
+#    clear_on_max_reading: false #true #21.01.11 sykim
+
+inflation:
+    inflation_radius: 0.43 #.36 #0.35

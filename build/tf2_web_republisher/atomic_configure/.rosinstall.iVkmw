@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/nvidia/dconic_nav/devel/.private/tf2_web_republisher/setup.sh

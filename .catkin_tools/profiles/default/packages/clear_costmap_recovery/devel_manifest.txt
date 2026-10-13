@@ -1,0 +1,5 @@
+navigation/clear_costmap_recovery
+/home/nvidia/dconic_nav/devel/.private/clear_costmap_recovery/share/clear_costmap_recovery/cmake/clear_costmap_recoveryConfig-version.cmake /home/nvidia/dconic_nav/devel/share/clear_costmap_recovery/cmake/clear_costmap_recoveryConfig-version.cmake
+/home/nvidia/dconic_nav/devel/.private/clear_costmap_recovery/share/clear_costmap_recovery/cmake/clear_costmap_recoveryConfig.cmake /home/nvidia/dconic_nav/devel/share/clear_costmap_recovery/cmake/clear_costmap_recoveryConfig.cmake
+/home/nvidia/dconic_nav/devel/.private/clear_costmap_recovery/lib/libclear_costmap_recovery.so /home/nvidia/dconic_nav/devel/lib/libclear_costmap_recovery.so
+/home/nvidia/dconic_nav/devel/.private/clear_costmap_recovery/lib/pkgconfig/clear_costmap_recovery.pc /home/nvidia/dconic_nav/devel/lib/pkgconfig/clear_costmap_recovery.pc

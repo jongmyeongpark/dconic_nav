@@ -1,0 +1,3 @@
+<launch>
+    <node pkg="media_controller" type="media_controller_node" name="media_controller" output="screen"/>
+</launch>
