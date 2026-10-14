@@ -12,7 +12,11 @@ import tf # 쿼터니언 변환용
 from nav_msgs.msg import Odometry, OccupancyGrid   # 추가 : OccupancyGrid
 from sensor_msgs.msg import BatteryState, LaserScan, Imu, Range   # 수정 : Range (초음파) 추가
 from std_msgs.msg import String, Bool, Empty, Int32, Float32   # 이사님추가 : Float32 (배터리 개별 토픽용)
-from geometry_msgs.msg import Twist, PoseWithCovarianceStamped
+from std_msgs.msg import Int32MultiArray   # 수정 : jogHead 용 (/control_ezi_servo_jog_ = [direction, speed])
+from actionlib_msgs.msg import GoalID   # 수정 : cancelDrive 시 /move_base/cancel (앱 실측과 동일)
+from std_srvs.srv import Empty as EmptySrv   # 수정 : clearCostmap 용 move_base/clear_costmaps 서비스
+# from geometry_msgs.msg import Twist, PoseWithCovarianceStamped
+from geometry_msgs.msg import Twist, PoseWithCovarianceStamped, PoseStamped   # 수정 : driveToDestination 용 PoseStamped
 from actionlib_msgs.msg import GoalStatusArray   # 이사님추가 : /move_base/status 용
 # 추가 : hdl_localization 스캔 매칭 상태 (localizationScore 용). 패키지 import 실패 시에도 브리지는 계속 동작
 try:
@@ -132,9 +136,29 @@ class PlatyMqttBridge:
         self.clear_err_pub = rospy.Publisher("/clear_error", Bool, queue_size=10)
         self.path_run_pub = rospy.Publisher("/path_run_request", String, queue_size=10)
         self.shortest_guide_pub = rospy.Publisher("/request_shortest_guide", String, queue_size=10)
+        self.simple_goal_pub = rospy.Publisher("/move_base_simple/goal", PoseStamped, queue_size=10)   # 수정 : 앱 실측 경로 (driveToDestination)
         self.path_cancel_pub = rospy.Publisher("/path_run_cancel_request", Empty, queue_size=10)
         self.move_req_pub = rospy.Publisher("/move_request", Int32, queue_size=10)
         self.max_vel_pub = rospy.Publisher("/max_velocity_override", Twist, queue_size=10) # 속도 제한 설정용
+        # 수정 : 아래는 실제 구독 노드를 소스에서 확인한 토픽 (2026-10-13)
+        self.move_base_cancel_pub = rospy.Publisher("/move_base/cancel", GoalID, queue_size=10)   # 수정 : move_base / follow_waypoints 구독
+        self.charge_req_pub = rospy.Publisher("/charge_request", Empty, queue_size=10)   # 수정 : map_info charge_CallBack (경로취소 → move_base cancel → /start_auto_parking)
+        self.initialpose_pub = rospy.Publisher("/initialpose", PoseWithCovarianceStamped, queue_size=10)   # 수정 : amcl 재측위 (map_info 도 같은 토픽으로 재발행)
+        self.map_select_pub = rospy.Publisher("/map_select", String, queue_size=10)   # 수정 : map_info → move_base.launch map_name:=<이름> 재실행
+        self.update_area_pub = rospy.Publisher("/update_restricted_area", String, queue_size=10)   # 수정 : restricted_area_maker (JSON 저장 + 로드)
+        self.clear_zone_pub = rospy.Publisher("/virtual_costmap_layer/clear_zone", Empty, queue_size=10)   # 수정 : virtual costmap 금지구역 해제
+        self.load_area_pub = rospy.Publisher("/request_load_restricted_area", Empty, queue_size=10)   # 수정 : restricted_area_maker 현재 맵 JSON 재로드
+        self.head_abs_pub = rospy.Publisher("/control_ezi_servo", Int32, queue_size=10)   # 수정 : ezi_servo_controller 절대각 (-1 = 원점복귀)
+        self.head_inc_pub = rospy.Publisher("/control_ezi_servo_inc", Int32, queue_size=10)   # 수정 : 상대각
+        self.head_near_pub = rospy.Publisher("/control_ezi_servo_near", Int32, queue_size=10)   # 수정 : 최단방향 절대각
+        self.head_jog_pub = rospy.Publisher("/control_ezi_servo_jog_", Int32MultiArray, queue_size=10)   # 수정 : [direction, speed]
+        self.head_stop_pub = rospy.Publisher("/control_ezi_servo_stop", Empty, queue_size=10)   # 수정
+        self.head_vel_pub = rospy.Publisher("/control_ezi_servo_velover", Int32, queue_size=10)   # 수정 : 속도 override
+        self.head_pos_req_pub = rospy.Publisher("/request_ezi_servo_actual_pos", Empty, queue_size=1)   # 수정 : 응답은 /control_ezi_servo_actual_pos
+        self.head_actual_pos = None   # 수정 : (각도, 수신시각)
+        rospy.Subscriber("/control_ezi_servo_actual_pos", Int32, self.head_actual_pos_callback)   # 수정
+        self.charge_after_path = False   # 수정 : goToChargeViaWaypoints 경로 완료 후 충전 요청 대기 플래그
+        rospy.Subscriber("/waypoint_finished", Empty, self.waypoint_finished_callback)   # 수정 : follow_waypoints 경로 완료 알림
         # MQTT 클라이언트 설정
         self.client = mqtt.Client()
         self.client.on_connect = self.on_connect
@@ -289,6 +313,24 @@ class PlatyMqttBridge:
     def map_running_callback(self, msg):
         self.robot_state["map_name"] = msg.data.strip()
 
+    # 수정 : requestHeadPosition 응답 (/request_ezi_servo_actual_pos 에 대한 회신)
+    def head_actual_pos_callback(self, msg):
+        self.head_actual_pos = (msg.data, time.time())
+
+    # 수정 : goToChargeViaWaypoints - 경로 마지막 웨이포인트 도착 시에만 발행됨 (취소 시에는 발행 안 됨)
+    def waypoint_finished_callback(self, msg):
+        if self.charge_after_path:
+            self.charge_after_path = False
+            rospy.loginfo("경유지 주행 완료 → 충전소 복귀 요청 (/charge_request)")
+            self.charge_req_pub.publish(Empty())
+
+    # 수정 : {x, y, angle(deg)} → geometry_msgs/Pose 값 (driveToDestination 과 같은 형식)
+    def fill_pose(self, pose, data):
+        pose.position.x = float(data.get("x", 0.0))
+        pose.position.y = float(data.get("y", 0.0))
+        q = tf.transformations.quaternion_from_euler(0, 0, math.radians(float(data.get("angle", 0.0))))
+        pose.orientation.x, pose.orientation.y, pose.orientation.z, pose.orientation.w = q
+
     # 추가 : 현재 향하는 웨이포인트 순번 (-1 = 경로 없음 / 단일 목표 주행)
     def current_waypoint_callback(self, msg):
         self.robot_state["current_waypoint_index"] = msg.data
@@ -420,7 +462,11 @@ class PlatyMqttBridge:
             if command == "startDrive":
                 waypoints = req_data.get("waypoints", [])
                 rospy.loginfo(f"[startDrive] waypoints: {waypoints}")   # 수정
+                repetition = int(req_data.get("repetition", 1))   # 수정 : 명세 기본값 1
+                repetition = max(1, min(99, repetition))   # 수정 : follow_waypoints 는 앞 2자리만 읽고 0 이면 ROS_ERROR
+                # rospy.loginfo(f"[startDrive] repetition: {repetition} (raw: {req_data.get('repetition')})")   # 수정 : 검증용 (2026-10-13 검증 완료)
                 file_name = "temp_path.csv"
+
                 save_dir = "/home/nvidia/dconic_nav/src/follow_waypoints/saved_path/"
                 if not os.path.exists(save_dir):
                     os.makedirs(save_dir)
@@ -437,20 +483,32 @@ class PlatyMqttBridge:
                         writer.writerow([wp.get('x', 0.0), wp.get('y', 0.0), 0.0, q[0], q[1], q[2], q[3]])
                 rospy.loginfo(f"명령 수행: 주행 시작 (자동 언도킹 전환, 경로 파일 생성 완료: {full_path})")
                 self.robot_state["docking_state"] = "IDLE" # 출발 시 도킹 해제
-                self.path_run_pub.publish('0100'+file_name)
+                # self.path_run_pub.publish('0100'+file_name)
+                self.path_run_pub.publish(f"{repetition:02d}00" + file_name)   # 수정 : 앞 2자리 = 반복횟수, 다음 2자리 = 간격(cpp 미사용)
                 self.robot_state["is_auto_driving"] = True
                 return True, None
             elif command == "driveToDestination":
                 target = req_data.get("target", {})
                 rospy.loginfo(f"명령 수행: 단일 목적지 이동 {target}")
                 self.robot_state["docking_state"] = "IDLE"
-                self.shortest_guide_pub.publish(json.dumps(target))
+                # self.shortest_guide_pub.publish(json.dumps(target))   # shortest_path_finder 는 Int32(웨이포인트 번호)를 받아 타입 불일치로 전달 안 됨
+                goal = PoseStamped()   # 수정 : 앱과 동일하게 move_base_simple/goal 로 발행 (move_base 가 /move_base/goal 로 재발행 → follow_waypoints drivingState_=2)
+                goal.header.frame_id = "map"   # 수정
+                goal.header.stamp = rospy.Time.now()   # 수정
+                goal.pose.position.x = float(target.get("x", 0.0))   # 수정
+                goal.pose.position.y = float(target.get("y", 0.0))   # 수정
+                q = tf.transformations.quaternion_from_euler(0, 0, math.radians(float(target.get("angle", 0.0))))   # 수정 : angle(deg) → 쿼터니언
+                goal.pose.orientation.x, goal.pose.orientation.y, goal.pose.orientation.z, goal.pose.orientation.w = q   # 수정
+                # rospy.loginfo(f"[driveToDestination] goal: x={goal.pose.position.x} y={goal.pose.position.y} q={q}")   # 수정 : 검증용
+                self.simple_goal_pub.publish(goal)   # 수정
                 self.robot_state["is_auto_driving"] = True
                 return True, None
  
             elif command == "cancelDrive":
                 rospy.loginfo("명령 수행: 주행 명령 취소 (정지)")
+                self.charge_after_path = False   # 수정 : 경유지 충전 복귀 대기 중이면 해제
                 self.path_cancel_pub.publish(Empty())
+                self.move_base_cancel_pub.publish(GoalID())   # 수정 : 앱 실측과 동일. 빈 GoalID = 전체 goal 취소 (driveToDestination 단일 목표도 정지)
                 self.cmd_vel_pub.publish(Twist()) 
                 self.robot_state["is_auto_driving"] = False
                 return True, None
@@ -483,13 +541,29 @@ class PlatyMqttBridge:
             elif command == "goToCharge":
                 rospy.loginfo("명령 수행: 충전 스테이션 복귀")
                 self.robot_state["docking_state"] = "DOCKING"
-                self.sys_cmd_pub.publish("GO_CHARGE")
+                # self.sys_cmd_pub.publish("GO_CHARGE")   # /robot_system_command 구독 노드 없음
+                self.charge_after_path = False   # 수정
+                self.charge_req_pub.publish(Empty())   # 수정 : 앱 실측 경로. map_info 가 진행 중 경로/goal 취소 후 /start_auto_parking
                 return True, None
             elif command == "goToChargeViaWaypoints":
                 waypoints = req_data.get("waypoints", [])
                 rospy.loginfo(f"명령 수행: 경유지 거쳐 충전소 복귀")
                 self.robot_state["docking_state"] = "DOCKING"
-                self.sys_cmd_pub.publish(f"GO_CHARGE_VIA:{json.dumps(waypoints)}")
+                # self.sys_cmd_pub.publish(f"GO_CHARGE_VIA:{json.dumps(waypoints)}")   # /robot_system_command 구독 노드 없음
+                # 수정 : 경유지를 경로 파일로 1회 주행 → /waypoint_finished 수신 시 /charge_request (waypoint_finished_callback)
+                if not waypoints:   # 수정 : 경유지 없으면 바로 충전 복귀
+                    self.charge_req_pub.publish(Empty())   # 수정
+                    return True, None   # 수정
+                file_name = "temp_charge_path.csv"   # 수정 : startDrive 의 temp_path.csv 와 분리
+                full_path = os.path.join("/home/nvidia/dconic_nav/src/follow_waypoints/saved_path/", file_name)   # 수정
+                with open(full_path, mode='w', newline='') as f:   # 수정 : startDrive 와 같은 CSV 형식
+                    writer = csv.writer(f)
+                    for wp in waypoints:
+                        q = tf.transformations.quaternion_from_euler(0, 0, math.radians(float(wp.get('angle', 0.0))))
+                        writer.writerow([wp.get('x', 0.0), wp.get('y', 0.0), 0.0, q[0], q[1], q[2], q[3]])
+                self.charge_after_path = True   # 수정
+                self.path_run_pub.publish("0100" + file_name)   # 수정 : 경유지는 1회만 주행
+                self.robot_state["is_auto_driving"] = True   # 수정
                 return True, None
  
             elif command == "undock":
@@ -509,6 +583,109 @@ class PlatyMqttBridge:
                 twist_msg.angular.z = math.radians(angular)
                 self.cmd_vel_pub.publish(twist_msg)
                 return True, None
+
+            # 수정 : 지정 좌표 이동 - driveToDestination 과 같은 move_base_simple/goal 경로
+            elif command == "moveToCoordinate":   # 수정
+                pose_data = req_data.get("pose", {})
+                rospy.loginfo(f"명령 수행: 지정 좌표 이동 {pose_data}")
+                goal = PoseStamped()
+                goal.header.frame_id = "map"
+                goal.header.stamp = rospy.Time.now()
+                self.fill_pose(goal.pose, pose_data)
+                self.robot_state["docking_state"] = "IDLE"
+                self.simple_goal_pub.publish(goal)
+                self.robot_state["is_auto_driving"] = True
+                return True, None
+
+            # 수정 : 3-1. 맵 및 위치 관리
+            elif command == "setInitialPose":   # 수정
+                pose_data = req_data.get("pose", {})
+                rospy.loginfo(f"명령 수행: 초기 위치 설정 {pose_data}")
+                init = PoseWithCovarianceStamped()
+                init.header.frame_id = "map"
+                init.header.stamp = rospy.Time.now()
+                self.fill_pose(init.pose.pose, pose_data)
+                init.pose.covariance[6 * 0 + 0] = 0.5 * 0.5   # 수정 : map_info initialize_position_callback 과 같은 공분산
+                init.pose.covariance[6 * 1 + 1] = 0.5 * 0.5
+                init.pose.covariance[6 * 5 + 5] = (math.pi / 12.0) ** 2
+                self.initialpose_pub.publish(init)
+                return True, None
+
+            elif command == "selectMap":   # 수정
+                map_name = str(req_data.get("mapName", "")).strip()
+                if not map_name:
+                    return False, None
+                rospy.loginfo(f"명령 수행: 맵 선택 {map_name} (move_base 재실행됨)")
+                self.map_select_pub.publish(map_name)
+                return True, None
+
+            elif command == "clearCostmap":   # 수정 : 토픽이 아니라 서비스
+                rospy.loginfo("명령 수행: 코스트맵 초기화")
+                try:
+                    rospy.wait_for_service("/move_base/clear_costmaps", timeout=2.0)
+                    rospy.ServiceProxy("/move_base/clear_costmaps", EmptySrv)()
+                except (rospy.ROSException, rospy.ServiceException) as e:
+                    rospy.logwarn(f"clear_costmaps 실패: {e}")
+                    return False, None
+                return True, None
+
+            # 수정 : 3-2. 금지구역 (restricted_area_maker)
+            elif command == "updateRestrictedArea":   # 수정
+                areas = req_data.get("areas", [])
+                map_name = self.robot_state.get("map_name", "")
+                if not map_name:   # 수정 : /map_running 미수신이면 저장 파일명을 정할 수 없음
+                    rospy.logwarn("updateRestrictedArea: 현재 맵 이름(/map_running) 미수신")
+                    return False, None
+                polygons = []
+                for i, area in enumerate(areas):   # 수정 : restricted_area_maker saveToJsonFile 과 같은 JSON 구조로 변환
+                    points = [{"x": float(p.get("x", 0.0)), "y": float(p.get("y", 0.0))} for p in area.get("points", [])]
+                    polygons.append({"id": i, "name": area.get("name", f"name{i}"), "point_size": len(points), "points": points})
+                area_json = {"map_name": map_name, "polygon_size": len(polygons), "polygons": polygons}
+                # rospy.loginfo(f"[updateRestrictedArea] {json.dumps(area_json)}")   # 수정 : 검증용
+                self.update_area_pub.publish(json.dumps(area_json))
+                return True, None
+
+            elif command == "clearRestrictedArea":   # 수정 : 코스트맵에서만 해제 (저장된 JSON 파일은 유지)
+                rospy.loginfo("명령 수행: 금지구역 해제")
+                self.clear_zone_pub.publish(Empty())
+                return True, None
+
+            elif command == "loadRestrictedArea":   # 수정
+                rospy.loginfo("명령 수행: 금지구역 다시 불러오기")
+                self.load_area_pub.publish(Empty())
+                return True, None
+
+            # 수정 : 3-3. 헤드 모터 (ezi_servo_controller)
+            elif command == "moveHeadAbsolute":   # 수정
+                self.head_abs_pub.publish(Int32(int(req_data.get("angle", 0))))
+                return True, None
+            elif command == "moveHeadIncremental":   # 수정
+                self.head_inc_pub.publish(Int32(int(req_data.get("angle", 0))))
+                return True, None
+            elif command == "moveHeadNear":   # 수정
+                self.head_near_pub.publish(Int32(int(req_data.get("angle", 0))))
+                return True, None
+            elif command == "jogHead":   # 수정
+                self.head_jog_pub.publish(Int32MultiArray(data=[int(req_data.get("direction", 0)), int(req_data.get("speed", 0))]))
+                return True, None
+            elif command == "stopHead":   # 수정
+                self.head_stop_pub.publish(Empty())
+                return True, None
+            elif command == "resetHeadOrigin":   # 수정 : controlEziServoCallback 에서 -1 = 원점복귀
+                self.head_abs_pub.publish(Int32(-1))
+                return True, None
+            elif command == "setHeadSpeed":   # 수정
+                self.head_vel_pub.publish(Int32(int(req_data.get("speed", 0))))
+                return True, None
+            elif command == "requestHeadPosition":   # 수정 : 요청 후 최대 1초 동안 회신 대기
+                req_time = time.time()
+                self.head_pos_req_pub.publish(Empty())
+                while time.time() - req_time < 1.0:
+                    if self.head_actual_pos is not None and self.head_actual_pos[1] >= req_time:
+                        return True, {"angle": self.head_actual_pos[0]}
+                    time.sleep(0.05)
+                rospy.logwarn("requestHeadPosition: /control_ezi_servo_actual_pos 회신 없음")
+                return False, None
  
             # 4. 시스템 및 유틸리티
             elif command == "clearError":
